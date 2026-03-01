@@ -1,34 +1,110 @@
-import Container from "@/app/_components/container";
-import { SITE_NAME, CONTACT_EMAIL, LOCATION } from "@/lib/constants";
+import Link from "next/link";
+import {
+  SITE_NAME,
+  CONTACT_EMAIL,
+  WHATSAPP_LINK,
+  LOCATION,
+  CAL_LINK,
+} from "@/lib/constants";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/ueber-mich", label: "Über mich" },
+  { href: "/leistungen", label: "Leistungen" },
+  { href: "/blog", label: "Blog" },
+  { href: "/kontakt", label: "Kontakt" },
+];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-forest text-white">
-      <Container>
-        <div className="py-12 flex flex-col lg:flex-row items-center justify-between">
-          <div className="text-center lg:text-left mb-6 lg:mb-0">
-            <h3 className="text-xl font-serif text-white mb-2">
-              {SITE_NAME}
-            </h3>
-            <p className="text-sage text-sm">
-              {LOCATION}
+      <div className="container mx-auto px-5 py-16">
+        <div className="grid md:grid-cols-3 gap-12">
+          {/* Brand */}
+          <div>
+            <h3 className="font-serif text-2xl text-white mb-4">{SITE_NAME}</h3>
+            <p className="text-forest-200 mb-4">
+              Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand.
             </p>
+            <p className="text-forest-300 text-sm">{LOCATION}</p>
           </div>
-          <div className="text-center lg:text-right">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="text-sage hover:text-white transition-colors"
-            >
-              {CONTACT_EMAIL}
-            </a>
-            <p className="text-sage text-sm mt-2">
-              &copy; {currentYear} {SITE_NAME}. Alle Rechte vorbehalten.
-            </p>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="font-medium text-white mb-4">Navigation</h4>
+            <ul className="space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-forest-200 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-medium text-white mb-4">Kontakt</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href={CAL_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-forest-200 hover:text-white transition-colors"
+                >
+                  Gespräch buchen
+                </a>
+              </li>
+              <li>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-forest-200 hover:text-white transition-colors"
+                >
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-forest-200 hover:text-white transition-colors"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </Container>
+
+        {/* Bottom */}
+        <div className="mt-12 pt-8 border-t border-forest-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-forest-300 text-sm">
+              © {new Date().getFullYear()} {SITE_NAME}. Alle Rechte vorbehalten.
+            </p>
+            <div className="flex gap-6">
+              <Link
+                href="/impressum"
+                className="text-forest-300 hover:text-white text-sm transition-colors"
+              >
+                Impressum
+              </Link>
+              <Link
+                href="/datenschutz"
+                className="text-forest-300 hover:text-white text-sm transition-colors"
+              >
+                Datenschutz
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
