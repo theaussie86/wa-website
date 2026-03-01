@@ -33,7 +33,7 @@ export default function ContactPage() {
       {/* Contact Options */}
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {/* Cal.com */}
             <div className="bg-white p-8 rounded-sm shadow-sm border-2 border-accent text-center">
               <div className="text-accent mb-4">
@@ -76,24 +76,7 @@ export default function ContactPage() {
               </a>
             </div>
 
-            {/* Email */}
-            <div className="bg-white p-8 rounded-sm shadow-sm text-center">
-              <div className="text-primary mb-4">
-                <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h2 className="font-serif text-xl text-primary mb-2">E-Mail</h2>
-              <p className="text-charcoal/70 text-sm mb-6">
-                Ich antworte innerhalb von 24 Stunden.
-              </p>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="btn-secondary w-full"
-              >
-                E-Mail schreiben
-              </a>
-            </div>
+
           </div>
         </div>
       </section>
