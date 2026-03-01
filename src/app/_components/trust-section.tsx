@@ -30,13 +30,13 @@ export function TrustSection() {
   ];
 
   return (
-    <section className="section bg-forest text-white">
+    <section className="section bg-primary text-white">
       <div className="container mx-auto px-5">
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
             Partnerschaft ohne Risiko
           </h2>
-          <p className="text-lg text-forest-200 max-w-2xl mx-auto">
+          <p className="text-lg text-primary-200 max-w-2xl mx-auto">
             Ich verdiene Ihr Vertrauen durch Ergebnisse — nicht durch Abhängigkeit.
           </p>
         </div>
@@ -45,11 +45,11 @@ export function TrustSection() {
           {trustPoints.map((point, index) => (
             <div
               key={index}
-              className="p-8 border border-forest-400 rounded-sm"
+              className="p-8 border border-primary-400 rounded-sm"
             >
-              <div className="text-copper mb-4">{point.icon}</div>
+              <div className="text-accent mb-4">{point.icon}</div>
               <h3 className="font-serif text-xl text-white mb-3">{point.title}</h3>
-              <p className="text-forest-200">{point.description}</p>
+              <p className="text-primary-200">{point.description}</p>
             </div>
           ))}
         </div>

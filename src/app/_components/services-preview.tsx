@@ -35,7 +35,7 @@ export function ServicesPreview() {
     <section className="section">
       <div className="container mx-auto px-5">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             Was ich für Sie tue
           </h2>
           <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
@@ -47,12 +47,12 @@ export function ServicesPreview() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-8 bg-white border border-forest/10 rounded-sm hover:border-copper/50 hover:shadow-md transition-all"
+              className="group p-8 bg-white border border-primary/10 rounded-sm hover:border-accent/50 hover:shadow-md transition-all"
             >
-              <div className="text-forest group-hover:text-copper transition-colors mb-6">
+              <div className="text-primary group-hover:text-accent transition-colors mb-6">
                 {service.icon}
               </div>
-              <h3 className="font-serif text-xl text-forest mb-3">{service.title}</h3>
+              <h3 className="font-serif text-xl text-primary mb-3">{service.title}</h3>
               <p className="text-charcoal/70">{service.description}</p>
             </div>
           ))}

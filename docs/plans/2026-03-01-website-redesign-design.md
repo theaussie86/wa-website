@@ -20,11 +20,11 @@ Complete rebuild of weissteiner-automation.com using Next.js. Moving from WordPr
 
 | Role | Color | Hex | Reasoning |
 |------|-------|-----|-----------|
-| Primary | Deep forest green | #1B4332 | Allgäu forests, reliability, craftsmanship |
-| Accent | Warm copper | #B87333 | Traditional metalwork, warmth, premium |
+| Primary | Deep blue | #003970 | Trust, precision, professionalism |
+| Accent | Vibrant orange | #D86B00 | Energy, warmth, action |
 | Neutral dark | Charcoal | #2D3436 | Text, grounding |
 | Neutral light | Warm white | #FAF9F7 | Backgrounds, breathing room |
-| Highlight | Soft gold | #D4A574 | CTAs, interactive elements |
+| Highlight | Soft amber | #F5A14D | CTAs, interactive elements |
 
 ### Typography
 
@@ -224,7 +224,7 @@ Used sparingly as section dividers, background textures, or hover states.
 - Links: Homepage, Über mich, Leistungen, Blog, Kontakt
 - Sticky on scroll
 - Mobile: hamburger with full-screen overlay
-- CTA in nav: "Kennenlernen" (copper accent)
+- CTA in nav: "Kennenlernen" (orange accent)
 
 ### Footer
 - Contact: Email, WhatsApp, Location
@@ -234,8 +234,8 @@ Used sparingly as section dividers, background textures, or hover states.
 - Geometric pattern accent
 
 ### Buttons
-- Primary (Cal.com): Copper/gold fill, geometric edge
-- Secondary (WhatsApp): Outlined, green accent
+- Primary (Cal.com): Orange fill, geometric edge
+- Secondary (WhatsApp): Outlined, blue accent
 - Tertiary: Text with underline
 
 ### Cards & Sections

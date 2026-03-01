@@ -17,16 +17,16 @@ const navLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-forest text-white">
+    <footer className="bg-primary text-white">
       <div className="container mx-auto px-5 py-16">
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
             <h3 className="font-serif text-2xl text-white mb-4">{SITE_NAME}</h3>
-            <p className="text-forest-200 mb-4">
+            <p className="text-primary-200 mb-4">
               Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand.
             </p>
-            <p className="text-forest-300 text-sm">{LOCATION}</p>
+            <p className="text-primary-300 text-sm">{LOCATION}</p>
           </div>
 
           {/* Navigation */}
@@ -37,7 +37,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-forest-200 hover:text-white transition-colors"
+                    className="text-primary-200 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -55,7 +55,7 @@ export function Footer() {
                   href={CAL_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-forest-200 hover:text-white transition-colors"
+                  className="text-primary-200 hover:text-white transition-colors"
                 >
                   Gespräch buchen
                 </a>
@@ -65,7 +65,7 @@ export function Footer() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-forest-200 hover:text-white transition-colors"
+                  className="text-primary-200 hover:text-white transition-colors"
                 >
                   WhatsApp
                 </a>
@@ -73,7 +73,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="text-forest-200 hover:text-white transition-colors"
+                  className="text-primary-200 hover:text-white transition-colors"
                 >
                   {CONTACT_EMAIL}
                 </a>
@@ -83,21 +83,21 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-forest-400">
+        <div className="mt-12 pt-8 border-t border-primary-400">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-forest-300 text-sm">
+            <p className="text-primary-300 text-sm">
               © {new Date().getFullYear()} {SITE_NAME}. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6">
               <Link
                 href="/impressum"
-                className="text-forest-300 hover:text-white text-sm transition-colors"
+                className="text-primary-300 hover:text-white text-sm transition-colors"
               >
                 Impressum
               </Link>
               <Link
                 href="/datenschutz"
-                className="text-forest-300 hover:text-white text-sm transition-colors"
+                className="text-primary-300 hover:text-white text-sm transition-colors"
               >
                 Datenschutz
               </Link>

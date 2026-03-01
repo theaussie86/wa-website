@@ -30,10 +30,10 @@ export function ProblemSection() {
   ];
 
   return (
-    <section className="section bg-forest/5">
+    <section className="section bg-primary/5">
       <div className="container mx-auto px-5">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             Kommt Ihnen das bekannt vor?
           </h2>
           <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
@@ -45,10 +45,10 @@ export function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-sm shadow-sm border border-forest/10"
+              className="bg-white p-8 rounded-sm shadow-sm border border-primary/10"
             >
-              <div className="text-copper mb-4">{problem.icon}</div>
-              <h3 className="font-serif text-xl text-forest mb-3">{problem.title}</h3>
+              <div className="text-accent mb-4">{problem.icon}</div>
+              <h3 className="font-serif text-xl text-primary mb-3">{problem.title}</h3>
               <p className="text-charcoal/70">{problem.description}</p>
             </div>
           ))}

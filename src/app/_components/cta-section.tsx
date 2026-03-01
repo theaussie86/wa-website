@@ -2,10 +2,10 @@ import { CAL_LINK, WHATSAPP_LINK } from "@/lib/constants";
 
 export function CTASection() {
   return (
-    <section className="section bg-copper/10">
+    <section className="section bg-accent/10">
       <div className="container mx-auto px-5">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             Bereit für den ersten Schritt?
           </h2>
           <p className="text-lg text-charcoal/70 mb-8">

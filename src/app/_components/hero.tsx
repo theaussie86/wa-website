@@ -5,26 +5,26 @@ export function Hero() {
     <section className="relative py-20 md:py-32 overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,#1B4332_25%,transparent_25%,transparent_75%,#1B4332_75%)] bg-[length:60px_60px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,#003970_25%,transparent_25%,transparent_75%,#003970_75%)] bg-[length:60px_60px]" />
       </div>
 
       <div className="container mx-auto px-5 relative">
         <div className="max-w-3xl">
           {/* Trust bar */}
           <div className="flex flex-wrap gap-3 mb-8">
-            <span className="inline-flex items-center px-3 py-1 bg-forest/10 text-forest text-sm rounded-full">
+            <span className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
               Memmingen/Allgäu
             </span>
-            <span className="inline-flex items-center px-3 py-1 bg-forest/10 text-forest text-sm rounded-full">
+            <span className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
               Langfristige Partnerschaft
             </span>
-            <span className="inline-flex items-center px-3 py-1 bg-forest/10 text-forest text-sm rounded-full">
+            <span className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
               Keine Agentur
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-forest leading-tight mb-6">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary leading-tight mb-6">
             Systeme, die mit Ihrem Unternehmen wachsen
           </h1>
 

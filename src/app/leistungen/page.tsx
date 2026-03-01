@@ -74,7 +74,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl text-forest mb-6">
+            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
               Leistungen
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
@@ -86,7 +86,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services */}
-      <section className="section bg-forest/5">
+      <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="space-y-16">
             {services.map((service, index) => (
@@ -97,8 +97,8 @@ export default function ServicesPage() {
                 }`}
               >
                 <div className={index % 2 === 1 ? "md:order-2" : ""}>
-                  <div className="text-copper mb-6">{service.icon}</div>
-                  <h2 className="font-serif text-3xl text-forest mb-4">
+                  <div className="text-accent mb-6">{service.icon}</div>
+                  <h2 className="font-serif text-3xl text-primary mb-4">
                     {service.title}
                   </h2>
                   <p className="text-lg text-charcoal/70 mb-6">
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <svg
-                          className="w-5 h-5 text-copper mt-0.5 flex-shrink-0"
+                          className="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -126,11 +126,11 @@ export default function ServicesPage() {
                   </ul>
                 </div>
                 <div
-                  className={`bg-forest/10 rounded-sm aspect-square flex items-center justify-center ${
+                  className={`bg-primary/10 rounded-sm aspect-square flex items-center justify-center ${
                     index % 2 === 1 ? "md:order-1" : ""
                   }`}
                 >
-                  <div className="text-forest/30 scale-[3]">{service.icon}</div>
+                  <div className="text-primary/30 scale-[3]">{service.icon}</div>
                 </div>
               </div>
             ))}
@@ -141,14 +141,14 @@ export default function ServicesPage() {
       {/* Use Cases */}
       <section className="section">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-3xl text-forest mb-8 text-center">
+          <h2 className="font-serif text-3xl text-primary mb-8 text-center">
             Konkrete Anwendungsfälle
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {useCases.map((useCase, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-forest/10 rounded-sm"
+                className="p-4 bg-white border border-primary/10 rounded-sm"
               >
                 <p className="text-charcoal/80">{useCase}</p>
               </div>
@@ -158,33 +158,33 @@ export default function ServicesPage() {
       </section>
 
       {/* Ownership */}
-      <section className="section bg-forest text-white">
+      <section className="section bg-primary text-white">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-3xl text-white mb-6">
               Ihre Systeme. Ihre Kontrolle.
             </h2>
-            <p className="text-lg text-forest-200 mb-8">
+            <p className="text-lg text-primary-200 mb-8">
               Alles, was ich baue, gehört Ihnen. Vollständig dokumentiert, in Ihrer
               Infrastruktur, jederzeit übertragbar. Sie sind nie von mir abhängig —
               ich muss mir Ihr Vertrauen jeden Monat neu verdienen.
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="p-4 border border-forest-400 rounded-sm">
+              <div className="p-4 border border-primary-400 rounded-sm">
                 <h3 className="font-medium text-white mb-2">Vollständige Dokumentation</h3>
-                <p className="text-forest-200 text-sm">
+                <p className="text-primary-200 text-sm">
                   Jedes System wird so dokumentiert, dass es übernommen werden kann.
                 </p>
               </div>
-              <div className="p-4 border border-forest-400 rounded-sm">
+              <div className="p-4 border border-primary-400 rounded-sm">
                 <h3 className="font-medium text-white mb-2">Ihre Infrastruktur</h3>
-                <p className="text-forest-200 text-sm">
+                <p className="text-primary-200 text-sm">
                   Systeme laufen bei Ihnen, nicht in meiner Cloud.
                 </p>
               </div>
-              <div className="p-4 border border-forest-400 rounded-sm">
+              <div className="p-4 border border-primary-400 rounded-sm">
                 <h3 className="font-medium text-white mb-2">Keine Abhängigkeit</h3>
-                <p className="text-forest-200 text-sm">
+                <p className="text-primary-200 text-sm">
                   Ein anderer Entwickler kann jederzeit übernehmen.
                 </p>
               </div>
@@ -197,23 +197,23 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl text-forest mb-4">
+            <h2 className="font-serif text-3xl text-primary mb-4">
               Einfacher als eine Festanstellung. Flexibler als eine Agentur.
             </h2>
             <p className="text-lg text-charcoal/70 mb-8">
               Planbare Zusammenarbeit ohne versteckte Kosten und ohne Risiko.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-forest/5 rounded-sm">
-                <div className="font-serif text-2xl text-forest mb-2">3 Monate</div>
+              <div className="p-6 bg-primary/5 rounded-sm">
+                <div className="font-serif text-2xl text-primary mb-2">3 Monate</div>
                 <p className="text-charcoal/70 text-sm">Kennenlernen und erste Ergebnisse</p>
               </div>
-              <div className="p-6 bg-copper/10 rounded-sm border-2 border-copper">
-                <div className="font-serif text-2xl text-forest mb-2">6 Monate</div>
+              <div className="p-6 bg-accent/10 rounded-sm border-2 border-accent">
+                <div className="font-serif text-2xl text-primary mb-2">6 Monate</div>
                 <p className="text-charcoal/70 text-sm">Empfohlen für nachhaltige Ergebnisse</p>
               </div>
-              <div className="p-6 bg-forest/5 rounded-sm">
-                <div className="font-serif text-2xl text-forest mb-2">12 Monate</div>
+              <div className="p-6 bg-primary/5 rounded-sm">
+                <div className="font-serif text-2xl text-primary mb-2">12 Monate</div>
                 <p className="text-charcoal/70 text-sm">Maximale Planungssicherheit</p>
               </div>
             </div>
@@ -225,10 +225,10 @@ export default function ServicesPage() {
       </section>
 
       {/* Not For Everyone */}
-      <section className="section bg-forest/5">
+      <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-serif text-2xl text-forest mb-4">
+            <h2 className="font-serif text-2xl text-primary mb-4">
               Nicht für jeden
             </h2>
             <p className="text-charcoal/70">

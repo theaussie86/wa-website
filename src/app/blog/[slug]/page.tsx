@@ -68,7 +68,7 @@ export default async function BlogPost({ params }: Params) {
             <div className="max-w-3xl mx-auto">
               <Link
                 href="/blog"
-                className="inline-flex items-center text-copper hover:text-copper-600 mb-8"
+                className="inline-flex items-center text-accent hover:text-accent-600 mb-8"
               >
                 <svg
                   className="w-4 h-4 mr-2"
@@ -89,7 +89,7 @@ export default async function BlogPost({ params }: Params) {
               <div className="text-sm text-charcoal/50 mb-4">
                 <DateFormatter dateString={post.date} />
               </div>
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest mb-6">
+              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary mb-6">
                 {post.title}
               </h1>
               {post.excerpt && (
@@ -120,17 +120,17 @@ export default async function BlogPost({ params }: Params) {
         <section className="pb-16">
           <div className="container mx-auto px-5">
             <div
-              className="max-w-3xl mx-auto prose prose-lg prose-forest prose-headings:font-serif prose-headings:text-forest prose-a:text-copper prose-a:no-underline hover:prose-a:underline"
+              className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-serif prose-headings:text-primary prose-a:text-accent prose-a:no-underline hover:prose-a:underline"
               dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>
         </section>
 
         {/* CTA */}
-        <section className="section bg-copper/10">
+        <section className="section bg-accent/10">
           <div className="container mx-auto px-5">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="font-serif text-2xl text-forest mb-4">
+              <h2 className="font-serif text-2xl text-primary mb-4">
                 Hat Ihnen dieser Artikel geholfen?
               </h2>
               <p className="text-charcoal/70 mb-6">

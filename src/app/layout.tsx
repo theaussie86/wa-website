@@ -2,21 +2,21 @@ import Footer from "@/app/_components/footer";
 import { Navigation } from "@/app/_components/navigation";
 import { SITE_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
-import { DM_Serif_Display, Inter } from "next/font/google";
+import { Bree_Serif, Raleway } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
 
-const dmSerif = DM_Serif_Display({
+const breeSerif = Bree_Serif({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-dm-serif",
+  variable: "--font-bree-serif",
   display: "swap",
 });
 
-const inter = Inter({
+const raleway = Raleway({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-raleway",
   display: "swap",
 });
 
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${dmSerif.variable} ${inter.variable}`}>
+    <html lang="de" className={`${breeSerif.variable} ${raleway.variable}`}>
       <head>
         <link
           rel="apple-touch-icon"

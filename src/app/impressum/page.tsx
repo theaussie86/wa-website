@@ -10,7 +10,7 @@ export default function ImpressumPage() {
     <main className="section">
       <div className="container mx-auto px-5">
         <div className="max-w-3xl mx-auto">
-          <h1 className="font-serif text-4xl text-forest mb-8">Impressum</h1>
+          <h1 className="font-serif text-4xl text-primary mb-8">Impressum</h1>
 
           <div className="prose prose-lg text-charcoal/80">
             <h2>Angaben gemäß § 5 TMG</h2>

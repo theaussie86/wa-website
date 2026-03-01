@@ -16,11 +16,11 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-sm border-b border-forest/10">
+    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-sm border-b border-primary/10">
       <nav className="container mx-auto px-5 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="font-serif text-xl text-forest font-medium">
+          <Link href="/" className="font-serif text-xl text-primary font-medium">
             {SITE_NAME}
           </Link>
 
@@ -30,7 +30,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-charcoal hover:text-forest transition-colors"
+                className="text-charcoal hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
@@ -48,7 +48,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-forest"
+            className="md:hidden p-2 text-primary"
             aria-label="Menu"
           >
             <svg
@@ -84,7 +84,7 @@ export function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-charcoal hover:text-forest transition-colors py-2"
+                  className="text-charcoal hover:text-primary transition-colors py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
