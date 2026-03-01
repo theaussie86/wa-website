@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { SITE_NAME } from "@/lib/constants";
 import { CTASection } from "@/app/_components/cta-section";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: `Leistungen | ${SITE_NAME}`,
@@ -19,43 +20,43 @@ export default function ServicesPage() {
         "Datenübertragung zwischen Systemen",
         "Berichterstellung und Datenanalyse",
       ],
-      icon: (
-        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
-      ),
+      image: {
+        src: "/services/service_automation_sketch_1772400691292.png",
+        alt: "Skizze zur Workflow-Automatisierung und Prozessoptimierung",
+        caption: "Symbolbild: Von chaotischen Daten zu strukturierten, automatisierten Prozessen.",
+      },
     },
     {
-      title: "KI-Integration",
-      description: "Intelligente Systeme, die Entscheidungen unterstützen und Routineaufgaben übernehmen.",
+      title: "Individuelle Web- & App-Entwicklung",
+      description: "Maßgeschneiderte Softwarelösungen, die exakt auf Ihre Geschäftsprozesse abgestimmt sind.",
       features: [
-        "Dokumentenverarbeitung und -analyse",
-        "Intelligente Datenextraktion",
+        "Skalierbare Fullstack-Anwendungen",
+        "Moderne Benutzeroberflächen (UI/UX)",
+        "Mobile- & Web-Apps",
+        "Sichere Datenbankarchitekturen",
+        "Nahtlose API-Anbindungen",
+      ],
+      image: {
+        src: "/services/service_fullstack_sketch_1772400707439.png",
+        alt: "Skizze zur individuellen Web- und App-Entwicklung",
+        caption: "Symbolbild: Aufbau einer modernen Benutzeroberfläche mit stabilen Datenstrukturen.",
+      },
+    },
+    {
+      title: "Systemintegration & KI-Anbindung",
+      description: "Intelligente Verknüpfung Ihrer bestehenden Systeme mit modernster Künstlicher Intelligenz.",
+      features: [
+        "Intelligente Dokumentenverarbeitung",
         "Automatisierte Kategorisierung",
-        "Entscheidungsunterstützung",
+        "Entscheidungsunterstützung durch KI",
         "Chatbots und Kundenservice",
+        "Anbindung verschiedenster API-Plattformen",
       ],
-      icon: (
-        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-    },
-    {
-      title: "Wartung & Support",
-      description: "Systeme brauchen Pflege. Ich bleibe als Partner an Ihrer Seite.",
-      features: [
-        "Kontinuierliche Überwachung",
-        "Proaktive Optimierung",
-        "Schnelle Hilfe bei Problemen",
-        "Anpassungen an neue Anforderungen",
-        "Regelmäßige Updates und Verbesserungen",
-      ],
-      icon: (
-        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-      ),
+      image: {
+        src: "/services/service_integration_sketch_1772400720958.png",
+        alt: "Skizze zur Systemintegration und KI-Anbindung",
+        caption: "Symbolbild: Verknüpfung verschiedener Plattformen durch eine zentrale KI-Schnittstelle.",
+      },
     },
   ];
 
@@ -97,7 +98,7 @@ export default function ServicesPage() {
                 }`}
               >
                 <div className={index % 2 === 1 ? "md:order-2" : ""}>
-                  <div className="text-accent mb-6">{service.icon}</div>
+                  <div className="hidden" />
                   <h2 className="font-serif text-3xl text-primary mb-4">
                     {service.title}
                   </h2>
@@ -126,11 +127,22 @@ export default function ServicesPage() {
                   </ul>
                 </div>
                 <div
-                  className={`bg-primary/10 rounded-sm aspect-square flex items-center justify-center ${
+                  className={`bg-white rounded-sm aspect-square flex flex-col items-center justify-center p-4 shadow-sm border border-primary/5 ${
                     index % 2 === 1 ? "md:order-1" : ""
                   }`}
                 >
-                  <div className="text-primary/30 scale-[3]">{service.icon}</div>
+                  <figure className="w-full h-full flex flex-col items-center justify-center">
+                    <Image
+                      src={service.image.src}
+                      alt={service.image.alt}
+                      width={600}
+                      height={600}
+                      className="w-full h-auto object-contain mix-blend-multiply"
+                    />
+                    <figcaption className="text-xs text-charcoal/50 mt-4 text-center">
+                      {service.image.caption}
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
             ))}
