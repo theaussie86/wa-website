@@ -1,4 +1,5 @@
 import Footer from "@/app/_components/footer";
+import { Navigation } from "@/app/_components/navigation";
 import { SITE_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { DM_Serif_Display, Inter } from "next/font/google";
@@ -67,6 +68,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#1B4332" />
       </head>
       <body className={cn("font-sans min-h-screen flex flex-col")}>
+        <Navigation />
         <div className="flex-1">{children}</div>
         <Footer />
       </body>
