@@ -3,9 +3,9 @@ import {
   SITE_NAME,
   CAL_LINK,
   WHATSAPP_LINK,
-  CONTACT_EMAIL,
   LOCATION,
 } from "@/lib/constants";
+import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
   title: `Kontakt | ${SITE_NAME}`,
@@ -88,50 +88,7 @@ export default function ContactPage() {
             <h2 className="font-serif text-2xl text-primary mb-6 text-center">
               Oder schreiben Sie mir hier
             </h2>
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 border border-primary/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
-                  E-Mail
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 border border-primary/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-charcoal mb-2">
-                  Nachricht
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full px-4 py-3 border border-primary/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none"
-                ></textarea>
-              </div>
-              <button type="submit" className="btn-primary w-full">
-                Nachricht senden
-              </button>
-              <p className="text-center text-sm text-charcoal/60">
-                Ich melde mich innerhalb von 24 Stunden.
-              </p>
-            </form>
+<ContactForm />
           </div>
         </div>
       </section>
