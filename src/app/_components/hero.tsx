@@ -1,13 +1,20 @@
+import Image from "next/image";
 import { CAL_LINK, WHATSAPP_LINK } from "@/lib/constants";
 
 export function Hero() {
   return (
     <section className="relative py-20 md:py-32 overflow-hidden">
       {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-[url('/gruenten.jpg')] bg-cover bg-center bg-no-repeat"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/gruenten.jpg"
+          alt="Background Grünten"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </div>
       <div className="absolute inset-0 bg-white/70" />
 
       <div className="container mx-auto px-5 relative">
