@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SITE_NAME, CAL_LINK } from "@/lib/constants";
@@ -20,8 +21,32 @@ export function Navigation() {
       <nav className="container mx-auto px-5 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="font-serif text-xl text-primary font-medium">
-            {SITE_NAME}
+          <Link href="/" className="flex items-center gap-3">
+            {/* Desktop/Tablet Logo (Icon + Text) */}
+            <div className="hidden md:flex items-center gap-3">
+              <Image
+                src="/logo-icon.svg"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8"
+                priority
+              />
+              <span className="font-serif text-xl text-primary font-medium">
+                {SITE_NAME}
+              </span>
+            </div>
+            {/* Mobile Logo (Compact) */}
+            <div className="md:hidden">
+              <Image
+                src="/logo-compact.svg"
+                alt={SITE_NAME}
+                width={40}
+                height={40}
+                className="h-10 w-auto"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
