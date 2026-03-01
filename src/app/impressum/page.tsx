@@ -11,6 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: `Impressum | ${SITE_NAME}`,
+  description: "Impressum und rechtliche Pflichtangaben gemäß § 5 TMG für Weissteiner Automation.",
 };
 
 export default function ImpressumPage() {

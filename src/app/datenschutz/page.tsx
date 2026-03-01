@@ -15,6 +15,7 @@ import { ServiceList, CookieOverviewTable } from "@/app/_components/cookie-conse
 
 export const metadata: Metadata = {
   title: `Datenschutz | ${SITE_NAME}`,
+  description: "Datenschutzerklärung von Weissteiner Automation. Informationen zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten gemäß DSGVO.",
 };
 
 export default function DatenschutzPage() {

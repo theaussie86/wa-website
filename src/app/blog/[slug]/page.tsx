@@ -6,6 +6,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { SITE_NAME, CAL_LINK } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import DateFormatter from "@/app/_components/date-formatter";
+import { ArticleJsonLd } from "@/app/_components/json-ld";
 
 type Params = {
   params: Promise<{
@@ -59,8 +60,18 @@ export default async function BlogPost({ params }: Params) {
 
   const content = await markdownToHtml(post.content || "");
 
+  const baseUrl = "https://weissteiner-automation.com";
+
   return (
     <main>
+      <ArticleJsonLd
+        title={post.title}
+        description={post.excerpt || ""}
+        publishedTime={post.date}
+        authorName={post.author?.name || "Christoph Weissteiner"}
+        url={`${baseUrl}/blog/${slug}`}
+        imageUrl={post.coverImage}
+      />
       <article>
         {/* Header */}
         <section className="section pb-8">
