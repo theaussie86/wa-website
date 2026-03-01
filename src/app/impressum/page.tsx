@@ -56,7 +56,7 @@ export default function ImpressumPage() {
                 </p>
                 <p className="flex items-center gap-3">
                   <span className="font-medium text-charcoal w-20">E-Mail:</span>
-                  <a href="mailto:christoph.weissteiner@gmail.com" className="hover:text-accent transition-colors duration-200 break-all">christoph.weissteiner@gmail.com</a>
+                  <a href="mailto:christoph@weissteiner-automation.com" className="hover:text-accent transition-colors duration-200 break-all">christoph@weissteiner-automation.com</a>
                 </p>
               </div>
             </div>

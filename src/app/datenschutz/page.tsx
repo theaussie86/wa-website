@@ -214,7 +214,7 @@ export default function DatenschutzPage() {
                       87700 Memmingen<br />
                       <br />
                       Telefon: +49 176 30487024<br />
-                      E-Mail: christoph.weissteiner@gmail.com
+                      E-Mail: christoph@weissteiner-automation.com
                     </p>
                     <p>
                       Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder
