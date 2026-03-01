@@ -6,6 +6,7 @@ import {
   LOCATION,
   CAL_LINK,
 } from "@/lib/constants";
+import { CookieSettingsButton } from "@/app/_components/cookie-consent";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -101,6 +102,7 @@ export function Footer() {
               >
                 Datenschutz
               </Link>
+              <CookieSettingsButton className="text-primary-300 hover:text-white text-sm transition-colors" />
             </div>
           </div>
         </div>

@@ -1,16 +1,17 @@
 import { Metadata } from "next";
 import { SITE_NAME } from "@/lib/constants";
-import { 
-  ShieldCheck, 
-  Server, 
-  FileText, 
-  Database, 
-  Share2, 
-  BarChart3, 
-  Mail, 
-  Puzzle, 
-  CreditCard 
+import {
+  ShieldCheck,
+  Server,
+  FileText,
+  Database,
+  Share2,
+  BarChart3,
+  Mail,
+  Puzzle,
+  CreditCard,
 } from "lucide-react";
+import { ServiceList, CookieOverviewTable } from "@/app/_components/cookie-consent";
 
 export const metadata: Metadata = {
   title: `Datenschutz | ${SITE_NAME}`,
@@ -338,7 +339,7 @@ export default function DatenschutzPage() {
                   <h3 className="font-sans font-semibold text-charcoal text-lg mb-2">Cookies</h3>
                   <div className="space-y-3">
                     <p>
-                      Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) gespeichert.
+                      Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) gespeichert.
                     </p>
                     <p>
                       Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs oder zur Bereitstellung bestimmter Funktionen (z.B. Warenkorb) erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert. Sofern eine Einwilligung abgefragt wurde, erfolgt die Speicherung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO.
@@ -347,6 +348,14 @@ export default function DatenschutzPage() {
                       Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben.
                     </p>
                   </div>
+                </div>
+
+                <div>
+                  <h3 className="font-sans font-semibold text-charcoal text-lg mb-2">Cookie-Übersicht</h3>
+                  <p className="mb-4">
+                    Folgende Cookies werden auf dieser Website verwendet:
+                  </p>
+                  <CookieOverviewTable />
                 </div>
 
                 <div>
@@ -402,17 +411,36 @@ export default function DatenschutzPage() {
                 </div>
                 <h2 className="font-serif text-2xl text-primary m-0">6. Analyse-Tools und Werbung</h2>
               </div>
-              <div className="space-y-4 text-charcoal/80 leading-relaxed">
-                <h3 className="font-sans font-semibold text-charcoal text-lg mb-2">Google Tag Manager</h3>
+              <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <p>
-                  Wir setzen den Google Tag Manager ein. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+                  Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit sogenannten Analyseprogrammen. Die Analyse Ihres Surf-Verhaltens erfolgt in der Regel anonym; das Surf-Verhalten kann nicht zu Ihnen zurückverfolgt werden.
                 </p>
                 <p>
-                  Der Google Tag Manager erfasst Ihre IP-Adresse (welche auch an das Mutterunternehmen in die USA übertragen werden kann), erstellt selbst jedoch keine Nutzerprofile und speichert keine Cookies. Er dient lediglich der Verwaltung der eingebundenen Tools.
+                  Sie können dieser Analyse widersprechen oder sie durch die Nichtbenutzung bestimmter Tools verhindern. Über die Cookie-Einstellungen können Sie Ihre Präferenzen jederzeit anpassen.
                 </p>
-                <p>
-                  Der Einsatz erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO oder Art. 6 Abs. 1 lit. a DSGVO.
-                </p>
+
+                <div>
+                  <h3 className="font-sans font-semibold text-charcoal text-lg mb-4">Aktive Analyse-Dienste</h3>
+                  <ServiceList
+                    category="analytics"
+                    emptyMessage="Derzeit sind keine Analyse-Dienste aktiv."
+                  />
+                </div>
+
+                <div>
+                  <h3 className="font-sans font-semibold text-charcoal text-lg mb-4">Aktive Marketing-Dienste</h3>
+                  <ServiceList
+                    category="marketing"
+                    emptyMessage="Derzeit sind keine Marketing-Dienste aktiv."
+                  />
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold text-charcoal mb-2">Hinweis zu Google Tag Manager</h4>
+                  <p className="text-sm">
+                    Wir setzen den Google Tag Manager ein. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Der Google Tag Manager erfasst Ihre IP-Adresse, erstellt selbst jedoch keine Nutzerprofile und speichert keine Cookies. Er dient lediglich der Verwaltung der eingebundenen Tools. Der Einsatz erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO oder Art. 6 Abs. 1 lit. a DSGVO.
+                  </p>
+                </div>
               </div>
             </div>
 
