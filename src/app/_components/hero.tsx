@@ -3,10 +3,12 @@ import { CAL_LINK, WHATSAPP_LINK } from "@/lib/constants";
 export function Hero() {
   return (
     <section className="relative py-20 md:py-32 overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,#003970_25%,transparent_25%,transparent_75%,#003970_75%)] bg-[length:60px_60px]" />
-      </div>
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-[url('/gruenten.jpg')] bg-cover bg-center bg-no-repeat"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-white/70" />
 
       <div className="container mx-auto px-5 relative">
         <div className="max-w-3xl">
