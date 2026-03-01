@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     const message = sanitize(data.message);
 
     const fromEmail = process.env.GMAIL_FROM_ALIAS || process.env.GMAIL_USER_EMAIL;
-    const toEmail = process.env.GMAIL_FROM_ALIAS || process.env.GMAIL_USER_EMAIL;
+    const toEmail = process.env.CONTACT_RECIPIENT_EMAIL || process.env.GMAIL_USER_EMAIL;
 
     if (!fromEmail || !toEmail) {
       console.error("Missing email configuration");
