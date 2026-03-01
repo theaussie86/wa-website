@@ -1,4 +1,8 @@
-export const EXAMPLE_PATH = "blog-starter";
-export const CMS_NAME = "Markdown";
-export const HOME_OG_IMAGE_URL =
-  "https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg";
+export const SITE_NAME = "Weissteiner Automation";
+export const SITE_DESCRIPTION = "Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand.";
+export const HOME_OG_IMAGE_URL = "/og-image.png";
+export const CONTACT_EMAIL = "christoph@weissteiner-automation.com";
+export const CONTACT_PHONE = "+4917630487024";
+export const WHATSAPP_LINK = "https://wa.me/4917630487024";
+export const CAL_LINK = "https://cal.com/weissteiner-automation/kennenlernen";
+export const LOCATION = "Memmingen, Allgäu";
