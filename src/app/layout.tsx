@@ -2,7 +2,7 @@ import Footer from "@/app/_components/footer";
 import { Navigation } from "@/app/_components/navigation";
 import { CookieConsentWrapper } from "@/app/_components/cookie-consent";
 import { JsonLd } from "@/app/_components/json-ld";
-import { SITE_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
+import { SITE_NAME } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Bree_Serif, Raleway } from "next/font/google";
 import cn from "classnames";
@@ -32,20 +32,11 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} | Prozessautomatisierung & KI`,
     description: "Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand. Aus dem Allgäu, für den DACH-Raum.",
-    images: [
-      {
-        url: HOME_OG_IMAGE_URL,
-        width: 1200,
-        height: 630,
-        alt: "Weissteiner Automation - Prozessautomatisierung & KI",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | Prozessautomatisierung & KI`,
     description: "Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand.",
-    images: [HOME_OG_IMAGE_URL],
   },
 };
 
