@@ -1,30 +1,19 @@
-import Container from "@/app/_components/container";
-import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
-import { getAllPosts } from "@/lib/api";
+import { Hero } from "@/app/_components/hero";
+import { ProblemSection } from "@/app/_components/problem-section";
+import { SolutionSection } from "@/app/_components/solution-section";
+import { TrustSection } from "@/app/_components/trust-section";
+import { ServicesPreview } from "@/app/_components/services-preview";
+import { CTASection } from "@/app/_components/cta-section";
 
-export default function Index() {
-  const allPosts = getAllPosts();
-
-  const heroPost = allPosts[0];
-
-  const morePosts = allPosts.slice(1);
-
+export default function Home() {
   return (
     <main>
-      <Container>
-        <Intro />
-        <HeroPost
-          title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
-          slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
-        />
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Container>
+      <Hero />
+      <ProblemSection />
+      <SolutionSection />
+      <ServicesPreview />
+      <TrustSection />
+      <CTASection />
     </main>
   );
 }
