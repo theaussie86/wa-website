@@ -28,7 +28,7 @@ interface OrganizationSchema {
 
 interface LocalBusinessSchema {
   "@context": "https://schema.org";
-  "@type": "LocalBusiness";
+  "@type": "ProfessionalService";
   "@id": string;
   name: string;
   url: string;
@@ -59,6 +59,13 @@ interface LocalBusinessSchema {
     geoRadius: string;
   };
   priceRange: string;
+  sameAs?: string[];
+  openingHoursSpecification?: {
+    "@type": "OpeningHoursSpecification";
+    dayOfWeek: string[];
+    opens: string;
+    closes: string;
+  }[];
 }
 
 interface WebSiteSchema {
@@ -95,7 +102,7 @@ const organizationSchema: OrganizationSchema = {
 
 const localBusinessSchema: LocalBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ProfessionalService",
   "@id": `${BASE_URL}/#localbusiness`,
   name: SITE_NAME,
   url: BASE_URL,
@@ -113,19 +120,31 @@ const localBusinessSchema: LocalBusinessSchema = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 47.9876,
-    longitude: 10.1788,
+    latitude: 48.0073389,
+    longitude: 10.1803397,
   },
   areaServed: {
     "@type": "GeoCircle",
     geoMidpoint: {
       "@type": "GeoCoordinates",
-      latitude: 47.9876,
-      longitude: 10.1788,
+      latitude: 48.0073389,
+      longitude: 10.1803397,
     },
     geoRadius: "500km",
   },
   priceRange: "$$",
+  sameAs: [
+    "https://maps.app.goo.gl/ueq2kkd8dE6L6WeE9",
+    "https://www.linkedin.com/in/christoph-weissteiner/",
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  ],
 };
 
 const webSiteSchema: WebSiteSchema = {
@@ -141,6 +160,80 @@ const webSiteSchema: WebSiteSchema = {
     url: BASE_URL,
   },
 };
+
+interface ServiceSchema {
+  "@context": "https://schema.org";
+  "@type": "Service";
+  "@id": string;
+  name: string;
+  description: string;
+  provider: {
+    "@type": "ProfessionalService";
+    "@id": string;
+  };
+  areaServed: {
+    "@type": "Country";
+    name: string;
+  }[];
+  serviceType: string;
+}
+
+const servicesSchemas: ServiceSchema[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${BASE_URL}/leistungen#prozessautomatisierung`,
+    name: "Prozessautomatisierung",
+    description:
+      "Wiederkehrende Aufgaben automatisieren: Rechnungsverarbeitung, CRM-Updates, E-Mail-Marketing, Datenübertragung und Berichterstellung für den Mittelstand.",
+    provider: {
+      "@type": "ProfessionalService",
+      "@id": `${BASE_URL}/#localbusiness`,
+    },
+    areaServed: [
+      { "@type": "Country", name: "Deutschland" },
+      { "@type": "Country", name: "Österreich" },
+      { "@type": "Country", name: "Schweiz" },
+    ],
+    serviceType: "Business Process Automation",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${BASE_URL}/leistungen#webentwicklung`,
+    name: "Individuelle Web- & App-Entwicklung",
+    description:
+      "Maßgeschneiderte Softwarelösungen: Skalierbare Fullstack-Anwendungen, moderne UI/UX, Mobile- & Web-Apps, sichere Datenbankarchitekturen und API-Anbindungen.",
+    provider: {
+      "@type": "ProfessionalService",
+      "@id": `${BASE_URL}/#localbusiness`,
+    },
+    areaServed: [
+      { "@type": "Country", name: "Deutschland" },
+      { "@type": "Country", name: "Österreich" },
+      { "@type": "Country", name: "Schweiz" },
+    ],
+    serviceType: "Custom Software Development",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${BASE_URL}/leistungen#ki-integration`,
+    name: "Systemintegration & KI-Anbindung",
+    description:
+      "Intelligente Verknüpfung bestehender Systeme mit KI: Dokumentenverarbeitung, automatisierte Kategorisierung, Chatbots und API-Integrationen.",
+    provider: {
+      "@type": "ProfessionalService",
+      "@id": `${BASE_URL}/#localbusiness`,
+    },
+    areaServed: [
+      { "@type": "Country", name: "Deutschland" },
+      { "@type": "Country", name: "Österreich" },
+      { "@type": "Country", name: "Schweiz" },
+    ],
+    serviceType: "AI Integration Services",
+  },
+];
 
 export function JsonLd() {
   return (
@@ -163,6 +256,15 @@ export function JsonLd() {
           __html: JSON.stringify(webSiteSchema),
         }}
       />
+      {servicesSchemas.map((serviceSchema) => (
+        <script
+          key={serviceSchema["@id"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(serviceSchema),
+          }}
+        />
+      ))}
     </>
   );
 }
