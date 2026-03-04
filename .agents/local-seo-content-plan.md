@@ -30,18 +30,18 @@ Besseres lokales Ranking + nachhaltige Blog-Strategie aufbauen
 ### 2.1 Regionale Seiten erstellen
 Ziel: Lokale Suchbegriffe abdecken
 
-| Seite | Target Keywords |
-|-------|-----------------|
-| `/prozessautomatisierung-allgaeu` | "Prozessautomatisierung Allgäu", "Automatisierung Memmingen" |
-| `/ki-beratung-bayern` | "KI Beratung Bayern", "KI Mittelstand Süddeutschland" |
-| `/softwareentwicklung-dach` | "Individuelle Software DACH", "Fullstack Entwickler Allgäu" |
+| Seite | Target Keywords | Status |
+|-------|-----------------|--------|
+| `/prozessautomatisierung-allgaeu` | "Prozessautomatisierung Allgäu", "Automatisierung Memmingen" | [x] |
+| `/ki-beratung-bayern` | "KI Beratung Bayern", "KI Mittelstand Süddeutschland" | [x] |
+| `/softwareentwicklung-dach` | "Individuelle Software DACH", "Fullstack Entwickler Allgäu" | [x] |
 
 ### 2.2 Struktur pro lokale Seite
-- H1 mit lokalem Bezug
-- Lokale Referenzen (Kunden aus der Region erwähnen, falls möglich)
-- Eingebettete Google Maps Karte
-- LocalBusiness Schema mit spezifischer areaServed
-- CTA zu Kontaktseite
+- [x] H1 mit lokalem Bezug
+- [x] Lokale Referenzen (Kunden aus der Region erwähnen, falls möglich)
+- [x] Eingebettete Google Maps Karte
+- [x] LocalBusiness Schema mit spezifischer areaServed
+- [x] CTA zu Kontaktseite
 
 ---
 

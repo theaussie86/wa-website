@@ -16,6 +16,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    // Local SEO Landing Pages
+    {
+      url: `${BASE_URL}/prozessautomatisierung-allgaeu`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/ki-beratung-bayern`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/softwareentwicklung-dach`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     {
       url: `${BASE_URL}/ueber-mich`,
       lastModified: new Date(),
