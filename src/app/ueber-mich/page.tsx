@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { CAL_LINK, WHATSAPP_LINK, SITE_NAME } from "@/lib/constants";
 import { CTASection } from "@/app/_components/cta-section";
 
@@ -55,15 +56,30 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="section">
         <div className="container mx-auto px-5">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
-              Über mich
-            </h1>
-            <p className="text-xl text-charcoal/80 leading-relaxed">
-              Ich bin Christoph Weissteiner, Automatisierungs-Spezialist aus Memmingen im Allgäu.
-              Ich helfe mittelständischen Unternehmen, ihre Prozesse zu digitalisieren —
-              als langfristiger Partner, nicht als Agentur.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            {/* Text */}
+            <div className="flex-1 max-w-xl">
+              <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
+                Über mich
+              </h1>
+              <p className="text-xl text-charcoal/80 leading-relaxed">
+                Ich bin Christoph Weissteiner, Automatisierungs-Spezialist aus Memmingen im Allgäu.
+                Ich helfe mittelständischen Unternehmen, ihre Prozesse zu digitalisieren —
+                als langfristiger Partner, nicht als Agentur.
+              </p>
+            </div>
+            {/* Bild */}
+            <div className="flex-shrink-0">
+              <div className="relative w-64 h-64 md:w-80 md:h-80">
+                <Image
+                  src="/images/author/christoph-weissteiner.webp"
+                  alt="Christoph Weissteiner"
+                  fill
+                  className="object-cover rounded-sm shadow-md"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
