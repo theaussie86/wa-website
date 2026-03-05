@@ -7,6 +7,7 @@ import { SITE_NAME, CAL_LINK } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import DateFormatter from "@/app/_components/date-formatter";
 import { ArticleJsonLd } from "@/app/_components/json-ld";
+import AuthorBox from "@/app/_components/author-box";
 
 type Params = {
   params: Promise<{
@@ -128,7 +129,7 @@ export default async function BlogPost({ params }: Params) {
         )}
 
         {/* Content */}
-        <section className="pb-16">
+        <section className="pb-8">
           <div className="container mx-auto px-5">
             <div
               className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-serif prose-headings:text-primary prose-a:text-accent prose-a:no-underline hover:prose-a:underline"
@@ -136,6 +137,12 @@ export default async function BlogPost({ params }: Params) {
             />
           </div>
         </section>
+
+        {/* Author */}
+        <AuthorBox
+          name={post.author?.name || "Christoph Weissteiner"}
+          picture={post.author?.picture}
+        />
 
         {/* CTA */}
         <section className="section bg-accent/10">
