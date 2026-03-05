@@ -1,16 +1,16 @@
 ---
 name: generate-blog-image
-description: Generate brand-consistent blog images using Google Imagen 2 API. Creates cover images and infographics in optimized WebP format for the wa-website blog.
+description: Generate brand-consistent blog images using Gemini 3.1 Flash. Creates cover images and infographics in optimized WebP format for the wa-website blog.
 ---
 
 # Generate Blog Image
 
-Generate brand-consistent images for blog articles using Google Imagen 2 API, automatically converting to optimized WebP format.
+Generate brand-consistent images for blog articles using Gemini 3.1 Flash (`gemini-3.1-flash-image-preview`), automatically converting to optimized WebP format.
 
 ## Prerequisites
 
 Before using this skill, ensure:
-1. `GOOGLE_CLOUD_API_KEY` environment variable is set with Imagen API access
+1. `GOOGLE_CLOUD_API_KEY` environment variable is set (Google AI Studio API key)
 2. `cwebp` is installed (`brew install webp`)
 
 ## Workflow
@@ -28,20 +28,21 @@ Ask the user these questions using AskUserQuestion:
 2. **Blog slug**: "What is the blog post slug?" (e.g., `automatisierung-selbst-bauen-vs-agentur`)
 
 3. **Aspect ratio**: "What aspect ratio do you need?"
-   - 16:9 (landscape) - 1408×792px - recommended for covers
-   - 3:2 (standard) - 1200×800px - good for infographics
-   - 1:1 (square) - 1024×1024px - social media
-   - 4:3 (classic) - 1200×900px - traditional infographics
-   - 9:16 (portrait) - 792×1408px - mobile/stories
-   - Custom - ask for specific dimensions
+   - 16:9 (landscape) - recommended for covers → add "wide landscape format, 16:9 aspect ratio" to prompt
+   - 3:2 (standard) - good for infographics → add "3:2 aspect ratio" to prompt
+   - 1:1 (square) - social media → add "square format, 1:1 aspect ratio" to prompt
+   - 4:3 (classic) - traditional infographics → add "4:3 aspect ratio" to prompt
+   - 9:16 (portrait) - mobile/stories → add "tall portrait format, 9:16 aspect ratio" to prompt
 
 4. **Description**: "Describe what the image should show" (open text)
 
 ### Step 2: Enhance the Prompt
 
-Take the user's description and enhance it by appending the brand style guidelines:
+Take the user's description and enhance it by prepending aspect ratio and appending brand style guidelines:
 
 ```
+Generate a [ASPECT_RATIO_DESCRIPTION] image:
+
 [User's description]
 
 Style requirements:
@@ -56,31 +57,24 @@ Style requirements:
 
 ### Step 3: Generate the Image
 
-Use Bash to call the Google Imagen API:
+Use Bash to call the Gemini 3.1 Flash API:
 
 ```bash
-# Set dimensions based on aspect ratio
-# 16:9: 1408x792, 3:2: 1200x800, 1:1: 1024x1024, 4:3: 1200x900, 9:16: 792x1408
-
 curl -s -X POST \
-  "https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:generateImages" \
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent" \
   -H "x-goog-api-key: $GOOGLE_CLOUD_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "prompt": "ENHANCED_PROMPT_HERE",
-    "config": {
-      "numberOfImages": 1,
-      "aspectRatio": "ASPECT_RATIO_HERE"
+    "contents": [{
+      "parts": [{"text": "ENHANCED_PROMPT_HERE"}]
+    }],
+    "generationConfig": {
+      "responseModalities": ["TEXT", "IMAGE"]
     }
-  }' | jq -r '.generatedImages[0].image.imageBytes' | base64 -d > /tmp/generated-image.png
+  }' | jq -r '.candidates[0].content.parts[] | select(.inlineData) | .inlineData.data' | base64 -d > /tmp/generated-image.png
 ```
 
-**Aspect ratio values for API:**
-- 16:9 → `"16:9"`
-- 3:2 → `"3:2"`
-- 1:1 → `"1:1"`
-- 4:3 → `"4:3"`
-- 9:16 → `"9:16"`
+**Note:** Gemini 3.1 Flash generates images natively. The aspect ratio is determined by the prompt description (e.g., "wide landscape image", "square image", "tall portrait image").
 
 ### Step 4: Convert to WebP
 
