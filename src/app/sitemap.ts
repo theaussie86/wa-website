@@ -69,6 +69,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    // Tools
+    {
+      url: `${BASE_URL}/tools/roi-rechner`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     // Blog
     {
       url: `${BASE_URL}/blog`,

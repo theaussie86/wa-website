@@ -141,6 +141,8 @@ Wenn das zu Ihrer Vorstellung passt, [schauen Sie sich meine Leistungen an](/lei
 
 Die wichtigste Frage: Wann haben Sie Ihr Geld wieder raus?
 
+**Tipp:** Mit unserem [kostenlosen ROI-Rechner](/tools/roi-rechner) können Sie in wenigen Sekunden berechnen, wie schnell sich Ihre Automatisierungsinvestition amortisiert.
+
 **Einfache ROI-Berechnung:**
 
 1. Wie viele Stunden spart die Automatisierung pro Woche?
