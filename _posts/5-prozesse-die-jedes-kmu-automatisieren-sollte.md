@@ -14,6 +14,8 @@ In jedem mittelständischen Unternehmen gibt es Prozesse, bei denen Mitarbeiter 
 
 Nach Jahren der Arbeit mit KMUs habe ich fünf Prozesse identifiziert, die sich in fast jedem Unternehmen lohnen zu automatisieren. Sie sind keine Raketenwissenschaft, aber ihr Impact ist enorm.
 
+![Vergleich manuelle Prozesse vs. automatisierte Workflows](/blog/5-prozesse-die-jedes-kmu-automatisieren-sollte/infographic-01.webp)
+
 ## 1. Lead-Erfassung und -Qualifizierung
 
 **Das Problem:** Ein Interessent füllt Ihr Kontaktformular aus. Die E-Mail landet im Posteingang. Jemand muss sie lesen, entscheiden ob es ein qualifizierter Lead ist, die Daten ins CRM eintragen, und dann eine Antwort schicken. Bis das passiert, vergehen Stunden - manchmal Tage.
