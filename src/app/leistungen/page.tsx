@@ -21,9 +21,9 @@ export default function ServicesPage() {
         "Berichterstellung und Datenanalyse",
       ],
       image: {
-        src: "/services/service_automation_sketch_1772400691292.png",
-        alt: "Skizze zur Workflow-Automatisierung und Prozessoptimierung",
-        caption: "Symbolbild: Von chaotischen Daten zu strukturierten, automatisierten Prozessen.",
+        src: "/services/service-automation.webp",
+        alt: "Illustration zur Workflow-Automatisierung und Prozessoptimierung",
+        caption: "Symbolbild: Automatisierte Prozesse, die nahtlos ineinandergreifen.",
       },
     },
     {
@@ -37,9 +37,9 @@ export default function ServicesPage() {
         "Nahtlose API-Anbindungen",
       ],
       image: {
-        src: "/services/service_fullstack_sketch_1772400707439.png",
-        alt: "Skizze zur individuellen Web- und App-Entwicklung",
-        caption: "Symbolbild: Aufbau einer modernen Benutzeroberfläche mit stabilen Datenstrukturen.",
+        src: "/services/service-fullstack.webp",
+        alt: "Illustration zur individuellen Web- und App-Entwicklung",
+        caption: "Symbolbild: Moderne Anwendungen mit elegantem Design und solider Architektur.",
       },
     },
     {
@@ -53,9 +53,9 @@ export default function ServicesPage() {
         "Anbindung verschiedenster API-Plattformen",
       ],
       image: {
-        src: "/services/service_integration_sketch_1772400720958.png",
-        alt: "Skizze zur Systemintegration und KI-Anbindung",
-        caption: "Symbolbild: Verknüpfung verschiedener Plattformen durch eine zentrale KI-Schnittstelle.",
+        src: "/services/service-integration.webp",
+        alt: "Illustration zur Systemintegration und KI-Anbindung",
+        caption: "Symbolbild: KI als zentrale Schnittstelle zwischen Ihren Systemen.",
       },
     },
   ];
@@ -127,22 +127,17 @@ export default function ServicesPage() {
                   </ul>
                 </div>
                 <div
-                  className={`bg-white rounded-sm aspect-square flex flex-col items-center justify-center p-4 shadow-sm border border-primary/5 ${
+                  className={`aspect-square flex items-center justify-center ${
                     index % 2 === 1 ? "md:order-1" : ""
                   }`}
                 >
-                  <figure className="w-full h-full flex flex-col items-center justify-center">
-                    <Image
-                      src={service.image.src}
-                      alt={service.image.alt}
-                      width={600}
-                      height={600}
-                      className="w-full h-auto object-contain mix-blend-multiply"
-                    />
-                    <figcaption className="text-xs text-charcoal/50 mt-4 text-center">
-                      {service.image.caption}
-                    </figcaption>
-                  </figure>
+                  <Image
+                    src={service.image.src}
+                    alt={service.image.alt}
+                    width={600}
+                    height={600}
+                    className="w-full h-auto object-contain"
+                  />
                 </div>
               </div>
             ))}
