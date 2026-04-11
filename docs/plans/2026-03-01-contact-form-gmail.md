@@ -264,7 +264,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-sm p-6 text-center">
+      <div className="bg-green-50 border border-green-200 rounded-xs p-6 text-center">
         <p className="text-green-800 font-medium mb-2">
           Vielen Dank für Ihre Nachricht!
         </p>
@@ -284,7 +284,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {status === "error" && (
-        <div className="bg-red-50 border border-red-200 rounded-sm p-4 text-red-700 text-sm">
+        <div className="bg-red-50 border border-red-200 rounded-xs p-4 text-red-700 text-sm">
           {errorMessage}
         </div>
       )}
@@ -304,7 +304,7 @@ export function ContactForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 border border-primary/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 border border-primary/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-accent/50 focus:border-accent disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -323,7 +323,7 @@ export function ContactForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 border border-primary/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 border border-primary/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-accent/50 focus:border-accent disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -342,7 +342,7 @@ export function ContactForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 border border-primary/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 border border-primary/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 

@@ -39,7 +39,7 @@ export function SolutionSection() {
               )}
 
               <div className="relative bg-warm-white p-8 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-accent text-white font-serif text-2xl rounded-sm mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-accent text-white font-serif text-2xl rounded-xs mb-6">
                   {step.number}
                 </div>
                 <h3 className="font-serif text-2xl text-primary mb-3">{step.title}</h3>

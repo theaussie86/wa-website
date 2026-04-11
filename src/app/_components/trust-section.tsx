@@ -45,7 +45,7 @@ export function TrustSection() {
           {trustPoints.map((point, index) => (
             <div
               key={index}
-              className="p-8 border border-primary-400 rounded-sm"
+              className="p-8 border border-primary-400 rounded-xs"
             >
               <div className="text-accent mb-4">{point.icon}</div>
               <h3 className="font-serif text-xl text-white mb-3">{point.title}</h3>

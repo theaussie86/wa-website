@@ -60,7 +60,7 @@ export function Testimonials() {
               href={testimonial.companyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-8 bg-white border border-primary/10 rounded-sm hover:border-accent/50 hover:shadow-md transition-all flex flex-col cursor-pointer"
+              className="group p-8 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-all flex flex-col cursor-pointer"
             >
               {/* Quote Icon */}
               <div className="text-accent mb-4">
@@ -74,7 +74,7 @@ export function Testimonials() {
               </div>
 
               {/* Quote Text */}
-              <blockquote className="text-charcoal/80 mb-6 flex-grow">
+              <blockquote className="text-charcoal/80 mb-6 grow">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
 

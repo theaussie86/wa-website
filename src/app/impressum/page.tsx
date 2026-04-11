@@ -28,7 +28,7 @@ export default function ImpressumPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {/* Kontakt & Adresse */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Building2 className="w-6 h-6" />
@@ -43,7 +43,7 @@ export default function ImpressumPage() {
             </div>
 
             {/* Kontakt */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <PhoneCall className="w-6 h-6" />
@@ -63,7 +63,7 @@ export default function ImpressumPage() {
             </div>
 
             {/* Umsatzsteuer */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <ReceiptText className="w-6 h-6" />
@@ -77,7 +77,7 @@ export default function ImpressumPage() {
             </div>
 
             {/* Redaktion */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300 hover:shadow-md">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <UserCircle className="w-6 h-6" />
@@ -94,7 +94,7 @@ export default function ImpressumPage() {
 
           <div className="space-y-6">
             {/* Streitschlichtung */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                   <Scale className="w-6 h-6" />
@@ -122,7 +122,7 @@ export default function ImpressumPage() {
             </div>
 
             {/* Haftung & Urheberrecht */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500">
                   <ShieldAlert className="w-6 h-6" />

@@ -134,15 +134,15 @@ git commit -m "feat: add Modern Handwerk design tokens to Tailwind"
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-copper text-white font-medium rounded-sm hover:bg-copper-600 transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-copper text-white font-medium rounded-xs hover:bg-copper-600 transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-forest text-forest font-medium rounded-sm hover:bg-forest hover:text-white transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-forest text-forest font-medium rounded-xs hover:bg-forest hover:text-white transition-colors duration-200;
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-sm hover:bg-[#20BD5A] transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-xs hover:bg-[#20BD5A] transition-colors duration-200;
   }
 
   .section {
@@ -290,7 +290,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-sm border-b border-forest/10">
+    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-xs border-b border-forest/10">
       <nav className="container mx-auto px-5 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -583,7 +583,7 @@ export function Hero() {
     <section className="relative py-20 md:py-32 overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,#1B4332_25%,transparent_25%,transparent_75%,#1B4332_75%)] bg-[length:60px_60px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,#1B4332_25%,transparent_25%,transparent_75%,#1B4332_75%)] bg-size-[60px_60px]" />
       </div>
 
       <div className="container mx-auto px-5 relative">
@@ -710,7 +710,7 @@ export function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-sm shadow-sm border border-forest/10"
+              className="bg-white p-8 rounded-xs shadow-sm border border-forest/10"
             >
               <div className="text-copper mb-4">{problem.icon}</div>
               <h3 className="font-serif text-xl text-forest mb-3">{problem.title}</h3>
@@ -787,7 +787,7 @@ export function SolutionSection() {
               )}
 
               <div className="relative bg-warm-white p-8 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-copper text-white font-serif text-2xl rounded-sm mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-copper text-white font-serif text-2xl rounded-xs mb-6">
                   {step.number}
                 </div>
                 <h3 className="font-serif text-2xl text-forest mb-3">{step.title}</h3>
@@ -871,7 +871,7 @@ export function TrustSection() {
           {trustPoints.map((point, index) => (
             <div
               key={index}
-              className="p-8 border border-forest-400 rounded-sm"
+              className="p-8 border border-forest-400 rounded-xs"
             >
               <div className="text-copper mb-4">{point.icon}</div>
               <h3 className="font-serif text-xl text-white mb-3">{point.title}</h3>
@@ -956,7 +956,7 @@ export function ServicesPreview() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-8 bg-white border border-forest/10 rounded-sm hover:border-copper/50 hover:shadow-md transition-all"
+              className="group p-8 bg-white border border-forest/10 rounded-xs hover:border-copper/50 hover:shadow-md transition-all"
             >
               <div className="text-forest group-hover:text-copper transition-colors mb-6">
                 {service.icon}
@@ -1223,7 +1223,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {processSteps.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-copper text-white font-serif text-xl rounded-sm mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-copper text-white font-serif text-xl rounded-xs mb-4">
                   {item.step}
                 </div>
                 <h3 className="font-serif text-xl text-forest mb-2">{item.title}</h3>
@@ -1242,7 +1242,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => (
-              <div key={index} className="p-6 border border-forest-400 rounded-sm">
+              <div key={index} className="p-6 border border-forest-400 rounded-xs">
                 <h3 className="font-serif text-xl text-white mb-2">{value.title}</h3>
                 <p className="text-forest-200">{value.description}</p>
               </div>
@@ -1389,7 +1389,7 @@ export default function ServicesPage() {
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <svg
-                          className="w-5 h-5 text-copper mt-0.5 flex-shrink-0"
+                          className="w-5 h-5 text-copper mt-0.5 shrink-0"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1407,7 +1407,7 @@ export default function ServicesPage() {
                   </ul>
                 </div>
                 <div
-                  className={`bg-forest/10 rounded-sm aspect-square flex items-center justify-center ${
+                  className={`bg-forest/10 rounded-xs aspect-square flex items-center justify-center ${
                     index % 2 === 1 ? "md:order-1" : ""
                   }`}
                 >
@@ -1429,7 +1429,7 @@ export default function ServicesPage() {
             {useCases.map((useCase, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-forest/10 rounded-sm"
+                className="p-4 bg-white border border-forest/10 rounded-xs"
               >
                 <p className="text-charcoal/80">{useCase}</p>
               </div>
@@ -1451,19 +1451,19 @@ export default function ServicesPage() {
               ich muss mir Ihr Vertrauen jeden Monat neu verdienen.
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="p-4 border border-forest-400 rounded-sm">
+              <div className="p-4 border border-forest-400 rounded-xs">
                 <h3 className="font-medium text-white mb-2">Vollständige Dokumentation</h3>
                 <p className="text-forest-200 text-sm">
                   Jedes System wird so dokumentiert, dass es übernommen werden kann.
                 </p>
               </div>
-              <div className="p-4 border border-forest-400 rounded-sm">
+              <div className="p-4 border border-forest-400 rounded-xs">
                 <h3 className="font-medium text-white mb-2">Ihre Infrastruktur</h3>
                 <p className="text-forest-200 text-sm">
                   Systeme laufen bei Ihnen, nicht in meiner Cloud.
                 </p>
               </div>
-              <div className="p-4 border border-forest-400 rounded-sm">
+              <div className="p-4 border border-forest-400 rounded-xs">
                 <h3 className="font-medium text-white mb-2">Keine Abhängigkeit</h3>
                 <p className="text-forest-200 text-sm">
                   Ein anderer Entwickler kann jederzeit übernehmen.
@@ -1485,15 +1485,15 @@ export default function ServicesPage() {
               Planbare Zusammenarbeit ohne versteckte Kosten und ohne Risiko.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-forest/5 rounded-sm">
+              <div className="p-6 bg-forest/5 rounded-xs">
                 <div className="font-serif text-2xl text-forest mb-2">3 Monate</div>
                 <p className="text-charcoal/70 text-sm">Kennenlernen und erste Ergebnisse</p>
               </div>
-              <div className="p-6 bg-copper/10 rounded-sm border-2 border-copper">
+              <div className="p-6 bg-copper/10 rounded-xs border-2 border-copper">
                 <div className="font-serif text-2xl text-forest mb-2">6 Monate</div>
                 <p className="text-charcoal/70 text-sm">Empfohlen für nachhaltige Ergebnisse</p>
               </div>
-              <div className="p-6 bg-forest/5 rounded-sm">
+              <div className="p-6 bg-forest/5 rounded-xs">
                 <div className="font-serif text-2xl text-forest mb-2">12 Monate</div>
                 <p className="text-charcoal/70 text-sm">Maximale Planungssicherheit</p>
               </div>
@@ -1587,7 +1587,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-5">
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {/* Cal.com */}
-            <div className="bg-white p-8 rounded-sm shadow-sm border-2 border-copper text-center">
+            <div className="bg-white p-8 rounded-xs shadow-sm border-2 border-copper text-center">
               <div className="text-copper mb-4">
                 <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -1608,7 +1608,7 @@ export default function ContactPage() {
             </div>
 
             {/* WhatsApp */}
-            <div className="bg-white p-8 rounded-sm shadow-sm text-center">
+            <div className="bg-white p-8 rounded-xs shadow-sm text-center">
               <div className="text-[#25D366] mb-4">
                 <svg className="w-12 h-12 mx-auto" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -1629,7 +1629,7 @@ export default function ContactPage() {
             </div>
 
             {/* Email */}
-            <div className="bg-white p-8 rounded-sm shadow-sm text-center">
+            <div className="bg-white p-8 rounded-xs shadow-sm text-center">
               <div className="text-forest mb-4">
                 <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -1667,7 +1667,7 @@ export default function ContactPage() {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 border border-forest/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-copper/50 focus:border-copper"
+                  className="w-full px-4 py-3 border border-forest/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-copper/50 focus:border-copper"
                 />
               </div>
               <div>
@@ -1679,7 +1679,7 @@ export default function ContactPage() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 border border-forest/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-copper/50 focus:border-copper"
+                  className="w-full px-4 py-3 border border-forest/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-copper/50 focus:border-copper"
                 />
               </div>
               <div>
@@ -1691,7 +1691,7 @@ export default function ContactPage() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full px-4 py-3 border border-forest/20 rounded-sm focus:outline-none focus:ring-2 focus:ring-copper/50 focus:border-copper resize-none"
+                  className="w-full px-4 py-3 border border-forest/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-copper/50 focus:border-copper resize-none"
                 ></textarea>
               </div>
               <button type="submit" className="btn-primary w-full">
@@ -1798,7 +1798,7 @@ export default function BlogPage() {
               {posts.map((post) => (
                 <article
                   key={post.slug}
-                  className="bg-white rounded-sm shadow-sm border border-forest/10 overflow-hidden hover:shadow-md transition-shadow"
+                  className="bg-white rounded-xs shadow-sm border border-forest/10 overflow-hidden hover:shadow-md transition-shadow"
                 >
                   {post.coverImage && (
                     <Link href={`/blog/${post.slug}`}>
@@ -1966,7 +1966,7 @@ export default async function BlogPost({ params }: Params) {
               <img
                 src={post.coverImage}
                 alt={post.title}
-                className="w-full rounded-sm"
+                className="w-full rounded-xs"
               />
             </div>
           </div>
@@ -1976,7 +1976,7 @@ export default async function BlogPost({ params }: Params) {
         <section className="pb-16">
           <div className="container mx-auto px-5">
             <div
-              className="max-w-3xl mx-auto prose prose-lg prose-forest prose-headings:font-serif prose-headings:text-forest prose-a:text-copper prose-a:no-underline hover:prose-a:underline"
+              className="max-w-3xl mx-auto prose prose-lg prose-forest prose-headings:font-serif prose-headings:text-forest prose-a:text-copper prose-a:no-underline prose-a:hover:underline"
               dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>

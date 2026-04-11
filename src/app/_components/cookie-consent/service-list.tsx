@@ -15,7 +15,7 @@ function ServiceCard({ service }: { service: ServiceConfig }) {
           </p>
         </div>
         {service.dataTransferToUSA && (
-          <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded">
+          <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
             USA
           </span>
         )}
@@ -29,7 +29,7 @@ function ServiceCard({ service }: { service: ServiceConfig }) {
           <ul className="mt-1 space-y-1">
             {service.cookies.map((cookie) => (
               <li key={cookie.name} className="text-gray-600">
-                <code className="bg-gray-200 px-1 rounded text-xs">{cookie.name}</code>
+                <code className="bg-gray-200 px-1 rounded-sm text-xs">{cookie.name}</code>
                 {" – "}{cookie.purpose} ({cookie.duration})
               </li>
             ))}
@@ -144,7 +144,7 @@ export function CookieOverviewTable() {
           {allCookies.map((cookie, index) => (
             <tr key={`${cookie.service}-${cookie.name}-${index}`} className="border-b border-gray-100">
               <td className="py-2 pr-4">
-                <code className="bg-gray-100 px-1 rounded text-xs">{cookie.name}</code>
+                <code className="bg-gray-100 px-1 rounded-sm text-xs">{cookie.name}</code>
               </td>
               <td className="py-2 pr-4 text-gray-700">{cookie.service}</td>
               <td className="py-2 pr-4">

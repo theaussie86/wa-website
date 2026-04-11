@@ -38,7 +38,7 @@ export default function BlogPage() {
               {posts.map((post) => (
                 <article
                   key={post.slug}
-                  className="bg-white rounded-sm shadow-sm border border-primary/10 overflow-hidden hover:shadow-md transition-shadow"
+                  className="bg-white rounded-xs shadow-sm border border-primary/10 overflow-hidden hover:shadow-md transition-shadow"
                 >
                   {post.coverImage && (
                     <Link href={`/blog/${post.slug}`} className="block relative h-48">

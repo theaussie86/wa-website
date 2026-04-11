@@ -187,7 +187,7 @@ export function ROICalculator() {
             id="investment"
             value={investmentLevel}
             onChange={(e) => setInvestmentLevel(e.target.value as InvestmentLevel)}
-            className="w-full p-3 border border-primary/20 rounded-sm bg-white text-charcoal focus:outline-none focus:ring-2 focus:ring-accent/50"
+            className="w-full p-3 border border-primary/20 rounded-xs bg-white text-charcoal focus:outline-hidden focus:ring-2 focus:ring-accent/50"
           >
             {Object.entries(INVESTMENT_OPTIONS).map(([key, { label }]) => (
               <option key={key} value={key}>
@@ -199,7 +199,7 @@ export function ROICalculator() {
       </div>
 
       {/* Ergebnisse */}
-      <div className="bg-primary/5 rounded-sm p-6 lg:p-8 border border-primary/10">
+      <div className="bg-primary/5 rounded-xs p-6 lg:p-8 border border-primary/10">
         <h3 className="font-serif text-xl text-primary mb-6">Ihre Ergebnisse</h3>
 
         <div className="space-y-6">
@@ -239,7 +239,7 @@ export function ROICalculator() {
 
         {/* Quick Insight */}
         {results.paybackMonths <= 6 && (
-          <div className="mt-6 p-4 bg-accent/10 rounded-sm border border-accent/20">
+          <div className="mt-6 p-4 bg-accent/10 rounded-xs border border-accent/20">
             <div className="text-sm text-charcoal/80">
               <strong className="text-accent">Schneller ROI:</strong> Bei diesen Werten amortisiert sich
               die Investition in weniger als 6 Monaten.
@@ -247,7 +247,7 @@ export function ROICalculator() {
           </div>
         )}
         {results.paybackMonths > 12 && results.paybackMonths <= 36 && (
-          <div className="mt-6 p-4 bg-primary/10 rounded-sm border border-primary/20">
+          <div className="mt-6 p-4 bg-primary/10 rounded-xs border border-primary/20">
             <div className="text-sm text-charcoal/80">
               <strong className="text-primary">Tipp:</strong> Bei längerer Amortisationszeit lohnt sich
               oft ein kleineres Pilotprojekt als Einstieg.

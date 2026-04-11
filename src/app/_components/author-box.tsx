@@ -13,7 +13,7 @@ const AuthorBox = ({ name, picture }: Props) => {
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start gap-6">
             {picture && (
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <Image
                   src={picture}
                   alt={name}

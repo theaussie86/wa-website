@@ -33,7 +33,7 @@ export default function DatenschutzPage() {
           <div className="space-y-6">
 
             {/* 1. Datenschutz auf einen Blick */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <ShieldCheck className="w-6 h-6" />
@@ -112,7 +112,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 2. Hosting und Content Delivery Networks (CDN) */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Server className="w-6 h-6" />
@@ -175,7 +175,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 3. Allgemeine Hinweise und Pflichtinformationen */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <FileText className="w-6 h-6" />
@@ -328,7 +328,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 4. Datenerfassung auf dieser Website */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Database className="w-6 h-6" />
@@ -377,7 +377,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 5. Soziale Medien */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5]">
                   <Share2 className="w-6 h-6" />
@@ -405,7 +405,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 6. Analyse-Tools und Werbung */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                   <BarChart3 className="w-6 h-6" />
@@ -446,7 +446,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 7. Newsletter */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center text-amber">
                   <Mail className="w-6 h-6" />
@@ -467,7 +467,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 8. Plugins und Tools */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Puzzle className="w-6 h-6" />
@@ -499,7 +499,7 @@ export default function DatenschutzPage() {
             </div>
 
             {/* 9. Zahlungsanbieter */}
-            <div className="bg-white/90 backdrop-blur-sm shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur-xs shadow-sm border border-gray-100 p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-600">
                   <CreditCard className="w-6 h-6" />

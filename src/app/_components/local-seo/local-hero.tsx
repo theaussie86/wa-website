@@ -17,7 +17,7 @@ export function LocalHero({ trustBadges, h1, subheadline }: LocalHeroProps) {
             {trustBadges.map((badge, index) => (
               <span
                 key={index}
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/5 text-primary text-sm rounded-sm"
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/5 text-primary text-sm rounded-xs"
               >
                 <svg
                   className="w-4 h-4 text-accent"

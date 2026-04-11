@@ -47,7 +47,7 @@ export function ServicesPreview() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-8 bg-white border border-primary/10 rounded-sm hover:border-accent/50 hover:shadow-md transition-all"
+              className="group p-8 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-all"
             >
               <div className="text-primary group-hover:text-accent transition-colors mb-6">
                 {service.icon}

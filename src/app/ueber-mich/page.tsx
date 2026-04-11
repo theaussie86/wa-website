@@ -59,13 +59,13 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
               {/* Bild - auf Mobile zuerst, auf Desktop rechts */}
-              <div className="flex-shrink-0 order-first md:order-last">
+              <div className="shrink-0 order-first md:order-last">
                 <div className="relative w-64 h-64 md:w-80 md:h-80">
                   <Image
                     src="/images/author/christoph-weissteiner.webp"
                     alt="Christoph Weissteiner"
                     fill
-                    className="object-cover rounded-sm shadow-md"
+                    className="object-cover rounded-xs shadow-md"
                     priority
                   />
                 </div>
@@ -125,7 +125,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {processSteps.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-accent text-white font-serif text-xl rounded-sm mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-accent text-white font-serif text-xl rounded-xs mb-4">
                   {item.step}
                 </div>
                 <h3 className="font-serif text-xl text-primary mb-2">{item.title}</h3>
@@ -144,7 +144,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => (
-              <div key={index} className="p-6 border border-primary-400 rounded-sm">
+              <div key={index} className="p-6 border border-primary-400 rounded-xs">
                 <h3 className="font-serif text-xl text-white mb-2">{value.title}</h3>
                 <p className="text-primary-200">{value.description}</p>
               </div>

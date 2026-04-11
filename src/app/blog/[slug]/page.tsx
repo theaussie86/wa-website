@@ -121,7 +121,7 @@ export default async function BlogPost({ params }: Params) {
                   alt={post.title}
                   fill
                   priority
-                  className="rounded-sm object-cover"
+                  className="rounded-xs object-cover"
                 />
               </div>
             </div>
@@ -132,7 +132,7 @@ export default async function BlogPost({ params }: Params) {
         <section className="pb-8">
           <div className="container mx-auto px-5">
             <div
-              className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-serif prose-headings:text-primary prose-a:text-accent prose-a:no-underline hover:prose-a:underline"
+              className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-serif prose-headings:text-primary prose-a:text-accent prose-a:no-underline prose-a:hover:underline"
               dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>

@@ -31,7 +31,7 @@ function Toggle({
       disabled={disabled}
       onClick={() => !disabled && onChange(!checked)}
       className={`
-        relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors
+        relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors
         ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
         ${checked ? "bg-primary" : "bg-gray-300 dark:bg-gray-600"}
       `}
@@ -76,7 +76,7 @@ function ServiceDetails({ services }: { services: ServiceConfig[] }) {
                 href={service.privacyPolicyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 text-primary hover:text-primary-600 dark:text-primary-400"
+                className="shrink-0 text-primary hover:text-primary-600 dark:text-primary-400"
                 aria-label={`Datenschutz von ${service.name}`}
               >
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -127,7 +127,7 @@ function CategorySection({
               {categoryConfig.name}
             </label>
             {disabled && (
-              <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+              <span className="rounded-sm bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500 dark:bg-gray-700 dark:text-gray-400">
                 Immer aktiv
               </span>
             )}
@@ -185,7 +185,7 @@ function SettingsModal() {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/50 p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeSettings();
       }}
@@ -274,7 +274,7 @@ export function CookieConsentBanner() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[9998] border-t border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-charcoal sm:p-6"
+      className="fixed inset-x-0 bottom-0 z-9998 border-t border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-charcoal sm:p-6"
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-banner-title"

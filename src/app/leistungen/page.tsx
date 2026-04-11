@@ -109,7 +109,7 @@ export default function ServicesPage() {
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <svg
-                          className="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                          className="w-5 h-5 text-accent mt-0.5 shrink-0"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -155,7 +155,7 @@ export default function ServicesPage() {
             {useCases.map((useCase, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-primary/10 rounded-sm"
+                className="p-4 bg-white border border-primary/10 rounded-xs"
               >
                 <p className="text-charcoal/80">{useCase}</p>
               </div>
@@ -177,19 +177,19 @@ export default function ServicesPage() {
               ich muss mir Ihr Vertrauen jeden Monat neu verdienen.
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="p-4 border border-primary-400 rounded-sm">
+              <div className="p-4 border border-primary-400 rounded-xs">
                 <h3 className="font-medium text-white mb-2">Vollständige Dokumentation</h3>
                 <p className="text-primary-200 text-sm">
                   Jedes System wird so dokumentiert, dass es übernommen werden kann.
                 </p>
               </div>
-              <div className="p-4 border border-primary-400 rounded-sm">
+              <div className="p-4 border border-primary-400 rounded-xs">
                 <h3 className="font-medium text-white mb-2">Ihre Infrastruktur</h3>
                 <p className="text-primary-200 text-sm">
                   Systeme laufen bei Ihnen, nicht in meiner Cloud.
                 </p>
               </div>
-              <div className="p-4 border border-primary-400 rounded-sm">
+              <div className="p-4 border border-primary-400 rounded-xs">
                 <h3 className="font-medium text-white mb-2">Keine Abhängigkeit</h3>
                 <p className="text-primary-200 text-sm">
                   Ein anderer Entwickler kann jederzeit übernehmen.
@@ -211,15 +211,15 @@ export default function ServicesPage() {
               Planbare Zusammenarbeit ohne versteckte Kosten und ohne Risiko.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-primary/5 rounded-sm">
+              <div className="p-6 bg-primary/5 rounded-xs">
                 <div className="font-serif text-2xl text-primary mb-2">3 Monate</div>
                 <p className="text-charcoal/70 text-sm">Kennenlernen und erste Ergebnisse</p>
               </div>
-              <div className="p-6 bg-accent/10 rounded-sm border-2 border-accent">
+              <div className="p-6 bg-accent/10 rounded-xs border-2 border-accent">
                 <div className="font-serif text-2xl text-primary mb-2">6 Monate</div>
                 <p className="text-charcoal/70 text-sm">Empfohlen für nachhaltige Ergebnisse</p>
               </div>
-              <div className="p-6 bg-primary/5 rounded-sm">
+              <div className="p-6 bg-primary/5 rounded-xs">
                 <div className="font-serif text-2xl text-primary mb-2">12 Monate</div>
                 <p className="text-charcoal/70 text-sm">Maximale Planungssicherheit</p>
               </div>

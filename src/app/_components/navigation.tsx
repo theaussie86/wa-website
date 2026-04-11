@@ -17,7 +17,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-sm border-b border-primary/10">
+    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-xs border-b border-primary/10">
       <nav className="container mx-auto px-5 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

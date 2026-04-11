@@ -58,7 +58,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                 {data.serviceHighlights.features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <svg
-                      className="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                      className="w-5 h-5 text-accent mt-0.5 shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                 ))}
               </ul>
             </div>
-            <div className="bg-white rounded-sm aspect-square flex items-center justify-center p-4 shadow-sm border border-primary/5">
+            <div className="bg-white rounded-xs aspect-square flex items-center justify-center p-4 shadow-sm border border-primary/5">
               <Image
                 src={data.serviceHighlights.image.src}
                 alt={data.serviceHighlights.image.alt}
@@ -98,7 +98,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
             {data.useCases.items.map((useCase, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-primary/10 rounded-sm"
+                className="p-4 bg-white border border-primary/10 rounded-xs"
               >
                 <p className="text-charcoal/80">{useCase}</p>
               </div>
@@ -127,7 +127,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                   href={testimonial.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-8 bg-white border border-primary/10 rounded-sm hover:border-accent/50 hover:shadow-md transition-all flex flex-col cursor-pointer"
+                  className="group p-8 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-all flex flex-col cursor-pointer"
                 >
                   {/* Quote Icon */}
                   <div className="text-accent mb-4">
@@ -141,7 +141,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                   </div>
 
                   {/* Quote Text */}
-                  <blockquote className="text-charcoal/80 mb-6 flex-grow">
+                  <blockquote className="text-charcoal/80 mb-6 grow">
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
 
@@ -202,7 +202,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
               {data.region.cities.map((city, index) => (
                 <span
                   key={index}
-                  className="px-4 py-2 border border-primary-400 rounded-sm text-primary-100"
+                  className="px-4 py-2 border border-primary-400 rounded-xs text-primary-100"
                 >
                   {city}
                 </span>
@@ -226,7 +226,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
               <Link
                 key={index}
                 href={page.path}
-                className="p-6 bg-white border border-primary/10 rounded-sm hover:border-accent/50 hover:shadow-md transition-all group"
+                className="p-6 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-all group"
               >
                 <h3 className="font-serif text-lg text-primary mb-2 group-hover:text-accent transition-colors">
                   {page.title}

@@ -45,7 +45,7 @@ export function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-sm shadow-sm border border-primary/10"
+              className="bg-white p-8 rounded-xs shadow-sm border border-primary/10"
             >
               <div className="text-accent mb-4">{problem.icon}</div>
               <h3 className="font-serif text-xl text-primary mb-3">{problem.title}</h3>

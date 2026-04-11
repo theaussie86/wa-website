@@ -100,7 +100,7 @@ export default function ROICalculatorPage() {
             </div>
 
             {/* Disclaimer */}
-            <div className="mt-8 p-4 bg-white rounded-sm border border-primary/10">
+            <div className="mt-8 p-4 bg-white rounded-xs border border-primary/10">
               <p className="text-sm text-charcoal/60">
                 <strong>Hinweis:</strong> Diese Berechnung gibt eine erste
                 Orientierung. Die tatsächlichen Werte hängen von vielen Faktoren
@@ -120,7 +120,7 @@ export default function ROICalculatorPage() {
             Typische Szenarien
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 bg-white border border-primary/10 rounded-sm">
+            <div className="p-6 bg-white border border-primary/10 rounded-xs">
               <h3 className="font-medium text-primary mb-2">
                 Rechnungsverarbeitung
               </h3>
@@ -131,7 +131,7 @@ export default function ROICalculatorPage() {
                 Typische Ersparnis: 2.000-4.000 €/Monat
               </div>
             </div>
-            <div className="p-6 bg-white border border-primary/10 rounded-sm">
+            <div className="p-6 bg-white border border-primary/10 rounded-xs">
               <h3 className="font-medium text-primary mb-2">
                 CRM-Automatisierung
               </h3>
@@ -142,7 +142,7 @@ export default function ROICalculatorPage() {
                 Typische Ersparnis: 1.500-3.000 €/Monat
               </div>
             </div>
-            <div className="p-6 bg-white border border-primary/10 rounded-sm">
+            <div className="p-6 bg-white border border-primary/10 rounded-xs">
               <h3 className="font-medium text-primary mb-2">
                 Berichterstellung
               </h3>

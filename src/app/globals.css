@@ -1,6 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-xs hover:bg-accent-600 transition-colors duration-200;
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-medium rounded-xs hover:bg-primary hover:text-white transition-colors duration-200;
+}
+
+@utility btn-whatsapp {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-xs hover:bg-[#20BD5A] transition-colors duration-200;
+}
+
+@utility section {
+  @apply py-16 md:py-24;
+}
+
+@utility container-narrow {
+  @apply max-w-4xl mx-auto px-5;
+}
 
 @layer base {
   html {
@@ -17,27 +55,5 @@
 
   a {
     @apply transition-colors duration-200;
-  }
-}
-
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-sm hover:bg-accent-600 transition-colors duration-200;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-medium rounded-sm hover:bg-primary hover:text-white transition-colors duration-200;
-  }
-
-  .btn-whatsapp {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-sm hover:bg-[#20BD5A] transition-colors duration-200;
-  }
-
-  .section {
-    @apply py-16 md:py-24;
-  }
-
-  .container-narrow {
-    @apply max-w-4xl mx-auto px-5;
   }
 }
