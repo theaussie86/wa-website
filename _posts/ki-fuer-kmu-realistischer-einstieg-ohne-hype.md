@@ -53,7 +53,7 @@ Ein Vertriebsmitarbeiter hat ein Kundengespräch geführt und Stichpunkte notier
 
 **Einstieg:**
 - ChatGPT Team (25 USD/Nutzer/Monat) oder Claude Team
-- Microsoft Copilot (30 EUR/Nutzer/Monat, wenn Sie bereits Microsoft 365 haben)
+- Microsoft Copilot (30 EUR/Nutzer/Monat, wenn du bereits Microsoft 365 hast)
 - Keine technische Integration nötig, sofort nutzbar
 
 **ROI:** Schwer zu messen, aber typischerweise 30-60 Minuten Zeitersparnis pro Tag für Mitarbeiter, die viel schreiben.
@@ -150,19 +150,19 @@ Nicht alles, was möglich ist, ist auch sinnvoll. Hier rate ich zur Vorsicht:
 KI kann Entscheidungen vorbereiten und Empfehlungen geben. Aber kritische Geschäftsentscheidungen sollten Menschen treffen - mit KI-Unterstützung, nicht KI-Ersetzung.
 
 **KI als Allheilmittel für schlechte Prozesse**
-Wenn Ihr Prozess chaotisch ist, wird KI das nicht retten. Erst Prozess verbessern, dann automatisieren. KI verstärkt, was da ist - auch das Chaos.
+Wenn dein Prozess chaotisch ist, wird KI das nicht retten. Erst Prozess verbessern, dann automatisieren. KI verstärkt, was da ist - auch das Chaos.
 
 **Komplexe Eigenentwicklungen ohne ML-Expertise**
 Ein eigenes Machine-Learning-Modell zu trainieren klingt spannend, ist aber aufwendig. Für die meisten KMU-Anwendungsfälle gibt es fertige Tools, die günstiger und schneller sind.
 
 **KI um der KI willen**
-"Wir brauchen auch KI" ist keine Strategie. Starten Sie beim Problem, nicht bei der Technologie.
+"Wir brauchen auch KI" ist keine Strategie. Starte beim Problem, nicht bei der Technologie.
 
 ## Der realistische Einstieg: 3 Phasen
 
 ### Phase 1: Experimentieren (1-2 Monate)
 
-**Ziel:** Verstehen, was KI kann und wo sie in Ihrem Unternehmen helfen könnte.
+**Ziel:** Verstehen, was KI kann und wo sie in deinem Unternehmen helfen könnte.
 
 **Aktivitäten:**
 - ChatGPT/Claude Team-Account einrichten
@@ -220,7 +220,7 @@ Ein eigenes Machine-Learning-Modell zu trainieren klingt spannend, ist aber aufw
 - Kundensupport-KI: 200-1.000 EUR/Monat Fixkosten + nutzungsbasiert
 - BI mit KI: In vorhandenen Tools oft inkludiert oder Aufpreis von 10-30%
 
-## Risiken und wie Sie damit umgehen
+## Risiken und wie du damit umgehst
 
 ### Datenschutz und Vertraulichkeit
 
@@ -263,7 +263,7 @@ Ein eigenes Machine-Learning-Modell zu trainieren klingt spannend, ist aber aufw
 
 ## Fazit: Pragmatisch starten, nicht perfekt planen
 
-KI im Mittelstand ist kein Alles-oder-Nichts. Sie müssen nicht die komplette Unternehmensstrategie umkrempeln oder Millionen investieren. Starten Sie dort, wo der Nutzen offensichtlich ist:
+KI im Mittelstand ist kein Alles-oder-Nichts. Du musst nicht die komplette Unternehmensstrategie umkrempeln oder Millionen investieren. Starte dort, wo der Nutzen offensichtlich ist:
 
 **Sofort machbar:**
 - ChatGPT/Claude für Textarbeit im Alltag
@@ -277,6 +277,6 @@ KI im Mittelstand ist kein Alles-oder-Nichts. Sie müssen nicht die komplette Un
 - Predictive Analytics
 - Automatisierte Qualitätskontrolle
 
-Der wichtigste Schritt ist der erste. Probieren Sie es aus. Nicht in der Theorie, sondern im echten Arbeitsalltag. Dann werden Sie schnell merken, wo KI Ihrem Unternehmen wirklich hilft - jenseits des Hypes.
+Der wichtigste Schritt ist der erste. Probier es aus. Nicht in der Theorie, sondern im echten Arbeitsalltag. Dann wirst du schnell merken, wo KI deinem Unternehmen wirklich hilft - jenseits des Hypes.
 
-Wenn Sie unsicher sind, wo Sie anfangen sollen, oder eine Einschätzung möchten, welche KI-Anwendungsfälle für Ihr Unternehmen am meisten Sinn machen: [Vereinbaren Sie ein Gespräch](/kontakt). Ich helfe Ihnen, den Nebel zu lichten.
+Wenn du unsicher bist, wo du anfangen sollst, oder eine Einschätzung möchtest, welche KI-Anwendungsfälle für dein Unternehmen am meisten Sinn machen: [Vereinbare ein Gespräch](/kontakt). Ich helfe dir, den Nebel zu lichten.

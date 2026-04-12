@@ -9,7 +9,7 @@ import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
   title: `Kontakt | ${SITE_NAME}`,
-  description: "Lassen Sie uns sprechen — unverbindlich und ohne Verkaufsdruck.",
+  description: "Lass uns sprechen - unverbindlich und ohne Verkaufsdruck.",
 };
 
 export default function ContactPage() {
@@ -20,7 +20,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
-              Lassen Sie uns sprechen
+              Lass uns sprechen
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
               Kein Verkaufsdruck, kein Pitch — nur ein Gespräch, um herauszufinden,
@@ -64,7 +64,7 @@ export default function ContactPage() {
               </div>
               <h2 className="font-serif text-xl text-primary mb-2">WhatsApp</h2>
               <p className="text-charcoal/70 text-sm mb-6">
-                Kurze Frage? Schreiben Sie direkt.
+                Kurze Frage? Schreib direkt.
               </p>
               <a
                 href={WHATSAPP_LINK}
@@ -86,7 +86,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-xl mx-auto">
             <h2 className="font-serif text-2xl text-primary mb-6 text-center">
-              Oder schreiben Sie mir hier
+              Oder schreib mir hier
             </h2>
 <ContactForm />
           </div>

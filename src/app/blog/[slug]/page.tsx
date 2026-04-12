@@ -149,11 +149,11 @@ export default async function BlogPost({ params }: Params) {
           <div className="container mx-auto px-5">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="font-serif text-2xl text-primary mb-4">
-                Hat Ihnen dieser Artikel geholfen?
+                Hat dir dieser Artikel geholfen?
               </h2>
               <p className="text-charcoal/70 mb-6">
-                Wenn Sie darüber nachdenken, wie Automatisierung Ihrem Unternehmen
-                helfen könnte, lassen Sie uns sprechen.
+                Wenn du darüber nachdenkst, wie Automatisierung deinem Unternehmen
+                helfen könnte, lass uns sprechen.
               </p>
               <a
                 href={CAL_LINK}

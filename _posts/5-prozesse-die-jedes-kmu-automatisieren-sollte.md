@@ -4,7 +4,7 @@ date: "2026-03-05T10:00:00Z"
 author:
   name: "Christoph Weissteiner"
   picture: "/images/author/christoph-weissteiner.webp"
-excerpt: "Diese fünf Prozesse kosten KMUs täglich Stunden an manueller Arbeit. Erfahren Sie, welche Automatisierungen den größten Impact haben und womit Sie starten sollten."
+excerpt: "Diese fünf Prozesse kosten KMUs täglich Stunden an manueller Arbeit. Erfahre, welche Automatisierungen den größten Impact haben und womit du starten solltest."
 coverImage: "/blog/5-prozesse-die-jedes-kmu-automatisieren-sollte/cover.webp"
 ogImage:
   url: "/blog/5-prozesse-die-jedes-kmu-automatisieren-sollte/cover.webp"
@@ -18,7 +18,7 @@ Nach Jahren der Arbeit mit KMUs habe ich fünf Prozesse identifiziert, die sich 
 
 ## 1. Lead-Erfassung und -Qualifizierung
 
-**Das Problem:** Ein Interessent füllt Ihr Kontaktformular aus. Die E-Mail landet im Posteingang. Jemand muss sie lesen, entscheiden ob es ein qualifizierter Lead ist, die Daten ins CRM eintragen, und dann eine Antwort schicken. Bis das passiert, vergehen Stunden - manchmal Tage.
+**Das Problem:** Ein Interessent füllt dein Kontaktformular aus. Die E-Mail landet im Posteingang. Jemand muss sie lesen, entscheiden ob es ein qualifizierter Lead ist, die Daten ins CRM eintragen, und dann eine Antwort schicken. Bis das passiert, vergehen Stunden - manchmal Tage.
 
 **Die Automatisierung:**
 
@@ -99,7 +99,7 @@ Nach Jahren der Arbeit mit KMUs habe ich fünf Prozesse identifiziert, die sich 
 
 ## 5. Kundenkommunikation und Follow-ups
 
-**Das Problem:** Ein Kunde kauft ein Produkt. Und dann? Stille. Keine Nachfrage ob alles angekommen ist, keine Erinnerung an die Bewertung, kein Check-in nach drei Monaten. Nicht weil Sie es nicht wollen, sondern weil es bei hunderten Kunden schlicht nicht machbar ist.
+**Das Problem:** Ein Kunde kauft ein Produkt. Und dann? Stille. Keine Nachfrage ob alles angekommen ist, keine Erinnerung an die Bewertung, kein Check-in nach drei Monaten. Nicht weil du es nicht willst, sondern weil es bei hunderten Kunden schlicht nicht machbar ist.
 
 **Die Automatisierung:**
 
@@ -111,20 +111,20 @@ Nach Jahren der Arbeit mit KMUs habe ich fünf Prozesse identifiziert, die sich 
 - Geburtstags- oder Jubiläums-Nachrichten
 
 **Der Impact:**
-- Kunden fühlen sich betreut, ohne dass Sie Zeit investieren
+- Kunden fühlen sich betreut, ohne dass du Zeit investierst
 - Mehr Bewertungen und Testimonials
 - Höhere Wiederkaufrate
 - Probleme werden früh erkannt (wenn auf die Nachfrage keine Antwort kommt)
 
-**Einstiegsaufwand:** Gering. E-Mail-Marketing-Tools wie Mailchimp, Klaviyo oder ActiveCampaign bieten diese Funktionen out-of-the-box. Die Herausforderung ist weniger technisch als inhaltlich: Welche E-Mails wollen Sie wann senden?
+**Einstiegsaufwand:** Gering. E-Mail-Marketing-Tools wie Mailchimp, Klaviyo oder ActiveCampaign bieten diese Funktionen out-of-the-box. Die Herausforderung ist weniger technisch als inhaltlich: Welche E-Mails willst du wann senden?
 
 ## Womit anfangen?
 
-Die Frage ist nicht ob, sondern womit. Meine Empfehlung: Starten Sie dort, wo der Schmerz am größten ist.
+Die Frage ist nicht ob, sondern womit. Meine Empfehlung: Starte dort, wo der Schmerz am größten ist.
 
 **Schnelle Orientierung:**
 
-| Ihr größtes Problem | Starten Sie mit |
+| Dein größtes Problem | Starte mit |
 |---------------------|-----------------|
 | "Wir verlieren Leads" | Lead-Erfassung (#1) |
 | "Die Buchhaltung erstickt" | Rechnungsverarbeitung (#2) |
@@ -132,7 +132,7 @@ Die Frage ist nicht ob, sondern womit. Meine Empfehlung: Starten Sie dort, wo de
 | "Ich weiß nie, wo wir stehen" | Reporting (#4) |
 | "Kunden kaufen einmal und verschwinden" | Kundenkommunikation (#5) |
 
-**Der wichtigste Rat:** Starten Sie klein. Automatisieren Sie nicht gleich den kompletten Prozess, sondern einen Teilschritt. Sammeln Sie Erfahrungen, lernen Sie die Tools kennen, und erweitern Sie dann schrittweise.
+**Der wichtigste Rat:** Starte klein. Automatisiere nicht gleich den kompletten Prozess, sondern einen Teilschritt. Sammle Erfahrungen, lerne die Tools kennen, und erweitere dann schrittweise.
 
 ## Die versteckten Vorteile der Automatisierung
 
@@ -140,11 +140,11 @@ Neben der offensichtlichen Zeitersparnis gibt es Vorteile, die oft übersehen we
 
 **Konsistenz:** Ein automatisierter Prozess läuft immer gleich ab. Keine schlechten Tage, keine vergessenen Schritte, keine unterschiedlichen Qualitätsniveaus je nach Mitarbeiter.
 
-**Dokumentation:** Automatisierte Prozesse sind gleichzeitig dokumentierte Prozesse. Sie wissen immer, was wann passiert ist.
+**Dokumentation:** Automatisierte Prozesse sind gleichzeitig dokumentierte Prozesse. Du weißt immer, was wann passiert ist.
 
-**Skalierbarkeit:** Ihr Unternehmen wächst? Automatisierte Prozesse wachsen mit - ohne proportional mehr Personal zu benötigen.
+**Skalierbarkeit:** Dein Unternehmen wächst? Automatisierte Prozesse wachsen mit - ohne proportional mehr Personal zu benötigen.
 
-**Mitarbeiterzufriedenheit:** Niemand ist gerne Dateneingabe-Roboter. Automatisierung gibt Ihren Mitarbeitern die Freiheit, sich auf sinnvolle Arbeit zu konzentrieren.
+**Mitarbeiterzufriedenheit:** Niemand ist gerne Dateneingabe-Roboter. Automatisierung gibt deinen Mitarbeitern die Freiheit, sich auf sinnvolle Arbeit zu konzentrieren.
 
 ## Häufige Einwände - und warum sie meist nicht stimmen
 
@@ -152,13 +152,13 @@ Neben der offensichtlichen Zeitersparnis gibt es Vorteile, die oft übersehen we
 Moderne Automatisierungstools sind so einfach wie nie. Viele arbeiten mit visuellen Workflows, die auch Nicht-Techniker verstehen können.
 
 **"Wir sind zu klein dafür."**
-Gerade kleinere Unternehmen profitieren überproportional. Wenn Sie fünf Mitarbeiter haben und einer verbringt 20% seiner Zeit mit repetitiver Arbeit, ist das ein Fünftel Ihrer Belegschaft.
+Gerade kleinere Unternehmen profitieren überproportional. Wenn du fünf Mitarbeiter hast und einer verbringt 20% seiner Zeit mit repetitiver Arbeit, ist das ein Fünftel deiner Belegschaft.
 
 **"Unsere Prozesse sind zu speziell."**
 Das höre ich oft - und es stimmt selten. Die meisten Prozesse in KMUs sind sich ähnlicher als man denkt. Und selbst spezielle Prozesse lassen sich mit den richtigen Tools automatisieren.
 
 **"Was wenn es nicht funktioniert?"**
-Dann passen Sie es an. Automatisierung ist kein Alles-oder-Nichts. Sie können klein starten, testen, und bei Problemen justieren.
+Dann pass es an. Automatisierung ist kein Alles-oder-Nichts. Du kannst klein starten, testen, und bei Problemen justieren.
 
 ## Fazit: Der erste Schritt ist der wichtigste
 
@@ -166,6 +166,6 @@ Prozessautomatisierung ist kein Luxus für Großkonzerne mehr. Die Tools sind er
 
 Die fünf Prozesse in diesem Artikel sind bewährte Startpunkte. Nicht weil sie die einzigen sind, sondern weil sie in fast jedem KMU existieren und weil ihr Automatisierungspotenzial hoch ist.
 
-**Der nächste Schritt:** Schauen Sie sich einen dieser Prozesse in Ihrem Unternehmen genau an. Wie läuft er heute ab? Wie viel Zeit kostet er? Wo sind die Fehlerquellen? Schon diese Analyse ist wertvoll - ob Sie dann selbst automatisieren oder sich Unterstützung holen.
+**Der nächste Schritt:** Schau dir einen dieser Prozesse in deinem Unternehmen genau an. Wie läuft er heute ab? Wie viel Zeit kostet er? Wo sind die Fehlerquellen? Schon diese Analyse ist wertvoll - ob du dann selbst automatisierst oder dir Unterstützung holst.
 
-Wenn Sie wissen möchten, welcher dieser Prozesse in Ihrem Unternehmen den größten Hebel hätte, [vereinbaren Sie ein unverbindliches Gespräch](/kontakt). In 30 Minuten können wir gemeinsam identifizieren, wo Sie am meisten Zeit und Geld sparen würden.
+Wenn du wissen möchtest, welcher dieser Prozesse in deinem Unternehmen den größten Hebel hätte, [vereinbare ein unverbindliches Gespräch](/kontakt). In 30 Minuten können wir gemeinsam identifizieren, wo du am meisten Zeit und Geld sparen würdest.
