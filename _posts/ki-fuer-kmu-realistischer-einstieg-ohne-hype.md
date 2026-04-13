@@ -112,7 +112,7 @@ Ein E-Commerce-Unternehmen erhält täglich 100 Support-Anfragen. 60% sind Frage
 - Predictive Analytics ("Basierend auf den Trends wird der Lagerbestand in 3 Wochen kritisch")
 
 **Konkretes Beispiel:**
-Ein Geschäftsführer fragt sein BI-Tool: "Welche Kunden haben letztes Jahr weniger bestellt als im Vorjahr?" Statt selbst Tabellen zu durchforsten, liefert die KI die Antwort in Sekunden - inklusive möglicher Gründe.
+Ein Geschäftsführer fragt sein BI-Tool: "Welche Kunden haben letztes Jahr weniger bestellt als im Vorjahr?" Statt selbst Tabellen zu durchforsten, liefert KI die Antwort in Sekunden - inklusive möglicher Gründe.
 
 **Einstieg:**
 - Microsoft Power BI mit Copilot
@@ -155,7 +155,7 @@ Wenn dein Prozess chaotisch ist, wird KI das nicht retten. Erst Prozess verbesse
 **Komplexe Eigenentwicklungen ohne ML-Expertise**
 Ein eigenes Machine-Learning-Modell zu trainieren klingt spannend, ist aber aufwendig. Für die meisten KMU-Anwendungsfälle gibt es fertige Tools, die günstiger und schneller sind.
 
-**KI um der KI willen**
+**KI um KIs willen**
 "Wir brauchen auch KI" ist keine Strategie. Starte beim Problem, nicht bei der Technologie.
 
 ## Der realistische Einstieg: 3 Phasen

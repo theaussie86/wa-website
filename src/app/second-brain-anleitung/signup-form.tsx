@@ -34,8 +34,8 @@ export function SignupForm({ id }: { id?: string }) {
             <p className="text-red-300 text-sm mt-2 text-center">{state.message}</p>
           )}
           <p className="text-white/40 text-xs mt-3 text-center">
-            Kein Spam, kein Newsletter - nur die Anleitung. Du kannst dich
-            jederzeit abmelden.
+            Nur relevante Inhalte rund um KI und Second Brain. Jederzeit
+            abmelden.
           </p>
         </>
       )}
