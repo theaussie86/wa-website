@@ -11,48 +11,13 @@ import {
   RefreshCw,
   Sparkles,
 } from "lucide-react";
+import { SignupForm } from "./signup-form";
 
 export const metadata: Metadata = {
   title: `Second Brain Anleitung - Warteliste | ${SITE_NAME}`,
   description:
     "Bau dir ein zweites Gehirn, das deine KI versteht. Trag dich auf die Warteliste ein und erhalte die Schritt-für-Schritt-Anleitung, sobald sie fertig ist.",
 };
-
-function SignupForm({ id }: { id?: string }) {
-  return (
-    <div id={id}>
-      {/*
-        Brevo Embedded Form Placeholder
-
-        To set up:
-        1. Create a new list in Brevo for "Second Brain Anleitung"
-        2. Create an embedded signup form in Brevo (Contacts > Forms)
-        3. Copy the form HTML and replace this placeholder
-        4. The form will handle double opt-in automatically
-      */}
-      <form
-        action="https://sibforms.com/serve/PLACEHOLDER"
-        method="POST"
-        className="flex flex-col sm:flex-row gap-3"
-      >
-        <input
-          type="email"
-          name="EMAIL"
-          placeholder="Deine E-Mail-Adresse"
-          required
-          className="flex-1 px-4 py-3 rounded-xs border-2 border-white/30 bg-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
-        />
-        <button type="submit" className="btn-primary whitespace-nowrap">
-          Kostenlos eintragen
-        </button>
-      </form>
-      <p className="text-white/40 text-xs mt-3 text-center">
-        Kein Spam, kein Newsletter - nur die Anleitung. Du kannst dich jederzeit
-        abmelden.
-      </p>
-    </div>
-  );
-}
 
 export default function SecondBrainAnleitungPage() {
   return (
