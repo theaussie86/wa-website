@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
-const easeOut = [0.22, 1, 0.36, 1];
+const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 interface FadeInProps {
   children: ReactNode;
