@@ -10,6 +10,7 @@
     "sandcastle": "npx tsx .sandcastle/main.mts"
   },
   "dependencies": {
+    "@ai-hero/sandcastle": "^0.5.8",
     "@tailwindcss/typography": "^0.5.19",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
