@@ -1,3 +1,5 @@
+import { AnimatedCard, FadeIn } from "@/app/_components/animations";
+
 export function TrustSection() {
   const trustPoints = [
     {
@@ -32,25 +34,26 @@ export function TrustSection() {
   return (
     <section className="section bg-primary text-white">
       <div className="container mx-auto px-5">
-        <div className="text-center mb-12">
+        <FadeIn className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
             Partnerschaft ohne Risiko
           </h2>
           <p className="text-lg text-primary-200 max-w-2xl mx-auto">
             Ich verdiene Ihr Vertrauen durch Ergebnisse — nicht durch Abhängigkeit.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-3 gap-8">
           {trustPoints.map((point, index) => (
-            <div
+            <AnimatedCard
               key={index}
+              delay={index * 0.1}
               className="p-8 border border-primary-400 rounded-xs"
             >
               <div className="text-accent mb-4">{point.icon}</div>
               <h3 className="font-serif text-xl text-white mb-3">{point.title}</h3>
               <p className="text-primary-200">{point.description}</p>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>

@@ -47,10 +47,33 @@
 
   body {
     @apply bg-warm-white text-charcoal antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-primary;
+  h1 {
+    @apply font-serif text-primary font-extrabold tracking-tight;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    @apply font-serif text-primary font-extrabold tracking-tight;
+    font-size: clamp(1.875rem, 3.5vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    @apply font-serif text-primary font-bold;
+    font-size: clamp(1.375rem, 2.5vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h4, h5, h6 {
+    @apply font-serif text-primary font-semibold;
+    letter-spacing: -0.01em;
   }
 
   a {

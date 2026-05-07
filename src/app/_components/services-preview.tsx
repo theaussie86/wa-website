@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatedCard, AnimatedButton, FadeIn } from "@/app/_components/animations";
 
 export function ServicesPreview() {
   const services = [
@@ -34,35 +35,38 @@ export function ServicesPreview() {
   return (
     <section className="section">
       <div className="container mx-auto px-5">
-        <div className="text-center mb-12">
+        <FadeIn className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             Was ich für Sie tue
           </h2>
           <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
             Technologie, die arbeitet. Menschen, die gestalten.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div
+            <AnimatedCard
               key={index}
-              className="group p-8 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-all"
+              delay={index * 0.1}
+              className="group p-8 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-colors"
             >
               <div className="text-primary group-hover:text-accent transition-colors mb-6">
                 {service.icon}
               </div>
               <h3 className="font-serif text-xl text-primary mb-3">{service.title}</h3>
               <p className="text-charcoal/70">{service.description}</p>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Link href="/leistungen" className="btn-secondary">
-            Alle Leistungen ansehen
-          </Link>
-        </div>
+        <FadeIn delay={0.3} className="text-center mt-12">
+          <AnimatedButton>
+            <Link href="/leistungen" className="btn-secondary">
+              Alle Leistungen ansehen
+            </Link>
+          </AnimatedButton>
+        </FadeIn>
       </div>
     </section>
   );

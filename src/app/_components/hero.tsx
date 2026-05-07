@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CAL_LINK, WHATSAPP_LINK } from "@/lib/constants";
+import { RotatingWord } from "@/app/_components/rotating-word";
 
 export function Hero() {
   return (
@@ -34,7 +35,7 @@ export function Hero() {
 
           {/* Headline */}
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary leading-tight mb-6">
-            Systeme, die mit Ihrem Unternehmen wachsen
+            Systeme, die mit Ihrem Unternehmen <RotatingWord />
           </h1>
 
           {/* Subheadline */}

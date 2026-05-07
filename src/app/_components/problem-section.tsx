@@ -1,3 +1,5 @@
+import { AnimatedCard, FadeIn } from "@/app/_components/animations";
+
 export function ProblemSection() {
   const problems = [
     {
@@ -32,25 +34,26 @@ export function ProblemSection() {
   return (
     <section className="section bg-primary/5">
       <div className="container mx-auto px-5">
-        <div className="text-center mb-12">
+        <FadeIn className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             Kommt Ihnen das bekannt vor?
           </h2>
           <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
             Viele Unternehmen kämpfen mit denselben Herausforderungen bei der Digitalisierung.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-3 gap-8">
           {problems.map((problem, index) => (
-            <div
+            <AnimatedCard
               key={index}
+              delay={index * 0.1}
               className="bg-white p-8 rounded-xs shadow-sm border border-primary/10"
             >
               <div className="text-accent mb-4">{problem.icon}</div>
               <h3 className="font-serif text-xl text-primary mb-3">{problem.title}</h3>
               <p className="text-charcoal/70">{problem.description}</p>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>
