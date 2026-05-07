@@ -4,10 +4,22 @@ import { CookieConsentWrapper } from "@/app/_components/cookie-consent";
 import { JsonLd } from "@/app/_components/json-ld";
 import { SITE_NAME } from "@/lib/constants";
 import type { Metadata } from "next";
-import { Bree_Serif, Raleway } from "next/font/google";
+import { Inter, Playfair_Display, Bree_Serif, Raleway } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 const breeSerif = Bree_Serif({
   weight: "400",
@@ -46,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${breeSerif.variable} ${raleway.variable}`}>
+    <html lang="de" className={`${inter.variable} ${playfairDisplay.variable} ${breeSerif.variable} ${raleway.variable}`}>
       <head>
         <meta name="theme-color" content="#1B4332" />
         <JsonLd />

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FadeIn } from "@/app/_components/animations";
 
 const testimonials = [
   {
@@ -44,19 +45,19 @@ export function Testimonials() {
   return (
     <section className="section bg-warm-white">
       <div className="container mx-auto px-5">
-        <div className="text-center mb-12">
+        <FadeIn className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             Das sagen meine Kunden
           </h2>
           <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
             Langfristige Partnerschaften, die funktionieren.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
+            <FadeIn key={index} delay={index * 0.1}>
             <Link
-              key={index}
               href={testimonial.companyUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -115,6 +116,7 @@ export function Testimonials() {
                 </div>
               </div>
             </Link>
+            </FadeIn>
           ))}
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { AnimatedCard, FadeIn } from "@/app/_components/animations";
+
 export function SolutionSection() {
   const steps = [
     {
@@ -20,7 +22,7 @@ export function SolutionSection() {
   return (
     <section className="section">
       <div className="container mx-auto px-5">
-        <div className="text-center mb-16">
+        <FadeIn className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
             System Stacking statt Einmalprojekt
           </h2>
@@ -28,11 +30,11 @@ export function SolutionSection() {
             Statt eines großen IT-Projekts bauen wir schrittweise — System für System,
             abgestimmt auf Ihr Tempo und Ihre Prioritäten.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="relative">
+            <AnimatedCard key={index} delay={index * 0.12} className="relative">
               {/* Connector line for desktop */}
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-accent/30" />
@@ -45,7 +47,7 @@ export function SolutionSection() {
                 <h3 className="font-serif text-2xl text-primary mb-3">{step.title}</h3>
                 <p className="text-charcoal/70">{step.description}</p>
               </div>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>
