@@ -17,12 +17,7 @@ type Params = {
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  let post;
-  try {
-    post = getPostBySlug(slug);
-  } catch {
-    return {};
-  }
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return {};
@@ -48,12 +43,7 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params }: Params) {
   const { slug } = await params;
-  let post;
-  try {
-    post = getPostBySlug(slug);
-  } catch {
-    notFound();
-  }
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();

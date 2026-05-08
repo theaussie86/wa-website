@@ -1,22 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/gmail";
+import { isValidEmail, sanitize } from "@/lib/validation";
 
 interface ContactFormData {
   name: string;
   email: string;
   message: string;
-}
-
-function isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function sanitize(str: string): string {
-  return str
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .trim();
 }
 
 export async function POST(request: NextRequest) {

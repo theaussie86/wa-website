@@ -1,5 +1,7 @@
 "use server";
 
+import { isValidEmail } from "@/lib/validation";
+
 const BREVO_LIST_ID = 5;
 const BREVO_DOI_TEMPLATE_ID = 6;
 const BREVO_DOI_REDIRECT_URL =
@@ -11,7 +13,7 @@ export async function subscribeToWaitlist(
 ) {
   const email = formData.get("email");
 
-  if (!email || typeof email !== "string" || !email.includes("@")) {
+  if (!email || typeof email !== "string" || !isValidEmail(email)) {
     return { success: false, message: "Bitte gib eine gültige E-Mail-Adresse ein." };
   }
 

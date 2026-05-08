@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { subscribeToWaitlist } from "./actions";
+import { FormFeedback } from "@/app/_components/form-feedback";
 
 export function SignupForm({ id }: { id?: string }) {
   const [state, action, pending] = useActionState(subscribeToWaitlist, null);
@@ -9,9 +10,7 @@ export function SignupForm({ id }: { id?: string }) {
   return (
     <div id={id}>
       {state?.success ? (
-        <p className="text-white bg-white/10 rounded-xs px-6 py-4 text-center">
-          {state.message}
-        </p>
+        <FormFeedback state={state} variant="inverted" />
       ) : (
         <>
           <form action={action} className="flex flex-col sm:flex-row gap-3">
@@ -30,9 +29,9 @@ export function SignupForm({ id }: { id?: string }) {
               {pending ? "Wird eingetragen..." : "Kostenlos eintragen"}
             </button>
           </form>
-          {state?.message && (
-            <p className="text-red-300 text-sm mt-2 text-center">{state.message}</p>
-          )}
+          <div className="mt-2">
+            <FormFeedback state={state} variant="inverted" />
+          </div>
           <p className="text-white/40 text-xs mt-3 text-center">
             Nur relevante Inhalte rund um KI und Second Brain. Jederzeit
             abmelden.

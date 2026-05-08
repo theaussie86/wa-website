@@ -1,45 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/app/_components/animations";
+import { getAllTestimonials } from "@/lib/testimonials";
 
-const testimonials = [
-  {
-    quote:
-      "Von der Website über den Shopify-Store bis zur Anbindung an unser Warenwirtschaftssystem — alles aus einer Hand. Besonders die automatische Seminar-Buchung spart mir täglich Zeit. Und wenn mal was angepasst werden muss, ist Christoph direkt zur Stelle.",
-    author: "Bernd Frieß, Inhaber",
-    company: "WACHMACHEREI",
-    companyUrl: "https://wachmacherei.de",
-    logo: "/images/testimonials/wachmacherei.png",
-    hasLogo: true, // Set to true when logo is added
-  },
-  {
-    quote:
-      "Mit den neuen Projektauswertungen sehen wir endlich, wo wir Potenzial haben. Der direkte Draht ohne Agentur-Umwege macht die Zusammenarbeit sehr effizient.",
-    author: "Nicole Moraru, Geschäftsführung",
-    company: "WIMO Hebetechnik",
-    companyUrl: "https://wimo-ht.de",
-    logo: "/images/testimonials/wimo.png",
-    hasLogo: true, // Set to true when logo is added
-  },
-  {
-    quote:
-      "Die Marketing-Automatisierung hat unseren Content-Workflow komplett verändert. Was früher Stunden gedauert hat und Abstimmungsschleifen erforderte, erledigt mit dem System jetzt ein Mitarbeiter in Minuten. Und das Beste: Es wächst mit unseren Anforderungen — wir planen schon die nächsten Erweiterungen.",
-    author: "Kerstin Hammerschmidt, Geschäftsführung",
-    company: "easylife",
-    companyUrl: "https://easylife.de",
-    logo: "/images/testimonials/easylife.png",
-    hasLogo: true, // Set to true when logo is added
-  },
-  {
-    quote:
-      "Professionelle Website und eine clevere Automatisierung für unsere Dokumentenverwaltung — das spart uns täglich wertvolle Zeit bei der Kundenbetreuung.",
-    author: "Florian Heuer, Geschäftsführer",
-    company: "Florian Heuer Finanzberatung",
-    companyUrl: "https://florian-heuer.de",
-    logo: "/images/testimonials/florian-heuer.png",
-    hasLogo: true, // Set to true when logo is added
-  },
-];
+const testimonials = getAllTestimonials();
 
 export function Testimonials() {
   return (
@@ -103,7 +67,7 @@ export function Testimonials() {
                       </svg>
                     </span>
                   </div>
-                  {testimonial.hasLogo && (
+                  {testimonial.logo && (
                     <div className="relative h-8 w-20">
                       <Image
                         src={testimonial.logo}

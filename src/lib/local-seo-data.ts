@@ -1,6 +1,8 @@
 // Local SEO Landing Pages Data
 // Each page has unique content to avoid thin content penalties
 
+import { getTestimonialsById } from "@/lib/testimonials";
+
 export const BASE_URL = "https://weissteiner-automation.com";
 
 // Geo coordinates for Memmingen
@@ -8,50 +10,6 @@ export const MEMMINGEN_GEO = {
   latitude: 48.0073389,
   longitude: 10.1803397,
 };
-
-// Testimonials data (imported here for filtering)
-export const testimonials = [
-  {
-    id: "wachmacherei",
-    quote:
-      "Von der Website über den Shopify-Store bis zur Anbindung an unser Warenwirtschaftssystem — alles aus einer Hand. Besonders die automatische Seminar-Buchung spart mir täglich Zeit. Und wenn mal was angepasst werden muss, ist Christoph direkt zur Stelle.",
-    author: "Bernd Frieß, Inhaber",
-    company: "WACHMACHEREI",
-    companyUrl: "https://wachmacherei.de",
-    logo: "/images/testimonials/wachmacherei.png",
-    region: "allgaeu",
-  },
-  {
-    id: "wimo",
-    quote:
-      "Mit den neuen Projektauswertungen sehen wir endlich, wo wir Potenzial haben. Der direkte Draht ohne Agentur-Umwege macht die Zusammenarbeit sehr effizient.",
-    author: "Nicole Moraru, Geschäftsführung",
-    company: "WIMO Hebetechnik",
-    companyUrl: "https://wimo-ht.de",
-    logo: "/images/testimonials/wimo.png",
-    region: "allgaeu",
-  },
-  {
-    id: "easylife",
-    quote:
-      "Die Marketing-Automatisierung hat unseren Content-Workflow komplett verändert. Was früher Stunden gedauert hat und Abstimmungsschleifen erforderte, erledigt mit dem System jetzt ein Mitarbeiter in Minuten. Und das Beste: Es wächst mit unseren Anforderungen — wir planen schon die nächsten Erweiterungen.",
-    author: "Kerstin Hammerschmidt, Geschäftsführung",
-    company: "easylife",
-    companyUrl: "https://easylife.de",
-    logo: "/images/testimonials/easylife.png",
-    region: "bayern",
-  },
-  {
-    id: "florian-heuer",
-    quote:
-      "Professionelle Website und eine clevere Automatisierung für unsere Dokumentenverwaltung — das spart uns täglich wertvolle Zeit bei der Kundenbetreuung.",
-    author: "Florian Heuer, Geschäftsführer",
-    company: "Florian Heuer Finanzberatung",
-    companyUrl: "https://florian-heuer.de",
-    logo: "/images/testimonials/florian-heuer.png",
-    region: "dach",
-  },
-];
 
 // TypeScript Interfaces
 export interface LocalSeoPageData {
@@ -432,5 +390,5 @@ export const localSeoPages: LocalSeoPageData[] = [
 
 // Helper function to get testimonials for a page
 export function getTestimonialsForPage(pageData: LocalSeoPageData) {
-  return testimonials.filter((t) => pageData.region.testimonialIds.includes(t.id));
+  return getTestimonialsById(pageData.region.testimonialIds);
 }
