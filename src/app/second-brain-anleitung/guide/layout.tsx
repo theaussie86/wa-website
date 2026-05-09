@@ -1,5 +1,5 @@
 import { GuideShell } from "./guide-shell";
-import { CompletionProvider } from "./completion-context";
+import { GuideQueryProvider } from "./query-provider";
 import { chapters } from "@/content/freebies/second-brain-anleitung";
 import { getCompletedChapters } from "./actions";
 
@@ -13,11 +13,11 @@ export default async function GuideLayout({
   return (
     <>
       <style>{`#site-header, #site-footer { display: none !important; }`}</style>
-      <CompletionProvider initialSlugs={completedChapters}>
-        <GuideShell chapters={chapters}>
+      <GuideQueryProvider>
+        <GuideShell chapters={chapters} initialCompletedSlugs={completedChapters}>
           {children}
         </GuideShell>
-      </CompletionProvider>
+      </GuideQueryProvider>
     </>
   );
 }

@@ -1,10 +1,14 @@
 "use client";
 
-import { useCompletion } from "../completion-context";
+import { useQueryClient } from "@tanstack/react-query";
+import { useToggleChapter, useCompletedChapters } from "../completion-context";
 
 export function ChapterCheckbox({ chapterSlug }: { chapterSlug: string }) {
-  const { completedSlugs, toggle, isPending } = useCompletion();
-  const optimisticCompleted = completedSlugs.has(chapterSlug);
+  const queryClient = useQueryClient();
+  const initialData = queryClient.getQueryData<string[]>(["completedChapters"]) ?? [];
+  const { data: completedSlugs = initialData } = useCompletedChapters(initialData);
+  const { mutate: toggle, isPending } = useToggleChapter();
+  const optimisticCompleted = completedSlugs.includes(chapterSlug);
 
   return (
     <button

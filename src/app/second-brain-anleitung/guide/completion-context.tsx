@@ -1,48 +1,39 @@
 "use client";
 
-import { createContext, useContext, useOptimistic, useTransition } from "react";
-import { toggleChapterComplete } from "./actions";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { getCompletedChapters, toggleChapterComplete } from "./actions";
 
-type CompletionContextType = {
-  completedSlugs: Set<string>;
-  toggle: (slug: string) => void;
-  isPending: boolean;
-};
+const QUERY_KEY = ["completedChapters"] as const;
 
-const CompletionContext = createContext<CompletionContextType | null>(null);
-
-export function CompletionProvider({
-  children,
-  initialSlugs,
-}: {
-  children: React.ReactNode;
-  initialSlugs: string[];
-}) {
-  const [isPending, startTransition] = useTransition();
-  const [optimisticSlugs, updateOptimistic] = useOptimistic(
-    initialSlugs,
-    (current: string[], slug: string) =>
-      current.includes(slug) ? current.filter((s) => s !== slug) : [...current, slug]
-  );
-
-  function toggle(slug: string) {
-    startTransition(async () => {
-      updateOptimistic(slug);
-      await toggleChapterComplete(slug);
-    });
-  }
-
-  return (
-    <CompletionContext.Provider
-      value={{ completedSlugs: new Set(optimisticSlugs), toggle, isPending }}
-    >
-      {children}
-    </CompletionContext.Provider>
-  );
+export function useCompletedChapters(initialData: string[]) {
+  return useQuery({
+    queryKey: QUERY_KEY,
+    queryFn: getCompletedChapters,
+    initialData,
+    staleTime: 0,
+  });
 }
 
-export function useCompletion() {
-  const ctx = useContext(CompletionContext);
-  if (!ctx) throw new Error("useCompletion must be used within CompletionProvider");
-  return ctx;
+export function useToggleChapter() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (slug: string) => toggleChapterComplete(slug),
+    onMutate: async (slug) => {
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
+      const previous = queryClient.getQueryData<string[]>(QUERY_KEY);
+      queryClient.setQueryData<string[]>(QUERY_KEY, (old = []) =>
+        old.includes(slug) ? old.filter((s) => s !== slug) : [...old, slug]
+      );
+      return { previous };
+    },
+    onError: (_err, _slug, context) => {
+      if (context?.previous !== undefined) {
+        queryClient.setQueryData(QUERY_KEY, context.previous);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+    },
+  });
 }
