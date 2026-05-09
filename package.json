@@ -7,6 +7,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
     "sandcastle": "npx tsx .sandcastle/main.mts"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "framer-motion": "^12.38.0",
     "googleapis": "^171.4.0",
     "gray-matter": "^4.0.3",
+    "jose": "^6.2.3",
     "lucide-react": "^1.8.0",
     "next": "^16.2.3",
     "react": "^19.2.5",

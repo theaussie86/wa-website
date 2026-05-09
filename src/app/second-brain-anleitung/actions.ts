@@ -5,7 +5,7 @@ import { isValidEmail } from "@/lib/validation";
 const BREVO_LIST_ID = 5;
 const BREVO_DOI_TEMPLATE_ID = 6;
 const BREVO_DOI_REDIRECT_URL =
-  "https://weissteiner-automation.com/second-brain-anleitung/bestaetigt";
+  "https://weissteiner-automation.com/api/auth/confirm";
 
 export async function subscribeToWaitlist(
   _prevState: { success: boolean; message: string } | null,
