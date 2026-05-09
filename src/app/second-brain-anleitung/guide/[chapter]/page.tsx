@@ -59,10 +59,7 @@ export default async function ChapterPage({
 
   return (
     <article>
-      <ProgressBar
-        completed={completedChapters.length}
-        total={chapters.length}
-      />
+      <ProgressBar total={chapters.length} />
       <p className="text-accent text-sm font-medium mb-2">
         Kapitel {chapterIndex + 1} von {chapters.length}
       </p>

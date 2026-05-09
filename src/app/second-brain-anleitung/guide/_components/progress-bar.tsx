@@ -1,10 +1,10 @@
-export function ProgressBar({
-  completed,
-  total,
-}: {
-  completed: number;
-  total: number;
-}) {
+"use client";
+
+import { useCompletedChapters } from "../completion-context";
+
+export function ProgressBar({ total }: { total: number }) {
+  const { data: completedSlugs = [] } = useCompletedChapters([]);
+  const completed = completedSlugs.length;
   const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
