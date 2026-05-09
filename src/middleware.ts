@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 
   if (!result) {
     return NextResponse.redirect(
-      new URL("/second-brain-anleitung?gate=1", request.url)
+      new URL("/second-brain-anleitung", request.url)
     );
   }
 

@@ -1,15 +1,23 @@
 "use client";
 
-import { useActionState } from "react";
-import { subscribeToWaitlist } from "./actions";
+import { useActionState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { handleEmailSubmit } from "./actions";
 import { FormFeedback } from "@/app/_components/form-feedback";
 
 export function SignupForm({ id }: { id?: string }) {
-  const [state, action, pending] = useActionState(subscribeToWaitlist, null);
+  const [state, action, pending] = useActionState(handleEmailSubmit, null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.success && state.redirect) {
+      router.push(state.redirect);
+    }
+  }, [state, router]);
 
   return (
     <div id={id}>
-      {state?.success ? (
+      {state?.success && !state.redirect ? (
         <FormFeedback state={state} variant="inverted" />
       ) : (
         <>
@@ -26,7 +34,7 @@ export function SignupForm({ id }: { id?: string }) {
               disabled={pending}
               className="btn-primary whitespace-nowrap disabled:opacity-50"
             >
-              {pending ? "Wird eingetragen..." : "Kostenlos eintragen"}
+              {pending ? "Wird geprüft..." : "Kostenlos eintragen"}
             </button>
           </form>
           <div className="mt-2">

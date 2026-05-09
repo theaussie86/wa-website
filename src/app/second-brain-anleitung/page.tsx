@@ -16,7 +16,6 @@ import {
   Zap,
 } from "lucide-react";
 import { SignupForm } from "./signup-form";
-import { GateForm } from "./gate-form";
 import AuthorBox from "../_components/author-box";
 
 export const metadata: Metadata = {
@@ -25,13 +24,7 @@ export const metadata: Metadata = {
     "KI vergisst alles? Mit einem Second Brain kennt sie dein Business, deine Stimme und deine Zielgruppe - bei jeder Session. Kostenlose Schritt-für-Schritt-Anleitung.",
 };
 
-export default async function SecondBrainAnleitungPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ gate?: string }>;
-}) {
-  const { gate } = await searchParams;
-  const showGate = gate === "1";
+export default function SecondBrainAnleitungPage() {
   return (
     <main>
       {/* Hero - Centered, outcome-focused */}
@@ -439,17 +432,6 @@ export default async function SecondBrainAnleitungPage({
           </div>
         </div>
       </section>
-
-      {/* Gate form for returning subscribers */}
-      {showGate && (
-        <section className="section" id="gate">
-          <div className="container mx-auto px-5">
-            <div className="max-w-xl mx-auto">
-              <GateForm />
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Final CTA */}
       <section className="section bg-primary text-white" id="warteliste">
