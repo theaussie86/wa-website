@@ -1,5 +1,14 @@
 import { notFound } from "next/navigation";
+import { readFile } from "fs/promises";
+import { join } from "path";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { chapters } from "@/content/freebies/second-brain-anleitung";
+import { mdxComponents } from "../_components/mdx-components";
+
+const CONTENT_DIR = join(
+  process.cwd(),
+  "src/content/freebies/second-brain-anleitung"
+);
 
 export function generateStaticParams() {
   return chapters.map((chapter) => ({ chapter: chapter.slug }));
@@ -19,6 +28,14 @@ export async function generateMetadata({
   };
 }
 
+async function loadMdx(slug: string): Promise<string | null> {
+  try {
+    return await readFile(join(CONTENT_DIR, `${slug}.mdx`), "utf-8");
+  } catch {
+    return null;
+  }
+}
+
 export default async function ChapterPage({
   params,
 }: {
@@ -30,6 +47,7 @@ export default async function ChapterPage({
   if (chapterIndex === -1) notFound();
 
   const chapter = chapters[chapterIndex];
+  const source = await loadMdx(slug);
 
   return (
     <article>
@@ -40,10 +58,14 @@ export default async function ChapterPage({
         {chapter.title}
       </h1>
       <div className="prose prose-lg max-w-none">
-        <p>
-          Inhalt folgt in Kürze. Dieses Kapitel wird im nächsten Schritt mit
-          echtem MDX-Content befüllt.
-        </p>
+        {source ? (
+          <MDXRemote source={source} components={mdxComponents} />
+        ) : (
+          <p>
+            Inhalt folgt in Kürze. Dieses Kapitel wird bald mit Inhalten
+            befüllt.
+          </p>
+        )}
       </div>
     </article>
   );
