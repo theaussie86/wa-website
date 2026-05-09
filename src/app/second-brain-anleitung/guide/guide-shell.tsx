@@ -3,16 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, CheckCircle2 } from "lucide-react";
+import { Menu, X, CheckCircle2, Circle } from "lucide-react";
 import type { Chapter } from "@/content/freebies/second-brain-anleitung";
 
 function ChapterLink({
   chapter,
   isActive,
+  isCompleted,
   onClick,
 }: {
   chapter: Chapter;
   isActive: boolean;
+  isCompleted: boolean;
   onClick?: () => void;
 }) {
   return (
@@ -25,11 +27,15 @@ function ChapterLink({
           : "text-charcoal/70 hover:text-primary hover:bg-primary/5"
       }`}
     >
-      <CheckCircle2
-        className={`w-4 h-4 shrink-0 ${
-          isActive ? "text-primary" : "text-charcoal/20"
-        }`}
-      />
+      {isCompleted ? (
+        <CheckCircle2 className="w-4 h-4 shrink-0 text-green-600" />
+      ) : (
+        <Circle
+          className={`w-4 h-4 shrink-0 ${
+            isActive ? "text-primary" : "text-charcoal/20"
+          }`}
+        />
+      )}
       <span>{chapter.title}</span>
     </Link>
   );
@@ -37,13 +43,16 @@ function ChapterLink({
 
 export function GuideShell({
   chapters,
+  completedSlugs,
   children,
 }: {
   chapters: Chapter[];
+  completedSlugs: string[];
   children: React.ReactNode;
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
+  const completedSet = new Set(completedSlugs);
 
   const sidebar = (
     <nav className="py-4 space-y-1">
@@ -55,6 +64,7 @@ export function GuideShell({
           key={chapter.slug}
           chapter={chapter}
           isActive={pathname === `/second-brain-anleitung/guide/${chapter.slug}`}
+          isCompleted={completedSet.has(chapter.slug)}
           onClick={() => setDrawerOpen(false)}
         />
       ))}

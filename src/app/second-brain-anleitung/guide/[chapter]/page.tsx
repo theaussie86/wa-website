@@ -4,6 +4,9 @@ import { join } from "path";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { chapters } from "@/content/freebies/second-brain-anleitung";
 import { mdxComponents } from "../_components/mdx-components";
+import { ProgressBar } from "../_components/progress-bar";
+import { ChapterCheckbox } from "../_components/chapter-checkbox";
+import { getCompletedChapters } from "../actions";
 
 const CONTENT_DIR = join(
   process.cwd(),
@@ -47,10 +50,19 @@ export default async function ChapterPage({
   if (chapterIndex === -1) notFound();
 
   const chapter = chapters[chapterIndex];
-  const source = await loadMdx(slug);
+  const [source, completedChapters] = await Promise.all([
+    loadMdx(slug),
+    getCompletedChapters(),
+  ]);
+
+  const isCompleted = completedChapters.includes(slug);
 
   return (
     <article>
+      <ProgressBar
+        completed={completedChapters.length}
+        total={chapters.length}
+      />
       <p className="text-accent text-sm font-medium mb-2">
         Kapitel {chapterIndex + 1} von {chapters.length}
       </p>
@@ -67,6 +79,7 @@ export default async function ChapterPage({
           </p>
         )}
       </div>
+      <ChapterCheckbox chapterSlug={slug} initialCompleted={isCompleted} />
     </article>
   );
 }
