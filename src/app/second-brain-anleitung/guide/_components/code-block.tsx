@@ -2,19 +2,35 @@
 
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
+import React from "react";
 
-export function CodeBlock({ children }: { children: React.ReactNode }) {
+function extractText(node: React.ReactNode): string {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (!node) return "";
+  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (typeof node === "object" && "props" in (node as React.ReactElement)) {
+    const el = node as React.ReactElement<{ children?: React.ReactNode }>;
+    const text = extractText(el.props.children);
+    // block-level elements get a trailing newline
+    const tag = typeof el.type === "string" ? el.type : "";
+    if (/^(h[1-6]|p|li|div|pre)$/.test(tag)) return text + "\n";
+    return text;
+  }
+  return "";
+}
+
+export function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
-    const code = typeof children === "string" ? children : "";
     await navigator.clipboard.writeText(code.trim());
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
 
   return (
-    <div className="relative my-6 bg-charcoal/5 border border-charcoal/10 rounded-xs overflow-hidden">
+    <div className="not-prose relative my-6 bg-charcoal/5 border border-charcoal/10 rounded-xs overflow-hidden">
       <button
         onClick={handleCopy}
         className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-xs bg-white border border-charcoal/10 text-charcoal/70 hover:text-primary transition-colors z-10"
@@ -31,20 +47,17 @@ export function CodeBlock({ children }: { children: React.ReactNode }) {
           </>
         )}
       </button>
-      <pre className="p-4 pr-28 text-sm font-mono whitespace-pre overflow-x-auto text-charcoal/80 leading-relaxed">
-        <code>{children}</code>
+      <pre
+        className="p-4 pr-28 text-sm font-mono whitespace-pre overflow-x-auto leading-relaxed"
+        style={{ background: "transparent", color: "#2D3436", margin: 0 }}
+      >
+        <code>{code}</code>
       </pre>
     </div>
   );
 }
 
 export function MdxPre({ children }: { children: React.ReactNode }) {
-  const code =
-    typeof children === "object" &&
-    children !== null &&
-    "props" in (children as React.ReactElement)
-      ? ((children as React.ReactElement).props as { children?: string }).children ?? ""
-      : "";
-
-  return <CodeBlock>{code}</CodeBlock>;
+  const code = extractText(children);
+  return <CodeBlock code={code} />;
 }
