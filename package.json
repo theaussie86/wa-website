@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ai-hero/sandcastle": "^0.5.8",
+    "@supabase/supabase-js": "^2.105.4",
     "@tailwindcss/typography": "^0.5.19",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
