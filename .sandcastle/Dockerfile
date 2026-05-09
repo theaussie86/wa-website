@@ -34,6 +34,9 @@ RUN curl -fsSL https://claude.ai/install.sh | bash
 # Add Claude to PATH
 ENV PATH="/home/agent/.local/bin:$PATH"
 
+# Pre-create Claude session-env directory (required by newer Claude Code versions)
+RUN mkdir -p /home/agent/.claude/session-env && chmod -R 777 /home/agent/.claude
+
 WORKDIR /home/agent
 
 # In worktree sandbox mode, Sandcastle bind-mounts the git worktree at /home/agent/workspace
