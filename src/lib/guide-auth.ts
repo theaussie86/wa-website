@@ -1,5 +1,4 @@
 import { SignJWT, jwtVerify } from "jose";
-import { cookies } from "next/headers";
 
 export const GUIDE_COOKIE_CONFIG = {
   name: "guide_token",
@@ -25,8 +24,12 @@ export async function signGuideToken(email: string): Promise<string> {
     .sign(getSecret());
 }
 
+interface CookieReader {
+  get(name: string): { value: string } | undefined;
+}
+
 export async function verifyGuideToken(
-  cookieStore: Awaited<ReturnType<typeof cookies>>
+  cookieStore: CookieReader
 ): Promise<{ email: string } | null> {
   const token = cookieStore.get(GUIDE_COOKIE_CONFIG.name)?.value;
   if (!token) return null;
