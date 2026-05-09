@@ -65,9 +65,9 @@ export default function RootLayout({
       </head>
       <body className={cn("font-sans min-h-screen flex flex-col")}>
         <CookieConsentWrapper>
-          <Navigation />
+          <div id="site-header"><Navigation /></div>
           <div className="flex-1">{children}</div>
-          <Footer />
+          <div id="site-footer"><Footer /></div>
         </CookieConsentWrapper>
       </body>
     </html>
