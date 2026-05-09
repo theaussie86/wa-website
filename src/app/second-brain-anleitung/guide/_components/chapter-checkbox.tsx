@@ -1,29 +1,14 @@
 "use client";
 
-import { useOptimistic, useTransition } from "react";
-import { toggleChapterComplete } from "../actions";
+import { useCompletion } from "../completion-context";
 
-export function ChapterCheckbox({
-  chapterSlug,
-  initialCompleted,
-}: {
-  chapterSlug: string;
-  initialCompleted: boolean;
-}) {
-  const [isPending, startTransition] = useTransition();
-  const [optimisticCompleted, setOptimisticCompleted] =
-    useOptimistic(initialCompleted);
-
-  function handleToggle() {
-    startTransition(async () => {
-      setOptimisticCompleted(!optimisticCompleted);
-      await toggleChapterComplete(chapterSlug);
-    });
-  }
+export function ChapterCheckbox({ chapterSlug }: { chapterSlug: string }) {
+  const { completedSlugs, toggle, isPending } = useCompletion();
+  const optimisticCompleted = completedSlugs.has(chapterSlug);
 
   return (
     <button
-      onClick={handleToggle}
+      onClick={() => toggle(chapterSlug)}
       disabled={isPending}
       className={`mt-10 flex items-center gap-3 w-full px-5 py-4 rounded-xs border transition-colors ${
         optimisticCompleted

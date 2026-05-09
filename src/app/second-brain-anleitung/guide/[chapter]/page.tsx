@@ -79,7 +79,7 @@ export default async function ChapterPage({
           </p>
         )}
       </div>
-      <ChapterCheckbox chapterSlug={slug} initialCompleted={isCompleted} />
+      <ChapterCheckbox chapterSlug={slug} />
     </article>
   );
 }

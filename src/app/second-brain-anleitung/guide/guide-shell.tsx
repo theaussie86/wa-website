@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, CheckCircle2, Circle } from "lucide-react";
 import type { Chapter } from "@/content/freebies/second-brain-anleitung";
+import { useCompletion } from "./completion-context";
 
 function ChapterLink({
   chapter,
@@ -43,16 +44,14 @@ function ChapterLink({
 
 export function GuideShell({
   chapters,
-  completedSlugs,
   children,
 }: {
   chapters: Chapter[];
-  completedSlugs: string[];
   children: React.ReactNode;
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
-  const completedSet = new Set(completedSlugs);
+  const { completedSlugs: completedSet } = useCompletion();
 
   const sidebar = (
     <nav className="py-4 space-y-1">
