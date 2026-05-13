@@ -2,7 +2,7 @@
 
 import { isValidEmail, sanitize } from "@/lib/validation";
 
-const BREVO_LIST_ID = 7;
+const BREVO_LIST_ID = 7; // "Handwerk KI-Check Waitlist" in Brevo
 const BREVO_DOI_TEMPLATE_ID = 8;
 const BREVO_DOI_REDIRECT_URL =
   "https://weissteiner-automation.com/ki-check-handwerk/bestaetigt";
@@ -40,6 +40,7 @@ export async function joinWaitlist(
 
   if (checkRes.ok) {
     const contact = await checkRes.json();
+    // Only show "already on list" if on this specific waitlist
     const isOnList = contact.listIds?.includes(BREVO_LIST_ID);
     if (isOnList && contact.emailBlacklisted === false) {
       return { success: true, message: "Du bist bereits auf der Warteliste. Wir melden uns sobald der Check startet!" };
