@@ -23,6 +23,8 @@ export function WaitlistForm({ id, variant = "default" }: { id?: string; variant
           type="text"
           name="name"
           placeholder="Dein Vorname (optional)"
+          aria-label="Dein Vorname"
+          disabled={pending}
           className={inputClass}
         />
         <input
@@ -30,6 +32,8 @@ export function WaitlistForm({ id, variant = "default" }: { id?: string; variant
           name="email"
           placeholder="Deine E-Mail-Adresse"
           required
+          aria-label="Deine E-Mail-Adresse"
+          disabled={pending}
           className={inputClass}
         />
         <button
