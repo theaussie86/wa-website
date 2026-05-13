@@ -7,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function HandwerkKiCheckBestaetigtPage() {
-  return <Bestaetigt titel="KI-Readiness Check für Handwerksbetriebe" />;
+  return (
+    <Bestaetigt
+      titel="KI-Readiness Check für Handwerksbetriebe"
+      beschreibung="Der KI-Check ist noch im Aufbau. Wir melden uns per E-Mail, sobald er fertig ist."
+    />
+  );
 }

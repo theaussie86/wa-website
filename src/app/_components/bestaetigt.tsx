@@ -1,6 +1,12 @@
 import { Check } from "lucide-react";
 
-export function Bestaetigt({ titel }: { titel: string }) {
+export function Bestaetigt({
+  titel,
+  beschreibung,
+}: {
+  titel: string;
+  beschreibung?: string;
+}) {
   return (
     <main>
       <section className="section">
@@ -13,8 +19,12 @@ export function Bestaetigt({ titel }: { titel: string }) {
               Du bist dabei!
             </h1>
             <p className="text-charcoal/70 leading-relaxed mb-6">
-              Deine Anmeldung für <strong>{titel}</strong> ist bestätigt. Du
-              hörst von uns, sobald es losgeht.
+              {beschreibung ?? (
+                <>
+                  Deine Anmeldung für <strong>{titel}</strong> ist bestätigt.
+                  Du hörst von uns, sobald es losgeht.
+                </>
+              )}
             </p>
             <a href="/" className="text-accent hover:underline text-sm">
               Zurück zur Startseite
