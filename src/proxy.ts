@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyGuideToken } from "@/lib/guide-auth";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const result = await verifyGuideToken(request.cookies);
 
   if (!result) {
