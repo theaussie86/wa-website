@@ -5,14 +5,16 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: `Leistungen | ${SITE_NAME}`,
-  description: "Prozessautomatisierung, KI-Integration und langfristige Wartung für den Mittelstand.",
+  description:
+    "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Digitale Lösungen für deinen Betrieb, in Tagen statt Monaten.",
 };
 
 export default function ServicesPage() {
   const services = [
     {
-      title: "Prozessautomatisierung",
-      description: "Wiederkehrende Aufgaben automatisieren, damit Ihr Team Zeit für Wichtiges hat.",
+      title: "Kleinkram läuft von selbst",
+      description:
+        "Die Routine, die dein Team nervt, erledigt sich ab jetzt allein. Ich automatisiere wiederkehrende Abläufe direkt in deiner Infrastruktur.",
       features: [
         "Rechnungsverarbeitung und Buchhaltung",
         "CRM-Updates und Kundendatenmanagement",
@@ -23,12 +25,13 @@ export default function ServicesPage() {
       image: {
         src: "/services/service-automation.webp",
         alt: "Illustration zur Workflow-Automatisierung und Prozessoptimierung",
-        caption: "Symbolbild: Automatisierte Prozesse, die nahtlos ineinandergreifen.",
+        caption: "Symbolbild: Automatisierte Abläufe, die von selbst laufen.",
       },
     },
     {
-      title: "Individuelle Web- & App-Entwicklung",
-      description: "Maßgeschneiderte Softwarelösungen, die exakt auf Ihre Geschäftsprozesse abgestimmt sind.",
+      title: "Schnell online",
+      description:
+        "Website, Tool oder App, sichtbar in Tagen statt monatelang im Angebotsprozess. Du entscheidest, ich setze um, du gehst online.",
       features: [
         "Skalierbare Fullstack-Anwendungen",
         "Moderne Benutzeroberflächen (UI/UX)",
@@ -43,8 +46,9 @@ export default function ServicesPage() {
       },
     },
     {
-      title: "Systemintegration & KI-Anbindung",
-      description: "Intelligente Verknüpfung Ihrer bestehenden Systeme mit modernster Künstlicher Intelligenz.",
+      title: "KI, die du selbst bedienst",
+      description:
+        "Ich richte dir KI-Werkzeuge ein, verbinde sie mit deinen Daten und zeig dir, wie du sie im Alltag nutzt. Einmal befähigt, nie wieder abhängig.",
       features: [
         "Intelligente Dokumentenverarbeitung",
         "Automatisierte Kategorisierung",
@@ -55,7 +59,7 @@ export default function ServicesPage() {
       image: {
         src: "/services/service-integration.webp",
         alt: "Illustration zur Systemintegration und KI-Anbindung",
-        caption: "Symbolbild: KI als zentrale Schnittstelle zwischen Ihren Systemen.",
+        caption: "Symbolbild: KI als zentrale Schnittstelle zwischen deinen Systemen.",
       },
     },
   ];
@@ -76,11 +80,11 @@ export default function ServicesPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-3xl">
             <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
-              Leistungen
+              Alles, was deinen Betrieb digital schneller macht
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
-              Ich baue Automatisierungssysteme, die mit Ihrem Unternehmen wachsen.
-              Direkt in Ihrer Infrastruktur, vollständig dokumentiert, langfristig betreut.
+              Drei Wege, ein Ziel: du wartest nicht mehr, du machst. Einzeln oder
+              kombiniert, schnell umgesetzt und direkt in deiner Infrastruktur.
             </p>
           </div>
         </div>
@@ -169,12 +173,12 @@ export default function ServicesPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-3xl text-white mb-6">
-              Ihre Systeme. Ihre Kontrolle.
+              Deine Systeme. Deine Kontrolle.
             </h2>
             <p className="text-lg text-primary-200 mb-8">
-              Alles, was ich baue, gehört Ihnen. Vollständig dokumentiert, in Ihrer
-              Infrastruktur, jederzeit übertragbar. Sie sind nie von mir abhängig —
-              ich muss mir Ihr Vertrauen jeden Monat neu verdienen.
+              Alles, was ich baue, gehört dir. Vollständig dokumentiert, in deiner
+              Infrastruktur, jederzeit übertragbar. Du bist nie von mir abhängig,
+              ich verdiene mir dein Vertrauen mit Ergebnissen.
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div className="p-4 border border-primary-400 rounded-xs">
@@ -184,9 +188,9 @@ export default function ServicesPage() {
                 </p>
               </div>
               <div className="p-4 border border-primary-400 rounded-xs">
-                <h3 className="font-medium text-white mb-2">Ihre Infrastruktur</h3>
+                <h3 className="font-medium text-white mb-2">Deine Infrastruktur</h3>
                 <p className="text-primary-200 text-sm">
-                  Systeme laufen bei Ihnen, nicht in meiner Cloud.
+                  Systeme laufen bei dir, nicht in meiner Cloud.
                 </p>
               </div>
               <div className="p-4 border border-primary-400 rounded-xs">
@@ -208,7 +212,8 @@ export default function ServicesPage() {
               Einfacher als eine Festanstellung. Flexibler als eine Agentur.
             </h2>
             <p className="text-lg text-charcoal/70 mb-8">
-              Planbare Zusammenarbeit ohne versteckte Kosten und ohne Risiko.
+              Ob schnelles Projekt oder laufende Begleitung: planbar, ohne versteckte
+              Kosten und ohne Risiko.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-6 bg-primary/5 rounded-xs">
@@ -225,7 +230,7 @@ export default function ServicesPage() {
               </div>
             </div>
             <p className="mt-8 text-charcoal/60">
-              Verlängern wenn es funktioniert, beenden wenn nicht — ohne harte Gefühle.
+              Verlängern wenn es funktioniert, beenden wenn nicht. Ohne harte Gefühle.
             </p>
           </div>
         </div>
@@ -239,10 +244,9 @@ export default function ServicesPage() {
               Nicht für jeden
             </h2>
             <p className="text-charcoal/70">
-              Wenn Sie nur ein schnelles Einmalprojekt suchen und keine langfristige
-              Zusammenarbeit anstreben, bin ich nicht der Richtige. Ich arbeite mit
-              Unternehmen, die Automatisierung als kontinuierlichen Prozess verstehen —
-              nicht als einmalige Lösung.
+              Ich arbeite mit Machern, die selbst mit anpacken wollen. Wenn du alles
+              komplett abgeben und dich um nichts kümmern willst, bin ich nicht der
+              Richtige. Am meisten holt raus, wer die Werkzeuge auch selbst in die Hand nimmt.
             </p>
           </div>
         </div>
