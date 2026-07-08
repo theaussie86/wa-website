@@ -92,32 +92,32 @@ export const prozessautomatisierungAllgaeu: LocalSeoPageData = {
   meta: {
     title: "Prozessautomatisierung im Allgäu | Weissteiner Automation",
     description:
-      "Automatisieren Sie wiederkehrende Prozesse in Ihrem Unternehmen. Ihr lokaler Partner für Prozessautomatisierung in Memmingen und dem gesamten Allgäu.",
+      "Wiederkehrende Abläufe automatisieren, damit dein Team Zeit gewinnt. Dein direkter Draht für Prozessautomatisierung in Memmingen und im ganzen Allgäu. In Tagen umgesetzt, nicht monatelang.",
     ogTitle: "Prozessautomatisierung im Allgäu",
     ogDescription:
       "Lokaler Experte für Automatisierung im Mittelstand. Von Memmingen aus für das gesamte Allgäu.",
   },
 
   hero: {
-    trustBadges: ["Standort Memmingen", "Vor-Ort & Remote", "Langfristige Partnerschaft"],
+    trustBadges: ["Standort Memmingen", "In Tagen umgesetzt", "Direkter Draht"],
     h1: "Prozessautomatisierung im Allgäu",
     subheadline:
-      "Als Ihr lokaler Partner aus Memmingen automatisiere ich wiederkehrende Aufgaben in Ihrem Unternehmen — damit Ihr Team Zeit für das Wesentliche hat.",
+      "Als dein direkter Draht aus Memmingen automatisiere ich den Kleinkram, der dein Team täglich aufhält. Schnell umgesetzt, direkt in deiner Infrastruktur, und du bleibst Herr im eigenen Haus.",
   },
 
   introduction: {
     title: "Automatisierung für Allgäuer Unternehmen",
     paragraphs: [
-      "Das Allgäu ist geprägt von mittelständischen Unternehmen, die Qualität und Effizienz großschreiben. Ob Handwerksbetrieb in Kempten, Maschinenbauer in Memmingen oder Dienstleister am Bodensee — überall gibt es Prozesse, die täglich Zeit und Ressourcen verschlingen: Rechnungen manuell eintippen, Daten zwischen Systemen kopieren, Berichte zusammenstellen.",
-      "Als Ihr Partner vor Ort verstehe ich die Besonderheiten des regionalen Mittelstands. Ich baue keine überdimensionierten Enterprise-Lösungen, sondern pragmatische Automatisierungen, die zu Ihrem Unternehmen passen. Mit Sitz in Memmingen bin ich schnell bei Ihnen — für persönliche Beratung, Workshops mit Ihrem Team oder wenn es mal hakt.",
-      "Was mich von Agenturen unterscheidet: Ich verschwinde nicht nach der Implementierung. Automatisierung ist kein Einmalprojekt, sondern ein kontinuierlicher Prozess. Ihre Anforderungen ändern sich, neue Systeme kommen hinzu, Prozesse entwickeln sich weiter. Ich bleibe an Ihrer Seite und entwickle Ihre Systeme mit.",
+      "Das Allgäu lebt vom Mittelstand: Handwerk in Kempten, Maschinenbau in Memmingen, Dienstleister am Bodensee. Überall dieselbe Sache, Abläufe, die täglich Zeit fressen. Rechnungen abtippen, Daten zwischen Systemen kopieren, Berichte zusammenstellen. Genau da setzt Prozessautomatisierung an.",
+      "Ich bin dein Partner vor Ort und kenne den regionalen Mittelstand. Keine überdimensionierten Enterprise-Lösungen, sondern pragmatische Automatisierung, die zu deinem Betrieb passt und in Tagen läuft statt in Monaten. Mit Sitz in Memmingen bin ich schnell bei dir, wenn du mich brauchst.",
+      "Der Unterschied zur Agentur: kein Wasserkopf, kein Warten auf den nächsten freien Slot. Ich richte dir die Werkzeuge so ein, dass du und dein Team selbst nachjustieren könnt. Befähigt statt abhängig.",
     ],
   },
 
   serviceHighlights: {
     title: "Was ich für Sie automatisiere",
     description:
-      "Typische Prozesse, die Allgäuer Unternehmen Zeit und Nerven kosten — und die ich für Sie in den Griff bekomme.",
+      "Typische Abläufe, die Allgäuer Betriebe Zeit und Nerven kosten, und die ich schnell in den Griff bekomme.",
     features: [
       "Rechnungsverarbeitung und Buchhaltungsvorbereitung",
       "CRM-Updates und Kundendatenmanagement",
@@ -162,7 +162,7 @@ export const prozessautomatisierungAllgaeu: LocalSeoPageData = {
     serviceType: "Business Process Automation",
     serviceName: "Prozessautomatisierung im Allgäu",
     serviceDescription:
-      "Lokale Prozessautomatisierung für Unternehmen im Allgäu. Rechnungsverarbeitung, CRM-Integration, Workflow-Automatisierung — direkt vor Ort in Memmingen.",
+      "Lokale Prozessautomatisierung für Unternehmen im Allgäu. Rechnungsverarbeitung, CRM-Integration, Workflow-Automatisierung, direkt vor Ort in Memmingen.",
   },
 
   relatedPages: [
@@ -193,25 +193,25 @@ export const kiBeratungBayern: LocalSeoPageData = {
   meta: {
     title: "KI-Beratung in Bayern | Weissteiner Automation",
     description:
-      "Pragmatische KI-Integration für den bayerischen Mittelstand. Dokumentenverarbeitung, Chatbots und intelligente Automatisierung — ohne Hype, mit Ergebnissen.",
+      "Pragmatische KI für den bayerischen Mittelstand. Ich zeig dir, wie du KI selbst nutzt: Dokumente, E-Mails, Anfragen. Ohne Hype, mit Ergebnissen.",
     ogTitle: "KI-Beratung für den bayerischen Mittelstand",
     ogDescription:
       "KI-Integration ohne Buzzwords. Praktische Lösungen für bayerische Unternehmen.",
   },
 
   hero: {
-    trustBadges: ["Aus Bayern", "Für den Mittelstand", "Ohne KI-Hype"],
+    trustBadges: ["Aus Bayern", "Ohne KI-Hype", "Selbst nutzbar"],
     h1: "KI-Beratung in Bayern",
     subheadline:
-      "Künstliche Intelligenz muss nicht kompliziert sein. Ich zeige bayerischen Unternehmen, wie sie KI praktisch einsetzen — ohne Buzzwords und mit messbaren Ergebnissen.",
+      "KI muss nicht kompliziert sein. Ich zeig dir, wie du KI im Alltag praktisch einsetzt und selbst bedienst, ohne Buzzwords und mit messbaren Ergebnissen.",
   },
 
   introduction: {
-    title: "KI für den bayerischen Mittelstand — pragmatisch statt futuristisch",
+    title: "KI für den bayerischen Mittelstand: pragmatisch statt futuristisch",
     paragraphs: [
-      "Bayern ist ein Wirtschaftsmotor mit starkem Mittelstand. Vom Automobilzulieferer in Schwaben bis zum Maschinenbauer in Oberbayern — überall stellt sich die Frage: Wie können wir KI sinnvoll nutzen, ohne uns in teuren Experimenten zu verlieren?",
-      "Die Wahrheit ist: Die meisten KI-Anwendungen, die heute funktionieren, sind nicht die spektakulären Roboter aus den Medien. Es sind praktische Tools, die Ihren Mitarbeitern Arbeit abnehmen: Dokumente automatisch auslesen und kategorisieren, E-Mails vorsortieren, Kundenanfragen intelligent weiterleiten, Berichte zusammenfassen.",
-      "Als Ihr KI-Berater in Bayern helfe ich Ihnen, die richtigen Anwendungsfälle zu identifizieren. Nicht jedes Problem braucht KI — aber wo sie passt, kann sie enorm Zeit sparen. Ich implementiere keine Blackbox-Lösungen, sondern integriere KI-Funktionen in Ihre bestehenden Systeme, sodass Sie verstehen und kontrollieren können, was passiert.",
+      "Bayern lebt von seinem Mittelstand. Vom Automobilzulieferer in Schwaben bis zum Maschinenbauer in Oberbayern stellt sich dieselbe Frage: Wie nutze ich KI sinnvoll, ohne mich in teuren Experimenten zu verlieren?",
+      "Die Wahrheit: Was heute funktioniert, sind nicht die spektakulären Roboter aus den Medien, sondern praktische Werkzeuge, die deinem Team Arbeit abnehmen. Dokumente auslesen, E-Mails vorsortieren, Anfragen weiterleiten, Berichte zusammenfassen.",
+      "Als dein KI-Berater in Bayern helfe ich dir, die richtigen Anwendungsfälle zu finden. Nicht jedes Problem braucht KI, aber wo sie passt, spart sie enorm Zeit. Ich baue keine Blackbox, sondern richte KI so ein, dass du verstehst und selbst steuerst, was passiert. Einmal befähigt, nie wieder abhängig.",
     ],
   },
 
@@ -262,7 +262,7 @@ export const kiBeratungBayern: LocalSeoPageData = {
     serviceType: "AI Consulting and Integration",
     serviceName: "KI-Beratung in Bayern",
     serviceDescription:
-      "KI-Beratung und -Integration für den bayerischen Mittelstand. Dokumentenverarbeitung, Chatbots, intelligente Automatisierung — pragmatisch und ergebnisorientiert.",
+      "KI-Beratung und -Integration für den bayerischen Mittelstand. Dokumentenverarbeitung, Chatbots, intelligente Automatisierung, pragmatisch und ergebnisorientiert.",
   },
 
   relatedPages: [
@@ -293,25 +293,25 @@ export const softwareentwicklungDach: LocalSeoPageData = {
   meta: {
     title: "Individuelle Softwareentwicklung DACH | Weissteiner Automation",
     description:
-      "Maßgeschneiderte Web- und App-Entwicklung für Unternehmen in Deutschland, Österreich und der Schweiz. Fullstack-Entwicklung mit langfristiger Betreuung.",
+      "Maßgeschneiderte Web- und App-Entwicklung für Deutschland, Österreich, Schweiz. Schnell umgesetzt, direkter Draht, ohne Agentur-Wasserkopf.",
     ogTitle: "Individuelle Softwareentwicklung für den DACH-Raum",
     ogDescription:
-      "Fullstack-Entwicklung aus dem Allgäu für DACH. Web-Apps, APIs, Integrationen — mit langfristiger Partnerschaft.",
+      "Fullstack-Entwicklung aus dem Allgäu für DACH. Web-Apps, APIs, Integrationen, direkt vom Entwickler.",
   },
 
   hero: {
-    trustBadges: ["DACH-weit", "Fullstack-Entwicklung", "Langfristige Betreuung"],
+    trustBadges: ["DACH-weit", "Fullstack", "Direkter Draht"],
     h1: "Individuelle Softwareentwicklung für den DACH-Raum",
     subheadline:
-      "Von meinem Büro im Allgäu aus entwickle ich maßgeschneiderte Softwarelösungen für Unternehmen in Deutschland, Österreich und der Schweiz — remote, effizient und mit langfristiger Perspektive.",
+      "Von meinem Büro im Allgäu aus baue ich maßgeschneiderte Softwarelösungen für Betriebe in Deutschland, Österreich und der Schweiz. Remote, schnell und ohne Umweg über einen Projektmanager.",
   },
 
   introduction: {
     title: "Warum individuelle Software statt Standardlösung?",
     paragraphs: [
-      "Der deutschsprachige Mittelstand hat besondere Anforderungen. Datenschutz nach DSGVO, Integration mit lokalen Systemen wie DATEV, branchenspezifische Prozesse, die kein Standardtool abbildet. Wenn Excel nicht mehr reicht und SaaS-Lösungen nicht passen, brauchen Sie individuelle Software.",
-      "Als Fullstack-Entwickler mit Fokus auf den DACH-Raum verstehe ich diese Anforderungen. Ich entwickle Web-Anwendungen und APIs, die sich nahtlos in Ihre bestehende Infrastruktur einfügen. Keine überdimensionierten Enterprise-Systeme, sondern schlanke, wartbare Lösungen, die genau das tun, was Sie brauchen.",
-      "Der Unterschied zu einer Agentur: Ich bin Ihr direkter Ansprechpartner vom ersten Gespräch bis zur langfristigen Wartung. Kein Projektmanager dazwischen, keine wechselnden Entwickler. Sie arbeiten mit mir — und ich bleibe, um Ihre Software weiterzuentwickeln, wenn sich Ihre Anforderungen ändern.",
+      "Der deutschsprachige Mittelstand hat besondere Anforderungen: Datenschutz nach DSGVO, Integration mit lokalen Systemen wie DATEV, branchenspezifische Abläufe, die kein Standardtool abbildet. Wenn Excel nicht mehr reicht und SaaS nicht passt, brauchst du individuelle Software.",
+      "Als Fullstack-Entwickler mit Fokus auf den DACH-Raum kenne ich diese Anforderungen. Ich baue Web-Anwendungen und APIs, die sich sauber in deine bestehende Infrastruktur einfügen. Keine überdimensionierten Enterprise-Systeme, sondern schlanke, wartbare Lösungen, die genau das tun, was du brauchst, und schnell live gehen.",
+      "Der Unterschied zur Agentur: Du redest direkt mit dem, der auch entwickelt. Kein Projektmanager dazwischen, keine wechselnden Entwickler, kein Warten auf den nächsten Slot. Und du bleibst Herr über deinen Code, dokumentiert und übergebbar.",
     ],
   },
 
