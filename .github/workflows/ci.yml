@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+        env:
+          # Alle App-Env-Vars werden zur Laufzeit (Server Actions, Route
+          # Handler) gelesen, nicht zur Build-Zeit. Diese Dummy-Werte sind
+          # nur ein Sicherheitsnetz, damit der Build nie an fehlenden Vars
+          # scheitert. Echte Secrets liegen in Vercel.
+          SUPABASE_URL: https://placeholder.supabase.co
+          SUPABASE_SECRET_KEY: placeholder
+          BREVO_API_KEY: placeholder
+          GMAIL_USER_EMAIL: placeholder@example.com
+          GMAIL_FROM_ALIAS: placeholder@example.com
+          CONTACT_RECIPIENT_EMAIL: placeholder@example.com
+          GOOGLE_SERVICE_ACCOUNT_EMAIL: placeholder@example.com
+          GOOGLE_PRIVATE_KEY: placeholder
+          GUIDE_JWT_SECRET: placeholder-placeholder-placeholder-1234
+          NEXT_PUBLIC_GTM_ID: ""
