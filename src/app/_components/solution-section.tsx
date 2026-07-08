@@ -4,25 +4,25 @@ export function SolutionSection() {
   const steps = [
     {
       number: "01",
-      title: "Bauen",
-      description: "Ich analysiere Ihre Prozesse und baue maßgeschneiderte Automatisierungen direkt in Ihrer Infrastruktur.",
+      title: "Kurzer Draht",
+      description: "Du sagst mir, was klemmt. Ein direktes Gespräch, kein Workshop-Marathon.",
     },
     {
       number: "02",
-      title: "Warten",
-      description: "Systeme brauchen Pflege. Ich überwache, optimiere und passe an - kontinuierlich, nicht einmalig.",
+      title: "Schnell umgesetzt",
+      description: "Ich baue die Lösung in Tagen, direkt in deiner Infrastruktur. Du siehst früh, dass es läuft.",
     },
     {
       number: "03",
-      title: "Stacken",
-      description: "Mit der Zeit bauen wir System auf System. Jede neue Automatisierung baut auf dem Bestehenden auf.",
+      title: "Du machst weiter",
+      description: "Ich richte dir KI und Werkzeuge ein, sodass du und dein Team selbst dranbleiben könnt. Befähigt statt abhängig.",
     },
   ];
 
   const stack = [
-    { label: "System 03 · neu", title: "Berichte & Auswertungen", highlight: true },
-    { label: "System 02", title: "CRM-Datenpflege", highlight: false },
-    { label: "System 01", title: "Rechnungsverarbeitung", highlight: false },
+    { label: "Automatisiert", title: "Rechnungsverarbeitung", highlight: true },
+    { label: "Automatisiert", title: "CRM-Datenpflege", highlight: false },
+    { label: "Automatisiert", title: "Berichte & Auswertungen", highlight: false },
   ];
 
   return (
@@ -31,14 +31,14 @@ export function SolutionSection() {
         <div>
           <FadeIn>
             <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-400">
-              Die Arbeitsweise
+              So schnell geht&apos;s
             </p>
             <h2 className="mb-5 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-white">
-              System Stacking statt Einmalprojekt
+              Vom „das nervt“ zum „läuft“, in drei Schritten.
             </h2>
             <p className="mb-11 max-w-[520px] text-pretty font-sans text-[17.5px] leading-[1.7] text-primary-200">
-              Statt eines großen IT-Projekts bauen wir schrittweise - System für System,
-              abgestimmt auf Ihr Tempo und Ihre Prioritäten.
+              Kein Workshop-Marathon, kein Projekt über Monate. Drei Schritte,
+              und du bist handlungsfähig.
             </p>
           </FadeIn>
 
@@ -89,7 +89,7 @@ export function SolutionSection() {
             ))}
             <div className="mt-1.5 rounded-[1px] border-t-2 border-primary-200 bg-[rgba(230,238,245,0.1)] px-[22px] py-3.5 text-center">
               <p className="text-[13.5px] font-bold uppercase tracking-[0.12em] text-primary-200">
-                Ihre Infrastruktur
+                Läuft in deinem Betrieb
               </p>
             </div>
           </div>

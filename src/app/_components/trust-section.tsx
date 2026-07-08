@@ -4,16 +4,16 @@ import { FadeIn } from "@/app/_components/animations";
 export function TrustSection() {
   const facts = [
     {
-      term: "Planbar",
-      description: "Verträge über 3, 6 oder 12 Monate. Kein Onboarding-Overhead, keine HR-Komplexität - einfacher als eine Festanstellung.",
+      term: "Unabhängig",
+      description: "Alles läuft in deiner Infrastruktur und ist dokumentiert. Du bist nie von mir abhängig.",
     },
     {
-      term: "Dokumentiert",
-      description: "Alles wird in Ihrer Infrastruktur gebaut und vollständig dokumentiert. Sie sind nie abhängig von mir.",
+      term: "Regional",
+      description: "Greifbar, aus Memmingen, per WhatsApp so schnell wie ein Anruf.",
     },
     {
-      term: "Kündbar",
-      description: "Wenn die Zusammenarbeit funktioniert, verlängern wir. Wenn nicht - keine harten Gefühle. Sie haben die volle Kontrolle.",
+      term: "Flexibel",
+      description: "Passt die Zusammenarbeit, machen wir weiter. Passt sie nicht, hört sie auf. Du behältst die Kontrolle.",
     },
   ];
 
@@ -22,14 +22,14 @@ export function TrustSection() {
       <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-[clamp(40px,6vw,96px)] px-6 md:grid-cols-[7fr_5fr]">
         <FadeIn>
           <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
-            Partnerschaft
+            Direkter Draht
           </p>
           <h2 className="mb-6 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.15] tracking-normal text-primary">
-            Ich verdiene Ihr Vertrauen durch Ergebnisse - nicht durch Abhängigkeit.
+            Ein Ansprechpartner. Kein Wasserkopf.
           </h2>
           <p className="mb-10 max-w-[560px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-            Partnerschaft ohne Risiko: Alles wird bei Ihnen vor Ort gedacht - aus Memmingen,
-            für Handwerk, Fertigung und Mittelstand im Allgäu und DACH-Raum.
+            Bei mir redest du mit dem, der auch baut. Kein Projektmanager, keine
+            Weiterleitung, keine Agenturpreise für Overhead, den du nicht brauchst.
           </p>
 
           <dl className="m-0">

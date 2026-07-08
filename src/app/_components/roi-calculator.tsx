@@ -80,7 +80,7 @@ export function ROICalculator() {
     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
       {/* Eingaben */}
       <div className="space-y-6">
-        <h3 className="font-serif text-xl text-primary mb-4">Ihre Ausgangssituation</h3>
+        <h3 className="font-serif text-xl text-primary mb-4">Deine Ausgangssituation</h3>
 
         {/* Gesparte Stunden */}
         <div>
@@ -200,7 +200,7 @@ export function ROICalculator() {
 
       {/* Ergebnisse */}
       <div className="bg-primary/5 rounded-xs p-6 lg:p-8 border border-primary/10">
-        <h3 className="font-serif text-xl text-primary mb-6">Ihre Ergebnisse</h3>
+        <h3 className="font-serif text-xl text-primary mb-6">Deine Ergebnisse</h3>
 
         <div className="space-y-6">
           {/* Monatliche Ersparnis */}

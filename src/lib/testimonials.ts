@@ -11,7 +11,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: "wachmacherei",
     quote:
-      "Von der Website über den Shopify-Store bis zur Anbindung an unser Warenwirtschaftssystem — alles aus einer Hand. Besonders die automatische Seminar-Buchung spart mir täglich Zeit. Und wenn mal was angepasst werden muss, ist Christoph direkt zur Stelle.",
+      "Von der Website über den Shopify-Store bis zur Anbindung an unser Warenwirtschaftssystem - alles aus einer Hand. Besonders die automatische Seminar-Buchung spart mir täglich Zeit. Und wenn mal was angepasst werden muss, ist Christoph direkt zur Stelle.",
     author: "Bernd Frieß, Inhaber",
     company: "WACHMACHEREI",
     companyUrl: "https://wachmacherei.de",
@@ -29,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: "easylife",
     quote:
-      "Die Marketing-Automatisierung hat unseren Content-Workflow komplett verändert. Was früher Stunden gedauert hat und Abstimmungsschleifen erforderte, erledigt mit dem System jetzt ein Mitarbeiter in Minuten. Und das Beste: Es wächst mit unseren Anforderungen — wir planen schon die nächsten Erweiterungen.",
+      "Die Marketing-Automatisierung hat unseren Content-Workflow komplett verändert. Was früher Stunden gedauert hat und Abstimmungsschleifen erforderte, erledigt mit dem System jetzt ein Mitarbeiter in Minuten. Und das Beste: Es wächst mit unseren Anforderungen - wir planen schon die nächsten Erweiterungen.",
     author: "Kerstin Hammerschmidt, Geschäftsführung",
     company: "easylife",
     companyUrl: "https://easylife.de",
@@ -38,7 +38,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: "florian-heuer",
     quote:
-      "Professionelle Website und eine clevere Automatisierung für unsere Dokumentenverwaltung — das spart uns täglich wertvolle Zeit bei der Kundenbetreuung.",
+      "Professionelle Website und eine clevere Automatisierung für unsere Dokumentenverwaltung - das spart uns täglich wertvolle Zeit bei der Kundenbetreuung.",
     author: "Florian Heuer, Geschäftsführer",
     company: "Florian Heuer Finanzberatung",
     companyUrl: "https://florian-heuer.de",

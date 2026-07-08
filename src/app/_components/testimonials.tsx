@@ -22,10 +22,10 @@ export function Testimonials() {
             Kundenstimmen
           </p>
           <h2 className="mb-4 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
-            Das sagen meine Kunden
+            Betriebe, die nicht mehr warten
           </h2>
           <p className="font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-            Langfristige Partnerschaften, die funktionieren.
+            Direkte Zusammenarbeit, die läuft.
           </p>
         </FadeIn>
 

@@ -35,20 +35,20 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} | Prozessautomatisierung & KI`,
-  description: "Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand. Aus dem Allgäu, für den DACH-Raum.",
+  title: `Machen statt warten | ${SITE_NAME}`,
+  description: "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Direkt aus dem Allgäu, ohne Agentur-Wasserkopf. In Tagen statt Monaten.",
   metadataBase: new URL("https://weissteiner-automation.com"),
   openGraph: {
     type: "website",
     locale: "de_DE",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | Prozessautomatisierung & KI`,
-    description: "Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand. Aus dem Allgäu, für den DACH-Raum.",
+    title: `Machen statt warten | ${SITE_NAME}`,
+    description: "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Direkt aus dem Allgäu, ohne Agentur-Wasserkopf. In Tagen statt Monaten.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Prozessautomatisierung & KI`,
-    description: "Langfristige Partnerschaft für Prozessautomatisierung und KI im Mittelstand.",
+    title: `Machen statt warten | ${SITE_NAME}`,
+    description: "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Ohne Agentur-Wasserkopf.",
   },
 };
 
