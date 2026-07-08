@@ -66,7 +66,7 @@ export function Navigation() {
               rel="noopener noreferrer"
               className="btn-primary text-sm"
             >
-              Kennenlernen
+              Direkter Draht
             </a>
           </div>
 
@@ -121,7 +121,7 @@ export function Navigation() {
                 rel="noopener noreferrer"
                 className="btn-primary text-center mt-2"
               >
-                Kennenlernen
+                Direkter Draht
               </a>
             </div>
           </div>

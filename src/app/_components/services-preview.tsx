@@ -12,10 +12,10 @@ export function ServicesPreview() {
             Leistungen
           </p>
           <h2 className="mb-4 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
-            Was ich für Sie tue
+            Was ich für dich mache
           </h2>
           <p className="font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-            Technologie, die arbeitet. Menschen, die gestalten.
+            Drei Wege, ein Ziel: du wartest nicht mehr, du machst.
           </p>
         </FadeIn>
 
@@ -36,10 +36,10 @@ export function ServicesPreview() {
             </span>
             <span className="flex flex-1 flex-col gap-3 px-8 pt-8 pb-9">
               <span className="font-serif text-[clamp(1.5rem,2vw,1.9rem)] text-primary">
-                Prozessautomatisierung
+                Kleinkram läuft von selbst
               </span>
               <span className="max-w-[520px] font-sans text-[16.5px] leading-[1.7] text-charcoal/80">
-                Rechnungsverarbeitung, CRM-Updates, Datenübertragungen - automatisiert und fehlerfrei.
+                Schluss mit Copy-Paste zwischen Systemen. Die Routine, die dein Team nervt, erledigt sich allein.
               </span>
               <span className="mt-auto font-sans text-[15px] font-bold text-accent-600">
                 Mehr erfahren →
@@ -62,9 +62,9 @@ export function ServicesPreview() {
               />
             </span>
             <span className="flex flex-col gap-2 px-7 pt-6 pb-7">
-              <span className="font-serif text-[1.35rem] text-primary">Web- &amp; App-Entwicklung</span>
+              <span className="font-serif text-[1.35rem] text-primary">Schnell online</span>
               <span className="font-sans text-[15.5px] leading-[1.65] text-charcoal/80">
-                Gestaltung und Umsetzung maßgeschneiderter Software-Lösungen für Ihr Unternehmen.
+                Website, Tool oder App, sichtbar in Tagen statt monatelang im Angebotsprozess.
               </span>
             </span>
           </Link>
@@ -84,9 +84,9 @@ export function ServicesPreview() {
               />
             </span>
             <span className="flex flex-col gap-2 px-7 pt-6 pb-7">
-              <span className="font-serif text-[1.35rem] text-primary">Systemintegration &amp; KI</span>
+              <span className="font-serif text-[1.35rem] text-primary">KI, die du selbst bedienst</span>
               <span className="font-sans text-[15.5px] leading-[1.65] text-charcoal/80">
-                Intelligente Verknüpfung bestehender Systeme mit moderner KI.
+                Ich richte dir KI-Werkzeuge ein und zeig dir, wie du sie nutzt, vom Angebot bis zur E-Mail.
               </span>
             </span>
           </Link>

@@ -28,20 +28,20 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-[1180px] px-6 py-[clamp(64px,9vw,108px)]">
         <div className="max-w-[660px]">
           <p className="mb-5 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-primary">
-            Prozessautomatisierung &amp; KI · Memmingen im Allgäu
+            Machen statt warten · Memmingen im Allgäu
           </p>
 
           <h1 className="mb-6 text-balance font-serif text-[clamp(2.75rem,5.4vw,4.6rem)] font-normal leading-[1.05] tracking-[-0.02em] text-primary">
-            Systeme, die mit Ihrem Unternehmen <RotatingWord />
+            Schnell umgesetzt: deine <RotatingWord />
           </h1>
 
           <p className="mb-9 max-w-[560px] text-pretty font-sans text-[clamp(1.15rem,1.6vw,1.4rem)] leading-[1.6] text-charcoal">
-            Als Ihr langfristiger Partner baue ich Automatisierungssysteme direkt in Ihre
-            Infrastruktur - und bleibe, um sie zu pflegen und weiterzuentwickeln.
+            Ich bin dein direkter Draht für schnelle Websites, Abläufe die von selbst
+            laufen und KI, die du selbst bedienst. Kein Agentur-Wasserkopf, keine Warteschleife.
           </p>
 
           <div className="mb-11 flex flex-wrap gap-3.5">
-            <Button href={CAL_LINK}>Kennenlernen vereinbaren</Button>
+            <Button href={CAL_LINK}>Direkten Draht aufbauen</Button>
             <Button href={WHATSAPP_LINK} variant="outline" className="bg-warm-white/85">
               Kurze Frage? WhatsApp
             </Button>
@@ -59,7 +59,7 @@ export function Hero() {
             <span className="flex flex-col gap-0.5 font-sans">
               <span className="text-[15.5px] font-bold text-primary">Christoph Weissteiner</span>
               <span className="text-sm text-charcoal">
-                Ihr direkter Ansprechpartner - keine Agentur, keine Zwischenstellen
+                Dein direkter Ansprechpartner, keine Agentur, keine Zwischenstellen
               </span>
             </span>
           </div>

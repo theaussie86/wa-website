@@ -4,18 +4,18 @@ export function ProblemSection() {
   const problems = [
     {
       number: "01",
-      title: "Excel-Chaos",
-      description: "Daten werden manuell zwischen Systemen kopiert. Fehler passieren, Zeit geht verloren.",
+      title: "Die Warteschleife",
+      description: "Für jede Anpassung erst ein Angebot, dann ein Termin, dann Geduld. Dein Tempo bestimmen andere.",
     },
     {
       number: "02",
-      title: "Build and Leave",
-      description: "Agenturen bauen ein System und verschwinden. Ändern sich Anforderungen, passt nichts mehr.",
+      title: "Die Abhängigkeit",
+      description: "Läuft was, weißt du nicht warum. Ändert sich was, brauchst du wieder jemanden. Du bist nie Herr im eigenen Haus.",
     },
     {
       number: "03",
-      title: "Agentur-Overhead",
-      description: "Projektmanager, große Büros, hohe Stundensätze - Sie zahlen für Strukturen, die Sie nicht brauchen.",
+      title: "Der Kleinkram",
+      description: "Dein Team kopiert Daten von A nach B, tippt Angebote ab, pflegt Listen. Zeit, die für Wichtigeres fehlt.",
     },
   ];
 
@@ -27,10 +27,10 @@ export function ProblemSection() {
             Der Alltag
           </p>
           <h2 className="mb-5 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
-            Kommt Ihnen das bekannt vor?
+            Warten kostet dich mehr als jedes Projekt.
           </h2>
           <p className="max-w-[400px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-            Viele Unternehmen kämpfen mit denselben Herausforderungen bei der Digitalisierung.
+            Digital geht bei den meisten Betrieben so: anfragen, warten, nachhaken, warten.
             Drei Muster sehe ich immer wieder:
           </p>
         </FadeIn>

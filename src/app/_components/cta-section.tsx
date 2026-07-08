@@ -15,15 +15,15 @@ export function CTASection() {
           className="mb-6 h-[104px] w-[104px] rounded-full object-cover"
         />
         <h2 className="mb-4 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
-          Bereit für den ersten Schritt?
+          Du hast was, das digital schneller gehen müsste?
         </h2>
         <p className="mb-9 max-w-[560px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-          Lassen Sie uns in einem kurzen Gespräch herausfinden, ob wir zusammenpassen.
-          Unverbindlich und ohne Verkaufsdruck.
+          Dann lass uns 15 Minuten reden. Kein Verkaufsgespräch, ein ehrlicher Blick,
+          ob und wie ich helfen kann.
         </p>
 
         <div className="mb-8 flex flex-wrap justify-center gap-3.5">
-          <Button href={CAL_LINK}>Kennenlernen vereinbaren</Button>
+          <Button href={CAL_LINK}>Direkten Draht aufbauen</Button>
           <Button href={WHATSAPP_LINK} variant="outline">
             Kurze Frage? WhatsApp
           </Button>
