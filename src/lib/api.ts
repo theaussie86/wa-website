@@ -1,9 +1,23 @@
 import { Post } from "@/interfaces/post";
 import fs from "fs";
-import matter from "gray-matter";
+import { load } from "js-yaml";
 import { join } from "path";
 
 const postsDirectory = join(process.cwd(), "_posts");
+
+const frontmatterPattern = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
+
+function matter(fileContents: string): {
+  data: Record<string, unknown>;
+  content: string;
+} {
+  const match = frontmatterPattern.exec(fileContents);
+  if (!match) {
+    return { data: {}, content: fileContents };
+  }
+  const data = (load(match[1]) ?? {}) as Record<string, unknown>;
+  return { data, content: fileContents.slice(match[0].length) };
+}
 
 function getPostSlugs() {
   return fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".md"));
