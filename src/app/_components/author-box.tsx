@@ -30,7 +30,7 @@ const AuthorBox = ({ name, picture }: Props) => {
                 Ich baue Automatisierungen für mittelständische Unternehmen im
                 Allgäu und ganz Bayern - keine PowerPoint-Strategien, sondern
                 funktionierende Systeme. Von der Idee bis zur laufenden Lösung
-                setze ich für Sie um.
+                setze ich für dich um.
               </p>
               <Link
                 href="/ueber-mich"
