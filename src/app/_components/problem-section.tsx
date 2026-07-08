@@ -1,59 +1,61 @@
-import { AnimatedCard, FadeIn } from "@/app/_components/animations";
+import { FadeIn } from "@/app/_components/animations";
 
 export function ProblemSection() {
   const problems = [
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
+      number: "01",
       title: "Excel-Chaos",
       description: "Daten werden manuell zwischen Systemen kopiert. Fehler passieren, Zeit geht verloren.",
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>
-      ),
+      number: "02",
       title: "Build and Leave",
       description: "Agenturen bauen ein System und verschwinden. Ändern sich Anforderungen, passt nichts mehr.",
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
+      number: "03",
       title: "Agentur-Overhead",
-      description: "Projektmanager, große Büros, hohe Stundensätze — Sie zahlen für Strukturen, die Sie nicht brauchen.",
+      description: "Projektmanager, große Büros, hohe Stundensätze - Sie zahlen für Strukturen, die Sie nicht brauchen.",
     },
   ];
 
   return (
-    <section className="section bg-primary/5">
-      <div className="container mx-auto px-5">
-        <FadeIn className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
+    <section className="py-[clamp(64px,9vw,108px)]">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-start gap-[clamp(40px,6vw,96px)] px-6 md:grid-cols-[5fr_7fr]">
+        <FadeIn>
+          <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
+            Der Alltag
+          </p>
+          <h2 className="mb-5 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
             Kommt Ihnen das bekannt vor?
           </h2>
-          <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
+          <p className="max-w-[400px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
             Viele Unternehmen kämpfen mit denselben Herausforderungen bei der Digitalisierung.
+            Drei Muster sehe ich immer wieder:
           </p>
         </FadeIn>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div>
           {problems.map((problem, index) => (
-            <AnimatedCard
-              key={index}
-              delay={index * 0.1}
-              className="bg-white p-8 rounded-xs shadow-sm border border-primary/10"
+            <FadeIn
+              key={problem.number}
+              delay={index * 0.08}
+              className={`grid grid-cols-[72px_1fr] gap-5 border-t border-primary/20 py-[30px] ${
+                index === problems.length - 1 ? "border-b" : ""
+              }`}
             >
-              <div className="text-accent mb-4">{problem.icon}</div>
-              <h3 className="font-serif text-xl text-primary mb-3">{problem.title}</h3>
-              <p className="text-charcoal/70">{problem.description}</p>
-            </AnimatedCard>
+              <span className="font-serif text-[clamp(1.7rem,2.4vw,2.3rem)] leading-none text-accent">
+                {problem.number}
+              </span>
+              <div>
+                <h3 className="mb-2 font-serif text-[1.35rem] font-normal text-primary">
+                  {problem.title}
+                </h3>
+                <p className="max-w-[520px] font-sans text-[16.5px] leading-[1.7] text-charcoal/80">
+                  {problem.description}
+                </p>
+              </div>
+            </FadeIn>
           ))}
         </div>
       </div>

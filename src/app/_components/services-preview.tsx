@@ -1,71 +1,101 @@
+import Image from "next/image";
 import Link from "next/link";
-import { AnimatedCard, AnimatedButton, FadeIn } from "@/app/_components/animations";
+import { FadeIn } from "@/app/_components/animations";
+import { Button } from "@/app/_components/button";
 
 export function ServicesPreview() {
-  const services = [
-    {
-      title: "Prozessautomatisierung",
-      description: "Rechnungsverarbeitung, CRM-Updates, Datenübertragungen — automatisiert und fehlerfrei.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
-      ),
-    },
-    {
-      title: "Web- & App-Entwicklung",
-      description: "Gestaltung und Umsetzung maßgeschneiderter Software-Lösungen für Ihr Unternehmen.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      ),
-    },
-    {
-      title: "Systemintegration & KI",
-      description: "Intelligente Verknüpfung bestehender Systeme mit modernster Künstlicher Intelligenz.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-    },
-  ];
-
   return (
-    <section className="section">
-      <div className="container mx-auto px-5">
-        <FadeIn className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
+    <section className="bg-white py-[clamp(64px,9vw,108px)]">
+      <div className="mx-auto max-w-[1180px] px-6">
+        <FadeIn className="mb-[52px] max-w-[640px]">
+          <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
+            Leistungen
+          </p>
+          <h2 className="mb-4 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
             Was ich für Sie tue
           </h2>
-          <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
+          <p className="font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
             Technologie, die arbeitet. Menschen, die gestalten.
           </p>
         </FadeIn>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <AnimatedCard
-              key={index}
-              delay={index * 0.1}
-              className="group p-8 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-colors"
-            >
-              <div className="text-primary group-hover:text-accent transition-colors mb-6">
-                {service.icon}
-              </div>
-              <h3 className="font-serif text-xl text-primary mb-3">{service.title}</h3>
-              <p className="text-charcoal/70">{service.description}</p>
-            </AnimatedCard>
-          ))}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-[7fr_5fr] md:grid-rows-[auto_auto]">
+          {/* Featured: Prozessautomatisierung */}
+          <Link
+            href="/leistungen"
+            className="group flex flex-col overflow-hidden rounded-xs border border-primary/15 bg-white transition-[border-color,transform] duration-300 ease-out hover:-translate-y-[3px] hover:border-accent md:row-span-2"
+          >
+            <span className="relative block aspect-[16/10] overflow-hidden">
+              <Image
+                src="/services/service-automation.webp"
+                alt="Arbeitsplatz mit automatisiertem Prozess-Dashboard"
+                fill
+                sizes="(min-width: 1180px) 688px, (min-width: 768px) 58vw, 100vw"
+                className="object-cover"
+              />
+            </span>
+            <span className="flex flex-1 flex-col gap-3 px-8 pt-8 pb-9">
+              <span className="font-serif text-[clamp(1.5rem,2vw,1.9rem)] text-primary">
+                Prozessautomatisierung
+              </span>
+              <span className="max-w-[520px] font-sans text-[16.5px] leading-[1.7] text-charcoal/80">
+                Rechnungsverarbeitung, CRM-Updates, Datenübertragungen - automatisiert und fehlerfrei.
+              </span>
+              <span className="mt-auto font-sans text-[15px] font-bold text-accent-600">
+                Mehr erfahren →
+              </span>
+            </span>
+          </Link>
+
+          {/* Web- & App-Entwicklung */}
+          <Link
+            href="/leistungen"
+            className="group flex flex-col overflow-hidden rounded-xs border border-primary/15 bg-white transition-[border-color,transform] duration-300 ease-out hover:-translate-y-[3px] hover:border-accent"
+          >
+            <span className="relative block aspect-[21/8] overflow-hidden">
+              <Image
+                src="/services/service-fullstack.webp"
+                alt="Entwicklung einer Web-Anwendung"
+                fill
+                sizes="(min-width: 1180px) 490px, (min-width: 768px) 42vw, 100vw"
+                className="object-cover"
+              />
+            </span>
+            <span className="flex flex-col gap-2 px-7 pt-6 pb-7">
+              <span className="font-serif text-[1.35rem] text-primary">Web- &amp; App-Entwicklung</span>
+              <span className="font-sans text-[15.5px] leading-[1.65] text-charcoal/80">
+                Gestaltung und Umsetzung maßgeschneiderter Software-Lösungen für Ihr Unternehmen.
+              </span>
+            </span>
+          </Link>
+
+          {/* Systemintegration & KI */}
+          <Link
+            href="/leistungen"
+            className="group flex flex-col overflow-hidden rounded-xs border border-primary/15 bg-white transition-[border-color,transform] duration-300 ease-out hover:-translate-y-[3px] hover:border-accent"
+          >
+            <span className="relative block aspect-[21/8] overflow-hidden">
+              <Image
+                src="/services/service-integration.webp"
+                alt="Vernetzte Systeme und KI-Integration"
+                fill
+                sizes="(min-width: 1180px) 490px, (min-width: 768px) 42vw, 100vw"
+                className="object-cover"
+              />
+            </span>
+            <span className="flex flex-col gap-2 px-7 pt-6 pb-7">
+              <span className="font-serif text-[1.35rem] text-primary">Systemintegration &amp; KI</span>
+              <span className="font-sans text-[15.5px] leading-[1.65] text-charcoal/80">
+                Intelligente Verknüpfung bestehender Systeme mit moderner KI.
+              </span>
+            </span>
+          </Link>
         </div>
 
-        <FadeIn delay={0.3} className="text-center mt-12">
-          <AnimatedButton>
-            <Link href="/leistungen" className="btn-secondary">
-              Alle Leistungen ansehen
-            </Link>
-          </AnimatedButton>
+        <FadeIn delay={0.1} className="mt-11">
+          <Button href="/leistungen" variant="outline" className="text-base">
+            Alle Leistungen ansehen
+          </Button>
         </FadeIn>
       </div>
     </section>
