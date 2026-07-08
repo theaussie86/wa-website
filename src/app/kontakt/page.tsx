@@ -9,7 +9,8 @@ import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
   title: `Kontakt | ${SITE_NAME}`,
-  description: "Lass uns sprechen - unverbindlich und ohne Verkaufsdruck.",
+  description:
+    "Direkter Draht zu Christoph Weissteiner. 15 Minuten reden, per WhatsApp oder Formular. Kein Verkaufsdruck.",
 };
 
 export default function ContactPage() {
@@ -20,11 +21,11 @@ export default function ContactPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
-              Lass uns sprechen
+              Direkter Draht
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
-              Kein Verkaufsdruck, kein Pitch — nur ein Gespräch, um herauszufinden,
-              ob wir zusammenpassen.
+              Kein Verkaufsdruck, kein Pitch. Nur ein kurzes Gespräch, ob und
+              wie ich dir helfen kann.
             </p>
           </div>
         </div>
@@ -43,7 +44,7 @@ export default function ContactPage() {
               </div>
               <h2 className="font-serif text-xl text-primary mb-2">Kennenlernen buchen</h2>
               <p className="text-charcoal/70 text-sm mb-6">
-                15-30 Minuten, unverbindlich
+                15 Minuten, unverbindlich
               </p>
               <a
                 href={CAL_LINK}
@@ -51,7 +52,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="btn-primary w-full"
               >
-                Termin wählen
+                Termin sichern
               </a>
             </div>
 
@@ -99,9 +100,9 @@ export default function ContactPage() {
           <div className="max-w-xl mx-auto text-center">
             <h2 className="font-serif text-2xl text-primary mb-4">{LOCATION}</h2>
             <p className="text-charcoal/70">
-              Im Herzen des Allgäus, aber für Unternehmen im gesamten DACH-Raum tätig.
-              Die meiste Zusammenarbeit funktioniert remote — bei Bedarf bin ich aber
-              auch persönlich vor Ort.
+              Mitten im Allgäu, tätig für Betriebe im ganzen DACH-Raum.
+              Das meiste läuft remote, schnell und unkompliziert. Wenn es Sinn
+              ergibt, bin ich auch persönlich vor Ort.
             </p>
           </div>
         </div>
@@ -112,7 +113,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-xl mx-auto text-center">
             <p className="text-charcoal/60 italic">
-              Nicht jede Anfrage führt zu einer Zusammenarbeit — und das ist völlig in Ordnung.
+              Nicht jede Anfrage führt zu einer Zusammenarbeit, und das ist völlig in Ordnung.
               Wichtig ist, dass es für beide Seiten passt.
             </p>
           </div>

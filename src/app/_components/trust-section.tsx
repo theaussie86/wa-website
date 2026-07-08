@@ -1,61 +1,70 @@
-import { AnimatedCard, FadeIn } from "@/app/_components/animations";
+import Image from "next/image";
+import { FadeIn } from "@/app/_components/animations";
 
 export function TrustSection() {
-  const trustPoints = [
+  const facts = [
     {
-      icon: (
-        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
-      title: "Ihre Systeme. Ihre Kontrolle.",
+      term: "Planbar",
+      description: "Verträge über 3, 6 oder 12 Monate. Kein Onboarding-Overhead, keine HR-Komplexität - einfacher als eine Festanstellung.",
+    },
+    {
+      term: "Dokumentiert",
       description: "Alles wird in Ihrer Infrastruktur gebaut und vollständig dokumentiert. Sie sind nie abhängig von mir.",
     },
     {
-      icon: (
-        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: "Planbare Zusammenarbeit",
-      description: "Verträge über 3, 6 oder 12 Monate. Kein Onboarding-Overhead, keine HR-Komplexität. Einfacher als eine Festanstellung.",
-    },
-    {
-      icon: (
-        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-        </svg>
-      ),
-      title: "Flexibel & fair",
-      description: "Wenn die Zusammenarbeit funktioniert, verlängern wir. Wenn nicht — keine harten Gefühle. Sie haben die volle Kontrolle.",
+      term: "Kündbar",
+      description: "Wenn die Zusammenarbeit funktioniert, verlängern wir. Wenn nicht - keine harten Gefühle. Sie haben die volle Kontrolle.",
     },
   ];
 
   return (
-    <section className="section bg-primary text-white">
-      <div className="container mx-auto px-5">
-        <FadeIn className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
-            Partnerschaft ohne Risiko
-          </h2>
-          <p className="text-lg text-primary-200 max-w-2xl mx-auto">
-            Ich verdiene Ihr Vertrauen durch Ergebnisse — nicht durch Abhängigkeit.
+    <section className="bg-primary-50 py-[clamp(64px,9vw,108px)]">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-[clamp(40px,6vw,96px)] px-6 md:grid-cols-[7fr_5fr]">
+        <FadeIn>
+          <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
+            Partnerschaft
           </p>
+          <h2 className="mb-6 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.15] tracking-normal text-primary">
+            Ich verdiene Ihr Vertrauen durch Ergebnisse - nicht durch Abhängigkeit.
+          </h2>
+          <p className="mb-10 max-w-[560px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
+            Partnerschaft ohne Risiko: Alles wird bei Ihnen vor Ort gedacht - aus Memmingen,
+            für Handwerk, Fertigung und Mittelstand im Allgäu und DACH-Raum.
+          </p>
+
+          <dl className="m-0">
+            {facts.map((fact, index) => (
+              <div
+                key={fact.term}
+                className={`grid grid-cols-[130px_1fr] gap-4 border-t border-primary/20 py-5 sm:grid-cols-[150px_1fr] ${
+                  index === facts.length - 1 ? "border-b" : ""
+                }`}
+              >
+                <dt className="font-serif text-[1.1rem] text-primary">{fact.term}</dt>
+                <dd className="m-0 font-sans text-base leading-[1.65] text-charcoal/80">
+                  {fact.description}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </FadeIn>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {trustPoints.map((point, index) => (
-            <AnimatedCard
-              key={index}
-              delay={index * 0.1}
-              className="p-8 border border-primary-400 rounded-xs"
-            >
-              <div className="text-accent mb-4">{point.icon}</div>
-              <h3 className="font-serif text-xl text-white mb-3">{point.title}</h3>
-              <p className="text-primary-200">{point.description}</p>
-            </AnimatedCard>
-          ))}
-        </div>
+        <FadeIn delay={0.12}>
+          <figure className="m-0 flex flex-col gap-3.5">
+            <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-xs">
+              <Image
+                src="/images/author/christoph-weissteiner.webp"
+                alt="Christoph Weissteiner in seinem Büro"
+                fill
+                sizes="(min-width: 768px) 420px, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
+            <figcaption className="font-sans text-[14.5px] text-charcoal/80">
+              <span className="font-bold text-primary">Christoph Weissteiner</span> · Memmingen, Allgäu
+            </figcaption>
+          </figure>
+        </FadeIn>
       </div>
     </section>
   );

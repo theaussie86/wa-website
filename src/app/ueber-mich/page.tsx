@@ -5,49 +5,58 @@ import { CTASection } from "@/app/_components/cta-section";
 
 export const metadata: Metadata = {
   title: `Über mich | ${SITE_NAME}`,
-  description: "Christoph Weissteiner — Ihr Partner für Prozessautomatisierung und KI aus dem Allgäu.",
+  description:
+    "Christoph Weissteiner aus Memmingen. Ich mache Betriebe digital handlungsfähig: schnell umgesetzt, mit KI befähigt, ohne Agentur-Wasserkopf.",
 };
 
 export default function AboutPage() {
   const values = [
     {
-      title: "Systeme gehören in Ihre Infrastruktur",
-      description: "Ich baue nichts, das nur ich verstehe. Alles wird dokumentiert und kann übernommen werden.",
+      title: "Tempo schlägt Perfektion",
+      description:
+        "Lieber heute eine Lösung, die läuft, als in drei Monaten die perfekte. Fertig ist besser als schön.",
     },
     {
-      title: "Langfristig denken, schrittweise bauen",
-      description: "Große IT-Projekte scheitern oft. Besser: System für System, mit Zeit zum Lernen und Anpassen.",
+      title: "Unabhängig statt abhängig",
+      description:
+        "Ich baue nichts, das nur ich verstehe. Alles wird dokumentiert und kann übernommen werden. Du bist nie an mich gebunden.",
     },
     {
-      title: "Partnerschaft statt Dienstleistung",
-      description: "Ich will Ihre Prozesse verstehen, nicht nur Aufträge abarbeiten.",
+      title: "KI gehört in deine Hand",
+      description:
+        "Kein Blackbox-Zauber. Ich richte KI so ein, dass du und dein Team sie selbst bedient und versteht.",
     },
     {
       title: "Ehrlichkeit spart Zeit",
-      description: "Wenn etwas nicht funktioniert oder keinen Sinn macht, sage ich es Ihnen. Lieber früh als zu spät.",
+      description:
+        "Wenn etwas keinen Sinn ergibt, sage ich es dir. Lieber früh als zu spät.",
     },
   ];
 
   const processSteps = [
     {
       step: "1",
-      title: "Kennenlernen",
-      description: "In einem kurzen Gespräch finden wir heraus, ob wir zusammenpassen und was Sie brauchen.",
+      title: "Kurzer Draht",
+      description:
+        "Du sagst mir, was klemmt. Ein direktes Gespräch, kein Workshop-Marathon.",
     },
     {
       step: "2",
-      title: "Analyse",
-      description: "Ich schaue mir Ihre Prozesse an und identifiziere die größten Hebel für Automatisierung.",
+      title: "Schnell umgesetzt",
+      description:
+        "Ich baue die Lösung in Tagen, direkt in deiner Infrastruktur. Du siehst früh, dass es läuft.",
     },
     {
       step: "3",
-      title: "Roadmap",
-      description: "Gemeinsam priorisieren wir, was wir zuerst angehen. Schnelle Erfolge oder Grundlagen — Sie entscheiden.",
+      title: "Befähigt",
+      description:
+        "Ich richte dir KI und Werkzeuge ein und zeig dir, wie du sie im Alltag nutzt.",
     },
     {
       step: "4",
-      title: "Umsetzung & Betreuung",
-      description: "Ich baue die Systeme, dokumentiere alles und bleibe als Partner an Ihrer Seite.",
+      title: "Dranbleiben",
+      description:
+        "Willst du, bleibe ich dein direkter Draht fürs Nächste. Willst du nicht, läufst du selbst.",
     },
   ];
 
@@ -72,13 +81,16 @@ export default function AboutPage() {
               </div>
               {/* Text */}
               <div className="flex-1 text-center md:text-left">
+                <p className="text-accent text-sm font-medium uppercase tracking-widest mb-4">
+                  Machen statt warten
+                </p>
                 <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
-                  Über mich
+                  Der, der redet, baut auch.
                 </h1>
                 <p className="text-xl text-charcoal/80 leading-relaxed">
-                  Ich bin Christoph Weissteiner, Automatisierungs-Spezialist aus Memmingen im Allgäu.
-                  Ich helfe mittelständischen Unternehmen, ihre Prozesse zu digitalisieren —
-                  als langfristiger Partner, nicht als Agentur.
+                  Ich bin Christoph Weissteiner, Macher aus Memmingen im Allgäu.
+                  Ich helfe Betrieben, digital schneller handlungsfähig zu werden.
+                  Ohne monatelange Projekte, ohne Abhängigkeit.
                 </p>
               </div>
             </div>
@@ -91,25 +103,25 @@ export default function AboutPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-serif text-3xl text-primary mb-6">
-              Warum Partnerschaft statt Projekt?
+              Warum ich niemanden warten lasse
             </h2>
             <div className="prose prose-lg text-charcoal/80 space-y-4">
               <p>
-                Ich habe gesehen, wie Agenturen arbeiten: großes Projekt, viele Meetings,
-                eine Übergabe — und dann sind sie weg. Das System funktioniert vielleicht
-                am Anfang. Aber Anforderungen ändern sich. Mitarbeiter wechseln.
-                Und plötzlich passt nichts mehr.
+                Ich habe gesehen, wie es normalerweise läuft: großes Projekt,
+                viele Meetings, eine Übergabe, dann ist der Dienstleister weg.
+                Und bei jeder Kleinigkeit fängst du wieder an zu warten.
+                Das hat mich genervt, lange bevor ich selbst angefangen habe.
               </p>
               <p>
-                Deshalb arbeite ich anders. Statt eines großen Projekts baue ich
-                System für System, direkt in Ihrer Infrastruktur. Ich dokumentiere alles,
-                sodass Sie nie von mir abhängig sind. Und ich bleibe als Partner,
-                um zu warten, anzupassen und weiterzuentwickeln.
+                Also mache ich es anders. Ich setze schnell um, was du brauchst,
+                direkt bei dir im Betrieb. Und dann zeige ich dir und deinem Team,
+                wie ihr mit KI selbst weitermacht. Nicht, weil ich mich aus der
+                Verantwortung stehle, sondern weil du unabhängig sein sollst.
               </p>
               <p>
-                Das Ergebnis: Systeme, die mit Ihrem Unternehmen wachsen.
-                Keine veralteten Lösungen. Kein Vendor Lock-in. Nur kontinuierliche
-                Verbesserung Ihrer Prozesse.
+                Das Beste, was ich für dich tun kann, ist nicht, dich an mich zu
+                binden. Es ist, dich handlungsfähig zu machen. Herr im eigenen
+                Haus, mit Werkzeugen, die du selbst bedienst.
               </p>
             </div>
           </div>

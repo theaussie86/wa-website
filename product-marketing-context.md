@@ -1,107 +1,94 @@
 # Product Marketing Context
 
-*Last updated: 2026-03-01*
+*Last updated: 2026-07-08*
+
+> Nordstern und Copy Deck: siehe `docs/messaging/nordstern.md`. Claim: **Machen statt warten.** Anrede: **Du**.
 
 ## Product Overview
-**One-liner:** Ein persönlicher Partner für Prozessautomatisierung und KI für KMU im Allgäu und DACH-Raum – mit Fokus auf langfristigen Systemaufbau statt kurzfristigen Agentur-Projekten.
-**What it does:** Wir bauen, implementieren und warten maßgeschneiderte Automatisierungssysteme direkt in der Infrastruktur des Kunden. Ziel ist es, wiederkehrende Geschäftsprozesse nachhaltig zu digitalisieren und kontinuierlich neue Systeme zu "stacken", um Mitarbeitern Zeit einzusparen.
-**Product category:** Freelance Automation Partner / Consultant
-**Product type:** Service (Consulting, Implementation, Maintenance & Support)
-**Business model:** Retainer-Modell (2.000 € – 5.000 € pro Monat). Langfristige Partnerschaft, Ziel sind 3-5 parallele feste Kunden. Keine Agentur-Overhead-Kosten.
+**One-liner:** Der direkte Draht, der Betriebe schnell digital handlungsfähig macht: schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst.
+**What it does:** Ich baue schnelle digitale Lösungen und befähige Betriebe, mit KI selbst handlungsfähig zu werden. Von der schnellen Website über automatisierte Routine bis zu eingerichteten KI-Werkzeugen, die das Team selbst bedient.
+**Product category:** Freelance Digital-Enabler (Umsetzung + Befähigung), Solopreneur.
+**Product type:** Service (schnelle Umsetzung, Automatisierung, KI-Enablement, optional laufende Begleitung).
+**Business model:** Flexibel. Schnelle Einzelprojekte oder laufende Zusammenarbeit (Verträge über 3, 6 oder 12 Monate, Retainer 2.000 bis 5.000 EUR pro Monat als eine Option). Kein Agentur-Overhead. Ziel sind 3 bis 5 parallele feste Kunden.
+
+## Positioning
+**Kern:** Feind ist das Warten. Versprechen ist Tempo plus Unabhängigkeit. Ich setze schnelle Lösungen um und befähige dich, mit KI selbst weiterzumachen. Du bleibst Herr im eigenen Haus.
+**Ein Satz:** Für hands-on Geschäftsführer im Mittelstand, die keine Lust mehr haben, auf jede digitale Kleinigkeit zu warten, ist Weissteiner Automation der direkte Draht, der den Betrieb schnell digital handlungsfähig macht: durch schnelle Umsetzung und Befähigung mit KI. Anders als klassische Agenturen (langsam, teuer, weg nach dem Projekt) macht er dich unabhängig statt abhängig.
 
 ## Target Audience
-**Target companies:** Mittelständische Unternehmen, Handwerksbetriebe und Fertigungsindustrie (DACH-Raum, mit starkem lokalem Fokus auf Memmingen/Allgäu).
-**Decision-makers:** Geschäftsführer, Operations Manager, Inhaber.
-**Primary use case:** Eliminierung manueller, fehleranfälliger Routineaufgaben durch passgenaue Automatisierung, die mit dem Unternehmen wächst.
+**Target companies:** Mittelständische Unternehmen, Handwerksbetriebe und Fertigungsindustrie (DACH, starker Fokus Memmingen/Allgäu).
+**Decision-makers:** Geschäftsführer, Inhaber, Manager, die selbst anpacken wollen.
+**Primary use case:** Schnell digitale Lösungen schaffen, ohne in der Warteschleife von Agenturen oder der eigenen IT zu hängen, und dabei unabhängig werden.
 **Jobs to be done:**
-- Mitarbeitern Zeit für wertschöpfende Aufgaben freiräumen.
-- Skalierbare, miteinander vernetzte Systeme (Stacking) in der hauseigenen Infrastruktur aufbauen.
-- Zuverlässigen Support und Wartung für alle implementierten Prozesse sicherstellen.
-**Use cases:**
-- Rechnungsverarbeitung und Buchhaltung
-- Kundendatenmanagement (CRM-Updates)
-- E-Mail-Marketing und Follow-ups
-- Berichterstellung und Datenanalyse
-- Onboarding neuer Mitarbeiter oder Kunden
+- Schnell online gehen (Website, Landingpage, internes Tool).
+- Wiederkehrende Routine automatisieren, damit das Team Zeit gewinnt.
+- KI im Alltag selbst nutzbar machen (vom Angebot bis zur E-Mail).
+- Unabhängig werden von Agentur-Warteschleifen und externem Entwickler-Nadelöhr.
+**Anti-Persona:** Delegierer, die alles abschieben und selbst nichts anfassen. Betriebe, die nur einen anonymen Dienstleister zum Wegschieben suchen.
 
 ## Personas
 | Persona | Cares about | Challenge | Value we promise |
 |---------|-------------|-----------|------------------|
-| Geschäftsführer / Inhaber | ROI, Effizienz, verlässliche Partnerschaft ohne "Overhead" | Fachkräftemangel, zu hohe Kosten bei klassischen Agenturen, Systeme, die nach dem Projektende veralten | Direkter Ansprechpartner, faires Retainer-Modell ohne Overhead, Systeme werden dauerhaft in der eigenen Infrastruktur betreut. |
-| Operations Manager | Reibungslose Abläufe, System-Integration, schnelle Hilfe bei Problemen | Isolierte Systeme, manuelle Datenübertragungen, fehlender Support bei "Build-and-Leave"-Agenturen | Maßgeschneiderte Systeme, proaktive Wartung, Support bei Problemen und kontinuierliche Weiterentwicklung. |
+| Geschäftsführer / Inhaber (hands-on) | Tempo, Kontrolle, direkter Draht, selbst machen können | Warten auf jede Kleinigkeit, Abhängigkeit von Agentur/IT, Kleinkram staut sich | Schnelle Umsetzung in Tagen, Befähigung mit KI, du bleibst Herr im eigenen Haus |
+| Operations Manager | Reibungslose Abläufe, schnelle Hilfe, kein Ticket-Stau | Manuelle Routine, isolierte Systeme, fehlender Support | Automatisierte Routine, direkter Ansprechpartner, dokumentiert in eigener Infrastruktur |
 
 ## Problems & Pain Points
-**Core problem:** Mitarbeiter verschwenden Zeit mit monotoner "Copy & Paste"-Arbeit. Das Unternehmen braucht Automatisierung, scheut aber die Kosten und den "Build-and-Leave"-Ansatz klassischer Agenturen.
+**Core problem:** Betriebe warten. Auf die Agentur, die IT, das nächste Budget. Die Kleinigkeit, die in einer Stunde erledigt wäre, zieht sich über Wochen. Dazu Abhängigkeit und liegengebliebener Kleinkram.
 **Why alternatives fall short:**
-- Klassische Agenturen machen ein Projekt (Workshops, Setup), übergeben es und sind dann weg. Ändern sich Anforderungen, passt das System nicht mehr.
-- Agenturen haben hohe Overhead-Kosten (Projektmanager, Büros etc.), was die Preise in die Höhe treibt.
+- Klassische Agenturen sind langsam, teuer und nach dem Projekt weg. Jede Änderung kostet wieder Zeit und Geld.
 - Standard-Software ist oft zu starr.
-**What it costs them:** Hohe Personalkosten für Routineaufgaben, gescheiterte IT-Projekte durch mangelnde Nachbetreuung, überhöhte Agenturhonorare.
-**Emotional tension:** Frust über ineffiziente Abläufe, Misstrauen gegenüber "überteuerten Agenturen", Angst, nach der Implementierung alleingelassen zu werden.
+- Fachkräfte für Digitales sind in der Region schwer zu finden.
+**What it costs them:** Verlorene Zeit durch Warten, hohe Personalkosten für Routine, Kontrollverlust, gescheiterte IT-Projekte ohne Nachbetreuung.
+**Emotional tension:** Frust über das ständige Warten, Ärger über Abhängigkeit, das Gefühl, im eigenen Betrieb nicht selbst handlungsfähig zu sein.
 
 ## Competitive Landscape
-**Direct:** Klassische Automatisierungs-Agenturen / IT-Systemhäuser — falls short because sie hohe Overhead-Kosten haben, oft nach dem Projektende verschwinden ("Build and Leave") und keine langfristige Betreuung für ein faires Budget bieten.
-**Indirect:** "Wir machen es einfach weiter manuell/stellen jemanden dafür ein" — falls short because Fachkräfte in der Region schwer zu finden sind und Mitarbeiter nicht für stupide Datenpflege bezahlt werden sollten.
+**Direct:** Klassische Agenturen und IT-Systemhäuser. Fallen kurz, weil langsam, teuer, oft nach dem Projekt verschwunden und ohne Befähigung des Kunden.
+**Indirect:** "Wir machen es weiter manuell" oder "wir stellen jemanden ein". Fällt kurz, weil Fachkräfte schwer zu finden sind und Routine keine gute Nutzung von Personal ist.
 
 ## Differentiation
 **Key differentiators:**
-- **Langfristige Partnerschaft statt Projektgeschäft:** Kontinuierliches "Stacken" von neuen Automatisierungssystemen und Begleitung über Jahre.
-- **In-House Integration & Maintenance:** Systeme werden direkt in der Infrastruktur der Kunden gebaut, gepflegt, dokumentiert und betreut.
-- **Solopreneur / Kein Overhead:** Faire Retainer-Preise (2k-5k €) im Vergleich zu teuren Agenturen.
-- **Regionale Nähe:** Feste Verwurzelung im Allgäu (Memmingen), greifbarer Ansprechpartner.
-**How we do it differently:** Statt eines einmaligen Projekts gibt es eine kontinuierliche Begleitung. Wir bauen System für System in die Infrastruktur des Kunden und kümmern uns als Partner um Wartung und Support. Die eingesetzte Technologie (Programmiersprache etc.) spielt für den Kunden keine Rolle – wichtig ist, dass es funktioniert.
-**Why that's better:** Systeme bleiben aktuell und passen sich an wachsende Anforderungen an. Der Kunde hat einen festen, direkten Ansprechpartner ohne Agentur-Wasserkopf.
-**Why customers choose us:** Vertrauen in die langfristige Betreuung, faires Kosten-Nutzen-Verhältnis durch Retainer und die regionale, persönliche Nähe.
+- **Tempo:** In Tagen sichtbar statt monatelang im Angebotsprozess.
+- **Befähigung statt Abhängigkeit:** Ich richte KI-Werkzeuge ein und zeige, wie das Team sie selbst nutzt. Einmal befähigt, nie wieder abhängig.
+- **Direkter Draht:** Der, der redet, baut auch. Kein Projektmanager, keine Weiterleitung.
+- **Regional und ohne Overhead:** Solopreneur aus Memmingen, greifbar, faire Preise.
+**Why customers choose us:** Sie wollen nicht mehr warten, wollen die Kontrolle behalten und einen greifbaren Partner, der schnell liefert und sie selbst handlungsfähig macht.
 
 ## Objections
 | Objection | Response |
 |-----------|----------|
-| Was passiert, wenn etwas nicht funktioniert? | Ich baue die Systeme in Ihre Infrastruktur und bleibe als langfristiger Partner an Ihrer Seite, um das System zu warten und Support zu leisten. |
-| Sind klassische Agenturen nicht sicherer? | Agenturen sind oft nach der Übergabe weg und verlangen für jede kleine Anpassung hohe Gebühren, um ihren Overhead zu decken. Bei mir haben Sie einen festen Retainer und einen direkten Ansprechpartner. |
-| Ersetzt Automatisierung unsere Arbeitsplätze? | Nein, sie entlastet das Team von monotonen Routineaufgaben, damit Zeit für das Wesentliche bleibt. |
-
-**Anti-persona:** Unternehmen, die nur ein schnelles, einmaliges "Quick-Fix"-Projekt suchen und keine langfristige Partnerschaft zur kontinuierlichen Prozessoptimierung anstreben.
+| Bin ich dann nicht von dir abhängig? | Nein. Alles läuft in deiner Infrastruktur, ist dokumentiert, und ich befähige dich und dein Team, selbst weiterzumachen. |
+| Kann eine einzelne Person das leisten? | Genau das ist der Vorteil. Direkter Draht, kein Overhead, schnelle Entscheidungen. Moderne KI-Werkzeuge machen Tempo möglich, das früher ein Team gebraucht hätte. |
+| Ist eine Agentur nicht sicherer? | Agenturen sind oft langsam, teuer und nach dem Projekt weg. Bei mir bekommst du Tempo, einen festen Ansprechpartner und Unabhängigkeit. |
 
 ## Switching Dynamics
-**Push:** Unzufriedenheit mit fehleranfälligen Prozessen; schlechte Erfahrungen mit teuren Agenturen, die nach Projektende keinen ordentlichen Support leisten.
-**Pull:** Fester Ansprechpartner, faire monatliche Kosten ohne versteckte Agenturgebühren, Betreuung direkt in der eigenen Infrastruktur.
-**Habit:** "Das haben wir schon immer manuell gemacht" - Angst vor Umstellungen.
-**Anxiety:** Sorge, sich von einem einzelnen Freelancer komplett abhängig zu machen (wird entkräftet durch Dokumentation und Bau in der Kundeninfrastruktur).
+**Push:** Genervt vom Warten, schlechte Erfahrung mit teuren, langsamen Agenturen, liegengebliebener Kleinkram.
+**Pull:** Schnelle Umsetzung, direkter Draht, selbst handlungsfähig werden, faire und flexible Zusammenarbeit.
+**Anxiety:** Sorge, sich von einem einzelnen Freelancer abhängig zu machen. Wird entkräftet durch Dokumentation, Bau in der Kundeninfrastruktur und aktive Befähigung.
 
 ## Customer Language
 **How they describe the problem:**
+- "Für jede Kleinigkeit müssen wir warten."
 - "Wir haben ein reines Excel-Chaos."
-- "Agenturen haben uns in der Vergangenheit nach dem Projekt alleingelassen."
+- "Digital? Können wir eigentlich nicht selbst."
 **How they describe us:**
-- "Endlich ein greifbarer Partner, der unsere Systeme auch langfristig betreut."
-- "Faires Preis-Leistungs-Verhältnis ohne Agentur-Wasserkopf."
-**Words to use:** "Langfristige Partnerschaft", "Systeme stacken", "Wartung & Support", "Infrastruktur des Kunden", "Retainer", "Faires Budget", "Allgäu / Memmingen".
-**Words to avoid:** Spezifische Programmiersprachen (TypeScript, JavaScript, Python etc. – "nobody cares"), "Agentur", "Einmaliges Projekt".
-**Glossary:**
-| Term | Meaning |
-|------|---------|
-| Retainer | Planbare monatliche Partnerschaft (2k-5k €) statt unkalkulierbarer Stundenabrechnung. |
-| System Stacking | Kontinuierlicher, schrittweiser Aufbau neuer Automatisierungen statt riesiger, einmaliger IT-Projekte. |
+- "Endlich jemand, der macht statt zu vertrösten."
+- "Danach konnten wir vieles selbst."
+**Words to use:** machen statt warten, direkter Draht, Herr im eigenen Haus, digital handlungsfähig, in Tagen statt Monaten, unabhängig statt abhängig, selber machen, Kleinkram, Routine, Tempo.
+**Words to avoid:** "Prozessautomatisierung" als Headline (nur im Fließtext), "Retainer" im Hero, "Agentur", "Lösungen von der Stange", spezifische Programmiersprachen, "die KI" (immer nur "KI"), Ausrufezeichen.
 
 ## Brand Voice
-**Tone:** Professionell, bodenständig, partnerschaftlich, verlässlich.
-**Style:** Direkt, lösungsorientiert, fokussiert auf Business Value statt technischer Details.
-**Personality:** Der kompetente langfristige Partner (Solopreneur) aus der Region, der modernste KI baut, auf den man sich aber auch nach Jahren noch verlassen kann.
+**Tone:** Direkt, auf Augenhöhe, per Du. Klartext statt Fachjargon.
+**Style:** Macherhaft, konkret, fokussiert auf Business Value und Tempo.
+**Personality:** Der greifbare Macher aus der Region, der modernste KI beherrscht, schnell liefert und dich selbst handlungsfähig macht.
 
 ## Proof Points
 **Metrics:**
-- Faire Retainer-Modelle von 2.000 € bis 5.000 € / Monat (statt hoher Agentur-Projektkosten).
-- Ziel: 3-5 parallele feste Kunden für maximale Betreuungsqualität.
-**Customers:** KMU, Handwerk und Fertigungsindustrie im DACH-Raum (Fokus Allgäu).
-**Testimonials:**
-> (Noch keine spezifischen Zitate auf der Website gefunden)
-**Value themes:**
-| Theme | Proof |
-|-------|-------|
-| Langfristige Partnerschaft | "Ich baue in Ihre Infrastruktur, warte und unterstütze Sie dauerhaft." |
-| Faires Modell | "Kein Agentur-Overhead, planbarer Retainer." |
+- Umsetzung in Tagen statt Monaten.
+- Faire, flexible Zusammenarbeit ohne Agentur-Overhead.
+- Ziel: 3 bis 5 parallele feste Kunden für maximale Betreuungsqualität.
+**Customers:** KMU, Handwerk und Fertigung im DACH-Raum (Fokus Allgäu).
+**Testimonials:** (Noch keine freigegebenen Zitate. Sobald vorhanden, ein starkes Zitat als Blickfang.)
 
 ## Goals
-**Business goal:** 3-5 parallele Kunden gleichzeitig langfristig auf Retainer-Basis betreuen.
-**Conversion action:** Kostenloses Erstgespräch buchen (Kennlerngespräch über Cal.com), um eine langfristige Partnerschaft auszuloten.
-**Current metrics:** (Derzeit noch im Aufbau für neue Lead-Gen)
+**Business goal:** 3 bis 5 parallele Kunden langfristig betreuen.
+**Conversion action:** Kurzes Kennenlernen buchen (15 Minuten über Cal.com) oder direkter Kontakt per WhatsApp.
