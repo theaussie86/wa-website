@@ -4,7 +4,7 @@ date: "2026-07-13T10:00:00Z"
 author:
   name: "Christoph Weissteiner"
   picture: "/images/author/christoph-weissteiner.webp"
-excerpt: "92, 94, 95 Prozent im Benchmark sehen fast gleich aus - im echten Arbeiten liegen Welten dazwischen. Warum die letzten Prozent am teuersten sind und wann du die absolute Spitze wirklich brauchst."
+excerpt: "76, 80, 81 Prozent im Benchmark sehen fast gleich aus - im echten Arbeiten liegen Welten dazwischen. Warum die letzten Prozent am teuersten sind und wann du die absolute Spitze wirklich brauchst."
 coverImage: "/blog/ki-benchmarks-snooker-lochquote/cover.webp"
 ogImage:
   url: "/blog/ki-benchmarks-snooker-lochquote/cover.webp"
@@ -12,7 +12,7 @@ ogImage:
 
 Privat arbeite ich ausschließlich mit Claude. Auf Arbeit manchmal mit einem anderen Modell - ordentlich, klar besser als sein Vorgänger, aber im täglichen Coden merke ich den Abstand sofort.
 
-Dann schaue ich in die Benchmarks. Die Scores liegen dicht beieinander. 92, 94, 95 Prozent. Auf dem Papier fast das Gleiche.
+Dann schaue ich in die Benchmarks. Die Scores liegen dicht beieinander. 76, 80, 81 Prozent. Auf dem Papier fast das Gleiche.
 
 Gefühlt liegen Welten dazwischen.
 
@@ -29,16 +29,18 @@ Fünf Prozentpunkte. Klingt nach nichts. Ist aber alles:
 
 Der eine verschießt doppelt so oft. Und im Snooker gibst du bei jedem Fehler den Tisch an den Gegner ab. Der Top-Profi braucht weniger Anläufe für seine Punkte. Deshalb gewinnt er fast immer.
 
-Genau das passiert bei KI-Modellen. Ein Benchmark von 92 gegen 95 sieht aus wie "fast gleich". Dreh es um: 8 Prozent Fehler gegen 5 Prozent. Und beim agentischen Arbeiten - Coden, mehrstufige Aufgaben - reiht sich Schritt an Schritt. Jeder Fehler kostet einen Korrektur-Loop.
+Genau das passiert bei KI-Modellen. Schau in die SWE-bench-Verified-Zahlen - den Standard-Benchmark fürs agentische Coden. Mitte 2026 liegt die Spitze bei rund 81 Prozent: Claude Opus 4.5 mit 80,9. Dahinter drängt sich alles dicht - GPT-5.1 bei 76,3, Gemini 3 Pro bei 76,2. Gut fünf Prozentpunkte zwischen Platz eins und dem soliden Verfolgerfeld. Klingt wieder nach nichts.
 
-![Erfolgswahrscheinlichkeit über 20 Schritte bei 95 Prozent gegen 90 Prozent pro Schritt](/blog/ki-benchmarks-snooker-lochquote/infographic-01.webp)
+Dreh es um: 19 Prozent Fehler gegen 24 Prozent. Und beim agentischen Arbeiten - Coden, mehrstufige Aufgaben - reiht sich Schritt an Schritt. Jeder Fehler kostet einen Korrektur-Loop.
 
-Über 20 Schritte:
+![Erfolgswahrscheinlichkeit über 20 Schritte bei 81 Prozent gegen 76 Prozent pro Schritt](/blog/ki-benchmarks-snooker-lochquote/infographic-01.webp)
 
-- 95 Prozent pro Schritt: rund 36 Prozent Chance, sauber durchzukommen.
-- 90 Prozent: rund 12 Prozent.
+Über 20 Schritte, jeder muss sitzen:
 
-Aus "fünf Prozentpunkten" wird der Faktor drei bei der Frage, ob die Aufgabe am Ende steht.
+- 80,9 Prozent pro Schritt: rund 1,4 Prozent Chance, ohne einen einzigen Eingriff durchzukommen.
+- 76,3 Prozent: rund 0,45 Prozent.
+
+So streng gerechnet käme praktisch kein Modell fehlerfrei durch - echte Agents korrigieren sich unterwegs, klar. Aber genau das ist der Punkt: Aus "fünf Prozentpunkten" im Benchmark wird gut der Faktor drei bei der Frage, wie oft du eingreifen musst. Und jeder Eingriff kostet dich Zeit.
 
 ## Teil 2: Was die letzten Prozent kosten
 
