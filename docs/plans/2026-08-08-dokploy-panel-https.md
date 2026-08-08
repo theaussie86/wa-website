@@ -2,7 +2,7 @@
 
 Issue #18, Teil des VPS-Umzugs (#16).
 
-Ziel: Das Dokploy-Panel ist über `https://dokploy.weissteiner-automation.com` erreichbar,
+Ziel: Das Dokploy-Panel ist über `https://manage.weissteiner-automation.com` erreichbar,
 damit GitHub Actions später den Deploy-Endpunkt mit einem API-Key aufrufen kann statt mit
 einem SSH-Root-Key. Der Panel-Port bleibt in der Firewall geschlossen.
 
@@ -19,7 +19,8 @@ einem SSH-Root-Key. Der Panel-Port bleibt in der Firewall geschlossen.
 | SSH-Tunnel auf das Panel | Funktioniert, liefert 200 |
 | Panel-Router | Noch Default: `Host(dokploy.docker.localhost)`, nur entrypoint `web`, kein TLS |
 | ACME-Mail | Noch Platzhalter `test@localhost.com` - Let's Encrypt akzeptiert das nicht |
-| DNS `dokploy.weissteiner-automation.com` | Zeigt auf `145.223.85.132` (alte Coolify-VPS) - gefangen vom Wildcard `*.weissteiner-automation.com` |
+| DNS `manage.weissteiner-automation.com` | **CNAME** auf `f85f354820198a00.vercel-dns-017.com` - tote Vercel-Altlast, liefert 404 |
+| DNS-Wildcard | `*.weissteiner-automation.com` zeigt auf `145.223.85.132` (alte Coolify-VPS) |
 
 ## Reihenfolge
 
@@ -31,26 +32,33 @@ lange nichts Brauchbares, bis Traefik es erneut versucht. Also: **erst DNS, dann
 Der SSH-Tunnel bleibt in jedem Fall der Rückweg - er geht direkt auf Port 3000 und ist von
 Traefik und Zertifikaten unabhängig.
 
-### 1. A-Record bei IONOS (Betreiber, manuell)
+### 1. DNS bei IONOS umstellen (Betreiber, manuell)
 
-DNS liegt bei IONOS, nicht bei Hostinger. Kein API-Zugriff, also von Hand:
+DNS liegt bei IONOS, nicht bei Hostinger. Kein API-Zugriff, also von Hand.
 
-- Typ: `A`
-- Name/Host: `dokploy`
-- Wert: `186.240.157.55`
-- TTL: `300`
+`manage` existiert bereits, aber als **CNAME** auf `f85f354820198a00.vercel-dns-017.com` -
+ein Rest des toten Vercel-Projekts, der nur noch 404 liefert. Ein Name kann nicht
+gleichzeitig CNAME und A sein, IONOS wird den A-Record sonst ablehnen. Also zwei Schritte:
+
+1. CNAME-Eintrag `manage` löschen.
+2. Neu anlegen:
+   - Typ: `A`
+   - Name/Host: `manage`
+   - Wert: `186.240.157.55`
+   - TTL: `300`
 
 Der Wildcard-Eintrag `*.weissteiner-automation.com` bleibt unangetastet - ein expliziter
-Record für `dokploy` sticht den Wildcard.
+Record für `manage` sticht den Wildcard.
 
 Prüfen, bis die neue Adresse kommt:
 
 ```bash
-dig +short dokploy.weissteiner-automation.com A
-# erwartet: 186.240.157.55
+dig +short manage.weissteiner-automation.com A
+# erwartet: 186.240.157.55, und nur das - keine vercel-dns-Zeile mehr
 ```
 
-Der alte Wildcard-Wert kann bei Resolvern noch bis zu 3600 Sekunden im Cache liegen.
+Der alte CNAME hat TTL 3600, kann bei Resolvern also noch bis zu einer Stunde im Cache
+liegen. Erst weitermachen, wenn `dig` sauber `186.240.157.55` zeigt.
 
 ### 2. Panel-Domain setzen (Betreiber, im Panel-UI)
 
@@ -65,7 +73,7 @@ Dann `http://localhost:13000` öffnen, einloggen, und unter
 
 | Feld | Wert |
 |---|---|
-| Domain / Host | `dokploy.weissteiner-automation.com` |
+| Domain / Host | `manage.weissteiner-automation.com` |
 | Certificate | `Let's Encrypt` |
 | Let's Encrypt Email | `christoph.weissteiner@gmail.com` |
 | HTTPS | an |
@@ -92,14 +100,14 @@ Nach Schritt 2:
 
 ```bash
 # Zertifikat gültig und von Let's Encrypt ausgestellt
-curl -sSI https://dokploy.weissteiner-automation.com/ | head -1
-echo | openssl s_client -connect dokploy.weissteiner-automation.com:443 \
-  -servername dokploy.weissteiner-automation.com 2>/dev/null \
+curl -sSI https://manage.weissteiner-automation.com/ | head -1
+echo | openssl s_client -connect manage.weissteiner-automation.com:443 \
+  -servername manage.weissteiner-automation.com 2>/dev/null \
   | openssl x509 -noout -issuer -subject -dates
 
 # HTTP leitet auf HTTPS um
 curl -sS -o /dev/null -w '%{http_code} -> %{redirect_url}\n' \
-  http://dokploy.weissteiner-automation.com/
+  http://manage.weissteiner-automation.com/
 
 # Panel-Port weiterhin dicht
 nc -z -w 5 186.240.157.55 3000 && echo "FEHLER: 3000 offen" || echo "ok: 3000 dicht"
@@ -119,22 +127,22 @@ Zu diesem Zeitpunkt existiert noch keine Anwendung (die kommt in #21), ein
 # mit Key: 200
 curl -sS -o /dev/null -w '%{http_code}\n' \
   -H "x-api-key: $DOKPLOY_API_KEY" \
-  https://dokploy.weissteiner-automation.com/api/project.all
+  https://manage.weissteiner-automation.com/api/project.all
 
 # ohne Key: 401
 curl -sS -o /dev/null -w '%{http_code}\n' \
-  https://dokploy.weissteiner-automation.com/api/project.all
+  https://manage.weissteiner-automation.com/api/project.all
 
 # falscher Key: 401
 curl -sS -o /dev/null -w '%{http_code}\n' \
   -H "x-api-key: definitiv-falsch" \
-  https://dokploy.weissteiner-automation.com/api/project.all
+  https://manage.weissteiner-automation.com/api/project.all
 ```
 
 Sobald die Anwendung aus #21 existiert, ist der eigentliche Trigger:
 
 ```bash
-curl -X POST "https://dokploy.weissteiner-automation.com/api/application.deploy" \
+curl -X POST "https://manage.weissteiner-automation.com/api/application.deploy" \
   -H "x-api-key: $DOKPLOY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"applicationId": "<id>"}'
@@ -142,7 +150,7 @@ curl -X POST "https://dokploy.weissteiner-automation.com/api/application.deploy"
 
 ## Wenn das Zertifikat nicht kommt
 
-1. `dig +short dokploy.weissteiner-automation.com A` - zeigt der Record wirklich auf
+1. `dig +short manage.weissteiner-automation.com A` - zeigt der Record wirklich auf
    `186.240.157.55`? Solange dort die alte Adresse steht, kann die HTTP-01-Challenge nicht
    ankommen.
 2. Steht in `/etc/dokploy/traefik/traefik.yml` noch `test@localhost.com`? Let's Encrypt
