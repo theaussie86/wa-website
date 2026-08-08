@@ -2223,4 +2223,4 @@ git commit -m "feat: complete Modern Handwerk website MVP"
 - Add real testimonials when available
 - Connect contact form to email service
 - Add analytics tracking
-- Deploy to Vercel
+- Deployment (siehe README, Abschnitt Betrieb)

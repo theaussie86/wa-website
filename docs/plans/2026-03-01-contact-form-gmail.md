@@ -1,5 +1,9 @@
 # Kontaktformular Gmail API Implementation Plan
 
+> **Status: umgesetzt und archiviert (März 2026).** Historisches Dokument, keine
+> Arbeitsanweisung. Der Betrieb läuft nicht mehr auf Vercel - Laufzeit-Variablen werden
+> in Dokploy gepflegt, siehe README.
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Connect the contact form to send emails via Gmail API using a Google Workspace Service Account.
@@ -448,9 +452,9 @@ git commit -m "docs: add .env.example for Gmail API configuration"
    - Client ID: (from service account JSON, field "client_id")
    - OAuth Scopes: `https://www.googleapis.com/auth/gmail.send`
 
-**Step 3: Add Vercel Environment Variables**
+**Step 3: Add Environment Variables** (damals Vercel, heute Dokploy)
 
-1. Go to Vercel Dashboard → Project → Settings → Environment Variables
+1. Laufzeit-Variablen im Panel der Hosting-Plattform hinterlegen
 2. Add:
    - `GOOGLE_SERVICE_ACCOUNT_EMAIL` = service account email
    - `GOOGLE_PRIVATE_KEY` = private_key from JSON (with quotes)

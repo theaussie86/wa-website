@@ -90,15 +90,15 @@ export const SERVICES: ServiceConfig[] = [
     ],
   },
   {
-    id: "vercel-hosting",
-    name: "Vercel Hosting",
-    provider: "Vercel Inc.",
-    providerUrl: "https://vercel.com",
+    id: "hostinger-hosting",
+    name: "Hostinger Hosting",
+    provider: "Hostinger International Ltd.",
+    providerUrl: "https://www.hostinger.com",
     purpose: "Hosting der Website. Erfasst technische Daten wie IP-Adresse für den Betrieb.",
     category: "essential",
     isActive: true,
-    privacyPolicyUrl: "https://vercel.com/legal/privacy-policy",
-    dataTransferToUSA: true,
+    privacyPolicyUrl: "https://www.hostinger.com/privacy-policy",
+    dataTransferToUSA: false,
   },
 
   // ============ ANALYTICS ============

@@ -3,10 +3,10 @@ import { notFound } from "next/navigation";
 import { SITE_NAME } from "@/lib/constants";
 import { ChatbotWidget } from "./chatbot-widget";
 
-// Exclude this test page from production deployments. On Vercel, VERCEL_ENV
-// is "production" for production builds and "preview" for preview builds.
-// Locally (next dev / next build) it's undefined, so the page renders normally.
-const isProduction = process.env.VERCEL_ENV === "production";
+// Diese Testseite gehört nicht in den produktiven Betrieb. In `next dev` ist
+// NODE_ENV "development", im Produktionsbuild und damit im Laufzeit-Image
+// "production" - dort liefert die Seite den Not-Found-Inhalt statt des Widgets.
+const isProduction = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
   title: `Test Chatbot | ${SITE_NAME}`,

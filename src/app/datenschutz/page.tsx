@@ -144,29 +144,26 @@ export default function DatenschutzPage() {
                     <div>
                       <p className="font-semibold mb-1">Wir setzen folgenden Hoster ein:</p>
                       <p className="bg-gray-50 p-4 rounded-md border border-gray-100 inline-block">
-                        Vercel Inc.<br />
-                        340 S Lemon Ave #4133<br />
-                        Walnut, CA 91789<br />
-                        USA
+                        Hostinger International Ltd.<br />
+                        61 Lordou Vironos Street<br />
+                        6023 Larnaca<br />
+                        Zypern
                       </p>
                     </div>
                     <p>
-                      Die Daten werden je nach Serverstandort auch in die USA übertragen. Wir haben einen Vertrag über Auftragsverarbeitung (AVV)
-                      mit dem oben genannten Anbieter geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich
-                      vorgeschriebenen Vertrag, der gewährleistet, dass dieser die personenbezogenen Daten
-                      unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO
-                      verarbeitet.
+                      Die Server, auf denen diese Website betrieben wird, stehen innerhalb der
+                      Europäischen Union.
                     </p>
                     <p>
-                      Zudem erfolgt die Datenübertragung in die USA auf Basis der Standardvertragsklauseln der EU-Kommission. Details findest du hier:{" "}
-                      <a href="https://vercel.com/legal/Vercel_Inc_-_Data_Processing_Addendum.pdf" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent font-medium transition-colors break-all">
-                        https://vercel.com/legal/Vercel_Inc_-_Data_Processing_Addendum.pdf
-                      </a>. Diese haben wir gemeinsam mit dem AVV abgeschlossen.
+                      Wir haben einen Vertrag über Auftragsverarbeitung (AVV) mit dem oben genannten Anbieter
+                      geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen
+                      Vertrag, der gewährleistet, dass dieser die personenbezogenen Daten unserer
+                      Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.
                     </p>
                     <p>
-                      Die Datenschutzinformation von Vercel findest du unter{" "}
-                      <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent font-medium transition-colors break-all">
-                        https://vercel.com/legal/privacy-policy
+                      Die Datenschutzinformation von Hostinger findest du unter{" "}
+                      <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent font-medium transition-colors break-all">
+                        https://www.hostinger.com/privacy-policy
                       </a>.
                     </p>
                   </div>

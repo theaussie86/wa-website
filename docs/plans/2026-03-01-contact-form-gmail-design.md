@@ -73,7 +73,7 @@ GMAIL_FROM_ALIAS=info@weissteiner-automation.com
 
 - Credentials nur server-seitig (nie im Client)
 - Input-Validierung auf Server-Seite
-- Rate Limiting über Vercel (optional)
+- Rate Limiting auf Ebene der Hosting-Plattform (optional, nicht umgesetzt)
 
 ## Dependencies
 

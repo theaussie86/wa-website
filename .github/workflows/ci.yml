@@ -35,7 +35,8 @@ jobs:
           # Alle App-Env-Vars werden zur Laufzeit (Server Actions, Route
           # Handler) gelesen, nicht zur Build-Zeit. Diese Dummy-Werte sind
           # nur ein Sicherheitsnetz, damit der Build nie an fehlenden Vars
-          # scheitert. Echte Secrets liegen in Vercel.
+          # scheitert. Echte Secrets liegen im Panel der Hosting-Plattform,
+          # nie im Repository und nie in den GitHub-Actions-Secrets.
           SUPABASE_URL: https://placeholder.supabase.co
           SUPABASE_SECRET_KEY: placeholder
           BREVO_API_KEY: placeholder
