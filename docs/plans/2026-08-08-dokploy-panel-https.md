@@ -148,6 +148,54 @@ curl -X POST "https://manage.weissteiner-automation.com/api/application.deploy" 
   -d '{"applicationId": "<id>"}'
 ```
 
+## Ergebnis (verifiziert am 2026-08-08)
+
+| Kriterium | Ergebnis |
+|---|---|
+| A-Record zeigt auf die VPS | `186.240.157.55`, autoritativ und über 1.1.1.1 / 8.8.8.8 / 9.9.9.9 |
+| Panel über HTTPS, Zertifikat gültig | 200, `ssl_verify_result: 0`, Issuer `Let's Encrypt YR2`, gültig bis 2026-11-06 |
+| Zertifikatskette | Leaf → `YR2` → `ISRG Root YR`, vollständig ausgeliefert, `Verify return code: 0` auch ohne AIA-Fetch |
+| Panel-Port von außen | Port 3000 abgewiesen |
+| SSH-Tunnel | Weiterhin 200 |
+| Aufruf ohne bzw. mit falschem Key | Beide 401 |
+| Authentifizierter Aufruf | 200 |
+
+Zusätzlich: HTTP leitet mit 301 auf HTTPS um.
+
+Traefik erneuert das Zertifikat automatisch. Kein Kalendereintrag nötig - anders als beim
+GHCR-Token aus #16, das nach einem Jahr hart abläuft.
+
+## Falle: DNS-Cache im Router, nicht im Rechner
+
+Nach jedem Record-Wechsel gilt: `dscacheutil -flushcache` und Chromes
+`net-internals/#dns` bringen nichts, wenn der Mac die FritzBox (`192.168.178.1`) als
+Resolver benutzt. Die cacht selbst, und ein lokaler Flush fragt sie nur erneut.
+
+Erkennen:
+
+```bash
+scutil --dns | grep 'nameserver\[0\]' | head -1   # wer wird gefragt
+dig +short manage.weissteiner-automation.com A     # was der antwortet
+dig +short @1.1.1.1 manage.weissteiner-automation.com A   # was stimmt
+```
+
+Weichen die letzten beiden ab, ist es der Router. Abhilfe: warten bis die TTL des alten
+Eintrags abgelaufen ist, FritzBox neu starten, oder den Mac dauerhaft auf einen öffentlichen
+Resolver stellen:
+
+```bash
+sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 9.9.9.9
+# zurück: sudo networksetup -setdnsservers Wi-Fi Empty
+```
+
+Für Prüfungen zwischendurch geht `--resolve <host>:443:<ip>` an jedem Cache vorbei.
+
+**Das wiederholt sich beim Cutover der Hauptdomain (#25) identisch.** Dort ist der Effekt
+gefährlicher: Die alte Adresse zeigt auf ein funktionierendes Shared Hosting statt auf eine
+tote Vercel-Seite. Der Cutover sieht dann so aus, als sei nichts passiert - die Seite lädt ja.
+Vor jeder Aussage über den Cutover-Erfolg deshalb gegen `1.1.1.1` prüfen, nicht gegen den
+eigenen Resolver.
+
 ## Falle: "certificate has expired" direkt nach dem Umstellen
 
 Der alte Vercel-Endpunkt liefert unter der SNI `manage.weissteiner-automation.com` ein
