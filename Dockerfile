@@ -41,6 +41,13 @@ COPY --from=builder --chown=nextjs:nodejs /app/src/content ./src/content
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Ablage des Image-Optimizers. Muss im Image existieren und nextjs gehören,
+# bevor hier ein Volume hängt: Docker übernimmt Rechte und Eigentümer des
+# vorhandenen Pfades in ein frisches Volume. Fehlt das Verzeichnis, gehört
+# der Mount-Punkt root und der Optimizer kann nichts schreiben - er
+# transkodiert dann bei jedem Abruf neu, ohne dass etwas sichtbar bricht.
+RUN mkdir -p /app/.next/cache/images && chown -R nextjs:nodejs /app/.next/cache
+
 USER nextjs
 EXPOSE 3000
 
