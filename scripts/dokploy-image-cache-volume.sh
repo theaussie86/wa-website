@@ -186,6 +186,23 @@ finish() {
 
 TOTAL_STAGES=5
 
+# Der Wizard lebt von Rückfragen. Ohne Terminal an stdin liefert jedes `read`
+# sofort EOF, und das Skript rauscht mit leeren Antworten durch alle Stufen -
+# im schlimmsten Fall bis zu einem Deployment, das niemand bestätigt hat.
+# Das passiert unter anderem beim `!`-Prefix in Claude Code und in Pipes.
+# Wenn ein steuerndes Terminal erreichbar ist, holen wir es uns zurück.
+if [[ ! -t 0 ]]; then
+  if [[ -r /dev/tty ]] && exec </dev/tty 2>/dev/null && [[ -t 0 ]]; then
+    :
+  else
+    printf 'Dieses Skript braucht ein Terminal an stdin.\n' >&2
+    printf 'In einem normalen Terminal starten, nicht über eine Pipe oder\n' >&2
+    printf 'den !-Prefix in Claude Code:\n\n' >&2
+    printf '  %s\n\n' "$0" >&2
+    exit 1
+  fi
+fi
+
 # Feste Werte dieser Installation. Quelle: docs/plans/2026-08-08-dokploy-app-from-ghcr.md
 PANEL="${DOKPLOY_URL:-https://manage.weissteiner-automation.com}"
 APP="${DOKPLOY_APPLICATION_ID:-7SegzhqX2qLM3NY75qGPR}"
