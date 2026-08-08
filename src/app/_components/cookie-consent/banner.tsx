@@ -259,8 +259,21 @@ function SettingsModal() {
 }
 
 export function CookieConsentBanner() {
-  const { hasConsented, isSettingsOpen, acceptAll, rejectAll, openSettings } =
-    useConsent();
+  const {
+    hasConsented,
+    isInitialized,
+    isSettingsOpen,
+    acceptAll,
+    rejectAll,
+    openSettings,
+  } = useConsent();
+
+  // Nichts rendern, bevor localStorage gelesen wurde. Das verhindert das
+  // Aufblitzen des Banners bei bereits erteilter Einwilligung und hält
+  // Server- und ersten Client-Render identisch.
+  if (!isInitialized) {
+    return null;
+  }
 
   // Show settings modal if open
   if (isSettingsOpen) {
