@@ -84,8 +84,26 @@ docker run --rm -p 3000:3000 ghcr.io/theaussie86/wa-website:sha-<kurzer SHA>
 
 curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3000/          # 200
 curl -s http://localhost:3000/api/health                                  # Erfolgsobjekt
-curl -s http://localhost:3000/ | grep -o 'GTM-[A-Z0-9]*' | head -1        # GTM-T2XKWWV8
 ```
+
+Die GTM-ID steht **nicht** im initialen HTML - aber nicht, weil das so gedacht wäre: der
+gesamte Seitenbaum fehlt im serverseitigen HTML (siehe #34). Die ID wird zur Build-Zeit in
+einen JS-Chunk inlined, dort wird geprüft:
+
+```bash
+found=""
+for CH in $(curl -sf http://localhost:3000/ \
+    | grep -oE '/_next/static/chunks/[A-Za-z0-9._%-]+\.js' | sort -u); do
+  if curl -sf "http://localhost:3000$CH" | grep -q 'GTM-T2XKWWV8'; then
+    echo "gefunden in $CH"; found=1; break
+  fi
+done
+[ -n "$found" ] || { echo "GTM-ID NICHT gefunden - Build-Argument prüfen"; exit 1; }
+```
+
+Der `found`-Zweig ist nicht Kosmetik: ohne ihn schweigt die Schleife gleichermaßen, wenn die
+ID fehlt, wenn der Container nicht läuft und wenn `grep` keinen Chunk findet. Stille wäre
+sonst sowohl das Erfolgs- als auch jedes Fehlersignal.
 
 Cache-Wirkung: nach einer reinen Textänderung erneut pushen und die Dauer des Schritts
 "Build und Push" mit dem ersten Lauf vergleichen. Der erste Lauf hat keinen Cache und baut
