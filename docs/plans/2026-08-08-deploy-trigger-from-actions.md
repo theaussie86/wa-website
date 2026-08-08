@@ -136,22 +136,45 @@ Rollback:
 gh workflow run deploy.yml -f image=ghcr.io/theaussie86/wa-website:sha-<alter-commit>
 ```
 
-Danach dieselbe `application.one`-Prüfung - `dockerImage` muss auf dem alten Tag stehen.
+Danach dieselbe `application.one`-Prüfung - `dockerImage` muss auf dem alten Tag stehen. Den
+alten Tag findet man ohne Registry-Zugriff im Log des zugehörigen Build-Laufs:
+
+```bash
+gh run view <run-id> --log | grep -o 'Gebautes Image: .*'
+```
 
 ## Ergebnis (verifiziert am 2026-08-08)
 
+Merge von #36 nach `main` als Merge-Commit `250b41b`, Lauf `31280981172`.
+
 | Akzeptanzkriterium | Ergebnis |
 |---|---|
-| Push auf `main` löst nach erfolgreichem Push automatisch ein Deployment aus | offen - wird beim Merge dieses PRs zum ersten Mal durchlaufen |
-| Triviale Textänderung ohne manuellen Eingriff sichtbar | offen |
-| Laufende Anwendung referenziert den SHA-Tag des Commits | offen |
-| Deploy über HTTPS mit API-Key, kein SSH-Schlüssel in den Secrets | erfüllt - einziges Repository-Secret ist `DOKPLOY_API_KEY` |
-| Fehlgeschlagener Build löst kein Deployment aus | erfüllt durch `needs: build` |
-| Rollback nachgewiesen | offen |
+| Push auf `main` löst nach erfolgreichem Push automatisch ein Deployment aus | `Build & Push to GHCR: success` → `deploy: success`, ohne Handgriff |
+| Triviale Textänderung ohne manuellen Eingriff sichtbar | Startseite über die Server-Adresse 200, `/api/health` liefert `{"status":"ok"}` - mit der Einschränkung unten |
+| Laufende Anwendung referenziert den SHA-Tag des Commits | `Eingetragene Version: ghcr.io/theaussie86/wa-website:sha-250b41b` |
+| Deploy über HTTPS mit API-Key, kein SSH-Schlüssel in den Secrets | einziges Repository-Secret ist `DOKPLOY_API_KEY` |
+| Fehlgeschlagener Build löst kein Deployment aus | `needs: build` |
+| Rollback nachgewiesen | Lauf `31281236253` auf `sha-75e8933` (Vorversion), danach Lauf `31281323558` zurück auf `sha-250b41b`; beide `success`, beide mit passender Rückmeldung von `application.one` |
 
-Die offenen Zeilen lassen sich vor dem Merge nicht belegen: `workflow_dispatch` und der
-Aufruf einer wiederverwendbaren Workflow-Datei greifen erst, wenn die Dateien auf `main`
-liegen. Direkt nach dem Merge mit den Befehlen oben nachtragen.
+Die Warteschleife griff wie gebaut: `Deployment ausgelöst: GitHub Actions 31280981172.1`,
+zehn Sekunden später `Status: done`.
+
+## Was diese Verifikation nicht belegt
+
+**`done` heißt nicht "gesund".** Der Deployment-Datensatz steht auf `done`, sobald Dokploy
+seine Arbeit abgeschlossen hat - also `docker service update` abgesetzt ist. Ein
+fehlgeschlagener Image-Pull landet als `error` und wird erkannt; ein Container, der nach dem
+Start umkippt, nicht. Das deckt erst der Smoke-Test (#23).
+
+**Der Rollback ist auf Konfigurationsebene belegt, nicht auf Containerebene.** Beide Läufe
+haben `application.one` zurückgelesen und den erwarteten Tag gefunden. Dass tatsächlich ein
+anderer Container lief, wurde nicht unabhängig geprüft - dafür bräuchte es
+`docker.getContainersByAppNameMatch` und damit den API-Key (siehe
+`2026-08-08-dokploy-app-from-ghcr.md`).
+
+**Die Größe der Startseite ist keine Versionskennung.** Sie lag vor und nach dem Rollback bei
+identischen 53540 Bytes. Wer belegen will, welcher Build ausgeliefert wird, braucht ein
+Merkmal im Container, nicht in der Antwort.
 
 ## Nicht Teil dieser Änderung
 
