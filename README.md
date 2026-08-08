@@ -64,24 +64,35 @@ oder entfernt, pflegt diese Datei und gleicht die Datenschutzerklärung
 
 ## Betrieb
 
-**Heute:** Die Webseite läuft auf Hostinger Shared Hosting. Der einzige automatisierte
-Ablauf ist der CI-Workflow (`.github/workflows/ci.yml`), der bei jedem Push und Pull
-Request auf `main` Typecheck und Build prüft. Einen automatischen Deploy gibt es nicht.
+**Heute:** Unter der Live-Domain antwortet weiterhin das Hostinger Shared Hosting. Parallel
+läuft die Anwendung bereits als Docker-Container auf einer eigenen Hostinger-VPS, erreichbar
+über die Server-Adresse mit gesetztem Host-Header. Umgeschaltet wird per DNS (#25).
 
-**Ziel:** Betrieb als Docker-Container auf einer eigenen Hostinger-VPS. Das Image wird in
-GitHub Actions gebaut, mit dem Commit-SHA getaggt und in die private GitHub Container
-Registry gepusht; Dokploy zieht es von dort und betreibt es hinter Traefik mit
-Let's-Encrypt-Zertifikat. Rollback heißt dann: in Dokploy den vorherigen SHA-Tag eintragen
-und neu deployen.
+Drei Workflows:
 
-Vorhanden ist bereits:
+| Datei | Auslöser | Wirkung |
+| --- | --- | --- |
+| `ci.yml` | Push und Pull Request auf `main` | Typecheck und Build |
+| `build-image.yml` | Push auf `main`, manuell | Image bauen, mit `sha-<commit>` taggen, nach GHCR pushen |
+| `deploy.yml` | von `build-image.yml`, manuell | Image-Tag in Dokploy setzen, deployen, auf Abschluss warten |
+
+Ein Merge nach `main` geht damit ohne Handgriff auf die VPS. Ein fehlgeschlagener Build
+löst kein Deployment aus. In den Repository-Secrets liegt dafür nur ein Dokploy-API-Key,
+kein SSH-Schlüssel.
+
+**Rollback:** `deploy.yml` von Hand mit einem früheren Tag starten -
+`gh workflow run deploy.yml -f image=ghcr.io/theaussie86/wa-website:sha-<commit>`. Ohne
+Rebuild, solange der Tag in GHCR liegt (die letzten fünf Versionen).
+
+Dazu gehören:
 
 - `Dockerfile` - Multi-Stage-Build auf Basis des `standalone`-Outputs von Next.js.
 - `NEXT_PUBLIC_GTM_ID` als einzige Build-Time-Variable, übergeben als Build-Argument.
-- `/api/health` - reiner Liveness-Endpunkt ohne Prüfung von Fremdsystemen.
+- `/api/health` - reiner Liveness-Endpunkt ohne Prüfung von Fremdsystemen, in Dokploy als
+  Gesundheitsprüfung hinterlegt.
 
-Es fehlen noch Build-und-Push-Workflow, Dokploy-Anwendung, Deploy-Trigger und der
-DNS-Cutover. Stand und Reihenfolge stehen in Issue #16 und seinen Teilaufgaben.
+Offen sind Smoke-Test nach dem Deploy und der DNS-Cutover. Stand und Reihenfolge stehen in
+Issue #16 und seinen Teilaufgaben; die Runbooks liegen in `docs/plans`.
 
 ## Beitragen
 
