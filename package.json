@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
+    "check:ssr": "node scripts/check-ssr-body.mjs",
     "sandcastle": "npx tsx .sandcastle/main.mts"
   },
   "dependencies": {

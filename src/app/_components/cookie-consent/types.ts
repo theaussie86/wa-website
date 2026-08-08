@@ -8,6 +8,13 @@ export interface ConsentState {
 export interface ConsentContextType {
   consent: ConsentState | null;
   hasConsented: boolean;
+  /**
+   * False beim Server-Rendering und beim ersten Client-Render, true sobald
+   * localStorage gelesen wurde. Consent-abhängige Ausgaben (Banner,
+   * Tag-Skripte) bleiben verborgen, solange dieser Wert false ist: Die
+   * gespeicherte Einwilligung ist dann noch unbekannt.
+   */
+  isInitialized: boolean;
   isSettingsOpen: boolean;
   acceptAll: () => void;
   rejectAll: () => void;

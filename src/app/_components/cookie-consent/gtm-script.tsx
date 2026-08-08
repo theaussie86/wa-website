@@ -7,11 +7,13 @@ import { useConsent } from "./provider";
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export function GTMScript() {
-  const { consent, hasConsented } = useConsent();
+  const { consent, hasConsented, isInitialized } = useConsent();
 
-  // Initialize dataLayer and set default consent
+  // dataLayer anlegen und den Default-Zustand (alles abgelehnt) setzen.
+  // Läuft erst, wenn localStorage gelesen wurde - sonst würde
+  // consent_initialized eine bereits erteilte Einwilligung als false melden.
   useEffect(() => {
-    if (!GTM_ID) return;
+    if (!GTM_ID || !isInitialized) return;
 
     // Initialize dataLayer if not exists
     window.dataLayer = window.dataLayer || [];
@@ -35,9 +37,11 @@ export function GTMScript() {
       consent_analytics: consent?.analytics ?? false,
       consent_marketing: consent?.marketing ?? false,
     });
-  }, []);
+    // Absichtlich nur an isInitialized gebunden: Der Default-Zustand wird
+    // genau einmal gesetzt, spätere Änderungen übernimmt der Effekt darunter.
+  }, [isInitialized]);
 
-  // Update consent when it changes
+  // Einwilligung nachreichen, sobald sie sich ändert
   useEffect(() => {
     if (!GTM_ID || !hasConsented || !consent) return;
 
@@ -55,8 +59,15 @@ export function GTMScript() {
     ]);
   }, [consent, hasConsented]);
 
-  // Don't render GTM if no ID configured
-  if (!GTM_ID) {
+  // Nichts rendern ohne konfigurierte ID - und nichts, bevor localStorage
+  // gelesen wurde. Der zweite Teil hält den Ladezeitpunkt des Containers
+  // genau dort, wo er vor dieser Korrektur lag, und hält Server- und ersten
+  // Client-Render identisch.
+  //
+  // Der Container lädt danach auch ohne erteilte Einwilligung, mit Consent
+  // Mode auf "denied". Das ist unverändertes Altverhalten und hier bewusst
+  // nicht angefasst.
+  if (!GTM_ID || !isInitialized) {
     return null;
   }
 

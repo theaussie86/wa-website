@@ -102,17 +102,15 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
     setIsSettingsOpen(false);
   }, []);
 
-  // Don't render children until we've checked localStorage
-  // This prevents flash of banner for users who have already consented
-  if (!isInitialized) {
-    return null;
-  }
-
+  // children werden immer gerendert - auch serverseitig, bevor localStorage
+  // gelesen werden konnte. Consent-abhängige Ausgaben warten stattdessen
+  // selbst auf isInitialized (siehe banner.tsx, gtm-script.tsx).
   return (
     <ConsentContext.Provider
       value={{
         consent,
         hasConsented: consent !== null,
+        isInitialized,
         isSettingsOpen,
         acceptAll,
         rejectAll,
