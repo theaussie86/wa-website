@@ -148,6 +148,36 @@ curl -X POST "https://manage.weissteiner-automation.com/api/application.deploy" 
   -d '{"applicationId": "<id>"}'
 ```
 
+## Falle: "certificate has expired" direkt nach dem Umstellen
+
+Der alte Vercel-Endpunkt liefert unter der SNI `manage.weissteiner-automation.com` ein
+eigenes Let's-Encrypt-Zertifikat, das am 25.11.2025 abgelaufen ist. Solange ein Resolver den
+geloeschten CNAME noch gecacht hat, landet die Anfrage dort - und `curl` meldet
+`SSL certificate problem: certificate has expired`.
+
+Das sieht aus, als waere die Zertifikatsausstellung auf der VPS gescheitert, ist aber das
+Gegenteil: die Anfrage kommt gar nicht erst an. Unterscheiden laesst sich das am
+Ausstellungsdatum.
+
+```bash
+# was der eigene Rechner gerade aufloest
+dig +short manage.weissteiner-automation.com A
+
+# am Cache vorbei, direkt gegen die VPS
+echo | openssl s_client -connect 186.240.157.55:443 \
+  -servername manage.weissteiner-automation.com 2>/dev/null \
+  | openssl x509 -noout -subject -dates
+
+# macOS: DNS-Cache leeren
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+
+Bis der Cache leer ist, funktionieren alle Pruefungen mit
+`--resolve manage.weissteiner-automation.com:443:186.240.157.55`.
+
+Let's Encrypt selbst ist davon nicht betroffen - dessen Resolver fragen autoritativ und
+sehen den neuen A-Record sofort.
+
 ## Wenn das Zertifikat nicht kommt
 
 1. `dig +short manage.weissteiner-automation.com A` - zeigt der Record wirklich auf
