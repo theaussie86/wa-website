@@ -2,7 +2,8 @@ name: Build Image
 
 # Baut das Container-Image bei jedem Push auf main und legt es als privates
 # Package in der GitHub Container Registry ab. Der Build läuft ausschließlich
-# hier, nie auf dem Server. Der Deploy-Trigger gegen Dokploy kommt separat (#22).
+# hier, nie auf dem Server. Anschließend deployt deploy.yml den frisch gebauten
+# SHA-Tag auf die VPS (#22).
 
 on:
   push:
@@ -26,6 +27,8 @@ jobs:
   build:
     name: Build & Push to GHCR
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.image.outputs.ref }}
     permissions:
       contents: read
       # Reicht für Push und Aufräumen des Packages. Kein dauerhaftes Token
@@ -76,11 +79,47 @@ jobs:
           # Images statt Attestations zählen.
           provenance: false
 
-      # Läuft nur, wenn der Push davor durchlief. Fünf Versionen sind genug
-      # Rollback-Punkte, ohne dass der Registry-Speicher wächst.
+      # Der Deploy referenziert genau den Tag, den dieser Lauf gepusht hat -
+      # abgelesen aus der Ausgabe von metadata-action statt aus einer zweiten,
+      # selbst gebauten Formel. Sonst zeigt der Deploy irgendwann auf einen Tag,
+      # der so nie gepusht wurde.
+      - name: SHA-Tag des gebauten Images bestimmen
+        id: image
+        env:
+          META_JSON: ${{ steps.meta.outputs.json }}
+        run: |
+          set -euo pipefail
+          ref=$(jq -er 'first(.tags[] | select(contains(":sha-")))' <<<"$META_JSON")
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "Gebautes Image: $ref"
+
+      # Fünf Versionen sind genug Rollback-Punkte, ohne dass der
+      # Registry-Speicher wächst.
+      #
+      # Nur auf main: ein Branch-Build würde sonst Tags aus dem
+      # Rollback-Fenster verdrängen - im schlimmsten Fall genau den, auf dem
+      # die Produktion gerade steht.
+      #
+      # continue-on-error, weil der Deploy über needs: build an diesem Job
+      # hängt. Ein Schluckauf der Packages-API darf kein Deployment
+      # verhindern, dessen Image längst gepusht ist.
       - name: Alte Package-Versionen aufräumen
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
         uses: actions/delete-package-versions@v5
         with:
           package-name: ${{ env.IMAGE_NAME }}
           package-type: container
           min-versions-to-keep: 5
+
+  # needs: build heißt, dass ein fehlgeschlagener Build oder Push kein
+  # Deployment auslöst. Die Einschränkung auf main verhindert, dass ein
+  # manueller Lauf auf einem Branch ungeprüften Code live schiebt.
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/deploy.yml
+    with:
+      image: ${{ needs.build.outputs.image }}
+    secrets:
+      DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
