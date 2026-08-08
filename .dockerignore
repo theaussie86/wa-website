@@ -1,0 +1,41 @@
+# Host-Artefakte: würden die im Container installierten nativen Binaries
+# (sharp, @next/swc) überschreiben.
+node_modules
+.next
+out
+build
+*.tsbuildinfo
+
+# Lokale Umgebungsdateien - Laufzeit-Secrets gehören nie ins Image.
+.env
+.env.*
+!.env.example
+.sandcastle/.env
+
+# Git und CI
+.git
+.gitignore
+.github
+
+# Agenten- und Werkzeug-Verzeichnisse
+.agent
+.agents
+.claude
+.sandcastle
+.playwright-mcp
+.vercel
+docs
+supabase
+skills-lock.json
+product-marketing-context.md
+CLAUDE.md
+
+# Container-Definition selbst
+Dockerfile
+.dockerignore
+
+# Sonstiges
+.DS_Store
+*.pem
+npm-debug.log*
+README.md

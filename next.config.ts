@@ -1,10 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Hostinger Node.js Web Apps benötigt Standalone-Output:
-  // Die Deploy-Pipeline kopiert .next/standalone/server.js nach ~/domains/{domain}/nodejs
-  // und generiert das Passenger-.htaccess in public_html.
+  // Standalone-Output für den Container-Betrieb: Das Laufzeit-Image kopiert
+  // .next/standalone (Server plus nur die tatsächlich benötigten Module),
+  // .next/static und public - keine Dev-Dependencies. Siehe Dockerfile.
   output: "standalone",
+  images: {
+    // Der Image-Optimizer transkodiert sonst nach jedem Cache-Ablauf neu.
+    // 30 Tage, weil Bilder unter stabilen Pfaden liegen und bei einer
+    // Änderung ohnehin ein neues Image mit leerem Cache ausgerollt wird.
+    minimumCacheTTL: 2592000,
+  },
 };
 
 export default nextConfig;
