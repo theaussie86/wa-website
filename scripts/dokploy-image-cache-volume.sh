@@ -39,11 +39,11 @@ _clear() {
 banner() {
   _clear
   printf '\n%s%s  %s%s\n' "$BOLD" "$BLUE" "$1" "$RESET"
-  printf '%s  %s stages%s\n\n' "$DIM" "$TOTAL_STAGES" "$RESET"
-  printf '%s  You drive the browser; this wizard tells you exactly what to do and\n' "$DIM"
-  printf '  captures the values you copy back. Stop any time with Ctrl-C and re-run\n'
-  printf '  later — it remembers values already saved.%s\n' "$RESET"
-  pause "Ready to start?"
+  printf '%s  %s Stufen%s\n\n' "$DIM" "$TOTAL_STAGES" "$RESET"
+  printf '%s  Du bedienst den Browser, dieses Skript sagt dir genau was zu tun ist\n' "$DIM"
+  printf '  und prüft jeden Schritt nach. Jederzeit mit Ctrl-C abbrechen und später\n'
+  printf '  neu starten - nichts davon ist unumkehrbar.%s\n' "$RESET"
+  pause "Bereit? Enter zum Starten."
 }
 
 # stage "Name" — clear the screen, then announce a stage and show progress.
@@ -70,13 +70,13 @@ open_url() {
     elif command -v explorer.exe >/dev/null 2>&1; then explorer.exe "$url"
     elif command -v xdg-open    >/dev/null 2>&1; then xdg-open "$url"
     elif command -v open        >/dev/null 2>&1; then open "$url"
-    else warn "couldn't open a browser — visit it manually: $url"; fi
-  } >/dev/null 2>&1 || warn "couldn't open a browser — visit it manually: $url"
+    else warn "Kein Browser gestartet - Adresse selbst öffnen: $url"; fi
+  } >/dev/null 2>&1 || warn "Kein Browser gestartet - Adresse selbst öffnen: $url"
 }
 
 # pause "msg" — wait for the human to confirm they've done the manual part.
 pause() {
-  printf '  %s%s%s ' "$DIM" "${1:-Press Enter to continue}" "$RESET"
+  printf '  %s%s%s ' "$DIM" "${1:-Enter zum Fortfahren}" "$RESET"
   read -r _ || true
 }
 
@@ -150,7 +150,7 @@ set_secret() {
     fi
   fi
   SKIPPED+=("GitHub secret $name (set it manually: gh secret set $name)")
-  warn "skipped GitHub secret $name — gh not ready; set it later"
+  warn "GitHub-Secret $name übersprungen - gh nicht bereit, später setzen"
 }
 
 # set_var NAME VALUE — set a GitHub Actions repo variable (non-secret).
@@ -163,17 +163,17 @@ set_var() {
     fi
   fi
   SKIPPED+=("GitHub variable $name")
-  warn "skipped GitHub variable $name — gh not ready; set it later"
+  warn "GitHub-Variable $name übersprungen - gh nicht bereit, später setzen"
 }
 
 # finish — clear, then a closing summary of everything configured.
 finish() {
   _clear
-  printf '\n%s%s  ✓ Setup complete%s\n' "$BOLD" "$GREEN" "$RESET"
+  printf '\n%s%s  ✓ Fertig%s\n' "$BOLD" "$GREEN" "$RESET"
   (( ${#WRITTEN_ENV[@]} ))    && note "wrote ${#WRITTEN_ENV[@]} value(s) to $ENV_FILE: ${WRITTEN_ENV[*]}"
   (( ${#WRITTEN_SECRET[@]} )) && note "set ${#WRITTEN_SECRET[@]} GitHub secret(s): ${WRITTEN_SECRET[*]}"
   if (( ${#SKIPPED[@]} )); then
-    printf '\n'; warn "still to do by hand:"
+    printf '\n'; warn "Von Hand nachzuholen:"
     for s in "${SKIPPED[@]}"; do note "  - $s"; done
   fi
   printf '\n'
@@ -186,6 +186,27 @@ finish() {
 
 TOTAL_STAGES=5
 
+# Der Wizard lebt von Rückfragen. Ohne Terminal an stdin liefert jedes `read`
+# sofort EOF, und das Skript rauscht mit leeren Antworten durch alle Stufen -
+# im schlimmsten Fall bis zu einem Deployment, das niemand bestätigt hat.
+# Das passiert unter anderem beim `!`-Prefix in Claude Code und in Pipes.
+# Wenn ein steuerndes Terminal erreichbar ist, holen wir es uns zurück.
+if [[ ! -t 0 ]]; then
+  # Die Klammern begrenzen die Umleitung von stderr auf diesen einen Versuch -
+  # ohne sie wäre stderr für den Rest des Laufs auf /dev/null gerichtet und
+  # jede spätere Fehlermeldung verschwunden. Die Umleitung von stdin durch
+  # exec bleibt dagegen bestehen, genau wie gewollt.
+  if { exec </dev/tty; } 2>/dev/null && [[ -t 0 ]]; then
+    :
+  else
+    printf 'Dieses Skript braucht ein Terminal an stdin.\n' >&2
+    printf 'In einem normalen Terminal starten, nicht über eine Pipe oder\n' >&2
+    printf 'den !-Prefix in Claude Code:\n\n' >&2
+    printf '  %s\n\n' "$0" >&2
+    exit 1
+  fi
+fi
+
 # Feste Werte dieser Installation. Quelle: docs/plans/2026-08-08-dokploy-app-from-ghcr.md
 PANEL="${DOKPLOY_URL:-https://manage.weissteiner-automation.com}"
 APP="${DOKPLOY_APPLICATION_ID:-7SegzhqX2qLM3NY75qGPR}"
@@ -195,9 +216,12 @@ VOLUME_NAME="wa-website-image-cache"
 MOUNT_PATH="/app/.next/cache/images"
 
 # Der Cache-Test benutzt Breiten, die die Webseite selbst nie anfragt (das Hero
-# rendert mit sizes="100vw" nur deviceSizes). Nur so ist "kalt" wirklich kalt.
+# rendert mit sizes="100vw" nur deviceSizes). Nur so ist der erste Abruf
+# wirklich ein Fehltreffer.
 # q muss 75 sein - images.qualities lässt in Next 16 nichts anderes zu.
 IMG="url=%2Fgruenten.jpg&q=75"
+PROBE_WIDTH="${PROBE_WIDTH:-128}"   # die Variante, die das Deployment überleben soll
+CONTROL_WIDTH="${CONTROL_WIDTH:-64}" # Gegenprobe, wird erst nach dem Deploy geholt
 
 # api METHOD PATH [JSON] - ruft die Dokploy-API auf, Antwort nach $API_BODY.
 # Setzt $API_CODE. Bricht nicht ab; die Stages werten selbst aus.
@@ -217,19 +241,80 @@ api() {
   API_BODY=$(cat "$tmp"); rm -f "$tmp"
 }
 
-# fetch_img WIDTH - ruft eine Bildvariante über die Server-Adresse ab, am DNS
-# vorbei (--resolve) und ohne Zertifikatsprüfung (-k). Beides nötig, solange
-# die Domain noch auf das alte Hosting zeigt (#25). Gibt "CODE SEKUNDEN" aus.
-fetch_img() {
-  curl -sSk --max-time 60 --resolve "$DOMAIN:443:$VPS_IP" -o /dev/null \
-    -w '%{http_code} %{time_total}' "https://$DOMAIN/_next/image?$IMG&w=$1" \
-    2>/dev/null || echo "000 0"
+# deploy_and_wait TITEL BESCHREIBUNG - stößt ein Deployment an und wartet, bis
+# der Datensatz mit genau diesem Titel "done" meldet. Dokploy schreibt den
+# mitgeschickten title unverändert in den Datensatz; daran wird der eigene Lauf
+# wiedergefunden. Nicht an applicationStatus: der springt binnen Sekunden auf
+# "done", während Swarm noch rollt.
+#
+# Die Abbruchbedingungen sind dieselben wie in .github/workflows/deploy.yml und
+# aus demselben Grund: 401/403/404 werden durch Warten nicht besser, und ein
+# Datensatz, der nach zwei Minuten nicht existiert, heißt, dass die Annahme über
+# den Titel nicht mehr stimmt. Beides soll sofort scheitern statt nach zehn
+# Minuten als irreführender Timeout.
+deploy_and_wait() {
+  local title="$1" description="$2" status=pending missing=0
+  api POST "application.deploy" "$(jq -n --arg id "$APP" --arg t "$title" --arg d "$description" \
+    '{applicationId: $id, title: $t, description: $d}')"
+  if [[ "$API_CODE" != "200" ]]; then
+    warn "application.deploy antwortete mit HTTP $API_CODE:"; printf '  %s\n' "$API_BODY"; exit 1
+  fi
+  printf '  %s↻%s Deployment ausgelöst, warte auf Abschluss ...\n' "$BLUE" "$RESET"
+
+  local _
+  for _ in $(seq 1 60); do
+    sleep 10
+    api GET "deployment.all?applicationId=$APP"
+    case "$API_CODE" in
+      200) ;;
+      401|403|404)
+        warn "deployment.all antwortete mit HTTP $API_CODE - kein Wiederholungsfall:"
+        printf '  %s\n' "$API_BODY"; exit 1 ;;
+      *) note "  HTTP $API_CODE, erneuter Versuch"; continue ;;
+    esac
+    status=$(printf '%s' "$API_BODY" | jq -r --arg t "$title" \
+      '[.. | objects | select(.title? == $t and has("status"))] | .[0].status // "pending"' \
+      2>/dev/null) || status=pending
+    printf '  %sStatus: %s%s\n' "$DIM" "$status" "$RESET"
+    case "$status" in
+      done) printf '  %s✓%s Deployment abgeschlossen.\n' "$GREEN" "$RESET"; return 0 ;;
+      error|cancelled) warn "Deployment fehlgeschlagen - Logs im Dokploy-Panel."; exit 1 ;;
+      pending)
+        missing=$((missing + 1))
+        if [[ "$missing" -ge 12 ]]; then
+          warn "Kein Deployment mit dem Titel \"$title\" gefunden."
+          warn "Es läuft womöglich trotzdem - im Dokploy-Panel nachsehen."
+          exit 1
+        fi ;;
+    esac
+  done
+  warn "Deployment nach 10 Minuten weder done noch error - Abbruch."
+  exit 1
 }
 
-# faster_than A B - wahr, wenn Zeit A weniger als die Hälfte von Zeit B ist.
-# Verhältnis statt fester Schwelle, weil die Netzlaufzeit den Messwert
-# dominiert und von der Leitung abhängt, nicht von der Serverlast.
-faster_than() { awk -v a="$1" -v b="$2" 'BEGIN { exit !(a * 2 < b) }'; }
+# probe WIDTH - ruft eine Bildvariante über die Server-Adresse ab, am DNS vorbei
+# (--resolve) und ohne Zertifikatsprüfung (-k). Beides nötig, solange die Domain
+# noch auf das alte Hosting zeigt (#25). Gibt "HTTPCODE CACHESTATUS" aus.
+#
+# Ausgewertet wird der Header x-nextjs-cache (HIT/MISS/STALE), nicht die Dauer.
+# Zeitmessung wäre hier wertlos: seit die Quelldatei 569 KB statt 14 MB hat,
+# liegt die Transkodierzeit unter der Netzlaufzeit - gemessen an der VPS waren
+# Treffer und Fehltreffer beide bei rund 0,1 s. Der Header sagt es dagegen
+# direkt und ohne Schwellenwert.
+probe() {
+  local head code status
+  # Accept mitschicken: der MIME-Typ geht in den Cache-Schlüssel ein. Ohne den
+  # Header prüfte der Wizard eine JPEG-Variante, die kein Browser je anfragt -
+  # gemessen würde ein Cache, den niemand benutzt.
+  head=$(curl -sSkI --max-time 60 --resolve "$DOMAIN:443:$VPS_IP" \
+    -H 'Accept: image/webp,image/*,*/*' \
+    "https://$DOMAIN/_next/image?$IMG&w=$1" 2>/dev/null | tr -d '\r') \
+    || { echo "000 UNREACHABLE"; return; }
+  # tail -n1 statt head: bei einer Weiterleitung zählt die letzte Antwort.
+  code=$(printf '%s\n' "$head" | sed -n 's|^HTTP/[0-9.]* \([0-9][0-9][0-9]\).*|\1|p' | tail -n1)
+  status=$(printf '%s\n' "$head" | sed -n 's/^[Xx]-[Nn]ext[Jj][Ss]-[Cc]ache: *//p' | tail -n1)
+  echo "${code:-000} ${status:-KEIN_HEADER}"
+}
 
 banner "Dokploy: Volume für den Image-Optimizer-Cache (#24)"
 
@@ -254,7 +339,7 @@ if [[ "$API_CODE" != "200" ]]; then
   warn "application.one antwortete mit HTTP $API_CODE - Key oder Panel-URL prüfen."
   printf '  %s\n' "$API_BODY"; exit 1
 fi
-DEPLOYED_IMAGE=$(printf '%s' "$API_BODY" | jq -r '[.. | objects | select(has("dockerImage"))] | .[0].dockerImage // "?"')
+DEPLOYED_IMAGE=$(printf '%s' "$API_BODY" | jq -r '[.. | objects | select(has("dockerImage"))] | .[0].dockerImage // "?"' 2>/dev/null) || DEPLOYED_IMAGE="?"
 printf '\n'; note "Aktuell eingetragenes Image: $DEPLOYED_IMAGE"
 printf '\n'
 warn "Dieses Image muss aus einem Commit stammen, der den Dockerfile-Schritt"
@@ -277,8 +362,14 @@ printf '\n'
 pause "Angelegt? Enter zum Prüfen."
 
 api GET "application.one?applicationId=$APP"
+if [[ "$API_CODE" != "200" ]]; then
+  warn "application.one antwortete mit HTTP $API_CODE:"; printf '  %s\n' "$API_BODY"; exit 1
+fi
+# jq scheitert, wenn ein Proxy mit HTTP 200 und HTML antwortet. Unter set -e
+# stürbe das Skript hier wortlos - deshalb abfangen und als "nicht gefunden"
+# behandeln, dann greift die Diagnose unten.
 MOUNT_OK=$(printf '%s' "$API_BODY" | jq -r --arg p "$MOUNT_PATH" --arg v "$VOLUME_NAME" \
-  '[.. | objects | select(.mountPath? == $p and .volumeName? == $v)] | length')
+  '[.. | objects | select(.mountPath? == $p and .volumeName? == $v)] | length' 2>/dev/null) || MOUNT_OK=0
 if [[ "${MOUNT_OK:-0}" -lt 1 ]]; then
   warn "Kein Volume Mount mit $MOUNT_PATH / $VOLUME_NAME gefunden."
   note "Gefundene Mounts:"
@@ -294,49 +385,40 @@ say "Der laufende Container wird dabei ersetzt (start-first, kein Loch)."
 printf '\n'
 confirm "Jetzt deployen?" || { warn "Abgebrochen. Ohne Deploy hängt das Volume nicht."; exit 0; }
 
-DEPLOY_TITLE="Wizard image-cache-volume $$"
-api POST "application.deploy" "$(jq -n --arg id "$APP" --arg t "$DEPLOY_TITLE" \
-  '{applicationId: $id, title: $t, description: "Volume für den Image-Optimizer-Cache (#24)"}')"
-if [[ "$API_CODE" != "200" ]]; then
-  warn "application.deploy antwortete mit HTTP $API_CODE:"; printf '  %s\n' "$API_BODY"; exit 1
-fi
-printf '  %s↻%s Deployment ausgelöst, warte auf Abschluss ...\n' "$BLUE" "$RESET"
-
-DEPLOY_STATUS=pending
-for _ in $(seq 1 60); do
-  sleep 10
-  api GET "deployment.all?applicationId=$APP"
-  [[ "$API_CODE" == "200" ]] || { note "  HTTP $API_CODE, erneuter Versuch"; continue; }
-  DEPLOY_STATUS=$(printf '%s' "$API_BODY" | jq -r --arg t "$DEPLOY_TITLE" \
-    '[.. | objects | select(.title? == $t and has("status"))] | .[0].status // "pending"' 2>/dev/null) || DEPLOY_STATUS=pending
-  printf '  %sStatus: %s%s\n' "$DIM" "$DEPLOY_STATUS" "$RESET"
-  [[ "$DEPLOY_STATUS" == "done" ]] && break
-  if [[ "$DEPLOY_STATUS" == "error" || "$DEPLOY_STATUS" == "cancelled" ]]; then
-    warn "Deployment fehlgeschlagen - Logs im Dokploy-Panel."; exit 1
-  fi
-done
-[[ "$DEPLOY_STATUS" == "done" ]] || { warn "Deployment nach 10 Minuten nicht abgeschlossen."; exit 1; }
-printf '  %s✓%s Deployment abgeschlossen.\n' "$GREEN" "$RESET"
+deploy_and_wait "Wizard image-cache-volume $$" "Volume für den Image-Optimizer-Cache (#24)"
 
 # ──────────────────────────────────────────────────────────────────────────
 stage "Schreibrechte im Volume prüfen"
-say "Zwei Abrufe derselben ungenutzten Bildvariante. Der zweite muss deutlich"
-say "schneller sein - sonst konnte der erste nichts ablegen, und das heißt:"
-say "der Mount-Punkt gehört root."
+say "Zwei Abrufe derselben ungenutzten Bildvariante. Der erste muss MISS"
+say "melden, der zweite HIT. Bleibt es beim zweiten bei MISS, konnte der"
+say "Optimizer nichts ablegen - dann gehört der Mount-Punkt root."
 printf '\n'
-read -r COLD_CODE COLD_T <<<"$(fetch_img 384)"
-printf '  1. Abruf (w=384): HTTP %s, %ss\n' "$COLD_CODE" "$COLD_T"
-read -r WARM_CODE WARM_T <<<"$(fetch_img 384)"
-printf '  2. Abruf (w=384): HTTP %s, %ss\n' "$WARM_CODE" "$WARM_T"
+read -r FIRST_CODE FIRST_STATUS <<<"$(probe "$PROBE_WIDTH")"
+printf '  1. Abruf (w=%s): HTTP %s, x-nextjs-cache: %s\n' "$PROBE_WIDTH" "$FIRST_CODE" "$FIRST_STATUS"
+read -r SECOND_CODE SECOND_STATUS <<<"$(probe "$PROBE_WIDTH")"
+printf '  2. Abruf (w=%s): HTTP %s, x-nextjs-cache: %s\n' "$PROBE_WIDTH" "$SECOND_CODE" "$SECOND_STATUS"
 printf '\n'
-if [[ "$COLD_CODE" != "200" || "$WARM_CODE" != "200" ]]; then
-  warn "Kein HTTP 200 - erst das klären, die Messung sagt sonst nichts."; exit 1
+if [[ "$FIRST_CODE" != "200" || "$SECOND_CODE" != "200" ]]; then
+  warn "Kein HTTP 200 - erst das klären, die Prüfung sagt sonst nichts."; exit 1
 fi
-if faster_than "$WARM_T" "$COLD_T"; then
+if [[ "$FIRST_STATUS" == "KEIN_HEADER" ]]; then
+  warn "Antwort ohne x-nextjs-cache. Entweder liefert nicht der Optimizer die"
+  warn "Antwort, oder eine Zwischenschicht entfernt den Header."
+  exit 1
+fi
+if [[ "$FIRST_STATUS" != "MISS" ]]; then
+  warn "Erster Abruf war schon \"$FIRST_STATUS\" - die Variante w=$PROBE_WIDTH liegt"
+  warn "bereits im Cache. Damit prüft diese Stufe nichts."
+  note "Mit einer unbenutzten Breite erneut starten, z. B.:"
+  note "  PROBE_WIDTH=32 CONTROL_WIDTH=48 $0"
+  exit 1
+fi
+if [[ "$SECOND_STATUS" == "HIT" ]]; then
   printf '  %s✓%s Der Optimizer schreibt und liest im Volume.\n' "$GREEN" "$RESET"
 else
-  warn "Kein Unterschied messbar. Wahrscheinlichste Ursache: das Volume wurde"
-  warn "angelegt, bevor das Image den Ordner enthielt - dann gehört es root."
+  warn "Zweiter Abruf meldet \"$SECOND_STATUS\" statt HIT - der erste konnte nichts"
+  warn "ablegen. Wahrscheinlichste Ursache: das Volume wurde angelegt, bevor das"
+  warn "Image den Ordner enthielt - dann gehört es dauerhaft root."
   note "Reparatur: Volume in Dokploy entfernen, im Panel unter"
   note "Docker → Volumes das Volume \"$VOLUME_NAME\" löschen, Stage 2 wiederholen."
   exit 1
@@ -344,46 +426,36 @@ fi
 
 # ──────────────────────────────────────────────────────────────────────────
 stage "Persistenz über ein Deployment beweisen"
-say "Noch ein Deployment, danach zwei Messungen im selben Zeitfenster:"
-say "die zuvor gecachte Variante (w=384) gegen eine nie abgerufene (w=256)."
-say "Nur der Vergleich beider trennt einen überlebenden Cache von einer"
-say "zufällig schnellen Leitung."
+say "Noch ein Deployment, danach zwei Abrufe: die zuvor gecachte Variante"
+say "(w=$PROBE_WIDTH) muss HIT melden, eine nie abgerufene (w=$CONTROL_WIDTH) muss MISS melden."
+say "Die Gegenprobe gehört dazu: ohne sie wäre ein HIT auch damit erklärbar,"
+say "dass gar kein neuer Container läuft."
 printf '\n'
 confirm "Zweites Deployment auslösen?" || { warn "Ohne das ist die Persistenz nicht belegt."; exit 0; }
 
-DEPLOY_TITLE="Wizard image-cache-proof $$"
-api POST "application.deploy" "$(jq -n --arg id "$APP" --arg t "$DEPLOY_TITLE" \
-  '{applicationId: $id, title: $t, description: "Persistenznachweis Image-Cache (#24)"}')"
-[[ "$API_CODE" == "200" ]] || { warn "application.deploy: HTTP $API_CODE"; printf '  %s\n' "$API_BODY"; exit 1; }
-DEPLOY_STATUS=pending
-for _ in $(seq 1 60); do
-  sleep 10
-  api GET "deployment.all?applicationId=$APP"
-  [[ "$API_CODE" == "200" ]] || continue
-  DEPLOY_STATUS=$(printf '%s' "$API_BODY" | jq -r --arg t "$DEPLOY_TITLE" \
-    '[.. | objects | select(.title? == $t and has("status"))] | .[0].status // "pending"' 2>/dev/null) || DEPLOY_STATUS=pending
-  printf '  %sStatus: %s%s\n' "$DIM" "$DEPLOY_STATUS" "$RESET"
-  [[ "$DEPLOY_STATUS" == "done" ]] && break
-  if [[ "$DEPLOY_STATUS" == "error" || "$DEPLOY_STATUS" == "cancelled" ]]; then
-    warn "Deployment fehlgeschlagen - Logs im Dokploy-Panel."; exit 1
-  fi
-done
-[[ "$DEPLOY_STATUS" == "done" ]] || { warn "Deployment nach 10 Minuten nicht abgeschlossen."; exit 1; }
+deploy_and_wait "Wizard image-cache-proof $$" "Persistenznachweis Image-Cache (#24)"
 
 printf '\n'
-read -r KEPT_CODE KEPT_T <<<"$(fetch_img 384)"
-printf '  gecachte Variante  (w=384): HTTP %s, %ss\n' "$KEPT_CODE" "$KEPT_T"
-read -r CTRL_CODE CTRL_T <<<"$(fetch_img 256)"
-printf '  Kontrolle, kalt    (w=256): HTTP %s, %ss\n' "$CTRL_CODE" "$CTRL_T"
+read -r KEPT_CODE KEPT_STATUS <<<"$(probe "$PROBE_WIDTH")"
+printf '  zuvor gecacht (w=%s): HTTP %s, x-nextjs-cache: %s\n' "$PROBE_WIDTH" "$KEPT_CODE" "$KEPT_STATUS"
+read -r CTRL_CODE CTRL_STATUS <<<"$(probe "$CONTROL_WIDTH")"
+printf '  Gegenprobe    (w=%s): HTTP %s, x-nextjs-cache: %s\n' "$CONTROL_WIDTH" "$CTRL_CODE" "$CTRL_STATUS"
 printf '\n'
 if [[ "$KEPT_CODE" != "200" || "$CTRL_CODE" != "200" ]]; then
-  warn "Kein HTTP 200 - Messung wertlos."; exit 1
+  warn "Kein HTTP 200 - Prüfung wertlos."; exit 1
 fi
-if faster_than "$KEPT_T" "$CTRL_T"; then
+if [[ "$CTRL_STATUS" != "MISS" ]]; then
+  warn "Die Gegenprobe meldet \"$CTRL_STATUS\" statt MISS. Damit belegt ein HIT oben"
+  warn "nichts - entweder war w=$CONTROL_WIDTH schon im Cache, oder es antwortet"
+  warn "eine Zwischenschicht statt des Optimizers."
+  note "Mit einer anderen unbenutzten Breite erneut prüfen: CONTROL_WIDTH=32 $0"
+  exit 1
+fi
+if [[ "$KEPT_STATUS" == "HIT" ]]; then
   printf '  %s✓%s Der Cache hat das Deployment überlebt.\n' "$GREEN" "$RESET"
 else
-  warn "Die zuvor gecachte Variante war nicht schneller als eine kalte."
-  warn "Der Cache überlebt das Deployment also nicht."
+  warn "Die zuvor gecachte Variante meldet \"$KEPT_STATUS\" - der Cache überlebt das"
+  warn "Deployment nicht."
   note "Prüfen: hängt das Volume wirklich an $MOUNT_PATH (Stage 2), und wurde"
   note "es angelegt, nachdem das Image den Ordner mitbrachte?"
   exit 1
