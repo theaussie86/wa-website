@@ -57,9 +57,43 @@ Ein Docker-Volume auf genau diesem Pfad löst das.
 
 **Nur `images`, nicht `/app/.next/cache`.** Unter `cache` liegen auch ISR- und
 Fetch-Ergebnisse. Die über ein Deployment zu retten wäre kein Cache-Treffer, sondern
-ausgelieferter Inhalt aus einem alten Build. Bildvarianten sind dagegen an einen
-Hash aus Pfad, Breite, Qualität und Upstream-ETag gebunden - ändert sich das Bild,
-ändert sich der Schlüssel, und der alte Eintrag wird nie wieder gelesen.
+ausgelieferter Inhalt aus einem alten Build.
+
+### Der Preis: der Cache-Schlüssel kennt den Bildinhalt nicht
+
+```js
+// next/dist/server/image-optimizer.js:677
+static getCacheKey({ href, width, quality, mimeType }) {
+  return getHash([CACHE_VERSION, href, width, quality, mimeType])
+}
+```
+
+Der Upstream-ETag steht nur im Dateinamen des Eintrags, nicht im Schlüssel. Ein
+gültiger Eintrag wird ausgeliefert, ohne dass die Quelldatei überhaupt angefasst
+wird (`next-server.js:212`).
+
+Solange jedes Deployment einen leeren Cache ausrollte, war das folgenlos - genau
+darauf berief sich der bisherige Kommentar zu `minimumCacheTTL: 2592000`. Das
+Volume nimmt diese Begründung weg. Wird `public/gruenten.jpg` durch ein anderes
+Foto ersetzt, bleibt `href` derselbe, also auch der Schlüssel: Besucher bekämen bis
+zu 30 Tage lang das alte Bild, über Deployments hinweg, und ein Redeploy hilft
+nicht - nur das Löschen des Volumes.
+
+Deshalb steht die Grenze jetzt bei einem Tag:
+
+```ts
+minimumCacheTTL: 86400,
+```
+
+Das Ablaufen kostet fast nichts. Next liest danach die Quelldatei erneut ein,
+vergleicht den ETag und übernimmt bei Gleichstand den bereits transkodierten Puffer
+(`getPreviouslyCachedImageOrNull`, `image-optimizer.js:858`) - neu gerechnet wird
+nur, wenn sich die Datei wirklich geändert hat. Der Wert ist zugleich das
+`max-age`, das Browser sehen; ein Tag ist dort ebenfalls vertretbar.
+
+Wer eine Bilddatei unter gleichem Pfad austauscht und das Ergebnis sofort sehen
+will, löscht das Volume. Das ist die einzige Stelle, an der dieser Cache
+Handarbeit verlangt.
 
 ### Der Ordner muss vor dem Volume da sein
 
@@ -100,22 +134,38 @@ Reparatur ist dann nur: Volume entfernen, löschen, neu anlegen.
 ### Obergrenze
 
 ```ts
-maximumDiskCacheSize: 512 * 1024 * 1024,
+maximumDiskCacheSize: 128 * 1024 * 1024,
 ```
 
 Ohne diesen Wert nimmt Next die Hälfte der freien Kapazität des Dateisystems als
 Grenze (`disk-lru-cache.external.js:41`). Im Container war das die Schreibschicht,
 die ein Deployment ohnehin wegräumte. Auf einem Volume ist es die Systemplatte der
 VPS, und die Grenze wäre eine, die man nicht bemerkt, bevor sie erreicht ist.
-512 MB fassen den Bestand um ein Vielfaches; darüber verdrängt der LRU die am
-längsten ungenutzten Einträge.
+
+Die Zahl ist bewusst knapp gehalten. Next baut den LRU beim Start auf, indem es
+**jeden** Eintrag einmal vollständig einliest (`initCacheEntries`,
+`image-optimizer.js:179`). Diese Kosten gab es bisher nicht, weil der Cache bei
+jedem Start leer war. Der reale Bestand - acht Bilder in acht Breiten und zwei
+Formaten - liegt im niedrigen zweistelligen MB-Bereich; 128 MB sind zehnfacher
+Spielraum, darüber verdrängt der LRU die am längsten ungenutzten Einträge.
+
+### Zwei Container am selben Volume
+
+Beim `start-first`-Rollover laufen der neue und der auslaufende Container einige
+Sekunden gleichzeitig, beide mit demselben Volume. `writeToCacheDir` löscht das
+Schlüsselverzeichnis und legt es neu an, bevor es schreibt - zwei gleichzeitige
+Schreibvorgänge auf denselben Schlüssel können sich also in die Quere kommen.
+
+Der Ausgang ist harmlos: `get()` fängt den Lesefehler ab und behandelt ihn als
+Fehltreffer (`image-optimizer.js:754`). Schlimmstenfalls wird eine Variante einmal
+zusätzlich berechnet. Kein Grund, dagegen etwas zu bauen.
 
 ## Durchführung
 
 Das Volume wird nicht aus dem Repository heraus angelegt - der `DOKPLOY_API_KEY`
 liegt als GitHub-Actions-Secret, nicht lokal. Der Weg ist
 `scripts/dokploy-image-cache-volume.sh`: fünf Stufen, führt durch das Panel, prüft
-per API nach und misst am Ende selbst, ob der Cache ein Deployment überlebt.
+per API nach und belegt am Ende selbst, ob der Cache ein Deployment überlebt.
 
 ```bash
 ./scripts/dokploy-image-cache-volume.sh
@@ -145,13 +195,36 @@ Lokal belegt, im Container aus diesem Dockerfile, mit einem frischen Volume auf
 | Cache überlebt den Containerwechsel | Container ersetzt, Volume behalten, `w=384`: 31 ms |
 | Kontrolle im selben Fenster, nie abgerufen | `w=256`: 88 ms - also gerechnet, nicht gelesen |
 
-Die Kontrollmessung ist der eigentliche Beleg. Ein einzelner schneller Abruf nach
-einem Neustart beweist nichts; erst dass eine *andere* Variante im selben Zeitfenster
-deutlich langsamer ist, trennt den überlebenden Cache von einer schnellen Leitung.
-Genauso misst es die letzte Stufe des Wizards gegen die VPS.
+### Warum der Wizard nicht die Zeit misst
+
+Die Tabelle oben stammt aus einem Container auf demselben Rechner. Gegen die VPS
+trägt dieselbe Messung nicht mehr: Der erste Entwurf des Wizards verlangte, dass
+der zweite Abruf weniger als die Hälfte des ersten braucht. Nachgemessen über die
+echte Leitung waren Treffer und Fehltreffer beide bei rund 0,1 s - die
+Transkodierzeit ist seit der Verkleinerung der Quelldatei kleiner als die
+Schwankung der Netzlaufzeit. Ein Verhältnis hilft dagegen nicht, weil TCP- und
+TLS-Aufbau als **Summand** in beiden Werten stecken, nicht als Faktor. Die Prüfung
+hätte auf einer funktionierenden Installation Alarm geschlagen und zum Löschen
+eines intakten Volumes geraten.
+
+Next beantwortet die Frage ohnehin direkt:
+
+```
+$ curl -sSkI '.../_next/image?url=%2Fgruenten.jpg&q=75&w=128'
+x-nextjs-cache: MISS
+$ curl -sSkI '.../_next/image?url=%2Fgruenten.jpg&q=75&w=128'
+x-nextjs-cache: HIT
+```
+
+Der Wizard wertet diesen Header aus - ohne Schwellenwert, ohne Zeitmessung. Die
+Gegenprobe bleibt trotzdem Teil der letzten Stufe: eine nie abgerufene Breite muss
+nach dem Deployment `MISS` melden. Ohne sie wäre ein `HIT` auch damit erklärbar,
+dass gar kein neuer Container läuft.
+
+Beides gegen die Produktion vorab geprüft: `w=128` liefert `MISS`, dann `HIT`.
 
 In Produktion offen, bis der Wizard gelaufen ist: dass das Volume angelegt ist und
-dieselben beiden Messungen dort ausfallen wie hier.
+ein `HIT` ein Deployment übersteht.
 
 ## Was das Ticket bewusst offenlässt
 
