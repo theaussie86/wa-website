@@ -1,0 +1,86 @@
+name: Build Image
+
+# Baut das Container-Image bei jedem Push auf main und legt es als privates
+# Package in der GitHub Container Registry ab. Der Build läuft ausschließlich
+# hier, nie auf dem Server. Der Deploy-Trigger gegen Dokploy kommt separat (#22).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Läufe auf demselben Ref serialisieren, aber nicht abbrechen: jeder Merge
+# soll sein SHA-getaggtes Image bekommen, sonst fehlt genau der Rollback-Anker
+# auf einen Commit, der kurz vor dem nächsten Merge lag.
+concurrency:
+  group: build-image-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REGISTRY: ghcr.io
+  # Eine Quelle für Push-Ziel und Aufräumschritt - laufen die auseinander,
+  # räumt der Workflow lautlos das falsche Package auf.
+  IMAGE_NAME: ${{ github.event.repository.name }}
+
+jobs:
+  build:
+    name: Build & Push to GHCR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Reicht für Push und Aufräumen des Packages. Kein dauerhaftes Token
+      # nötig - der Runner bekommt GITHUB_TOKEN pro Lauf.
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # docker-container-Driver, sonst greift der GitHub-Actions-Layer-Cache nicht.
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tags und Labels bestimmen
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+          # sha-<kurzer Commit-SHA> ist der Rollback-Anker, auf den Dokploy
+          # zeigt. latest ist nur Bequemlichkeit für manuelle Pulls und deshalb
+          # an main gebunden: ein manueller Lauf auf einem Branch darf kein
+          # ungeprüftes Image unter latest schieben. Sein SHA-Tag ist harmlos,
+          # weil er den Commit benennt, aus dem er stammt.
+          tags: |
+            type=sha,format=short
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build und Push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          # Enthält org.opencontainers.image.source - darüber verknüpft GHCR
+          # das Package mit diesem Repository, und erst dadurch darf
+          # GITHUB_TOKEN unten alte Versionen löschen.
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_GTM_ID=${{ vars.NEXT_PUBLIC_GTM_ID }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          # Ohne das legt buildx pro Push ein zusätzliches Attestation-Manifest
+          # als eigene Package-Version an - die Retention unten würde dann
+          # Images statt Attestations zählen.
+          provenance: false
+
+      # Läuft nur, wenn der Push davor durchlief. Fünf Versionen sind genug
+      # Rollback-Punkte, ohne dass der Registry-Speicher wächst.
+      - name: Alte Package-Versionen aufräumen
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ env.IMAGE_NAME }}
+          package-type: container
+          min-versions-to-keep: 5
