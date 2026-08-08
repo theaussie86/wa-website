@@ -98,6 +98,25 @@ gh api /user/packages/container/wa-website/versions --jq 'length'
 # erwartet: <= 5
 ```
 
+## Ergebnis (erster Lauf, 2026-08-08)
+
+Lauf `31278632248` auf `main` (Merge-Commit `d363d22`), Job "Build & Push to GHCR": erfolgreich.
+
+| Kriterium | Ergebnis |
+|---|---|
+| Push auf `main` erzeugt ein Image | Ja, Lauf grün |
+| Tags | `sha-d363d22` und `latest` - beide aus `DOCKER_METADATA_OUTPUT_JSON` bestätigt |
+| Package mit dem Repository verknüpft | `org.opencontainers.image.source=https://github.com/theaussie86/wa-website` im Manifest |
+| Anonymer Abruf | `https://ghcr.io/v2/theaussie86/wa-website/manifests/latest` liefert 401; mit anonymem Registry-Token 404. Das Package ist nicht öffentlich abrufbar, obwohl das Repository öffentlich ist |
+| Aufräumschritt | Lief ohne Fehler durch (kein 403). Es gab erst eine Version, also nichts zu löschen |
+
+Noch offen, weil erst mehr Läufe nötig sind: die Cache-Wirkung im zweiten Lauf und die
+Retention ab dem sechsten Lauf. Beide Prüfbefehle stehen oben.
+
+Ein Pull von außen braucht ein Token mit `read:packages`. Das lokale `gh`-Token hat den
+Scope nicht (`gh auth refresh -h github.com -s read:packages`); das dauerhafte
+Registry-Credential der VPS entsteht ohnehin erst in #21 und deckt diese Prüfung mit ab.
+
 ## Fallen
 
 **Aufräumschritt scheitert mit 403.** Das Package ist nicht mit dem Repository verknüpft.
