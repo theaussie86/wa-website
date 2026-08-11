@@ -30,9 +30,6 @@ Läuft auf http://localhost:3000.
 Ein Testframework gibt es bewusst nicht. Geprüft wird über Typecheck, Build und
 Verhaltensprüfung der laufenden Anwendung von außen.
 
-Die Testseite `/test-chatbot` rendert nur unter `npm run dev`. In jedem
-Produktionsbuild - lokal wie im Container - liefert sie den Not-Found-Inhalt.
-
 ## Umgebungsvariablen
 
 `.env.example` listet alle Variablen. Bis auf `NEXT_PUBLIC_GTM_ID` werden sie
