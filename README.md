@@ -36,9 +36,9 @@ Verhaltensprüfung der laufenden Anwendung von außen.
 ausschließlich zur Laufzeit gelesen (Route Handler, Server Components) und gehören
 deshalb nicht in den Build und nicht ins Container-Image.
 
-Echte Werte liegen im Panel der Hosting-Plattform, künftig in Dokploy. Weder das
-Repository noch die GitHub-Actions-Secrets enthalten Anwendungs-Secrets - der CI-Build
-arbeitet mit Platzhaltern, weil er keine echten Werte braucht.
+Echte Werte liegen in Dokploy. Weder das Repository noch die GitHub-Actions-Secrets
+enthalten Anwendungs-Secrets - der CI-Build arbeitet mit Platzhaltern, weil er keine
+echten Werte braucht. Wo welche Zugangsdaten liegen, steht in `docs/betrieb.md`.
 
 ## Aufbau
 
@@ -51,8 +51,10 @@ arbeitet mit Platzhaltern, weil er keine echten Werte braucht.
 | `_posts` | Blogartikel als Markdown mit Frontmatter |
 | `public` | Bilder und statische Assets |
 | `supabase` | Schema, Migrationen und Seeds |
+| `docs/betrieb.md` | Wie die Webseite betrieben wird, und was im Störungsfall zu tun ist |
 | `docs/adr` | Architekturentscheidungen |
 | `docs/agents` | Arbeitsanweisungen für Agenten (Issue-Tracker, Triage, Domain-Layout) |
+| `docs/plans` | Entwürfe und Runbooks einzelner Vorhaben |
 
 Cookies und eingesetzte Drittanbieterdienste werden an genau einer Stelle gepflegt:
 `src/lib/cookie-config.ts`. Der Cookie-Banner liest daraus. Wer einen Dienst hinzufügt
@@ -61,9 +63,13 @@ oder entfernt, pflegt diese Datei und gleicht die Datenschutzerklärung
 
 ## Betrieb
 
-**Heute:** Unter der Live-Domain antwortet weiterhin das Hostinger Shared Hosting. Parallel
-läuft die Anwendung bereits als Docker-Container auf einer eigenen Hostinger-VPS, erreichbar
-über die Server-Adresse mit gesetztem Host-Header. Umgeschaltet wird per DNS (#25).
+Die Webseite läuft als Docker-Container auf einer eigenen Hostinger-VPS, betrieben von
+Dokploy hinter Traefik. Gebaut wird ausschließlich in GitHub Actions, das Image liegt
+privat in der GitHub Container Registry. Das bisherige Shared Hosting besteht als Rückweg
+weiter.
+
+**Betriebsmodell, beide Rollback-Wege, Zugangsdaten und der Prüfablauf stehen in
+`docs/betrieb.md`.** Das ist die Anlaufstelle im Störungsfall.
 
 Drei Workflows:
 
@@ -79,7 +85,9 @@ kein SSH-Schlüssel.
 
 **Rollback:** `deploy.yml` von Hand mit einem früheren Tag starten -
 `gh workflow run deploy.yml -f image=ghcr.io/theaussie86/wa-website:sha-<commit>`. Ohne
-Rebuild, solange der Tag in GHCR liegt (die letzten fünf Versionen).
+Rebuild, solange der Tag in GHCR liegt (die letzten fünf Versionen). Deckt
+Anwendungsfehler ab; für Plattform- und Serverfehler gibt es den DNS-Weg zurück auf das
+Shared Hosting, siehe `docs/betrieb.md`.
 
 Dazu gehören:
 
@@ -88,8 +96,9 @@ Dazu gehören:
 - `/api/health` - reiner Liveness-Endpunkt ohne Prüfung von Fremdsystemen, in Dokploy als
   Gesundheitsprüfung hinterlegt.
 
-Offen sind Smoke-Test nach dem Deploy und der DNS-Cutover. Stand und Reihenfolge stehen in
-Issue #16 und seinen Teilaufgaben; die Runbooks liegen in `docs/plans`.
+Nach jedem größeren Eingriff prüft `./scripts/smoke-test.sh` die laufende Anwendung von
+außen. Die Entscheidungen des Umzugs stehen in Issue #16, die Runbooks der einzelnen
+Schritte in `docs/plans`.
 
 ## Beitragen
 

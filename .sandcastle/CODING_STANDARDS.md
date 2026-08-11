@@ -64,9 +64,9 @@ Fehlt eine Variable, wird laut gescheitert (`throw new Error("GUIDE_JWT_SECRET i
 nicht still ein Fallback benutzt.
 
 Einzige Ausnahme ist `NEXT_PUBLIC_GTM_ID`: Die ID landet im Client-Bundle, muss deshalb zur Build-Zeit
-bekannt sein und wird im `Dockerfile` als `ARG` durchgereicht. Fehlt sie, rendert
-`src/app/_components/cookie-consent/gtm-script.tsx` nichts und der Build läuft trotzdem durch. Eine
-zweite `NEXT_PUBLIC_`-Variable braucht eine Begründung im PR.
+bekannt sein und wird im `Dockerfile` als `ARG` durchgereicht. Fehlt sie, rendern
+`src/app/_components/cookie-consent/gtm-script.tsx` und `consent-default-script.tsx` nichts und der
+Build läuft trotzdem durch. Eine zweite `NEXT_PUBLIC_`-Variable braucht eine Begründung im PR.
 
 Secrets gehören nie ins Repository, nie ins Image und nie in die GitHub-Actions-Secrets. Echte Werte
 liegen im Panel der Hosting-Plattform. `.github/workflows/ci.yml` hält Platzhalter, damit der Build
@@ -83,10 +83,22 @@ der `cookies`-Liste. Banner (`src/app/_components/cookie-consent/banner.tsx`) un
 Ein Dienst wird nirgends hart verdrahtet, weder im Banner noch in `src/app/datenschutz/page.tsx`.
 `isActive` bleibt `false`, solange der Dienst nicht wirklich eingebunden ist.
 
-**Einwilligung.** Google-Dienste laufen über Consent Mode: Der GTM-Container lädt mit dem
-Default-Zustand `denied` für alle Kategorien, die Einwilligung wird danach als `consent update` in den
-`dataLayer` geschoben (`gtm-script.tsx`). Dass der Container auch ohne Einwilligung lädt, ist
-dokumentiertes Altverhalten und kein Review-Befund. Jedes Skript **ohne** Consent Mode, das Cookies
+**Einwilligung.** Google-Dienste laufen über Consent Mode. Der Default-Zustand steht **vor** dem
+Container: `consent-default-script.tsx` läuft als `beforeInteractive`-Inline-Skript, liest die
+gespeicherte Einwilligung selbst aus dem `localStorage` und setzt `consent default` - ohne Eintrag
+`denied` für alle Kategorien. Spätere Änderungen schiebt `pushConsentToDataLayer` in `provider.tsx`
+als `consent update` nach, synchron beim Speichern und vor dem `consent_updated`-Event.
+`gtm-script.tsx` lädt nur noch den Container.
+
+Jeder Consent-Befehl läuft über einen `gtag()`-Helfer, der das `arguments`-Objekt pusht - einmal in
+TypeScript (`provider.tsx`), einmal im Inline-Skript, weil dessen Code vor der Hydration als String
+ausgeliefert wird. Ein Array mit demselben Inhalt landet im `dataLayer`, wird von GTM aber nie
+ausgewertet (Issue #38) - deshalb wird ein Consent-Befehl **nie** direkt als Array oder Objekt
+gepusht. Eigene Events wie `consent_initialized` und `consent_updated` sind keine gtag-Befehle und
+bleiben Objekt-Pushes. Siehe `docs/adr/0002-set-consent-mode-before-the-gtm-container.md`.
+
+Dass der Container auch ohne Einwilligung lädt, ist dokumentiertes Altverhalten und kein
+Review-Befund. Jedes Skript **ohne** Consent Mode, das Cookies
 setzt oder Daten überträgt, darf dagegen erst nach erteilter Einwilligung gerendert werden.
 
 Jede Änderung an `cookie-config.ts` verlangt einen Abgleich mit `src/app/datenschutz` - die Seite ist
@@ -102,10 +114,13 @@ Geprüft wird stattdessen an drei Stellen, genau so wie `.github/workflows/ci.ym
 
 1. `npm run typecheck` - `tsc --noEmit`, strict.
 2. `npm run build` - der Next-Build muss durchlaufen.
-3. `npm run check:ssr` - `scripts/check-ssr-body.mjs` startet die gebaute Anwendung und misst pro Pfad
-   die Länge des `<body>` ohne `<script>`-Tags. Hintergrund ist Issue #34: Ein Client-Provider, der
-   `children` zurückhält, liefert HTTP 200 mit gültigem `<title>` und leerem Body - Statuscode und
-   Titel allein beweisen nichts.
+3. `npm run check:ssr` - der CI-Schritt startet den gebauten Standalone-Server im Laufzeit-Layout des
+   `Dockerfile` (`node .next/standalone/server.js`, nicht `next start`, siehe #40), und
+   `scripts/check-ssr-body.mjs` misst dagegen pro Pfad die Länge des `<body>` ohne `<script>`-Tags.
+   Hintergrund ist Issue #34: Ein Client-Provider, der `children` zurückhält, liefert HTTP 200 mit
+   gültigem `<title>` und leerem Body - Statuscode und Titel allein beweisen nichts. Anschließend
+   prüft derselbe Schritt, dass die referenzierten Assets aus `.next/static` und `public` auch
+   ausgeliefert werden - fehlen sie, bleibt der reine Markup-Check grün.
 
 Verhalten wird von außen gegen die laufende Anwendung geprüft: Statuscode, ausgeliefertes Markup,
 Redirect-Ziele, gesetzte Cookies. Eine neue serverseitig gerenderte Seite wird in die Pfadliste des

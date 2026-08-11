@@ -5,7 +5,7 @@ import { Button } from "@/app/_components/button";
 // gerendert. Ein `notFound()` aus einem Seitenrumpf landet zwar formal auch
 // hier, kommt aber in der Next-Fehlerhülle heraus und damit ohne Layout und
 // ohne Body; genau deshalb pinnen die dynamischen Routen ihre Parameterliste.
-// Siehe docs/adr/0002-reject-unknown-dynamic-params-at-the-router.md.
+// Siehe docs/adr/0003-reject-unknown-dynamic-params-at-the-router.md.
 //
 // Die Form spiegelt bewusst den Hero der Startseite: gleicher Bildschnitt,
 // gleicher Verlauf, gleiche Textkante. Wer hier landet, soll die Marke

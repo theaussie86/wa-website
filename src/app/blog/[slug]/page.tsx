@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 // Unbekannte Slugs lehnt der Router ab, nicht der Seitenrumpf: `notFound()`
 // von hier aus liefert die leere Next-Fehlerhülle statt der Not-Found-Seite,
-// siehe docs/adr/0002-reject-unknown-dynamic-params-at-the-router.md. Tragfähig,
+// siehe docs/adr/0003-reject-unknown-dynamic-params-at-the-router.md. Tragfähig,
 // weil `_posts/` im Image liegt und ein neuer Artikel ohnehin einen neuen Build
 // bedeutet - die Liste unten ist damit vollständig.
 export const dynamicParams = false;
