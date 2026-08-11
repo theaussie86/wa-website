@@ -152,7 +152,7 @@ else
 fi
 
 # Double-Opt-in-Pfad: bestaetigt Brevo-Anbindung (Kontaktabfrage), JWT-Secret
-# (Token wird signiert) und Supabase (die Kapitelseite liest den Fortschritt).
+# (Token wird signiert) und PocketBase (die Kapitelseite liest den Fortschritt).
 if [ -n "$DOI_EMAIL" ]; then
   jar=$(mktemp)
   loc=$("${CURL[@]}" -o /dev/null -c "$jar" \
@@ -185,7 +185,7 @@ if [ -n "$DOI_EMAIL" ]; then
     bad "Guide-Kapitel" "lieferte $chapter statt 200"
   fi
 
-  # Status 200 auf der Kapitelseite beweist Supabase NICHT: der Lesepfad
+  # Status 200 auf der Kapitelseite beweist PocketBase NICHT: der Lesepfad
   # (getCompletedChapters) verschluckt jeden Fehler und liefert eine leere
   # Liste, die Seite rendert trotzdem. Nachgewiesen ist die Verbindung erst
   # durch einen echten Schreibvorgang. Die Server Action wird direkt
@@ -201,7 +201,7 @@ if [ -n "$DOI_EMAIL" ]; then
   rm -rf "$chunkdir"
 
   if [ -z "$action" ]; then
-    bad "Supabase-Schreibpfad" "Server-Action-ID nicht in den Chunks gefunden - Pruefung nicht moeglich"
+    bad "PocketBase-Schreibpfad" "Server-Action-ID nicht in den Chunks gefunden - Pruefung nicht moeglich"
   else
     # Zweimal aufrufen: der erste Aufruf schaltet um, der zweite zurueck. Der
     # Datenbestand ist danach unveraendert.
@@ -212,9 +212,9 @@ if [ -n "$DOI_EMAIL" ]; then
       -H "Next-Action: $action" -H "Content-Type: text/plain;charset=UTF-8" \
       --data '["was-ist-ein-second-brain"]' 2>&1 | grep -o '{"completed":[a-z]*}\|{"error":"[^"]*"}' | head -n1)
     if printf '%s' "$res1" | grep -q '"completed"' && printf '%s' "$res2" | grep -q '"completed"'; then
-      ok "Supabase-Schreibpfad bestaetigt (Fortschritt gesetzt und zurueckgenommen)"
+      ok "PocketBase-Schreibpfad bestaetigt (Fortschritt gesetzt und zurueckgenommen)"
     else
-      bad "Supabase-Schreibpfad" "Server Action antwortete: $res1 / $res2"
+      bad "PocketBase-Schreibpfad" "Server Action antwortete: $res1 / $res2"
     fi
   fi
   rm -f "$page" "$jar"

@@ -1,0 +1,75 @@
+# PocketBase - Backend für den Freebie-Fortschritt (#47).
+#
+# Diese Datei ist die Vorlage für die Compose-Anwendung "pocketbase" in
+# Dokploy (Provider: Raw). Wer sie ändert, fügt sie dort neu ein und deployt -
+# Dokploy liest nicht aus diesem Repository.
+#
+# Zwei Dinge kommen bewusst von außerhalb der Anwendung:
+#   - das Volume mit den Nutzdaten, `external`, damit ein Neuanlegen der
+#     Anwendung im Panel die Daten nicht mitnimmt
+#   - das Migrationsverzeichnis als absoluter Pfad auf dem Host, gepflegt von
+#     scripts/pocketbase-deploy.sh aus diesem Repository
+#
+# Schema ändern: scripts/pocketbase-deploy.sh (lädt hoch, startet neu).
+
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:0.39.10
+    restart: unless-stopped
+
+    # Das Entrypoint des Images hängt Argumente mit führendem "-" an sein
+    # Standard-Kommando an (serve --http=0.0.0.0:8090 --dir=/pb_data
+    # --publicDir=/pb_public --hooksDir=/pb_hooks). Der Migrationspfad ist
+    # der einzige Zusatz - er ist ohnehin der Standard, steht hier aber
+    # explizit, weil an dieser Stelle ein Mount hängt.
+    command: ["--migrationsDir=/pb_migrations"]
+
+    volumes:
+      # Die Nutzdaten. Ohne dieses Volume ist jeder Fortschritt nach einem
+      # Neuanlegen des Containers weg.
+      - pb_data:/pb_data
+      # Schema als Code. PocketBase wendet neue Dateien beim Start an und
+      # schreibt bei Schemaänderungen über die Admin-UI selbst welche hierher
+      # zurück - deshalb schreibbar, nicht read-only. Was hier landet, gehört
+      # ins Repository (siehe pocketbase/pb_migrations/README.md).
+      - /opt/pocketbase/pb_migrations:/pb_migrations
+
+    ports:
+      # Nur Loopback. Die Firewall lässt von außen ohnehin nur 22, 80 und 443
+      # durch; diese Bindung sorgt dafür, dass eine geöffnete Firewall allein
+      # noch keinen Zugang schafft. Admin-UI erreicht man über den SSH-Tunnel:
+      #   ssh -N -L 8090:127.0.0.1:8090 cwe-dokploy
+      - "127.0.0.1:8090:8090"
+
+    networks:
+      dokploy-network:
+        aliases:
+          # Unter diesem Namen erreicht die Anwendung den Dienst:
+          # POCKETBASE_URL=http://pocketbase:8090
+          - pocketbase
+
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8090/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  pb_data:
+    # Angelegt am 11.08.2026 beim ersten Aufbau, seitdem der Datenbestand.
+    # `external` heißt: Compose fasst es nicht an, weder anlegen noch löschen.
+    name: pocketbase-pb-data
+    external: true
+
+networks:
+  dokploy-network:
+    # Von Dokploy angelegt, attachable. Nur so erreicht der Swarm-Service der
+    # Anwendung diesen Container über seinen Netz-Alias.
+    external: true

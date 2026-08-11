@@ -21,8 +21,8 @@ jobs:
       # nur ein Sicherheitsnetz, damit der Build nie an fehlenden Vars
       # scheitert. Echte Secrets liegen im Panel der Hosting-Plattform,
       # nie im Repository und nie in den GitHub-Actions-Secrets.
-      SUPABASE_URL: https://placeholder.supabase.co
-      SUPABASE_SECRET_KEY: placeholder
+      POCKETBASE_URL: http://127.0.0.1:8090
+      POCKETBASE_TOKEN: placeholder
       BREVO_API_KEY: placeholder
       GMAIL_USER_EMAIL: placeholder@example.com
       GMAIL_FROM_ALIAS: placeholder@example.com

@@ -5,8 +5,9 @@ Kontaktformular und die Freebie-Guides hinter dem E-Mail-Opt-in.
 
 Next.js 16 (App Router, React 19), TypeScript, Tailwind CSS 4. Blogartikel liegen als
 Markdown in `_posts`, die Guide-Kapitel als MDX unter `src/content`. Strukturierte Daten
-(Newsletter-Anmeldungen, Guide-Zugänge) liegen in Supabase, Transaktionsmails laufen über
-Brevo, Kontaktanfragen über die Gmail API mit Service-Account.
+(Guide-Fortschritt) liegen in einer selbst gehosteten PocketBase-Instanz auf derselben
+VPS, Newsletter-Anmeldungen und Transaktionsmails laufen über Brevo, Kontaktanfragen über
+die Gmail API mit Service-Account.
 
 ## Lokal starten
 
@@ -40,6 +41,12 @@ Echte Werte liegen in Dokploy. Weder das Repository noch die GitHub-Actions-Secr
 enthalten Anwendungs-Secrets - der CI-Build arbeitet mit Platzhaltern, weil er keine
 echten Werte braucht. Wo welche Zugangsdaten liegen, steht in `docs/betrieb.md`.
 
+`POCKETBASE_URL` ist die einzige Variable, deren Wert sich zwischen Produktion und
+lokaler Entwicklung unterscheidet: in Produktion der Netz-Alias `http://pocketbase:8090`
+im `dokploy-network`, lokal `http://127.0.0.1:8090` bei laufendem SSH-Tunnel
+(`ssh -N -L 8090:127.0.0.1:8090 cwe-dokploy`). Eine öffentlich erreichbare Adresse hat
+die Instanz nicht.
+
 ## Aufbau
 
 | Pfad | Inhalt |
@@ -50,7 +57,7 @@ echten Werte braucht. Wo welche Zugangsdaten liegen, steht in `docs/betrieb.md`.
 | `src/content/freebies` | MDX-Kapitel der Freebie-Guides |
 | `_posts` | Blogartikel als Markdown mit Frontmatter |
 | `public` | Bilder und statische Assets |
-| `supabase` | Schema, Migrationen und Seeds |
+| `pocketbase` | Compose-Stack und Schema-Migrationen der PocketBase-Instanz |
 | `docs/betrieb.md` | Wie die Webseite betrieben wird, und was im Störungsfall zu tun ist |
 | `docs/adr` | Architekturentscheidungen |
 | `docs/agents` | Arbeitsanweisungen für Agenten (Issue-Tracker, Triage, Domain-Layout) |

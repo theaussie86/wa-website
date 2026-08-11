@@ -1,18 +1,24 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { ClientResponseError } from "pocketbase";
 import { verifyGuideToken } from "@/lib/guide-auth";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { getPocketBase } from "@/lib/pocketbase";
 
 const FREEBIE_SLUG = "second-brain-anleitung";
 
-async function getFreebieId(supabase: ReturnType<typeof getSupabaseAdmin>) {
-  const { data } = await supabase
-    .from("freebies")
-    .select("id")
-    .eq("slug", FREEBIE_SLUG)
-    .single();
-  return data?.id ?? null;
+// Alle Filter laufen über pb.filter(): das SDK setzt die Platzhalter escaped
+// ein. Ein Anführungszeichen in der Mailadresse oder im Kapitel-Slug bricht
+// so nicht aus dem Ausdruck aus.
+async function getFreebieId(pb: ReturnType<typeof getPocketBase>) {
+  try {
+    const freebie = await pb
+      .collection("freebies")
+      .getFirstListItem(pb.filter("slug = {:slug}", { slug: FREEBIE_SLUG }));
+    return freebie.id;
+  } catch {
+    return null;
+  }
 }
 
 export async function toggleChapterComplete(chapterSlug: string) {
@@ -20,33 +26,42 @@ export async function toggleChapterComplete(chapterSlug: string) {
   const auth = await verifyGuideToken(cookieStore);
   if (!auth) return { error: "Nicht authentifiziert" };
 
-  const supabase = getSupabaseAdmin();
-  const freebieId = await getFreebieId(supabase);
+  const pb = getPocketBase();
+  const freebieId = await getFreebieId(pb);
   if (!freebieId) return { error: "Freebie nicht gefunden" };
 
-  const { data: existing } = await supabase
-    .from("freebie_progress")
-    .select("id")
-    .eq("freebie_id", freebieId)
-    .eq("email", auth.email)
-    .eq("chapter_slug", chapterSlug)
-    .maybeSingle();
+  const filter = pb.filter(
+    "freebie = {:freebie} && email = {:email} && chapter_slug = {:chapter}",
+    { freebie: freebieId, email: auth.email, chapter: chapterSlug }
+  );
+
+  const existing = await pb
+    .collection("freebie_progress")
+    .getFirstListItem(filter)
+    .catch(() => null);
 
   if (existing) {
-    await supabase.from("freebie_progress").delete().eq("id", existing.id);
+    await pb.collection("freebie_progress").delete(existing.id);
     return { completed: false };
   }
 
-  const { error } = await supabase.from("freebie_progress").upsert(
-    {
-      freebie_id: freebieId,
+  try {
+    await pb.collection("freebie_progress").create({
+      freebie: freebieId,
       email: auth.email,
       chapter_slug: chapterSlug,
-    },
-    { onConflict: "freebie_id,email,chapter_slug" }
-  );
+    });
+  } catch (error) {
+    // Zwei Klicks kurz hintereinander laufen beide durch die Abfrage oben,
+    // bevor einer geschrieben hat. Der zweite scheitert dann am Unique-Index
+    // (`idx_freebie_progress_unique`) - der Haken sitzt trotzdem, das ist
+    // kein Fehler für den Besucher.
+    if (error instanceof ClientResponseError && error.status === 400) {
+      return { completed: true };
+    }
+    return { error: "Fehler beim Speichern" };
+  }
 
-  if (error) return { error: "Fehler beim Speichern" };
   return { completed: true };
 }
 
@@ -55,15 +70,20 @@ export async function getCompletedChapters(): Promise<string[]> {
   const auth = await verifyGuideToken(cookieStore);
   if (!auth) return [];
 
-  const supabase = getSupabaseAdmin();
-  const freebieId = await getFreebieId(supabase);
+  const pb = getPocketBase();
+  const freebieId = await getFreebieId(pb);
   if (!freebieId) return [];
 
-  const { data } = await supabase
-    .from("freebie_progress")
-    .select("chapter_slug")
-    .eq("freebie_id", freebieId)
-    .eq("email", auth.email);
-
-  return data?.map((row) => row.chapter_slug) ?? [];
+  try {
+    const rows = await pb.collection("freebie_progress").getFullList({
+      filter: pb.filter("freebie = {:freebie} && email = {:email}", {
+        freebie: freebieId,
+        email: auth.email,
+      }),
+      fields: "chapter_slug",
+    });
+    return rows.map((row) => row.chapter_slug as string);
+  } catch {
+    return [];
+  }
 }
