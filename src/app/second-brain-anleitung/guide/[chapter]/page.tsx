@@ -13,6 +13,12 @@ const CONTENT_DIR = join(
   "src/content/freebies/second-brain-anleitung"
 );
 
+// Gleiche Begründung wie in src/app/blog/[slug]/page.tsx: unbekannte Kapitel
+// über den Router ablehnen statt über `notFound()` im Seitenrumpf, sonst
+// kommt die leere Fehlerhülle statt der Not-Found-Seite (Issue #28). Die
+// Kapitelliste steht fest in src/content/freebies/second-brain-anleitung.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return chapters.map((chapter) => ({ chapter: chapter.slug }));
 }

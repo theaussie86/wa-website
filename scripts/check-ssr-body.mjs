@@ -67,7 +67,7 @@ function parseArgs(argv) {
  * Das ist bewusst grob - es geht um die Unterscheidung "leerer Platzhalter"
  * (38 Zeichen) gegen "vollständiger Seitenbaum" (mehrere Tausend).
  */
-function scriptFreeBodyMarkupLength(html) {
+export function scriptFreeBodyMarkupLength(html) {
   const body = /<body[^>]*>([\s\S]*)<\/body>/i.exec(html);
   if (!body) return 0;
   return body[1].replace(/<script\b[\s\S]*?<\/script>/gi, "").trim().length;

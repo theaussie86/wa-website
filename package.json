@@ -9,6 +9,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "check:ssr": "node scripts/check-ssr-body.mjs",
+    "check:404": "node scripts/check-not-found.mjs",
     "sandcastle": "npx tsx .sandcastle/main.mts"
   },
   "dependencies": {

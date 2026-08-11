@@ -50,8 +50,9 @@ jobs:
 
       # Ein Client-Provider, der children zurückhält, liefert eine Seite mit
       # HTTP 200, gültigem <title> und komplett leerem <body> (Issue #34).
-      # Dieser Schritt misst deshalb das Body-Markup ohne <script>.
-      - name: Serverseitiges Markup prüfen
+      # Dieser Schritt misst deshalb das Body-Markup ohne <script> - für
+      # bestehende Seiten und für tote URLs.
+      - name: Ausgelieferte Seiten prüfen
         run: |
           npm run start -- --port 3000 &
           SERVER_PID=$!
@@ -63,3 +64,11 @@ jobs:
           npm run check:ssr -- http://localhost:3000 \
             / /blog /blog/spart-ki-wirklich-zeit \
             /ki-check-handwerk /second-brain-anleitung /kontakt /leistungen
+
+          # Tote URLs müssen 404 liefern und trotzdem eine echte Seite zeigen
+          # (Issue #28). Status 200 wäre ein Soft 404, ein 404 mit leerem Body
+          # die Next-Fehlerhülle. Zwei Pfade, weil Next beide Fälle
+          # unterschiedlich behandelt: nicht gematchte Route und ein Slug,
+          # den generateStaticParams nicht kennt.
+          npm run check:404 -- http://localhost:3000 \
+            /diese-seite-gibt-es-nicht /blog/gibt-es-nicht

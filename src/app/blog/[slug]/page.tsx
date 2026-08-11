@@ -34,6 +34,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
+// Unbekannte Slugs werden vom Router abgelehnt, nicht von dieser Seite. Der
+// Unterschied ist sichtbar: Ein `notFound()` aus dem Seitenrumpf liefert zwar
+// Status 404, aber als Dokument die Next-Fehlerhülle `__next_error__` mit
+// leerem Body - das Root-Layout fehlt, die Seite entsteht erst bei der
+// Hydration. Über den Router landet die Anfrage stattdessen auf
+// `src/app/not-found.tsx` samt Layout, serverseitig gerendert (Issue #28).
+//
+// Tragfähig ist das, weil `_posts/` im Image liegt: Die Liste aus
+// `generateStaticParams` ist zur Build-Zeit vollständig, ein neuer Artikel
+// bedeutet ohnehin einen neuen Build.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => ({
