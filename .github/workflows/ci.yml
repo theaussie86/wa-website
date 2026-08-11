@@ -30,7 +30,12 @@ jobs:
       GOOGLE_SERVICE_ACCOUNT_EMAIL: placeholder@example.com
       GOOGLE_PRIVATE_KEY: placeholder
       GUIDE_JWT_SECRET: placeholder-placeholder-placeholder-1234
+      RECAPTCHA_SECRET_KEY: placeholder
       NEXT_PUBLIC_GTM_ID: ""
+      # Leer, nicht mit Platzhalter: Die Formulare rendern ohne Site-Key kein
+      # reCAPTCHA-Skript. Ein erfundener Key würde im Markup-Check echte
+      # Anfragen an Google auslösen.
+      NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ""
     steps:
       - uses: actions/checkout@v7
 

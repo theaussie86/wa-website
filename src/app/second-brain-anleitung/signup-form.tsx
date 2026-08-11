@@ -4,9 +4,16 @@ import { useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { handleEmailSubmit } from "./actions";
 import { FormFeedback } from "@/app/_components/form-feedback";
+import {
+  RecaptchaNotice,
+  SpamProtectionFields,
+  useSpamProtectedAction,
+} from "@/app/_components/spam-protection";
 
 export function SignupForm({ id }: { id?: string }) {
   const [state, action, pending] = useActionState(handleEmailSubmit, null);
+  const [submit, preparing] = useSpamProtectedAction(action, "guide_signup");
+  const busy = pending || preparing;
   const router = useRouter();
 
   useEffect(() => {
@@ -21,7 +28,8 @@ export function SignupForm({ id }: { id?: string }) {
         <FormFeedback state={state} variant="inverted" />
       ) : (
         <>
-          <form action={action} className="flex flex-col sm:flex-row gap-3">
+          <form action={submit} className="flex flex-col sm:flex-row gap-3">
+            <SpamProtectionFields />
             <input
               type="email"
               name="email"
@@ -31,10 +39,10 @@ export function SignupForm({ id }: { id?: string }) {
             />
             <button
               type="submit"
-              disabled={pending}
+              disabled={busy}
               className="btn-primary whitespace-nowrap disabled:opacity-50"
             >
-              {pending ? "Wird geprüft..." : "Kostenlos eintragen"}
+              {busy ? "Wird geprüft..." : "Kostenlos eintragen"}
             </button>
           </form>
           <div className="mt-2">
@@ -44,6 +52,7 @@ export function SignupForm({ id }: { id?: string }) {
             Nur relevante Inhalte rund um KI und Second Brain. Jederzeit
             abmelden.
           </p>
+          <RecaptchaNotice variant="inverted" />
         </>
       )}
     </div>

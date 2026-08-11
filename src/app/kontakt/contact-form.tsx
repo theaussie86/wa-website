@@ -3,9 +3,16 @@
 import { useActionState, useState } from "react";
 import { sendContactMessage } from "./actions";
 import { FormFeedback } from "@/app/_components/form-feedback";
+import {
+  RecaptchaNotice,
+  SpamProtectionFields,
+  useSpamProtectedAction,
+} from "@/app/_components/spam-protection";
 
 function ContactFormInner({ onReset }: { onReset: () => void }) {
   const [state, action, pending] = useActionState(sendContactMessage, null);
+  const [submit, preparing] = useSpamProtectedAction(action, "contact");
+  const busy = pending || preparing;
 
   if (state?.success) {
     return (
@@ -27,8 +34,9 @@ function ContactFormInner({ onReset }: { onReset: () => void }) {
   }
 
   return (
-    <form action={action} className="space-y-6">
+    <form action={submit} className="space-y-6">
       <FormFeedback state={state} />
+      <SpamProtectionFields />
 
       <div>
         <label
@@ -42,7 +50,7 @@ function ContactFormInner({ onReset }: { onReset: () => void }) {
           id="name"
           name="name"
           required
-          disabled={pending}
+          disabled={busy}
           className="w-full px-4 py-3 border border-primary/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-accent/50 focus:border-accent disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
@@ -59,7 +67,7 @@ function ContactFormInner({ onReset }: { onReset: () => void }) {
           id="email"
           name="email"
           required
-          disabled={pending}
+          disabled={busy}
           className="w-full px-4 py-3 border border-primary/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-accent/50 focus:border-accent disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
@@ -76,22 +84,24 @@ function ContactFormInner({ onReset }: { onReset: () => void }) {
           name="message"
           rows={5}
           required
-          disabled={pending}
+          disabled={busy}
           className="w-full px-4 py-3 border border-primary/20 rounded-xs focus:outline-hidden focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
       <button
         type="submit"
-        disabled={pending}
+        disabled={busy}
         className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {pending ? "Wird gesendet..." : "Nachricht senden"}
+        {busy ? "Wird gesendet..." : "Nachricht senden"}
       </button>
 
       <p className="text-center text-sm text-charcoal/60">
         Ich melde mich innerhalb von 24 Stunden.
       </p>
+
+      <RecaptchaNotice />
     </form>
   );
 }

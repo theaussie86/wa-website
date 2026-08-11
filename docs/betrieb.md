@@ -239,11 +239,13 @@ Genau eine Stelle ist jeweils die Quelle der Wahrheit. Kopien altern.
 
 | Was | Liegt in | Quelle der Wahrheit |
 |---|---|---|
-| Laufzeit-Variablen der Anwendung (Datenbank, Brevo, Gmail-Service-Account, JWT-Secret) | Dokploy, Anwendung → Environment | **Dokploy** |
+| Laufzeit-Variablen der Anwendung (Datenbank, Brevo, Gmail-Service-Account, JWT-Secret, `RECAPTCHA_SECRET_KEY`) | Dokploy, Anwendung → Environment | **Dokploy** |
 | PocketBase-Superuser (Admin und Dienstkonto) | PocketBase selbst | **Passwortmanager** |
 | GHCR-Token für den Image-Pull | Dokploy, Registry `ghcr` (`cAzlEWfYzyYkLL3UGbyI9`) | **Dokploy** |
 | Dokploy-API-Key für den Deploy | GitHub-Repository-Secret `DOKPLOY_API_KEY` | **Passwortmanager** |
 | `NEXT_PUBLIC_GTM_ID` | GitHub-Repository-*Variable* | GitHub |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | GitHub-Repository-*Variable* | GitHub |
+| reCAPTCHA-Schlüsselpaar (v3, Domain `weissteiner-automation.com`) | google.com/recaptcha/admin | **Google-Konto** |
 | SSH-Zugang zur VPS | lokaler SSH-Key, Host-Alias `cwe-dokploy` | Passwortmanager |
 | Panel-Login | `manage.weissteiner-automation.com` | Passwortmanager |
 
@@ -319,12 +321,18 @@ echte Seiteneffekte. Er ist der Abnahmetest nach jedem größeren Eingriff.
 ./scripts/smoke-test.sh --ip 186.240.157.55
 ```
 
-Zwei Prüfungen haben echte Seiteneffekte und laufen nur auf Zuruf:
+Eine Prüfung hat echte Seiteneffekte und läuft nur auf Zuruf:
 
 ```bash
---contact          # sendet eine echte Kontaktanfrage; die Mail muss im Postfach ankommen
 --doi <email>      # läuft den Double-Opt-in durch; die Adresse muss in Brevo bestätigt sein
 ```
+
+Der frühere Schalter `--contact` ist weg. Seit dem Spamschutz verlangt `/api/contact` ein
+reCAPTCHA-Token, das nur im Browser entsteht - ein Skript kann darüber keine Mail mehr
+auslösen. Der Test prüft stattdessen, dass die Route ohne Token abweist und dass
+`/kontakt` das reCAPTCHA-Skript ausliefert. **Dass wirklich Mail rausgeht, beweist nur
+eine Einsendung über das Formular auf `/kontakt` im Browser** - dieser Schritt gehört
+nach jedem Eingriff an Gmail-Zugangsdaten oder Spamschutz von Hand dazu.
 
 Warum der Test so geschnitten ist, welche Prüfung welche Bruchstelle abdeckt und was ein
 Statuscode allein **nicht** belegt, steht in

@@ -1,16 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/gmail";
+import { checkFields } from "@/lib/spam-check";
+import { HONEYPOT_FIELD, RECAPTCHA_TOKEN_FIELD } from "@/lib/spam-protection";
 import { isValidEmail, sanitize } from "@/lib/validation";
 
 interface ContactFormData {
   name: string;
   email: string;
   message: string;
+  [HONEYPOT_FIELD]?: string;
+  [RECAPTCHA_TOKEN_FIELD]?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const data: ContactFormData = await request.json();
+
+    // Vor allem anderen: Diese Route verschickt Mail ohne Anmeldung und ist
+    // damit das lohnendste Ziel auf der Website. Sie prüft dieselben beiden
+    // Merkmale wie die Server Action, nur aus dem JSON-Rumpf statt aus
+    // FormData.
+    const spamCheck = await checkFields(
+      { honeypot: data[HONEYPOT_FIELD], token: data[RECAPTCHA_TOKEN_FIELD] },
+      "contact"
+    );
+
+    if (!spamCheck.ok) {
+      console.warn(`POST /api/contact abgewiesen: ${spamCheck.reason}`);
+      return NextResponse.json(
+        { error: "Anfrage wurde als automatisiert eingestuft" },
+        { status: 400 }
+      );
+    }
 
     // Validation
     if (!data.name || !data.email || !data.message) {

@@ -100,6 +100,29 @@ export const SERVICES: ServiceConfig[] = [
     privacyPolicyUrl: "https://www.hostinger.com/privacy-policy",
     dataTransferToUSA: false,
   },
+  {
+    id: "google-recaptcha",
+    name: "Google reCAPTCHA v3",
+    provider: "Google Ireland Limited",
+    providerUrl: "https://www.google.com/recaptcha",
+    purpose:
+      "Schützt die Formulare vor automatisierten Einsendungen. Analysiert das Nutzerverhalten und lädt nur auf Seiten mit Formular.",
+    // Essenziell, nicht einwilligungspflichtig: Ohne die Prüfung ist das
+    // Kontaktformular ein offener Mailversand. Rechtsgrundlage ist das
+    // berechtigte Interesse nach Art. 6 Abs. 1 lit. f DSGVO - siehe
+    // docs/adr/0004-treat-recaptcha-as-an-essential-service.md.
+    category: "essential",
+    isActive: true,
+    cookies: [
+      {
+        name: "_GRECAPTCHA",
+        purpose: "Risikoanalyse zur Unterscheidung von Mensch und Bot",
+        duration: "6 Monate",
+      },
+    ],
+    privacyPolicyUrl: "https://policies.google.com/privacy",
+    dataTransferToUSA: true,
+  },
 
   // ============ ANALYTICS ============
   {

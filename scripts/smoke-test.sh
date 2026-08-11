@@ -16,9 +16,8 @@
 #
 #   ./scripts/smoke-test.sh
 #
-# Zwei Pruefungen haben echte Seiteneffekte und laufen nur auf Zuruf:
+# Eine Prüfung hat echte Seiteneffekte und läuft nur auf Zuruf:
 #
-#   --contact             sendet eine echte Kontaktanfrage (Mail wird zugestellt)
 #   --doi <email>         laeuft den Double-Opt-in-Pfad mit einem in Brevo
 #                         bestaetigten Kontakt durch
 #
@@ -26,14 +25,12 @@ set -uo pipefail
 
 HOST="weissteiner-automation.com"
 IP=""
-RUN_CONTACT=0
 DOI_EMAIL=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --host) HOST="$2"; shift 2 ;;
     --ip) IP="$2"; shift 2 ;;
-    --contact) RUN_CONTACT=1; shift ;;
     --doi) DOI_EMAIL="$2"; shift 2 ;;
     -h|--help) sed -n '2,30p' "$0"; exit 0 ;;
     *) echo "Unbekannte Option: $1" >&2; exit 2 ;;
@@ -130,25 +127,36 @@ fi
 
 head_ "4. Lead-Wege"
 
-# Kontaktformular: der Test gilt erst als bestanden, wenn die Mail zugestellt
-# wurde. success:true heisst nur, dass die Gmail-API den Auftrag angenommen hat -
-# das ist der Nachweis, dass der mehrzeilige GOOGLE_PRIVATE_KEY korrekt beim
-# Container ankommt. Die Zustellung selbst wird im Postfach geprueft.
-if [ "$RUN_CONTACT" = "1" ]; then
-  stamp=$(date +%Y-%m-%dT%H:%M:%S)
-  payload=$(printf '{"name":"Smoke-Test %s","email":"smoke-test@weissteiner-automation.com","message":"Automatischer Smoke-Test der VPS-Umgebung (#23) vom %s. Diese Nachricht kann geloescht werden."}' "$stamp" "$stamp")
-  resp=$("${CURL[@]}" -X POST -H 'Content-Type: application/json' -d "$payload" \
-    -w '\n%{http_code}' "$BASE/api/contact" 2>&1)
-  code=$(printf '%s' "$resp" | tail -n1)
-  body=$(printf '%s' "$resp" | sed '$d')
-  if [ "$code" = "200" ] && printf '%s' "$body" | grep -q '"success":true'; then
-    ok "Kontaktformular angenommen (Betreff: \"Neue Kontaktanfrage von Smoke-Test $stamp\")"
-    printf '        \033[33mmanuell zu bestaetigen:\033[0m Mail im Postfach angekommen?\n'
-  else
-    bad "Kontaktformular" "POST /api/contact lieferte $code: $body"
-  fi
+# Zwei Prüfungen, die zusammengehören.
+#
+# Erstens: Liefert die Seite das reCAPTCHA-Skript aus? Der Site-Key wird beim
+# Build ins Bundle gebacken. Fehlt er, rendert kein Skript, es entsteht im
+# Browser kein Token, und der Server weist jede Einsendung aller drei
+# Formulare ab - ohne dass irgendetwas 500 liefert. Diese Prüfung ist der
+# einzige Wächter dagegen aus dem laufenden Betrieb heraus.
+#
+# Zweitens: Weist die Route ohne Token ab? Seit dem Spamschutz verlangt
+# /api/contact ein gültiges Token, und das entsteht nur im Browser - ein
+# Skript kann hier also keine Mail mehr auslösen. Ein 200 hieße, dass der
+# Spamschutz aus ist.
+#
+# Die Gegenprobe - Mail geht wirklich raus, der mehrzeilige GOOGLE_PRIVATE_KEY
+# kommt korrekt im Container an - läuft damit über das Formular auf /kontakt
+# im Browser, nicht mehr hier. Die Route hat keine Aufrufer in der Anwendung;
+# sie bleibt vorerst als Diagnosepfad stehen.
+contains "reCAPTCHA-Skript auf /kontakt" "/kontakt" "200" "recaptcha/api.js"
+
+stamp=$(date +%Y-%m-%dT%H:%M:%S)
+payload=$(printf '{"name":"Smoke-Test %s","email":"smoke-test@weissteiner-automation.com","message":"Automatischer Smoke-Test vom %s. Wird ohne Token abgewiesen."}' "$stamp" "$stamp")
+resp=$("${CURL[@]}" -X POST -H 'Content-Type: application/json' -d "$payload" \
+  -w '\n%{http_code}' "$BASE/api/contact" 2>&1)
+code=$(printf '%s' "$resp" | tail -n1)
+body=$(printf '%s' "$resp" | sed '$d')
+if [ "$code" = "400" ] && printf '%s' "$body" | grep -q 'automatisiert'; then
+  ok "Kontaktroute weist Einsendung ohne reCAPTCHA-Token ab (400)"
+  printf '        \033[33mmanuell zu bestätigen:\033[0m Mail über das Formular auf /kontakt verschickt?\n'
 else
-  skip "Kontaktformular (echte Mail)" "--contact nicht gesetzt"
+  bad "Kontaktroute" "POST /api/contact lieferte $code: $body (erwartet: 400, Spam-Abweisung)"
 fi
 
 # Double-Opt-in-Pfad: bestaetigt Brevo-Anbindung (Kontaktabfrage), JWT-Secret

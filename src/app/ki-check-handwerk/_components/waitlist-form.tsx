@@ -3,9 +3,16 @@
 import { useActionState } from "react";
 import { joinWaitlist, type WaitlistState } from "../actions";
 import { FormFeedback } from "@/app/_components/form-feedback";
+import {
+  RecaptchaNotice,
+  SpamProtectionFields,
+  useSpamProtectedAction,
+} from "@/app/_components/spam-protection";
 
 export function WaitlistForm({ id, variant = "default" }: { id?: string; variant?: "default" | "inverted" }) {
   const [state, action, pending] = useActionState<WaitlistState, FormData>(joinWaitlist, null);
+  const [submit, preparing] = useSpamProtectedAction(action, "waitlist");
+  const busy = pending || preparing;
 
   const inputClass =
     variant === "inverted"
@@ -18,13 +25,14 @@ export function WaitlistForm({ id, variant = "default" }: { id?: string; variant
 
   return (
     <div id={id}>
-      <form action={action} className="flex flex-col gap-3 max-w-md mx-auto">
+      <form action={submit} className="flex flex-col gap-3 max-w-md mx-auto">
+        <SpamProtectionFields />
         <input
           type="text"
           name="name"
           placeholder="Dein Vorname (optional)"
           aria-label="Dein Vorname"
-          disabled={pending}
+          disabled={busy}
           className={inputClass}
         />
         <input
@@ -33,15 +41,15 @@ export function WaitlistForm({ id, variant = "default" }: { id?: string; variant
           placeholder="Deine E-Mail-Adresse"
           required
           aria-label="Deine E-Mail-Adresse"
-          disabled={pending}
+          disabled={busy}
           className={inputClass}
         />
         <button
           type="submit"
-          disabled={pending}
+          disabled={busy}
           className="btn-primary py-4 text-base font-semibold disabled:opacity-50"
         >
-          {pending ? "Wird eingetragen..." : "Auf die Warteliste"}
+          {busy ? "Wird eingetragen..." : "Auf die Warteliste"}
         </button>
       </form>
       {state && !state.success && (
@@ -52,6 +60,7 @@ export function WaitlistForm({ id, variant = "default" }: { id?: string; variant
       <p className={`text-xs mt-3 text-center ${variant === "inverted" ? "text-white/40" : "text-charcoal/40"}`}>
         Kostenlos · Kein Spam · Jederzeit abmelden
       </p>
+      <RecaptchaNotice variant={variant === "inverted" ? "inverted" : "default"} />
     </div>
   );
 }

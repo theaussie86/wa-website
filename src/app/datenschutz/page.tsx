@@ -490,7 +490,10 @@ export default function DatenschutzPage() {
 
                 <div>
                   <h3 className="font-sans font-semibold text-charcoal text-lg mb-2">Google reCAPTCHA</h3>
-                  <p>Mit reCAPTCHA soll überprüft werden, ob Dateneingaben durch einen Menschen oder durch ein automatisiertes Programm erfolgen. Hierzu analysiert reCAPTCHA das Verhalten des Websitebesuchers anhand verschiedener Merkmale.</p>
+                  <p className="mb-2">Wir nutzen Google reCAPTCHA v3 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) auf allen Seiten mit einem Formular: Kontaktseite, Warteliste zum KI-Check und Anmeldung zur Second-Brain-Anleitung. Mit reCAPTCHA wird überprüft, ob eine Eingabe durch einen Menschen oder durch ein automatisiertes Programm erfolgt. Hierzu analysiert reCAPTCHA das Verhalten des Websitebesuchers anhand verschiedener Merkmale.</p>
+                  <p className="mb-2">Die Analyse beginnt automatisch, sobald Sie eine dieser Seiten aufrufen. Dabei werden unter anderem IP-Adresse, Verweildauer, Mausbewegungen und Tastatureingaben ausgewertet und an Google übertragen, auch in die USA. reCAPTCHA speichert dafür das Cookie <code>_GRECAPTCHA</code> mit einer Laufzeit von sechs Monaten.</p>
+                  <p className="mb-2">Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse daran, unsere Formulare vor missbräuchlicher automatisierter Nutzung und vor Spam zu schützen. Ohne diese Prüfung wäre der Mailversand über das Kontaktformular für Bots offen.</p>
+                  <p>Weitere Informationen: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">https://policies.google.com/privacy</a> und <a href="https://policies.google.com/terms?hl=de" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">https://policies.google.com/terms</a></p>
                 </div>
               </div>
             </div>

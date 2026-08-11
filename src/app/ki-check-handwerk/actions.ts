@@ -1,5 +1,6 @@
 "use server";
 
+import { checkSubmission, spamRejectionMessage } from "@/lib/spam-check";
 import { isValidEmail, sanitize } from "@/lib/validation";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -26,6 +27,20 @@ export async function joinWaitlist(
   _prevState: WaitlistState,
   formData: FormData
 ): Promise<WaitlistState> {
+  const spamCheck = await checkSubmission(formData, "waitlist").catch((error: unknown) => {
+    console.error("Spam-Prüfung nicht möglich:", error);
+    return null;
+  });
+
+  if (!spamCheck) {
+    return { success: false, message: "Ein Fehler ist aufgetreten. Bitte versuche es später." };
+  }
+
+  if (!spamCheck.ok) {
+    console.warn(`Warteliste abgewiesen: ${spamCheck.reason}`);
+    return { success: false, message: spamRejectionMessage(spamCheck.reason, "du") };
+  }
+
   const email = formData.get("email");
   const name = formData.get("name");
 
