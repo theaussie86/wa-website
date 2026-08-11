@@ -66,9 +66,8 @@ jobs:
             /ki-check-handwerk /second-brain-anleitung /kontakt /leistungen
 
           # Tote URLs müssen 404 liefern und trotzdem eine echte Seite zeigen
-          # (Issue #28). Status 200 wäre ein Soft 404, ein 404 mit leerem Body
-          # die Next-Fehlerhülle. Zwei Pfade, weil Next beide Fälle
-          # unterschiedlich behandelt: nicht gematchte Route und ein Slug,
-          # den generateStaticParams nicht kennt.
+          # (Issue #28). Zwei Pfade, weil Next beide Fälle unterschiedlich
+          # behandelt: nicht gematchte Route und ein Slug, den
+          # generateStaticParams nicht kennt.
           npm run check:404 -- http://localhost:3000 \
             /diese-seite-gibt-es-nicht /blog/gibt-es-nicht

@@ -1,14 +1,8 @@
 import Link from "next/link";
 
-/**
- * Ohne diese Datei rendert Next für `notFound()` seine eingebaute Fehlerhülle:
- * ein Dokument mit `id="__next_error__"`, das das Root-Layout umgeht und einen
- * Body mit 38 Zeichen ausliefert. Der Status stimmt dabei, der Nutzer sieht
- * aber bis zur Hydration nichts und ohne JavaScript nie etwas (Issue #28).
- *
- * Als Grenze des Root-Segments greift diese Seite für beide Wege in den 404:
- * für Pfade, die keine Route matcht, und für Seiten, die `notFound()` rufen.
- */
+// Grenze des Root-Segments: greift für jede URL, die keine Route matcht, und
+// für jedes `notFound()`. Ohne diese Datei liefert Next seine eingebaute
+// Standardseite - siehe docs/adr/0002-reject-unknown-dynamic-params-at-the-router.md.
 export default function NotFound() {
   return (
     <main>

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Prüft, ob ausgelieferte Seiten serverseitig echtes Markup enthalten.
+// Prüft, ob ausgelieferte Seiten serverseitig echtes Markup enthalten - und
+// mit dem erwarteten Statuscode antworten.
 //
 // Ein HTTP 200 und ein vorhandener <title> sagen bei einer React-App nichts
 // darüber aus, ob der Seiteninhalt im HTML steht: Beides bleibt grün, während
@@ -8,13 +9,22 @@
 // <body> ohne <script>-Tags - das ist der Teil, den Crawler ohne
 // JavaScript-Ausführung sehen.
 //
+// Umgekehrt reicht das Markup allein auch nicht: Eine tote URL, die 200 statt
+// 404 liefert, ist ein Soft 404 und bleibt im Index (Issue #28). Dafür gibt es
+// --status.
+//
 // Verwendung:
 //   node scripts/check-ssr-body.mjs <base-url> [pfad ...]
 //   node scripts/check-ssr-body.mjs http://1.2.3.4 --host weissteiner-automation.com /
+//   node scripts/check-ssr-body.mjs http://localhost:3000 --status 404 /gibt-es-nicht
 //
 // Optionen:
-//   --host <name>   Host-Header setzen (Prüfung gegen Server-Adresse vor DNS-Cutover)
-//   --min <bytes>   Mindestgröße des skriptfreien Body-Markups (Default: 2000)
+//   --host <name>    Host-Header setzen (Prüfung gegen Server-Adresse vor DNS-Cutover)
+//   --min <bytes>    Mindestgröße des skriptfreien Body-Markups (Default: 2000)
+//   --status <code>  Exakt erwarteter Statuscode (Default: irgendein 2xx)
+//
+// Weiterleitungen werden nie verfolgt: Eine Antwort, die erst über einen
+// Redirect zum Ziel kommt, soll als das auffallen, was sie ist.
 //
 // Exit-Code 0, wenn alle Pfade bestehen, sonst 1.
 
@@ -26,6 +36,7 @@ function parseArgs(argv) {
   let baseUrl;
   let host;
   let minBytes = DEFAULT_MIN_BYTES;
+  let expectedStatus;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -37,6 +48,12 @@ function parseArgs(argv) {
       minBytes = Number(raw);
       if (!Number.isFinite(minBytes) || minBytes < 0) {
         throw new Error(`--min erwartet eine Zahl, bekam: ${raw}`);
+      }
+    } else if (arg === "--status") {
+      const raw = argv[++i];
+      expectedStatus = Number(raw);
+      if (!Number.isInteger(expectedStatus)) {
+        throw new Error(`--status erwartet einen Statuscode, bekam: ${raw}`);
       }
     } else if (arg.startsWith("--")) {
       throw new Error(`Unbekannte Option: ${arg}`);
@@ -57,6 +74,7 @@ function parseArgs(argv) {
     baseUrl: baseUrl.replace(/\/$/, ""),
     host,
     minBytes,
+    expectedStatus,
     paths: paths.length > 0 ? paths : DEFAULT_PATHS,
   };
 }
@@ -67,46 +85,61 @@ function parseArgs(argv) {
  * Das ist bewusst grob - es geht um die Unterscheidung "leerer Platzhalter"
  * (38 Zeichen) gegen "vollständiger Seitenbaum" (mehrere Tausend).
  */
-export function scriptFreeBodyMarkupLength(html) {
+function scriptFreeBodyMarkupLength(html) {
   const body = /<body[^>]*>([\s\S]*)<\/body>/i.exec(html);
   if (!body) return 0;
   return body[1].replace(/<script\b[\s\S]*?<\/script>/gi, "").trim().length;
 }
 
-async function checkPath({ baseUrl, host, minBytes, path }) {
+async function checkPath({ baseUrl, host, minBytes, expectedStatus, path }) {
   const url = `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
   const headers = host ? { Host: host } : undefined;
 
-  const response = await fetch(url, { headers, redirect: "follow" });
+  const response = await fetch(url, { headers, redirect: "manual" });
   const html = await response.text();
   const length = scriptFreeBodyMarkupLength(html);
-  const ok = response.ok && length >= minBytes;
+  const statusOk =
+    expectedStatus === undefined
+      ? response.ok
+      : response.status === expectedStatus;
 
-  return { url, status: response.status, length, ok };
+  return { path, status: response.status, length, statusOk, bodyOk: length >= minBytes };
 }
 
 async function main() {
-  const { baseUrl, host, minBytes, paths } = parseArgs(process.argv.slice(2));
+  const options = parseArgs(process.argv.slice(2));
+  const { baseUrl, host, minBytes, expectedStatus, paths } = options;
 
   console.log(`ziel: ${baseUrl}${host ? ` (Host: ${host})` : ""}`);
-  console.log(`min-body-bytes: ${minBytes}`);
+  console.log(
+    `erwarteter status: ${expectedStatus ?? "2xx"}, min-body-bytes: ${minBytes}`
+  );
 
   let failed = 0;
   for (const path of paths) {
-    const result = await checkPath({ baseUrl, host, minBytes, path });
-    if (!result.ok) failed++;
+    const result = await checkPath({ ...options, path });
+    const ok = result.statusOk && result.bodyOk;
+    if (!ok) failed++;
+    const reason = ok
+      ? ""
+      : ` <- ${[
+          result.statusOk ? null : "unerwarteter Status",
+          result.bodyOk ? null : "Body-Markup zu klein",
+        ]
+          .filter(Boolean)
+          .join(", ")}`;
     console.log(
-      `${result.ok ? "ok  " : "FAIL"} ${path} status=${result.status} body-ohne-script=${result.length}`
+      `${ok ? "ok  " : "FAIL"} ${path} status=${result.status} body-ohne-script=${result.length}${reason}`
     );
   }
 
   if (failed > 0) {
     console.error(
-      `\n${failed} von ${paths.length} Pfaden liefern kein serverseitiges Markup.`
+      `\n${failed} von ${paths.length} Pfaden antworten nicht wie erwartet.`
     );
     process.exit(1);
   }
-  console.log(`\nAlle ${paths.length} Pfade liefern serverseitiges Markup.`);
+  console.log(`\nAlle ${paths.length} Pfade antworten wie erwartet.`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
