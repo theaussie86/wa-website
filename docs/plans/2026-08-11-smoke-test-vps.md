@@ -58,9 +58,10 @@ heißt nur, dass die Gmail-API den Auftrag angenommen hat - das ist der Nachweis
 der mehrzeilige `GOOGLE_PRIVATE_KEY` korrekt beim Container ankommt. Die Zustellung
 selbst wird im Postfach geprüft, das Skript kann das nicht.
 
-## Ergebnis des ersten Laufs (2026-08-11, gegen 186.240.157.55)
+## Ergebnis (2026-08-11, gegen 186.240.157.55)
 
-12 bestanden, 2 fehlgeschlagen.
+Erster Lauf: 12 bestanden, 2 fehlgeschlagen. Nach dem Fix von #44: **13 bestanden,
+1 fehlgeschlagen.**
 
 | Prüfung | Ergebnis |
 |---|---|
@@ -72,16 +73,22 @@ selbst wird im Postfach geprüft, das Skript kann das nicht.
 | Brevo-Kontaktprüfung im Bestätigungspfad | grün |
 | JWT-Token signiert und als Cookie gesetzt | grün |
 | Guide-Kapitel mit Token erreichbar, ohne Token gesperrt | grün |
-| Bestätigungslink zeigt auf die richtige Adresse | **rot - #44** |
-| Fortschritt lässt sich in Supabase schreiben | **rot - #45** |
+| Bestätigungslink zeigt auf die richtige Adresse | grün seit #44 |
+| Fortschritt lässt sich in die Datenbank schreiben | **rot - #47** |
 
-Beide Fehler sind keine Regressionen des Umzugs. Sie wurden gegen das bestehende
-Shared Hosting gegengeprüft und treten dort genauso auf - der Smoke-Test hat sie
-sichtbar gemacht, nicht erzeugt.
+Beide gefundenen Fehler sind keine Regressionen des Umzugs. Sie wurden gegen das
+bestehende Shared Hosting gegengeprüft und treten dort genauso auf - der Smoke-Test
+hat sie sichtbar gemacht, nicht erzeugt.
 
 Die Container-Plattform selbst ist damit bestätigt: Image, Standalone-Runner,
 Routing, `sharp`, MDX-Verarbeitung im Dateisystem, Gmail-Service-Account inklusive
 mehrzeiligem privaten Schlüssel und das JWT-Secret arbeiten auf der VPS.
+
+**Bis #47 erledigt ist, lautet das erwartete Ergebnis 13 grün und 1 rot.** Das
+Supabase-Projekt existiert nicht mehr (NXDOMAIN); das Freebie-Backend wird durch
+selbst gehostetes PocketBase ersetzt. Der rote Schreibpfad ist die Abnahme für #47,
+kein offener Punkt des Umzugs - er bleibt bewusst rot stehen, statt aus dem Test
+entfernt zu werden.
 
 ## Nebenbefunde für den Cutover (#25)
 
