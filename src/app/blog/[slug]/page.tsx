@@ -52,6 +52,8 @@ export default async function BlogPost({ params }: Params) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
+  // Durch dynamicParams = false unerreichbar, aber getPostBySlug gibt
+  // Post | null zurück - das hier ist die Verengung, nicht der 404-Weg.
   if (!post) {
     notFound();
   }

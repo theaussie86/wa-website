@@ -25,5 +25,12 @@ article means a new build either way, which is also what makes `dynamicParams = 
 global styles, header and footer would have to be duplicated in that file, and it only covers
 unmatched URLs, not `notFound()`.
 
+What this does not fix: a `notFound()` call that still has to happen inside a page body - because
+the resource can only be checked at request time - keeps producing the empty error shell. No route
+does that today, and any future one should be weighed against pinning its parameter list instead.
+The gated guide is a partial exception: an unknown chapter answers 307 from `src/proxy.ts` before
+the router ever sees it, and only reaches the 404 path once a valid token is present.
+
 `npm run check:404` guards both failure modes - a 200 on a dead URL and a 404 with an empty body -
-and runs in CI against the built application.
+and runs in CI against the built application. It covers router-rejected paths only; there is no
+route left whose 404 depends on `notFound()`.

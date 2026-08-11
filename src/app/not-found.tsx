@@ -1,8 +1,10 @@
 import Link from "next/link";
 
-// Grenze des Root-Segments: greift für jede URL, die keine Route matcht, und
-// für jedes `notFound()`. Ohne diese Datei liefert Next seine eingebaute
-// Standardseite - siehe docs/adr/0002-reject-unknown-dynamic-params-at-the-router.md.
+// Antwort auf jede URL, die keine Route matcht - vollständig serverseitig
+// gerendert. Ein `notFound()` aus einem Seitenrumpf landet zwar formal auch
+// hier, kommt aber in der Next-Fehlerhülle heraus und damit ohne Layout und
+// ohne Body; genau deshalb pinnen die dynamischen Routen ihre Parameterliste.
+// Siehe docs/adr/0002-reject-unknown-dynamic-params-at-the-router.md.
 export default function NotFound() {
   return (
     <main>
