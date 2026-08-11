@@ -24,14 +24,45 @@ function setCookie(name: string, value: string, days: number) {
   document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
 }
 
+type ConsentSignal = "granted" | "denied";
+
+/**
+ * Schickt einen gtag-Befehl in den dataLayer.
+ *
+ * Entscheidend ist, dass das `arguments`-Objekt gepusht wird und keine Kopie
+ * davon: Genau daran erkennt GTM einen Befehl. Ein Array mit demselben Inhalt
+ * landet zwar im dataLayer, wird aber nie ausgewertet - daran ist die
+ * Consent-Steuerung bis Issue #38 unbemerkt gescheitert. Die Parameter sind
+ * nur für den Typcheck der Aufrufstelle da; gelesen wird `arguments`.
+ */
+function gtag(
+  _command: "consent",
+  _action: "update",
+  _params: Record<string, ConsentSignal>
+) {
+  window.dataLayer.push(arguments);
+}
+
 function pushConsentToDataLayer(consent: ConsentState) {
-  if (typeof window !== "undefined" && window.dataLayer) {
-    window.dataLayer.push({
-      event: "consent_updated",
-      consent_analytics: consent.analytics,
-      consent_marketing: consent.marketing,
-    });
-  }
+  if (typeof window === "undefined" || !window.dataLayer) return;
+
+  // Reihenfolge: erst der gtag-Befehl, dann das Event. Ein React-Effekt
+  // käme erst nach dem nächsten Render und damit hinter consent_updated -
+  // Tags, die auf dieses Event triggern, würden noch den alten Zustand
+  // sehen.
+  gtag("consent", "update", {
+    analytics_storage: consent.analytics ? "granted" : "denied",
+    ad_storage: consent.marketing ? "granted" : "denied",
+    ad_user_data: consent.marketing ? "granted" : "denied",
+    ad_personalization: consent.marketing ? "granted" : "denied",
+  });
+
+  // Eigenes Event, kein gtag-Befehl - bleibt deshalb ein Objekt-Push.
+  window.dataLayer.push({
+    event: "consent_updated",
+    consent_analytics: consent.analytics,
+    consent_marketing: consent.marketing,
+  });
 }
 
 export function CookieConsentProvider({ children }: { children: ReactNode }) {
@@ -132,9 +163,12 @@ export function useConsent() {
   return context;
 }
 
-// Add dataLayer type to window
 declare global {
   interface Window {
-    dataLayer: (Record<string, unknown> | unknown[])[];
+    // Der dataLayer nimmt zweierlei auf: Event-Objekte und die
+    // arguments-Objekte der gtag-Befehle. Beides steht hier, damit ein
+    // versehentlicher Array-Push als Consent-Befehl nicht durchrutscht -
+    // genau der Fehler aus Issue #38.
+    dataLayer: (Record<string, unknown> | IArguments)[];
   }
 }

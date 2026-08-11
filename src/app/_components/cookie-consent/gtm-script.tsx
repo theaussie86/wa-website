@@ -1,68 +1,25 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
 import { useConsent } from "./provider";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
+/**
+ * Lädt den GTM-Container.
+ *
+ * Der Consent-Zustand läuft nicht über diese Komponente: Den Default setzt
+ * `consent-default-script.tsx` vor dem Container, spätere Änderungen schiebt
+ * `pushConsentToDataLayer` in `provider.tsx` im selben Schritt nach, in dem
+ * die Einwilligung gespeichert wird.
+ */
 export function GTMScript() {
-  const { consent, hasConsented, isInitialized } = useConsent();
-
-  // dataLayer anlegen und den Default-Zustand (alles abgelehnt) setzen.
-  // Läuft erst, wenn localStorage gelesen wurde - sonst würde
-  // consent_initialized eine bereits erteilte Einwilligung als false melden.
-  useEffect(() => {
-    if (!GTM_ID || !isInitialized) return;
-
-    // Initialize dataLayer if not exists
-    window.dataLayer = window.dataLayer || [];
-
-    // Set default consent state (all denied)
-    window.dataLayer.push([
-      "consent",
-      "default",
-      {
-        ad_storage: "denied",
-        analytics_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        wait_for_update: 500,
-      },
-    ]);
-
-    // Push consent_initialized event
-    window.dataLayer.push({
-      event: "consent_initialized",
-      consent_analytics: consent?.analytics ?? false,
-      consent_marketing: consent?.marketing ?? false,
-    });
-    // Absichtlich nur an isInitialized gebunden: Der Default-Zustand wird
-    // genau einmal gesetzt, spätere Änderungen übernimmt der Effekt darunter.
-  }, [isInitialized]);
-
-  // Einwilligung nachreichen, sobald sie sich ändert
-  useEffect(() => {
-    if (!GTM_ID || !hasConsented || !consent) return;
-
-    window.dataLayer = window.dataLayer || [];
-
-    window.dataLayer.push([
-      "consent",
-      "update",
-      {
-        analytics_storage: consent.analytics ? "granted" : "denied",
-        ad_storage: consent.marketing ? "granted" : "denied",
-        ad_user_data: consent.marketing ? "granted" : "denied",
-        ad_personalization: consent.marketing ? "granted" : "denied",
-      },
-    ]);
-  }, [consent, hasConsented]);
+  const { isInitialized } = useConsent();
 
   // Nichts rendern ohne konfigurierte ID - und nichts, bevor localStorage
   // gelesen wurde. Der zweite Teil hält den Ladezeitpunkt des Containers
-  // genau dort, wo er vor dieser Korrektur lag, und hält Server- und ersten
-  // Client-Render identisch.
+  // genau dort, wo er vor der Korrektur aus #34 lag, und hält Server- und
+  // ersten Client-Render identisch.
   //
   // Der Container lädt danach auch ohne erteilte Einwilligung, mit Consent
   // Mode auf "denied". Das ist unverändertes Altverhalten und hier bewusst
