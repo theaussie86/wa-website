@@ -50,7 +50,8 @@ jobs:
 
       # Ein Client-Provider, der children zurückhält, liefert eine Seite mit
       # HTTP 200, gültigem <title> und komplett leerem <body> (Issue #34).
-      # Dieser Schritt misst deshalb das Body-Markup ohne <script>.
+      # Dieser Schritt misst deshalb das Body-Markup ohne <script>, für
+      # bestehende Seiten und für tote URLs.
       #
       # Geprüft wird der Standalone-Server, nicht `next start`: next.config.ts
       # setzt `output: "standalone"`, und genau dieses Bundle läuft produktiv im
@@ -58,7 +59,7 @@ jobs:
       # und sicherte damit einen Ausführungspfad ab, den niemand ausliefert -
       # ein Fehler nur im Bundle (fehlende Datei im Trace, nicht mitkopierte
       # Assets) bliebe unentdeckt (Issue #40).
-      - name: Standalone-Server prüfen (Markup und Assets)
+      - name: Standalone-Server prüfen (Markup, 404 und Assets)
         run: |
           # Laufzeit-Layout wie im Dockerfile: .next/static und public liegen
           # nicht im Standalone-Bundle, _posts und src/content werden zur
@@ -89,6 +90,13 @@ jobs:
           npm run check:ssr -- http://localhost:3000 \
             / /blog /blog/spart-ki-wirklich-zeit \
             /ki-check-handwerk /second-brain-anleitung /kontakt /leistungen
+
+          # Tote URLs müssen 404 liefern und trotzdem eine echte Seite zeigen
+          # (Issue #28). Zwei Pfade, weil Next beide Fälle unterschiedlich
+          # behandelt: nicht gematchte Route und ein Slug, den
+          # generateStaticParams nicht kennt.
+          npm run check:404 -- http://localhost:3000 \
+            /diese-seite-gibt-es-nicht /blog/gibt-es-nicht
 
           # Gegenprobe zum Markup-Check: Fehlen .next/static oder public im
           # Standalone-Layout, rendert der Server weiter vollständiges Markup -

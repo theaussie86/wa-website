@@ -13,6 +13,10 @@ const CONTENT_DIR = join(
   "src/content/freebies/second-brain-anleitung"
 );
 
+// Gleiche Begründung wie in src/app/blog/[slug]/page.tsx; die Kapitelliste
+// steht fest in src/content/freebies/second-brain-anleitung.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return chapters.map((chapter) => ({ chapter: chapter.slug }));
 }
