@@ -56,7 +56,7 @@ Hex-Werte sind an drei Stellen legitim und dort auch im Bestand:
 ## Umgebungsvariablen und Secrets
 
 Env-Vars werden **zur Laufzeit** gelesen, im Funktionsrumpf, nicht auf Modulebene. Muster:
-`getSupabaseAdmin()` in `src/lib/supabase.ts`, `getSecret()` in `src/lib/guide-auth.ts`. Grund: Das
+`getPocketBase()` in `src/lib/pocketbase.ts`, `getSecret()` in `src/lib/guide-auth.ts`. Grund: Das
 Container-Image wird einmal gebaut und in jeder Umgebung mit anderen Werten gestartet - was zur
 Build-Zeit gelesen wird, ist eingebrannt.
 
@@ -138,7 +138,7 @@ den Schnitt des Codes - nicht ein Anlass, ein Testframework zu fordern.
 - `src/app/_components/` - geteilte Komponenten. Mehrteilige Features werden Unterordner
   (`cookie-consent/`, `local-seo/`). Ein `index.ts` als Barrel gibt es nur, wo von außen mehrere
   Komponenten gemeinsam importiert werden (`cookie-consent/index.ts`) - kein Barrel auf Verdacht.
-- `src/lib/` - Fachlogik und Integrationen ohne JSX (`supabase.ts`, `gmail.ts`, `guide-auth.ts`,
+- `src/lib/` - Fachlogik und Integrationen ohne JSX (`pocketbase.ts`, `gmail.ts`, `guide-auth.ts`,
   `validation.ts`, `constants.ts`).
 - `src/interfaces/` - geteilte Typen.
 - `src/proxy.ts` - Middleware.

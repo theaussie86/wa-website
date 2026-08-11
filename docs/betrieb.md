@@ -25,6 +25,7 @@ Merge auf main
 | Plattform | Dokploy `v0.29.14`, Docker im Swarm-Mode, Traefik `3.6.7` als Ingress |
 | Panel | `https://manage.weissteiner-automation.com`, Port 3000 in der Firewall zu |
 | Anwendung | Application `7SegzhqX2qLM3NY75qGPR`, Swarm-Service `wa-website-9lxi34` |
+| Datenbank | PocketBase, eigener Compose-Stack, siehe unten |
 | DNS | IONOS, manuell, TTL 300 |
 
 Die Anwendung ist zustandslos: Inhalte liegen als Markdown und MDX im Repository,
@@ -32,6 +33,106 @@ strukturierte Daten in der Datenbank. Kein Volume mit Nutzdaten, keine Datenmigr
 bei einem Deploy. Das einzige Volume ist der Bildcache des Optimizers
 (`wa-website-image-cache` auf `/app/.next/cache/images`) - Verlust kostet Rechenzeit,
 keine Daten, und ist der vorgesehene Weg, den Cache zu leeren.
+
+## PocketBase
+
+Backend des Freebie-Fortschritts, seit #47 anstelle von Supabase. Läuft als eigener
+Container auf derselben VPS.
+
+| Was | Wo |
+|---|---|
+| Betrieb | Dokploy, Compose-Anwendung `pocketbase` (`weissteiner-automation-webseite-pocketbase-wzfmdo`), Provider Raw |
+| Vorlage der Compose-Datei | `pocketbase/docker-compose.yml` im Repository |
+| Image | `ghcr.io/muchobien/pocketbase`, Version fest im Compose |
+| Daten | Volume `pocketbase-pb-data` auf `/pb_data`, `external` |
+| Schema | `pocketbase/pb_migrations/*.js` → `/opt/pocketbase/pb_migrations`, gemountet auf `/pb_migrations` |
+| Erreichbar für die Anwendung | `http://pocketbase:8090` über das `dokploy-network` |
+| Erreichbar für Menschen | nur über SSH-Tunnel, siehe unten |
+| Schema ausrollen | `scripts/pocketbase-deploy.sh` |
+
+**Die Compose-Datei im Repository ist eine Vorlage, keine Quelle.** Dokploy liest sie
+nicht; im Panel steht eine eingefügte Kopie. Wer die Datei hier ändert, fügt sie dort neu
+ein und deployt. Der Container-Lebenszyklus - Start, Neustart, Logs - gehört damit dem
+Panel, genau wie bei der Webseite.
+
+Zwei Dinge kommen bewusst von außerhalb der Anwendung und stehen deshalb als `external`
+beziehungsweise als absoluter Pfad im Compose:
+
+- **Das Volume.** Ein Löschen und Neuanlegen der Anwendung im Panel nimmt die Daten dann
+  nicht mit. Ohne `external: true` würde Dokploy ein eigenes Volume anlegen und der
+  Fortschritt aller Nutzer wäre still weg - die Anwendung liefe weiter, nur eben leer.
+- **Das Migrationsverzeichnis** `/opt/pocketbase/pb_migrations`. Es wird aus dem
+  Repository gefüllt, nicht aus dem Panel. Schema bleibt so versioniert, auch wenn die
+  Compose-Definition von Hand gepflegt wird.
+
+Ein Deploy der Webseite fasst PocketBase nicht an, und umgekehrt. Die beiden Systeme
+teilen sich nur das Netz.
+
+**Den Container findet man über sein Compose-Label, nicht über seinen Namen.** Der Name
+enthält den Zufallsanteil, den Dokploy der Anwendung gegeben hat, und wechselt beim
+Neuanlegen:
+
+```bash
+ssh cwe-dokploy 'docker ps -q --filter label=com.docker.compose.service=pocketbase'
+```
+
+### Zugriff
+
+Es gibt keinen öffentlichen Port und keinen Traefik-Router. Der Container bindet auf
+`127.0.0.1:8090` der VPS, die Firewall lässt von außen ohnehin nur 22, 80 und 443 durch -
+beides zusammen, damit eine geöffnete Firewall allein noch keinen Zugang schafft.
+
+```bash
+ssh -N -L 8090:127.0.0.1:8090 cwe-dokploy   # Tunnel offen lassen
+# dann http://127.0.0.1:8090/_/
+```
+
+Zwei Superuser, beide im Passwortmanager:
+
+| Konto | Zweck |
+|---|---|
+| `christoph.weissteiner@gmail.com` | Admin-Login für Menschen |
+| `app@weissteiner-automation.com` | Dienstidentität, deren Impersonate-Token die Anwendung als `POCKETBASE_TOKEN` benutzt |
+
+Getrennt, damit der Widerruf schneidet, ohne alles zu treffen: Passwort des
+Dienstkontos ändern macht das Token der Anwendung ungültig, der eigene Zugang bleibt.
+Neues Token danach in der Admin-UI unter Superusers → Kontextmenü → Impersonate,
+Laufzeit `315360000` (zehn Jahre), und in Dokploy eintragen.
+
+Passwort vergessen oder Zugang verloren:
+
+```bash
+ssh cwe-dokploy 'docker exec $(docker ps -q --filter label=com.docker.compose.service=pocketbase) \
+  /usr/local/bin/pocketbase superuser upsert EMAIL NEUES-PASSWORT --dir=/pb_data'
+```
+
+### Schema ändern
+
+Migrationsdatei in `pocketbase/pb_migrations/` anlegen, committen,
+`scripts/pocketbase-deploy.sh` laufen lassen - es lädt hoch und startet den Container
+neu, weil PocketBase Migrationen ausschließlich beim Start anwendet. Ohne Änderung an
+den Migrationen fasst es den Container nicht an. Wer stattdessen die Admin-UI benutzt,
+holt die dabei erzeugte Datei zurück ins Repository - Details in
+`pocketbase/pb_migrations/README.md`. Das Deploy-Skript meldet Dateien, die auf dem
+Server liegen und im Repository fehlen.
+
+### Sicherungen
+
+Zwei Ebenen, weil eine davon mit dem Server verschwindet.
+
+**Auf dem Server:** PocketBase legt nach Zeitplan selbst Sicherungen an
+(Admin-UI → Settings → Backups, täglich `0 3 * * *`, die letzten sieben). Sie liegen im
+Volume und decken den häufigen Fall ab: versehentlich gelöschte Daten, kaputte
+Schemaänderung.
+
+**Außerhalb des Servers:** `scripts/pocketbase-backup-pull.sh` legt eine frische
+Sicherung über die API an, lädt sie auf den Arbeitsrechner nach `~/Backups/pocketbase`
+und prüft, ob das Archiv lesbar ist. Deckt den Fall ab, den die erste Ebene nicht kann:
+VPS weg. Ohne diesen Lauf gibt es keine Kopie außerhalb der VPS - Supabase hat das
+vorher übernommen, seit #47 liegt es hier.
+
+Der Datenbestand ist klein (Kapitel-Häkchen pro Mailadresse). Ein Verlust kostet keine
+Kundendaten im engeren Sinn, aber sichtbaren Fortschritt mitten im Guide.
 
 Dokploy **baut nichts**. Es zieht ein fertiges Image und betreibt es. Wer im Panel
 nach einem Build-Log sucht, sucht an der falschen Stelle - Build-Logs liegen in
@@ -138,7 +239,8 @@ Genau eine Stelle ist jeweils die Quelle der Wahrheit. Kopien altern.
 
 | Was | Liegt in | Quelle der Wahrheit |
 |---|---|---|
-| Laufzeit-Variablen der Anwendung (9 Stück: Datenbank, Brevo, Gmail-Service-Account, JWT-Secret) | Dokploy, Anwendung → Environment | **Dokploy** |
+| Laufzeit-Variablen der Anwendung (Datenbank, Brevo, Gmail-Service-Account, JWT-Secret) | Dokploy, Anwendung → Environment | **Dokploy** |
+| PocketBase-Superuser (Admin und Dienstkonto) | PocketBase selbst | **Passwortmanager** |
 | GHCR-Token für den Image-Pull | Dokploy, Registry `ghcr` (`cAzlEWfYzyYkLL3UGbyI9`) | **Dokploy** |
 | Dokploy-API-Key für den Deploy | GitHub-Repository-Secret `DOKPLOY_API_KEY` | **Passwortmanager** |
 | `NEXT_PUBLIC_GTM_ID` | GitHub-Repository-*Variable* | GitHub |
@@ -229,14 +331,14 @@ Statuscode allein **nicht** belegt, steht in
 `docs/plans/2026-08-11-smoke-test-vps.md`. Kurzform: ein 200 beweist keine Seite, und
 eine Datenbankverbindung beweist nur ein Schreibvorgang.
 
-**Erwarteter Stand:** alles grün bis auf den Schreibpfad in die Datenbank - das
-Freebie-Backend wird gerade ersetzt (#47). Ein zweiter roter Punkt ist ein echter Befund.
+**Erwarteter Stand:** alles grün. Ein roter Punkt ist ein echter Befund.
 
 Für einen schnellen Blick zwischendurch:
 
 ```bash
 curl -sS https://weissteiner-automation.com/api/health          # {"status":"ok"}
 ssh cwe-dokploy 'docker ps --filter name=wa-website'            # Up ... (healthy)
+ssh cwe-dokploy 'docker ps --filter name=pocketbase'            # Up ... (healthy)
 ```
 
 ## Stolperfallen
@@ -275,6 +377,21 @@ das neueste Image gewinnt.
 `@1.1.1.1` prüfen oder mit `--resolve` am Cache vorbei. Die gefährliche Variante: die alte
 Adresse zeigt auf ein funktionierendes Shared Hosting, der Cutover sieht deshalb aus, als
 sei nichts passiert.
+
+**Ein `docker pull` fremder öffentlicher Images von ghcr.io scheitert auf dieser VPS mit
+`denied`.** In `/root/.docker/config.json` liegen die GHCR-Zugangsdaten, die Dokploy für
+das private Image der Anwendung angelegt hat. Docker schickt sie an ghcr.io auch für
+fremde Pakete mit und zieht dann nicht anonym, sondern gar nicht. Ausweg ist ein leeres
+Konfigurationsverzeichnis für genau diesen Aufruf - so macht es
+`scripts/pocketbase-deploy.sh`:
+
+```bash
+mkdir -p /tmp/pocketbase-pull
+DOCKER_CONFIG=/tmp/pocketbase-pull docker pull ghcr.io/muchobien/pocketbase:0.39.10
+```
+
+Die vorhandenen Zugangsdaten dabei nicht anfassen - der Image-Pull der Anwendung hängt
+an ihnen.
 
 **Ein von Hand in die Router-Datei der Anwendung eingetragener Traefik-Router überlebt
 den nächsten Deploy nicht.** Dokploy erzeugt die Datei jedes Mal neu. Haltbar ist nur die
@@ -332,4 +449,5 @@ Panel. Die Firewall lässt von außen nur 22, 80 und 443 durch.
 | `docs/plans/2026-08-08-dokploy-panel-https.md` | Panel-Subdomain, Zertifikate, DNS-Cache-Fallen |
 | `docs/plans/2026-08-09-bildgewicht-und-image-cache.md` | Bildcache-Volume, samt Anlegen über `scripts/dokploy-image-cache-volume.sh` |
 | `docs/plans/2026-08-11-smoke-test-vps.md` | Prüfablauf und Begründung jeder einzelnen Prüfung |
+| `pocketbase/pb_migrations/README.md` | Wie Schemaänderungen entstehen und zurück ins Repository kommen |
 | Issue #16 | Entscheidungen des Umzugs, mit Begründung |
