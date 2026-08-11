@@ -51,9 +51,35 @@ jobs:
       # Ein Client-Provider, der children zurückhält, liefert eine Seite mit
       # HTTP 200, gültigem <title> und komplett leerem <body> (Issue #34).
       # Dieser Schritt misst deshalb das Body-Markup ohne <script>.
-      - name: Serverseitiges Markup prüfen
+      #
+      # Geprüft wird der Standalone-Server, nicht `next start`: next.config.ts
+      # setzt `output: "standalone"`, und genau dieses Bundle läuft produktiv im
+      # Container. `next start` bedient aus dem vollständigen .next-Verzeichnis
+      # und sicherte damit einen Ausführungspfad ab, den niemand ausliefert -
+      # ein Fehler nur im Bundle (fehlende Datei im Trace, nicht mitkopierte
+      # Assets) bliebe unentdeckt (Issue #40).
+      - name: Standalone-Server prüfen (Markup und Assets)
         run: |
-          npm run start -- --port 3000 &
+          # Laufzeit-Layout wie im Dockerfile: .next/static und public liegen
+          # nicht im Standalone-Bundle, _posts und src/content werden zur
+          # Laufzeit über process.cwd() gelesen (src/lib/api.ts, guide/[chapter]).
+          # Der Standalone-Server wechselt beim Start in sein eigenes
+          # Verzeichnis - relativ zum Repo-Root findet er nichts davon.
+          #
+          # Diese vier Kopien mit dem Dockerfile zu teilen wurde geprüft und
+          # verworfen: dort läuft es als `COPY --from=builder`, das kein Skript
+          # aufrufen kann. Bleibt die Doppelung - ändert sich die Liste hier,
+          # ändert sie sich auch im Dockerfile.
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public _posts .next/standalone/
+          mkdir -p .next/standalone/src
+          cp -r src/content .next/standalone/src/content
+
+          # Kein --port: der Standalone-Server liest nur PORT und HOSTNAME,
+          # beide wie im Dockerfile. HOSTNAME ist auf manchen Runnern gesetzt
+          # und würde den Server sonst an den Maschinennamen binden - die
+          # Warteschleife liefe dann 60 Sekunden ins Leere.
+          PORT=3000 HOSTNAME=0.0.0.0 node .next/standalone/server.js &
           SERVER_PID=$!
           trap 'kill $SERVER_PID' EXIT
           for i in $(seq 1 60); do
@@ -63,3 +89,35 @@ jobs:
           npm run check:ssr -- http://localhost:3000 \
             / /blog /blog/spart-ki-wirklich-zeit \
             /ki-check-handwerk /second-brain-anleitung /kontakt /leistungen
+
+          # Gegenprobe zum Markup-Check: Fehlen .next/static oder public im
+          # Standalone-Layout, rendert der Server weiter vollständiges Markup -
+          # nur ohne CSS, JS und Bilder. Der Markup-Check allein bliebe also
+          # grün. Deshalb hier je eine Datei aus dem Build-Output und aus public.
+          #
+          # `|| true` fängt den leeren grep ab: ohne pipefail wäre der Status
+          # der von sort und die Prüfung liefe weiter, mit pipefail bräche der
+          # Schritt hier wortlos ab. So kommt in beiden Fällen die Meldung.
+          assets=$(curl -sf --max-time 30 http://localhost:3000/ \
+            | grep -oE '/_next/static/[^"]+\.(css|js)' | sort -u || true)
+          if [ -z "$assets" ]; then
+            echo "FEHLER: Startseite referenziert kein Asset unter /_next/static"
+            exit 1
+          fi
+          failed=0
+          # logo-icon.svg statt einer beliebigen Datei aus public: sie steckt in
+          # der Navigation und im JSON-LD, verschwindet also nicht unbemerkt und
+          # macht den Check nicht zum einzigen Grund, sie zu behalten.
+          for asset in $assets /logo-icon.svg; do
+            code=$(curl -s --max-time 30 -o /dev/null -w '%{http_code}' "http://localhost:3000$asset")
+            if [ "$code" = "200" ]; then
+              echo "ok   $asset"
+            else
+              echo "FAIL $asset status=$code"
+              failed=$((failed + 1))
+            fi
+          done
+          if [ "$failed" -gt 0 ]; then
+            echo "$failed Assets werden nicht ausgeliefert."
+            exit 1
+          fi

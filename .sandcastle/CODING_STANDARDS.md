@@ -102,10 +102,13 @@ Geprüft wird stattdessen an drei Stellen, genau so wie `.github/workflows/ci.ym
 
 1. `npm run typecheck` - `tsc --noEmit`, strict.
 2. `npm run build` - der Next-Build muss durchlaufen.
-3. `npm run check:ssr` - `scripts/check-ssr-body.mjs` startet die gebaute Anwendung und misst pro Pfad
-   die Länge des `<body>` ohne `<script>`-Tags. Hintergrund ist Issue #34: Ein Client-Provider, der
-   `children` zurückhält, liefert HTTP 200 mit gültigem `<title>` und leerem Body - Statuscode und
-   Titel allein beweisen nichts.
+3. `npm run check:ssr` - der CI-Schritt startet den gebauten Standalone-Server im Laufzeit-Layout des
+   `Dockerfile` (`node .next/standalone/server.js`, nicht `next start`, siehe #40), und
+   `scripts/check-ssr-body.mjs` misst dagegen pro Pfad die Länge des `<body>` ohne `<script>`-Tags.
+   Hintergrund ist Issue #34: Ein Client-Provider, der `children` zurückhält, liefert HTTP 200 mit
+   gültigem `<title>` und leerem Body - Statuscode und Titel allein beweisen nichts. Anschließend
+   prüft derselbe Schritt, dass die referenzierten Assets aus `.next/static` und `public` auch
+   ausgeliefert werden - fehlen sie, bleibt der reine Markup-Check grün.
 
 Verhalten wird von außen gegen die laufende Anwendung geprüft: Statuscode, ausgeliefertes Markup,
 Redirect-Ziele, gesetzte Cookies. Eine neue serverseitig gerenderte Seite wird in die Pfadliste des
