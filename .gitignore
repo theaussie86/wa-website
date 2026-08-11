@@ -44,3 +44,9 @@ next-env.d.ts
 
 # local agent scratch (plans/specs, not part of the site)
 docs/superpowers/
+
+# Arbeitsverzeichnisse von git worktree, die Agenten hier anlegen. Der Inhalt
+# ist ein eigener Checkout mit eigenem node_modules - er gehört nie ins Repo,
+# stand aber bisher bei jedem `git status` als untrackt im Weg.
+.claude/worktrees/
+.sandcastle/worktrees/
