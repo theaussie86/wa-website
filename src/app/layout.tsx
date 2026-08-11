@@ -1,6 +1,9 @@
 import Footer from "@/app/_components/footer";
 import { Navigation } from "@/app/_components/navigation";
-import { CookieConsentWrapper } from "@/app/_components/cookie-consent";
+import {
+  ConsentDefaultScript,
+  CookieConsentWrapper,
+} from "@/app/_components/cookie-consent";
 import { JsonLd } from "@/app/_components/json-ld";
 import { SITE_NAME } from "@/lib/constants";
 import type { Metadata } from "next";
@@ -64,6 +67,9 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className={cn("font-sans min-h-screen flex flex-col")}>
+        {/* Steht hier und nicht im CookieConsentWrapper: beforeInteractive
+            wirkt nur aus dem Root-Layout heraus. */}
+        <ConsentDefaultScript />
         <CookieConsentWrapper>
           <div id="site-header"><Navigation /></div>
           <div className="flex-1">{children}</div>
