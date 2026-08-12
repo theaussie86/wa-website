@@ -79,4 +79,14 @@
   a {
     @apply transition-colors duration-200;
   }
+
+  /* Das schwebende reCAPTCHA-Badge unten rechts überdeckt auf Mobilgeräten
+     den Cookie-Banner. Googles Nutzungsbedingungen erlauben das Ausblenden,
+     solange der Hinweis auf Datenschutz und Nutzungsbedingungen sichtbar
+     bleibt - den rendert `RecaptchaNotice` unter jedem geschützten Formular.
+     `visibility` statt `display`, weil das Badge sonst neu positioniert wird
+     und in manchen Browsern kurz aufblitzt. */
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
 }

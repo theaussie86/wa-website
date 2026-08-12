@@ -1,6 +1,7 @@
 "use server";
 
 import { sendEmail } from "@/lib/gmail";
+import { checkSubmission, spamRejectionMessage } from "@/lib/spam-check";
 import { isValidEmail, sanitize } from "@/lib/validation";
 
 export type ContactFormState = { success: boolean; message: string } | null;
@@ -9,6 +10,22 @@ export async function sendContactMessage(
   _prevState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
+  // Vor der Feldprüfung: Ein Bot soll aus den Fehlermeldungen nicht ablesen
+  // können, welche Felder das Formular überhaupt erwartet.
+  const spamCheck = await checkSubmission(formData, "contact").catch((error: unknown) => {
+    console.error("Spam-Prüfung nicht möglich:", error);
+    return null;
+  });
+
+  if (!spamCheck) {
+    return { success: false, message: "Server-Konfigurationsfehler." };
+  }
+
+  if (!spamCheck.ok) {
+    console.warn(`Kontaktformular abgewiesen: ${spamCheck.reason}`);
+    return { success: false, message: spamRejectionMessage(spamCheck.reason, "sie") };
+  }
+
   const name = formData.get("name");
   const email = formData.get("email");
   const message = formData.get("message");

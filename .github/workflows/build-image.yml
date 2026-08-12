@@ -46,6 +46,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Der Site-Key wird ins Bundle gebacken. Fehlt die Repository-Variable
+      # oder ist sie versehentlich als Secret angelegt, expandiert sie zum
+      # leeren String, der ARG im Dockerfile nimmt ihn klaglos an und der Build
+      # läuft durch - im Image rendert dann kein reCAPTCHA-Skript, es entsteht
+      # kein Token, und der Server weist jede Einsendung aller drei Formulare
+      # als Bot ab. Nichts davon wäre rot. Deshalb hier hart abbrechen.
+      - name: reCAPTCHA-Site-Key vorhanden
+        run: |
+          if [ -z "${{ vars.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" ]; then
+            echo "FEHLER: Repository-Variable NEXT_PUBLIC_RECAPTCHA_SITE_KEY ist leer."
+            echo "Ohne Site-Key sind Kontaktformular, Warteliste und Guide-Anmeldung im Image tot."
+            echo "Setzen mit: gh variable set NEXT_PUBLIC_RECAPTCHA_SITE_KEY --body '<site-key>'"
+            exit 1
+          fi
+
       - name: Tags und Labels bestimmen
         id: meta
         uses: docker/metadata-action@v6
@@ -70,8 +85,11 @@ jobs:
           # das Package mit diesem Repository, und erst dadurch darf
           # GITHUB_TOKEN unten alte Versionen löschen.
           labels: ${{ steps.meta.outputs.labels }}
+          # Beides Repository-Variablen, keine Secrets: Site-Key und GTM-ID
+          # stehen ohnehin im ausgelieferten Markup.
           build-args: |
             NEXT_PUBLIC_GTM_ID=${{ vars.NEXT_PUBLIC_GTM_ID }}
+            NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ vars.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           # Ohne das legt buildx pro Push ein zusätzliches Attestation-Manifest

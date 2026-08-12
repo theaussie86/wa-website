@@ -15,11 +15,16 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Einzige Build-Time-Variable: Die GTM-ID landet im ausgelieferten Bundle
-# und muss deshalb schon beim Build bekannt sein. Fehlt sie, rendert
-# gtm-script.tsx nichts und der Build läuft trotzdem durch.
+# Build-Time-Variablen: Beide Werte landen im ausgelieferten Bundle und
+# müssen deshalb schon beim Build bekannt sein. Fehlt die GTM-ID, rendert
+# gtm-script.tsx nichts; fehlt der reCAPTCHA-Site-Key, rendert
+# spam-protection.tsx kein Skript. Der Build läuft in beiden Fällen durch -
+# ohne Site-Key weist der Server aber jede Formulareinsendung ab, weil kein
+# Token entsteht.
 ARG NEXT_PUBLIC_GTM_ID=""
 ENV NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID
+ARG NEXT_PUBLIC_RECAPTCHA_SITE_KEY=""
+ENV NEXT_PUBLIC_RECAPTCHA_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 

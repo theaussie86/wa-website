@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { checkSubmission, spamRejectionMessage } from "@/lib/spam-check";
 import { isValidEmail } from "@/lib/validation";
 import { signGuideToken, GUIDE_COOKIE_CONFIG } from "@/lib/guide-auth";
 
@@ -13,6 +14,20 @@ export async function handleEmailSubmit(
   _prevState: { success: boolean; message: string; redirect?: string } | null,
   formData: FormData
 ): Promise<{ success: boolean; message: string; redirect?: string }> {
+  const spamCheck = await checkSubmission(formData, "guide_signup").catch((error: unknown) => {
+    console.error("Spam-Prüfung nicht möglich:", error);
+    return null;
+  });
+
+  if (!spamCheck) {
+    return { success: false, message: "Ein Fehler ist aufgetreten. Bitte versuche es später." };
+  }
+
+  if (!spamCheck.ok) {
+    console.warn(`Guide-Anmeldung abgewiesen: ${spamCheck.reason}`);
+    return { success: false, message: spamRejectionMessage(spamCheck.reason, "du") };
+  }
+
   const email = formData.get("email");
 
   if (!email || typeof email !== "string" || !isValidEmail(email)) {
