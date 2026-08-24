@@ -1,62 +1,69 @@
 import { FadeIn } from "@/app/_components/animations";
 
-export function ProblemSection() {
-  const problems = [
-    {
-      number: "01",
-      title: "Die Warteschleife",
-      description: "Für jede Anpassung erst ein Angebot, dann ein Termin, dann Geduld. Dein Tempo bestimmen andere.",
-    },
-    {
-      number: "02",
-      title: "Die Abhängigkeit",
-      description: "Läuft was, weißt du nicht warum. Ändert sich was, brauchst du wieder jemanden. Du bist nie Herr im eigenen Haus.",
-    },
-    {
-      number: "03",
-      title: "Der Kleinkram",
-      description: "Dein Team kopiert Daten von A nach B, tippt Angebote ab, pflegt Listen. Zeit, die für Wichtigeres fehlt.",
-    },
-  ];
+// Der Hauptdarsteller dieser Section sind die O-Töne. Sie stehen gross,
+// ihre Rohheit ist der Wiedererkennungseffekt. Deshalb keine Überschrift
+// darüber, die sie noch einmal zusammenfasst.
+const quotes = [
+  {
+    marker: "01",
+    quote: "Es hängt alles an mir, ich komme zu nichts.",
+    line: "Der Betrieb läuft. Aber jede Sache, die Anspruch hat, wartet auf dich - und du kommst erst abends dazu.",
+  },
+  {
+    marker: "02",
+    quote: "Wenn ich es abgebe, kommt nicht meins zurück.",
+    line: "Agentur, Freelancer, Assistenz. Eingekauft hast du längst. Zurück kommt Mittelmaß, also machst du es wieder selbst.",
+  },
+  {
+    marker: "03",
+    quote: "Ich muss es jedes Mal wieder von vorn erklären.",
+    line: "Beim nächsten Stück, beim nächsten Mitarbeiter fängst du bei null an. Erklären kostet dich mehr als machen.",
+  },
+];
 
+export function ProblemSection() {
   return (
-    <section className="py-[clamp(64px,9vw,108px)]">
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-start gap-[clamp(40px,6vw,96px)] px-6 md:grid-cols-[5fr_7fr]">
-        <FadeIn>
-          <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
-            Der Alltag
+    <section className="py-[clamp(88px,12vw,168px)]">
+      <div className="mx-auto max-w-[1180px] px-6">
+        <FadeIn className="mb-[clamp(56px,7vw,96px)] max-w-[900px]">
+          <p className="mb-7 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
+            Die Zwickmühle
           </p>
-          <h2 className="mb-5 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
-            Warten kostet dich mehr als jedes Projekt.
-          </h2>
-          <p className="max-w-[400px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-            Digital geht bei den meisten Betrieben so: anfragen, warten, nachhaken, warten.
-            Drei Muster sehe ich immer wieder:
+          <p className="text-balance font-serif text-[clamp(2.1rem,4.6vw,3.9rem)] font-normal leading-[1.1] tracking-[-0.015em] text-primary">
+            Entweder ich gebe es ab und es wird Mittelmaß. Oder ich mache es selbst und
+            komme nie dazu.
           </p>
         </FadeIn>
 
-        <div>
-          {problems.map((problem, index) => (
-            <FadeIn
-              key={problem.number}
-              delay={index * 0.08}
-              className={`grid grid-cols-[72px_1fr] gap-5 border-t border-primary/20 py-[30px] ${
-                index === problems.length - 1 ? "border-b" : ""
-              }`}
-            >
-              <span className="font-serif text-[clamp(1.7rem,2.4vw,2.3rem)] leading-none text-accent">
-                {problem.number}
-              </span>
-              <div>
-                <h3 className="mb-2 font-serif text-[1.35rem] font-normal text-primary">
-                  {problem.title}
-                </h3>
-                <p className="max-w-[520px] font-sans text-[16.5px] leading-[1.7] text-charcoal/80">
-                  {problem.description}
+        <div className="grid grid-cols-1 gap-[clamp(32px,5vw,80px)] md:grid-cols-[1fr_minmax(0,340px)]">
+          <div>
+            {quotes.map((item, index) => (
+              <FadeIn
+                key={item.marker}
+                delay={index * 0.07}
+                className={`border-t border-primary/20 py-[clamp(28px,3.5vw,44px)] ${
+                  index === quotes.length - 1 ? "border-b" : ""
+                }`}
+              >
+                <p className="mb-3 font-sans text-[12.5px] font-bold uppercase tracking-[0.14em] text-charcoal/70">
+                  {item.marker}
                 </p>
-              </div>
-            </FadeIn>
-          ))}
+                <blockquote className="m-0 mb-4 max-w-[700px] text-pretty font-serif text-[clamp(1.45rem,2.6vw,2.1rem)] leading-[1.28] text-primary">
+                  „{item.quote}“
+                </blockquote>
+                <p className="max-w-[560px] font-sans text-[16.5px] leading-[1.7] text-charcoal/75">
+                  {item.line}
+                </p>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.2} className="md:pt-[clamp(28px,3.5vw,44px)]">
+            <p className="text-pretty font-sans text-[17px] leading-[1.75] text-charcoal/75">
+              Du hast dir Hilfe geholt und es bewegt sich trotzdem nichts. Nicht weil zu
+              wenig Leute da sind, sondern weil nirgends steht, was deine Arbeit gut macht.
+            </p>
+          </FadeIn>
         </div>
       </div>
     </section>

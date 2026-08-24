@@ -11,6 +11,7 @@ import { CookieSettingsButton } from "@/app/_components/cookie-consent";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/ueber-mich", label: "Über mich" },
+  { href: "/ki-mitarbeiter", label: "KI-Mitarbeiter" },
   { href: "/leistungen", label: "Leistungen" },
   { href: "/kontakt", label: "Kontakt" },
 ];
@@ -24,7 +25,7 @@ export function Footer() {
           <div>
             <h3 className="font-serif text-2xl text-white mb-4">{SITE_NAME}</h3>
             <p className="text-primary-200 mb-4">
-              Machen statt warten: schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst.
+              Dein erster KI-Mitarbeiter in 6 Wochen: eine echte Aufgabe läuft ohne dich, in deiner Qualität.
             </p>
             <p className="text-primary-300 text-sm">{LOCATION}</p>
           </div>

@@ -4,7 +4,7 @@ import { FadeIn } from "@/app/_components/animations";
 import { getTestimonialsById } from "@/lib/testimonials";
 
 const [featured] = getTestimonialsById(["easylife"]);
-const cards = getTestimonialsById(["wachmacherei", "wimo", "florian-heuer"]);
+const cards = getTestimonialsById(["florian-heuer", "wachmacherei", "wimo"]);
 
 function splitAuthor(author: string): { name: string; role: string } {
   const [name, ...rest] = author.split(",");
@@ -19,13 +19,14 @@ export function Testimonials() {
       <div className="mx-auto max-w-[1180px] px-6">
         <FadeIn className="mb-[52px] max-w-[640px]">
           <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
-            Kundenstimmen
+            Wer schon mit mir arbeitet
           </p>
           <h2 className="mb-4 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
-            Betriebe, die nicht mehr warten
+            Inhaber, die Arbeit abgegeben haben und sie nicht zurückbekommen.
           </h2>
           <p className="font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
-            Direkte Zusammenarbeit, die läuft.
+            Die Zitate stammen aus Projekten vor dem KI-Mitarbeiter. Was sie belegen, ist
+            das Gleiche: abgegeben, und es kommt nicht schlechter zurück.
           </p>
         </FadeIn>
 

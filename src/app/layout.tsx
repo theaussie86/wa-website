@@ -38,20 +38,23 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: `Machen statt warten | ${SITE_NAME}`,
-  description: "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Direkt aus dem Allgäu, ohne Agentur-Wasserkopf. In Tagen statt Monaten.",
+  title: `Dein erster KI-Mitarbeiter in 6 Wochen | ${SITE_NAME}`,
+  description:
+    "In 6 Wochen läuft eine echte Aufgabe ohne dich, in deiner Qualität, samt Anleitung. Für Inhaber, die Arbeit abgeben wollen, ohne dass sie schlechter wird.",
   metadataBase: new URL("https://weissteiner-automation.com"),
   openGraph: {
     type: "website",
     locale: "de_DE",
     siteName: SITE_NAME,
-    title: `Machen statt warten | ${SITE_NAME}`,
-    description: "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Direkt aus dem Allgäu, ohne Agentur-Wasserkopf. In Tagen statt Monaten.",
+    title: `Dein erster KI-Mitarbeiter in 6 Wochen | ${SITE_NAME}`,
+    description:
+      "In 6 Wochen läuft eine echte Aufgabe ohne dich, in deiner Qualität, samt Anleitung. Für Inhaber, die Arbeit abgeben wollen, ohne dass sie schlechter wird.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `Machen statt warten | ${SITE_NAME}`,
-    description: "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Ohne Agentur-Wasserkopf.",
+    title: `Dein erster KI-Mitarbeiter in 6 Wochen | ${SITE_NAME}`,
+    description:
+      "Eine echte, wiederkehrende Aufgabe läuft nach 6 Wochen ohne dich - in deiner Qualität.",
   },
 };
 
