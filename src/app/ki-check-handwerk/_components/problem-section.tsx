@@ -26,7 +26,7 @@ export function ProblemSection() {
           <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4 text-center">
             Kennst du das?
           </h2>
-          <p className="text-charcoal/60 text-lg text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-charcoal/70 text-lg text-center mb-12 max-w-2xl mx-auto">
             In den meisten Handwerksbetrieben schlucken drei Bereiche den Großteil der Bürozeit.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -40,7 +40,7 @@ export function ProblemSection() {
                   <span className="text-accent text-sm font-medium">{problem.hours}</span>
                 </div>
                 <h3 className="font-medium text-charcoal text-lg mb-2">{problem.title}</h3>
-                <p className="text-charcoal/60 text-sm leading-relaxed">{problem.description}</p>
+                <p className="text-charcoal/70 text-sm leading-relaxed">{problem.description}</p>
               </div>
             ))}
           </div>

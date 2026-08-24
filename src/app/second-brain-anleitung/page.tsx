@@ -253,7 +253,7 @@ export default function SecondBrainAnleitungPage() {
                         KI-Output mit Kontext
                       </p>
                     </div>
-                    <p className="text-sm text-charcoal/60 italic">
+                    <p className="text-sm text-charcoal/70 italic">
                       &quot;Hier ist dein LinkedIn-Post zum Thema X - geschrieben
                       in deinem Stil, für produzierende KMU im Allgäu...&quot;
                     </p>
@@ -295,7 +295,7 @@ export default function SecondBrainAnleitungPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-primary mb-3 text-center">
               Was du bekommst
             </h2>
-            <p className="text-charcoal/60 text-lg text-center mb-12">
+            <p className="text-charcoal/70 text-lg text-center mb-12">
               Kein Theorie-Dokument. Eine praktische Anleitung, die du an einem
               Nachmittag durcharbeiten kannst.
             </p>
@@ -307,7 +307,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal text-lg mb-2">
                   Fertige Vorlagen
                 </h3>
-                <p className="text-charcoal/60">
+                <p className="text-charcoal/70">
                   Vorausgefüllte Templates für Stimme, Zielgruppe, Services und
                   mehr. Du füllst aus statt von null zu starten.
                 </p>
@@ -319,7 +319,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal text-lg mb-2">
                   Klare Ordnerstruktur
                 </h3>
-                <p className="text-charcoal/60">
+                <p className="text-charcoal/70">
                   Welche Dateien du brauchst, wie du sie benennst und wie alles
                   zusammenhängt - kopierfertig.
                 </p>
@@ -331,7 +331,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal text-lg mb-2">
                   KI-Workflows für automatische Pflege
                 </h3>
-                <p className="text-charcoal/60">
+                <p className="text-charcoal/70">
                   Fertige Rules, Skills und Workflows, die deine Wissensbasis
                   im Hintergrund aktuell halten - ohne manuellen Aufwand.
                 </p>
@@ -343,7 +343,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal text-lg mb-2">
                   Fertiges Start-Framework
                 </h3>
-                <p className="text-charcoal/60">
+                <p className="text-charcoal/70">
                   Nicht nur Theorie: Ein komplettes Setup mit KI-Anbindung
                   für ChatGPT, Claude, Cursor und andere Tools - sofort einsatzbereit.
                 </p>
@@ -373,7 +373,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal mb-2">
                   Automatisch aktuell
                 </h3>
-                <p className="text-charcoal/60 text-sm">
+                <p className="text-charcoal/70 text-sm">
                   KI-Workflows erkennen neue Informationen und ordnen sie ein -
                   Verlinkungen, Zusammenhänge, Ergänzungen passieren im Hintergrund.
                 </p>
@@ -385,7 +385,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal mb-2">
                   Rules & Skills statt Disziplin
                 </h3>
-                <p className="text-charcoal/60 text-sm">
+                <p className="text-charcoal/70 text-sm">
                   Das Framework bringt fertige Regeln und Skills mit. KI weiß,
                   was wo hingehört - du musst es nicht im Kopf behalten.
                 </p>
@@ -397,7 +397,7 @@ export default function SecondBrainAnleitungPage() {
                 <h3 className="font-medium text-charcoal mb-2">
                   Wächst mit deinem Business
                 </h3>
-                <p className="text-charcoal/60 text-sm">
+                <p className="text-charcoal/70 text-sm">
                   Je mehr du arbeitest, desto besser wird das System. Neues
                   Wissen fließt automatisch ein - ohne Extra-Aufwand.
                 </p>

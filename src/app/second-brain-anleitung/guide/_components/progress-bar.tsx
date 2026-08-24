@@ -10,7 +10,7 @@ export function ProgressBar({ total }: { total: number }) {
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-charcoal/60">
+        <span className="text-xs font-medium text-charcoal/70">
           {completed} von {total} Kapiteln abgeschlossen
         </span>
         <span className="text-xs text-charcoal/40">{pct}%</span>

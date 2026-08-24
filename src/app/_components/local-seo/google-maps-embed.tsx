@@ -25,7 +25,7 @@ export function GoogleMapsEmbed({
             title="Weissteiner Automation Standort - Memmingen, Allgäu"
           />
         </div>
-        <p className="text-center text-charcoal/60 mt-4 max-w-2xl mx-auto">
+        <p className="text-center text-charcoal/70 mt-4 max-w-2xl mx-auto">
           Im Herzen des Allgäus — vor Ort für persönliche Beratung, remote für
           effiziente Zusammenarbeit.
         </p>

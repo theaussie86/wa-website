@@ -15,7 +15,7 @@ export function BenefitsSection() {
           <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4 text-center">
             Was du bekommst
           </h2>
-          <p className="text-charcoal/60 text-lg text-center mb-12">
+          <p className="text-charcoal/70 text-lg text-center mb-12">
             Kein allgemeiner Ratgeber. Eine Auswertung für deinen Betrieb - kostenlos, kein Pitch, kein Verkauf.
           </p>
           <div className="space-y-4 max-w-2xl mx-auto">
