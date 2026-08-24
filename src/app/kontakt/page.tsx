@@ -112,7 +112,7 @@ export default function ContactPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-xl mx-auto text-center">
-            <p className="text-charcoal/60 italic">
+            <p className="text-charcoal/70 italic">
               Nicht jede Anfrage führt zu einer Zusammenarbeit, und das ist völlig in Ordnung.
               Wichtig ist, dass es für beide Seiten passt.
             </p>

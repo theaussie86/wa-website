@@ -229,7 +229,7 @@ export default function ServicesPage() {
                 <p className="text-charcoal/70 text-sm">Maximale Planungssicherheit</p>
               </div>
             </div>
-            <p className="mt-8 text-charcoal/60">
+            <p className="mt-8 text-charcoal/70">
               Verlängern wenn es funktioniert, beenden wenn nicht. Ohne harte Gefühle.
             </p>
           </div>

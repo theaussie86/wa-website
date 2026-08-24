@@ -8,7 +8,7 @@ import { SITE_NAME, CAL_LINK } from "@/lib/constants";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/ueber-mich", label: "Über mich" },
-  { href: "/leistungen", label: "Leistungen" },
+  { href: "/ki-mitarbeiter", label: "KI-Mitarbeiter" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
 ];

@@ -182,6 +182,24 @@ const servicesSchemas: ServiceSchema[] = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${BASE_URL}/ki-mitarbeiter#programm`,
+    name: "Dein erster KI-Mitarbeiter in 6 Wochen",
+    description:
+      "Begleitetes Programm über 6 Wochen: eine echte, wiederkehrende Aufgabe aus dem Tagesgeschäft läuft danach ohne den Inhaber - in seiner Qualität, samt Anleitung, die beim Arbeiten entsteht.",
+    provider: {
+      "@type": "ProfessionalService",
+      "@id": `${BASE_URL}/#localbusiness`,
+    },
+    areaServed: [
+      { "@type": "Country", name: "Deutschland" },
+      { "@type": "Country", name: "Österreich" },
+      { "@type": "Country", name: "Schweiz" },
+    ],
+    serviceType: "AI Agent Onboarding Program",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
     "@id": `${BASE_URL}/leistungen#prozessautomatisierung`,
     name: "Prozessautomatisierung",
     description:

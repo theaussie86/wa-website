@@ -97,7 +97,7 @@ function ContactFormInner({ onReset }: { onReset: () => void }) {
         {busy ? "Wird gesendet..." : "Nachricht senden"}
       </button>
 
-      <p className="text-center text-sm text-charcoal/60">
+      <p className="text-center text-sm text-charcoal/70">
         Ich melde mich innerhalb von 24 Stunden.
       </p>
 

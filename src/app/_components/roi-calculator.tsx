@@ -205,7 +205,7 @@ export function ROICalculator() {
         <div className="space-y-6">
           {/* Monatliche Ersparnis */}
           <div className="pb-4 border-b border-primary/10">
-            <div className="text-charcoal/60 text-sm mb-1">Monatliche Ersparnis</div>
+            <div className="text-charcoal/70 text-sm mb-1">Monatliche Ersparnis</div>
             <div className="font-serif text-3xl md:text-4xl text-primary">
               {formatCurrency(results.totalMonthlySavings)}
             </div>
@@ -216,7 +216,7 @@ export function ROICalculator() {
 
           {/* Amortisation */}
           <div className="pb-4 border-b border-primary/10">
-            <div className="text-charcoal/60 text-sm mb-1">Amortisationszeit</div>
+            <div className="text-charcoal/70 text-sm mb-1">Amortisationszeit</div>
             <div className="font-serif text-3xl md:text-4xl text-primary">
               {formatMonths(results.paybackMonths)}
             </div>
@@ -227,7 +227,7 @@ export function ROICalculator() {
 
           {/* ROI */}
           <div>
-            <div className="text-charcoal/60 text-sm mb-1">ROI nach 12 Monaten</div>
+            <div className="text-charcoal/70 text-sm mb-1">ROI nach 12 Monaten</div>
             <div className="font-serif text-3xl md:text-4xl text-accent">
               {formatPercent(results.roi)}
             </div>

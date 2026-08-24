@@ -27,7 +27,7 @@ export default function HandwerkKiCheckPage() {
             <h2 className="font-serif text-3xl text-primary mb-4">
               Meld dich an - ich informiere dich persönlich
             </h2>
-            <p className="text-charcoal/60 mb-8">
+            <p className="text-charcoal/70 mb-8">
               Sobald der Check live geht, bist du der Erste der es erfährt.
             </p>
             <WaitlistForm />

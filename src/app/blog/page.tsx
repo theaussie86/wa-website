@@ -78,7 +78,7 @@ export default function BlogPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-charcoal/60">
+              <p className="text-charcoal/70">
                 Noch keine Artikel vorhanden. Bald gibt es hier mehr zu lesen.
               </p>
             </div>

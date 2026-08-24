@@ -152,7 +152,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                         <p className="font-medium text-primary">
                           {testimonial.author}
                         </p>
-                        <span className="text-sm text-charcoal/60 group-hover:text-accent transition-colors inline-flex items-center gap-1">
+                        <span className="text-sm text-charcoal/70 group-hover:text-accent transition-colors inline-flex items-center gap-1">
                           {testimonial.company}
                           <svg
                             className="w-3 h-3"
@@ -231,7 +231,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                 <h3 className="font-serif text-lg text-primary mb-2 group-hover:text-accent transition-colors">
                   {page.title}
                 </h3>
-                <p className="text-sm text-charcoal/60">{page.description}</p>
+                <p className="text-sm text-charcoal/70">{page.description}</p>
               </Link>
             ))}
           </div>

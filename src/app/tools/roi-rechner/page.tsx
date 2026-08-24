@@ -101,7 +101,7 @@ export default function ROICalculatorPage() {
 
             {/* Disclaimer */}
             <div className="mt-8 p-4 bg-white rounded-xs border border-primary/10">
-              <p className="text-sm text-charcoal/60">
+              <p className="text-sm text-charcoal/70">
                 <strong>Hinweis:</strong> Diese Berechnung gibt eine erste
                 Orientierung. Die tatsächlichen Werte hängen von vielen Faktoren
                 ab — Prozesskomplexität, Systemlandschaft, Datenqualität und
