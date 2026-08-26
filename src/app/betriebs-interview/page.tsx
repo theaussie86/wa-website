@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { SignupForm } from "./signup-form";
 import { BetriebsInterviewJsonLd } from "./json-ld";
+import { ConfirmErrorNotice } from "../_components/confirm-error-notice";
 import AuthorBox from "../_components/author-box";
 
 const TITEL = `Das Betriebs-Interview - kostenloser Prompt | ${SITE_NAME}`;
@@ -344,6 +345,7 @@ export default function BetriebsInterviewPage() {
               E-Mail eintragen, kurz bestätigen, und du landest direkt auf dem
               Prompt.
             </p>
+            <ConfirmErrorNotice ziel=" auf den Prompt" />
             <SignupForm />
           </div>
         </div>
