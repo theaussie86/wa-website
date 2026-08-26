@@ -7,8 +7,9 @@
  * abfragt, bekommt für den frisch bestätigten Kontakt ein 404 - und weist
  * genau die Leute ab, die eben erst zugestimmt haben.
  *
- * Gemessen am 26.08.2026: Weiterleitung und Anlage lagen unter einer
- * Sekunde auseinander, die erste Abfrage lief trotzdem ins Leere.
+ * Gemessen am 26.08.2026 mit einem Poller im Viertelsekundentakt: der
+ * Kontakt war 1,24 Sekunden nach dem Aufruf des Bestaetigungslinks
+ * sichtbar. Eine Abfrage ohne Wiederholung greift daneben.
  *
  * Nur 404 und Serverfehler werden wiederholt. Ein Kontakt, den Brevo kennt
  * und der auf der Sperrliste steht, ist eine Antwort und keine Verzögerung.

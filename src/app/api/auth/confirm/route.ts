@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isValidEmail } from "@/lib/validation";
+import { emailFromQueryParam } from "@/lib/validation";
 import { signGuideToken, GUIDE_COOKIE_CONFIG } from "@/lib/guide-auth";
 import { isBrevoContactConfirmed } from "@/lib/brevo";
 
@@ -24,9 +24,11 @@ function redirectTo(path: string): NextResponse {
 }
 
 export async function GET(request: NextRequest) {
-  const email = request.nextUrl.searchParams.get("email")?.trim().toLowerCase();
+  const email = emailFromQueryParam(
+    request.nextUrl.searchParams.get("email")
+  );
 
-  if (!email || !isValidEmail(email)) {
+  if (!email) {
     return redirectTo(`${LANDING_PAGE}?error=not-confirmed`);
   }
 
