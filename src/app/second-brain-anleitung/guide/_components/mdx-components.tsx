@@ -1,6 +1,6 @@
 import { Callout } from "./callout";
 import { Expandable } from "./expandable";
-import { CopyTemplate } from "./copy-template";
+import { CopyTemplate } from "@/app/_components/copy-template";
 import { FolderTree } from "./folder-tree";
 import { MdxPre } from "./code-block";
 
