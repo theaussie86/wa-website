@@ -2,30 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { isValidEmail } from "@/lib/validation";
 import { signGuideToken, freebieCookieConfig } from "@/lib/guide-auth";
 import { getFreebie } from "@/lib/freebies";
+import { isBrevoContactConfirmed } from "@/lib/brevo";
 
 // Relative Location statt NextResponse.redirect - siehe die ausführliche
 // Begründung in ../route.ts (#44): im Container leitet request.url jede
 // absolute Weiterleitung auf https://0.0.0.0:3000/.
 function redirectTo(path: string): NextResponse {
   return new NextResponse(null, { status: 307, headers: { Location: path } });
-}
-
-async function isBrevoContactConfirmed(email: string): Promise<boolean> {
-  const apiKey = process.env.BREVO_API_KEY;
-  if (!apiKey) {
-    console.error("BREVO_API_KEY not configured");
-    return false;
-  }
-
-  const res = await fetch(
-    `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
-    { headers: { "api-key": apiKey, Accept: "application/json" } }
-  );
-
-  if (!res.ok) return false;
-
-  const contact = await res.json();
-  return contact.emailBlacklisted === false;
 }
 
 export async function GET(

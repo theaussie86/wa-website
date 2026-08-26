@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isValidEmail } from "@/lib/validation";
 import { signGuideToken, GUIDE_COOKIE_CONFIG } from "@/lib/guide-auth";
+import { isBrevoContactConfirmed } from "@/lib/brevo";
 
 const LANDING_PAGE = "/second-brain-anleitung";
 const GUIDE_PATH = "/second-brain-anleitung/guide/";
@@ -20,29 +21,6 @@ const GUIDE_PATH = "/second-brain-anleitung/guide/";
 // aus und ohne Vertrauen in einen Proxy-Header.
 function redirectTo(path: string): NextResponse {
   return new NextResponse(null, { status: 307, headers: { Location: path } });
-}
-
-async function isBrevoContactConfirmed(email: string): Promise<boolean> {
-  const apiKey = process.env.BREVO_API_KEY;
-  if (!apiKey) {
-    console.error("BREVO_API_KEY not configured");
-    return false;
-  }
-
-  const res = await fetch(
-    `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
-    {
-      headers: {
-        "api-key": apiKey,
-        Accept: "application/json",
-      },
-    }
-  );
-
-  if (!res.ok) return false;
-
-  const contact = await res.json();
-  return contact.emailBlacklisted === false;
 }
 
 export async function GET(request: NextRequest) {
