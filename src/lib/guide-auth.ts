@@ -1,15 +1,33 @@
 import { SignJWT, jwtVerify } from "jose";
 
+/**
+ * Optionen für alle Freebie-Cookies. Der Name unterscheidet sich je Freebie,
+ * die Einstellungen nicht.
+ */
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "lax" as const,
+  maxAge: 90 * 24 * 60 * 60,
+  path: "/",
+};
+
 export const GUIDE_COOKIE_CONFIG = {
   name: "guide_token",
-  options: {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax" as const,
-    maxAge: 90 * 24 * 60 * 60,
-    path: "/",
-  },
+  options: COOKIE_OPTIONS,
 };
+
+/**
+ * Jedes Freebie bekommt ein eigenes Cookie statt eines gemeinsamen.
+ *
+ * Ein geteiltes Cookie würde bedeuten: wer sich für ein Freebie bestätigt hat,
+ * kommt ohne weitere Anmeldung auch an alle anderen. Getrennte Namen halten
+ * den Zugang bei dem Freebie, für das er erteilt wurde - und ältere Tokens
+ * bleiben gültig, weil `guide_token` unverändert weiterläuft.
+ */
+export function freebieCookieConfig(name: string) {
+  return { name, options: COOKIE_OPTIONS };
+}
 
 function getSecret() {
   const secret = process.env.GUIDE_JWT_SECRET;
@@ -28,10 +46,12 @@ interface CookieReader {
   get(name: string): { value: string } | undefined;
 }
 
-export async function verifyGuideToken(
-  cookieStore: CookieReader
+/** Prüft das Token aus einem beliebig benannten Freebie-Cookie. */
+export async function verifyFreebieToken(
+  cookieStore: CookieReader,
+  cookieName: string
 ): Promise<{ email: string } | null> {
-  const token = cookieStore.get(GUIDE_COOKIE_CONFIG.name)?.value;
+  const token = cookieStore.get(cookieName)?.value;
   if (!token) return null;
 
   try {
@@ -41,4 +61,10 @@ export async function verifyGuideToken(
   } catch {
     return null;
   }
+}
+
+export async function verifyGuideToken(
+  cookieStore: CookieReader
+): Promise<{ email: string } | null> {
+  return verifyFreebieToken(cookieStore, GUIDE_COOKIE_CONFIG.name);
 }
