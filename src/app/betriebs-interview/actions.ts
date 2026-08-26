@@ -8,7 +8,24 @@ import { FREEBIES } from "@/lib/freebies";
 
 const FREEBIE = FREEBIES["betriebs-interview"];
 
-const BREVO_DOI_REDIRECT_URL = `https://weissteiner-automation.com/api/auth/confirm/${FREEBIE.slug}`;
+const BREVO_DOI_REDIRECT_BASE = `https://weissteiner-automation.com/api/auth/confirm/${FREEBIE.slug}`;
+
+/**
+ * Die Adresse haengt an der Weiterleitung, weil Brevo sie nicht selbst
+ * anhaengt.
+ *
+ * Gemessen am 26.08.2026: die Kette nach dem Klick endet auf
+ * `.../api/auth/confirm/betriebs-interview` - ohne Query. Ohne die Adresse
+ * kann die Bestaetigungsseite niemanden zuordnen und weist jeden ab, der
+ * gerade erst zugestimmt hat.
+ *
+ * Die Adresse hier preiszugeben kostet nichts: sie steht ohnehin in der
+ * Mail, die nur an genau diese Adresse ging. Den Zugang erteilt weiterhin
+ * erst die Rueckfrage bei Brevo, ob der Kontakt bestaetigt ist.
+ */
+function doiRedirectUrl(email: string): string {
+  return `${BREVO_DOI_REDIRECT_BASE}?email=${encodeURIComponent(email)}`;
+}
 
 export async function handleEmailSubmit(
   _prevState: { success: boolean; message: string; redirect?: string } | null,
@@ -85,7 +102,7 @@ export async function handleEmailSubmit(
         email: normalized,
         includeListIds: [FREEBIE.listId],
         templateId: FREEBIE.doiTemplateId,
-        redirectionUrl: BREVO_DOI_REDIRECT_URL,
+        redirectionUrl: doiRedirectUrl(normalized),
       }),
     }
   );
