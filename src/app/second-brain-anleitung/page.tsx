@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { SignupForm } from "./signup-form";
 import AuthorBox from "../_components/author-box";
+import { ConfirmErrorNotice } from "../_components/confirm-error-notice";
 
 export const metadata: Metadata = {
   title: `Second Brain Anleitung - Kostenlos | ${SITE_NAME}`,
@@ -444,6 +445,7 @@ export default function SecondBrainAnleitungPage() {
               Die Anleitung ist aktuell in Arbeit. Trag dich ein und du bekommst
               sie als Erster.
             </p>
+            <ConfirmErrorNotice ziel=" zur Anleitung" />
             <SignupForm />
           </div>
         </div>
