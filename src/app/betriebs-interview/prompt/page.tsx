@@ -32,7 +32,7 @@ export default function BetriebsInterviewPromptPage() {
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6">
-              So geht&apos;s, drei Schritte
+              So geht es, drei Schritte
             </h2>
             <ol className="space-y-5">
               {[
@@ -51,10 +51,8 @@ export default function BetriebsInterviewPromptPage() {
               ))}
             </ol>
             <p className="text-charcoal/70 leading-relaxed mt-6">
-              Ganz zum Schluss fragt sie dich noch, in welcher Form du das
-              Ergebnis haben willst - im Chat oder als Datei. Nach etwa zehn
-              Minuten hast du deinen fertigen Text. Was du damit machst, steht
-              unter dem Prompt.
+              Nach etwa zehn Minuten bekommst du ein fertiges Dokument
+              zurück. Was du damit machst, steht unter dem Prompt.
             </p>
           </div>
         </div>
@@ -97,15 +95,21 @@ export default function BetriebsInterviewPromptPage() {
               <ul className="space-y-3 text-charcoal/70 leading-relaxed">
                 <li>
                   <strong className="text-charcoal">ChatGPT:</strong> Links auf
-                  &quot;Projekte&quot;, neues Projekt anlegen, den Text unter
+                  &quot;Projekte&quot;, ein neues Projekt anlegen, den Text unter
                   &quot;Anweisungen&quot; einfügen. Alles, was du in diesem
-                  Projekt fragst, kennt ihn ab jetzt.
+                  Projekt fragst, kennt deinen Betrieb ab jetzt.
                 </li>
                 <li>
                   <strong className="text-charcoal">Claude:</strong> Genauso,
                   &quot;Projekte&quot;, dann &quot;Projektwissen&quot;.
                 </li>
               </ul>
+              <p className="text-charcoal/70 leading-relaxed mt-4">
+                Hast du dir eine Datei geben lassen, kannst du sie an derselben
+                Stelle auch einfach hochladen, statt den Text einzufügen. Dann
+                hast du sie zusätzlich bei dir liegen, unabhängig davon, welches
+                Werkzeug du in einem Jahr benutzt.
+              </p>
             </div>
 
             <div className="bg-white rounded-xs p-6 md:p-8 border border-primary/5">

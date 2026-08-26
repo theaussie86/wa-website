@@ -1,7 +1,8 @@
 /**
  * Der Prompt des Betriebs-Interviews.
  *
- * Wortgleich aus strategy/lead-magnet-betriebs-interview.md im Vault. Liegt
+ * Wortgleich aus strategy/lead-magnet-betriebs-interview-versand.md im
+ * Vault - dort wird der Prompt gepflegt. Liegt
  * als eigene Datei, damit die Seite ihn unverändert ausliefert: der Text
  * wandert so in die Zwischenablage des Nutzers, jede Umformatierung im JSX
  * wäre eine stille Änderung am Produkt.
