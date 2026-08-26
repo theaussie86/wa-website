@@ -7,8 +7,14 @@ import { signGuideToken, GUIDE_COOKIE_CONFIG } from "@/lib/guide-auth";
 
 const BREVO_LIST_ID = 5;
 const BREVO_DOI_TEMPLATE_ID = 6;
-const BREVO_DOI_REDIRECT_URL =
+const BREVO_DOI_REDIRECT_BASE =
   "https://weissteiner-automation.com/api/auth/confirm";
+
+// Brevo haengt die Adresse nicht selbst an die Weiterleitung an, siehe die
+// ausfuehrliche Begruendung in src/app/betriebs-interview/actions.ts.
+function doiRedirectUrl(email: string): string {
+  return `${BREVO_DOI_REDIRECT_BASE}?email=${encodeURIComponent(email)}`;
+}
 
 export async function handleEmailSubmit(
   _prevState: { success: boolean; message: string; redirect?: string } | null,
@@ -74,7 +80,7 @@ export async function handleEmailSubmit(
       email: normalized,
       includeListIds: [BREVO_LIST_ID],
       templateId: BREVO_DOI_TEMPLATE_ID,
-      redirectionUrl: BREVO_DOI_REDIRECT_URL,
+      redirectionUrl: doiRedirectUrl(normalized),
     }),
   });
 
