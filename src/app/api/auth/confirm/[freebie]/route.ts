@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isValidEmail } from "@/lib/validation";
+import { emailFromQueryParam } from "@/lib/validation";
 import { signGuideToken, freebieCookieConfig } from "@/lib/guide-auth";
 import { getFreebie } from "@/lib/freebies";
 import { isBrevoContactConfirmed } from "@/lib/brevo";
@@ -22,9 +22,11 @@ export async function GET(
     return redirectTo("/");
   }
 
-  const email = request.nextUrl.searchParams.get("email")?.trim().toLowerCase();
+  const email = emailFromQueryParam(
+    request.nextUrl.searchParams.get("email")
+  );
 
-  if (!email || !isValidEmail(email)) {
+  if (!email) {
     return redirectTo(`${freebie.landingPath}?error=not-confirmed`);
   }
 
