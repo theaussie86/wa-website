@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FadeIn } from "@/app/_components/animations";
 import { getTestimonialsById } from "@/lib/testimonials";
 
-const [featured] = getTestimonialsById(["easylife"]);
 const cards = getTestimonialsById(["florian-heuer", "wachmacherei", "wimo"]);
 
 function splitAuthor(author: string): { name: string; role: string } {
@@ -12,8 +11,6 @@ function splitAuthor(author: string): { name: string; role: string } {
 }
 
 export function Testimonials() {
-  const lead = splitAuthor(featured.author);
-
   return (
     <section className="py-[clamp(64px,9vw,108px)]">
       <div className="mx-auto max-w-[1180px] px-6">
@@ -28,31 +25,6 @@ export function Testimonials() {
             Die Zitate stammen aus Projekten vor dem KI-Mitarbeiter. Was sie belegen, ist
             das Gleiche: abgegeben, und es kommt nicht schlechter zurück.
           </p>
-        </FadeIn>
-
-        {/* Featured Statement */}
-        <FadeIn>
-          <figure className="m-0 mb-14 max-w-[940px]">
-            <blockquote className="m-0 mb-6 text-pretty font-serif text-[clamp(1.4rem,2.4vw,2.05rem)] font-normal leading-[1.4] text-primary">
-              „{featured.quote}“
-            </blockquote>
-            <figcaption className="flex flex-wrap items-center gap-4 font-sans text-base text-charcoal">
-              <span aria-hidden="true" className="inline-block h-0.5 w-11 bg-accent" />
-              <span>
-                <span className="font-bold text-primary">{lead.name}</span>
-                {lead.role ? `, ${lead.role}` : ""} · {featured.company}
-              </span>
-              {featured.logo && (
-                <Image
-                  src={featured.logo}
-                  alt={`${featured.company} Logo`}
-                  width={90}
-                  height={28}
-                  className="h-7 w-auto object-contain"
-                />
-              )}
-            </figcaption>
-          </figure>
         </FadeIn>
 
         {/* Weitere Stimmen */}
