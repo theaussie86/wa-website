@@ -27,15 +27,6 @@ const TESTIMONIALS: Testimonial[] = [
     logo: "/images/testimonials/wimo.png",
   },
   {
-    id: "easylife",
-    quote:
-      "Die Marketing-Automatisierung hat unseren Content-Workflow komplett verändert. Was früher Stunden gedauert hat und Abstimmungsschleifen erforderte, erledigt mit dem System jetzt ein Mitarbeiter in Minuten. Und das Beste: Es wächst mit unseren Anforderungen - wir planen schon die nächsten Erweiterungen.",
-    author: "Kerstin Hammerschmidt, Geschäftsführung",
-    company: "easylife",
-    companyUrl: "https://easylife.de",
-    logo: "/images/testimonials/easylife.png",
-  },
-  {
     id: "florian-heuer",
     quote:
       "Professionelle Website und eine clevere Automatisierung für unsere Dokumentenverwaltung - das spart uns täglich wertvolle Zeit bei der Kundenbetreuung.",

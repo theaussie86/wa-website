@@ -247,7 +247,7 @@ export const kiBeratungBayern: LocalSeoPageData = {
   region: {
     name: "Bayern",
     cities: ["München", "Nürnberg", "Augsburg", "Regensburg", "Ingolstadt", "Würzburg"],
-    testimonialIds: ["easylife", "wachmacherei"],
+    testimonialIds: ["wachmacherei"],
   },
 
   schema: {
@@ -347,7 +347,7 @@ export const softwareentwicklungDach: LocalSeoPageData = {
   region: {
     name: "DACH",
     cities: ["Zürich", "Wien", "München", "Frankfurt", "Berlin", "Hamburg"],
-    testimonialIds: ["florian-heuer", "easylife", "wimo"],
+    testimonialIds: ["florian-heuer", "wimo"],
   },
 
   schema: {
