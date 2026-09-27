@@ -29,16 +29,16 @@ function Notice({ ziel }: { ziel: string }) {
   return (
     <div
       role="status"
-      className="mb-6 flex items-start gap-3 rounded-xs border border-white/20 bg-white/10 p-4 text-left"
+      className="mb-6 flex items-start gap-3 rounded-[2px] bg-accent-100 p-4 text-ink text-left"
     >
-      <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-white/70" />
+      <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-accent-800" />
       <div>
-        <p className="font-medium text-white">
+        <p className="font-semibold text-ink">
           Das hat gerade nicht geklappt.
         </p>
-        <p className="mt-1 text-sm text-white/70">
+        <p className="mt-1 text-[15px] leading-[1.55] text-ink/85">
           Wir konnten deine Bestätigung nicht zuordnen. Trag deine Adresse hier
-          einfach noch einmal ein - hast du schon bestätigt, kommst du direkt
+          einfach noch einmal ein. Hast du schon bestätigt, kommst du direkt
           {ziel}.
         </p>
       </div>

@@ -8,7 +8,12 @@ const nextConfig: NextConfig = {
   // Seit 17.09.2026 heißt das Angebot KI-Arbeitsplatz statt KI-Mitarbeiter.
   // Die alte Adresse ist verlinkt und indexiert, deshalb dauerhaft umleiten.
   async redirects() {
-    return [{ source: "/ki-mitarbeiter", destination: "/ki-arbeitsplatz", permanent: true }];
+    return [
+      { source: "/ki-mitarbeiter", destination: "/ki-arbeitsplatz", permanent: true },
+      // Handwerk ist seit 26.07.2026 keine Zielgruppe mehr (Vault core/services.md).
+      // Die Warteliste ist abgeschaltet, der aktuelle Lead-Magnet übernimmt.
+      { source: "/ki-check-handwerk/:path*", destination: "/betriebs-interview", permanent: true },
+    ];
   },
   images: {
     // Ein Tag. Vorher standen hier 30 Tage, begründet damit, dass jedes

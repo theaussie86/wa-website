@@ -30,17 +30,22 @@ export function SignupForm({ id }: { id?: string }) {
         <>
           <form action={submit} className="flex flex-col sm:flex-row gap-3">
             <SpamProtectionFields />
+            <label htmlFor={`${id ?? "signup"}-email`} className="sr-only">
+              E-Mail-Adresse
+            </label>
             <input
+              id={`${id ?? "signup"}-email`}
               type="email"
               name="email"
+              autoComplete="email"
               placeholder="Deine E-Mail-Adresse"
               required
-              className="flex-1 px-4 py-3 rounded-xs border-2 border-white/30 bg-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+              className="min-w-0 flex-1 rounded-[4px] border border-white/60 bg-primary-600 px-4 py-4 text-[16.5px] text-white placeholder:text-white/70 hover:border-white"
             />
             <button
               type="submit"
               disabled={busy}
-              className="btn-primary whitespace-nowrap disabled:opacity-50"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-[4px] bg-white px-7 py-4 text-[16.5px] font-semibold text-primary transition-colors hover:bg-primary-50 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {busy ? "Wird geprüft..." : "Prompt kostenlos holen"}
             </button>
@@ -48,7 +53,7 @@ export function SignupForm({ id }: { id?: string }) {
           <div className="mt-2">
             <FormFeedback state={state} variant="inverted" />
           </div>
-          <p className="text-white/40 text-xs mt-3 text-center">
+          <p className="mt-4 text-[13.5px] leading-[1.55] text-white/75">
             Du bekommst den Prompt sofort. Danach ab und zu, was ich über KI im
             Betrieb lerne. Jederzeit abmelden.
           </p>

@@ -138,6 +138,12 @@ export default function ServicesPage() {
               </div>
             ))}
           </dl>
+          <p className="mt-8 text-[17px] text-charcoal/85">
+            Ob sich ein Ablauf lohnt, kannst du vorher grob durchrechnen:{" "}
+            <Button href="/tools/roi-rechner" variant="text">
+              zum ROI-Rechner
+            </Button>
+          </p>
         </div>
       </section>
 

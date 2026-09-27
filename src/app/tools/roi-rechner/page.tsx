@@ -2,162 +2,103 @@ import { Metadata } from "next";
 import { SITE_NAME } from "@/lib/constants";
 import { ROICalculator } from "@/app/_components/roi-calculator";
 import { CTASection } from "@/app/_components/cta-section";
+import { PageHead } from "@/app/_components/page-head";
+import { Sheet } from "@/app/_components/sheet";
 
 export const metadata: Metadata = {
-  title: `ROI-Rechner für Prozessautomatisierung | ${SITE_NAME}`,
+  title: `ROI-Rechner für Automatisierung | ${SITE_NAME}`,
   description:
-    "Berechnen Sie kostenlos, wie schnell sich Ihre Automatisierungsinvestition amortisiert. Interaktiver ROI-Rechner mit Zeitersparnis und Fehlerkosten.",
+    "Rechne in einer Minute durch, was ein wiederkehrender Ablauf heute kostet und ab wann sich eine Automatisierung rechnen würde. Mit ehrlicher Einordnung.",
   openGraph: {
-    title: "ROI-Rechner für Prozessautomatisierung",
-    description:
-      "Berechnen Sie Ihren Return on Investment für Automatisierungsprojekte.",
+    title: "ROI-Rechner für Automatisierung",
+    description: "Was kostet dein Ablauf heute, und ab wann würde sich Automatisieren rechnen?",
   },
 };
+
+// Bewusst ohne "so viel sparst du" als Versprechen (Vault signature-system.md:
+// sparen und Zeitersparnis sind als Aufhänger verboten). Der Rechner zeigt,
+// was ein Ablauf heute kostet, und sagt ehrlich, woran es meistens hängt.
+const method = [
+  {
+    title: "Was der Ablauf heute kostet",
+    text: "Stunden pro Woche mal Stundensatz mal beteiligte Leute. Dazu die Nacharbeit: Jeder Fehler kostet im Schnitt anderthalbmal so viel Zeit wie die Aufgabe selbst.",
+  },
+  {
+    title: "Investition gedeckt nach",
+    text: "Die geplante Investition geteilt durch die monatlichen Kosten des Ablaufs. So viele Monate dauert es, bis sie wieder drin ist, wenn der Ablauf danach ohne Handarbeit läuft.",
+  },
+  {
+    title: "Rechnerischer ROI nach 12 Monaten",
+    text: "Was im ersten Jahr wegfallen könnte, abzüglich der Investition, im Verhältnis zur Investition. 200 % heißt: dreimal so viel zurück wie eingesetzt.",
+  },
+];
 
 export default function ROICalculatorPage() {
   return (
     <main>
-      {/* Hero */}
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl">
-            <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
-              ROI-Rechner für Prozessautomatisierung
-            </h1>
-            <p className="text-xl text-charcoal/80 leading-relaxed">
-              Berechnen Sie in wenigen Sekunden, wie schnell sich Ihre
-              Automatisierungsinvestition amortisiert — und wie hoch Ihre
-              jährliche Ersparnis ausfallen kann.
+      <PageHead
+        title="Lohnt sich das Automatisieren?"
+        titleClassName="max-w-[13ch]"
+        lead={
+          <p>
+            Rechne in einer Minute durch, was ein wiederkehrender Ablauf heute kostet und ab wann
+            sich eine Automatisierung rechnen würde.
+          </p>
+        }
+      />
+
+      <section className="bg-pappe py-[clamp(72px,9vw,128px)]">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+          <Sheet className="py-[clamp(32px,5vw,56px)] pr-[clamp(20px,4vw,48px)] pl-[clamp(44px,6vw,80px)]">
+            <ROICalculator />
+          </Sheet>
+        </div>
+      </section>
+
+      <section className="bg-white py-[clamp(88px,11vw,160px)]">
+        <div className="mx-auto grid max-w-[1320px] gap-14 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-[clamp(64px,8vw,128px)] lg:px-10">
+          <div>
+            <h2 className="type-display mb-[clamp(32px,4vw,48px)] text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98]">
+              So rechnet er.
+            </h2>
+            <dl className="border-t-2 border-primary">
+              {method.map((m) => (
+                <div key={m.title} className="border-b border-primary/15 py-6">
+                  <dt className="type-display mb-1.5 text-[clamp(1.35rem,1.9vw,1.6rem)] leading-[1.1] text-primary">
+                    {m.title}
+                  </dt>
+                  <dd className="m-0 text-[17px] leading-[1.65] text-charcoal/85">{m.text}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div>
+            <h2 className="type-display mb-[clamp(32px,4vw,48px)] text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98]">
+              Woran es meistens hängt.
+            </h2>
+            <div className="max-w-[34rem] space-y-5 text-[18px] leading-[1.7] text-charcoal/85">
+              <p>
+                Die Zahlen oben sind eine Obergrenze. Sie gelten nur, wenn der Ablauf danach
+                wirklich ohne Handarbeit läuft und alle ihn benutzen.
+              </p>
+              <p>
+                Genau da scheitern die meisten Automatisierungen, nicht an der Technik. Deshalb
+                frage ich vorher, ob der Ablauf reif ist und ob die Leute ihn überhaupt anders
+                wollen.
+              </p>
+            </div>
+            <p className="mt-8 inline-block rotate-[-1deg] rounded-[2px] bg-accent-100 px-5 py-4 text-[16.5px] leading-[1.5] font-medium text-ink shadow-[0_14px_28px_-18px_rgba(0,23,46,0.5)]">
+              Eine erste Orientierung, keine Zusage. Die echte Zahl hängt an deinem Ablauf.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Calculator */}
-      <section className="section bg-white">
-        <div className="container mx-auto px-5">
-          <ROICalculator />
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="section bg-primary/5">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-2xl md:text-3xl text-primary mb-6">
-              So funktioniert der Rechner
-            </h2>
-
-            <div className="space-y-6 text-charcoal/80">
-              <div>
-                <h3 className="font-medium text-primary mb-2">
-                  Direkte Zeitersparnis
-                </h3>
-                <p>
-                  Die eingesparten Stunden pro Woche werden mit dem internen
-                  Stundensatz (inkl. Lohnnebenkosten) und der Anzahl der
-                  betroffenen Mitarbeiter multipliziert. So erhalten Sie die
-                  direkte monatliche Ersparnis durch weniger manuelle Arbeit.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-primary mb-2">
-                  Fehlerkosten-Ersparnis
-                </h3>
-                <p>
-                  Manuelle Prozesse sind fehleranfällig. Jeder Fehler verursacht
-                  Nacharbeit, die im Schnitt 1,5x so viel Zeit kostet wie die
-                  ursprüngliche Aufgabe. Der Rechner berücksichtigt Ihre
-                  aktuelle Fehlerquote und zeigt, wie viel Sie durch
-                  zuverlässigere Prozesse sparen.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-primary mb-2">
-                  Amortisationszeit
-                </h3>
-                <p>
-                  Die Investitionssumme geteilt durch die monatliche
-                  Gesamtersparnis ergibt, nach wie vielen Monaten sich das
-                  Projekt bezahlt gemacht hat. Die meisten gut geplanten
-                  Automatisierungsprojekte amortisieren sich in 4-12 Monaten.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-primary mb-2">
-                  ROI nach 12 Monaten
-                </h3>
-                <p>
-                  Der Return on Investment zeigt, wie viel Gewinn Sie im ersten
-                  Jahr relativ zu Ihrer Investition erzielen. Ein ROI von 200%
-                  bedeutet, dass Sie das Dreifache Ihrer Investition
-                  zurückbekommen.
-                </p>
-              </div>
-            </div>
-
-            {/* Disclaimer */}
-            <div className="mt-8 p-4 bg-white rounded-xs border border-primary/10">
-              <p className="text-sm text-charcoal/70">
-                <strong>Hinweis:</strong> Diese Berechnung gibt eine erste
-                Orientierung. Die tatsächlichen Werte hängen von vielen Faktoren
-                ab — Prozesskomplexität, Systemlandschaft, Datenqualität und
-                mehr. In einem persönlichen Gespräch kann ich Ihnen eine
-                genauere Einschätzung für Ihre konkrete Situation geben.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Typical Scenarios */}
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <h2 className="font-display text-2xl md:text-3xl text-primary mb-8 text-center">
-            Typische Szenarien
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 bg-white border border-primary/10 rounded-xs">
-              <h3 className="font-medium text-primary mb-2">
-                Rechnungsverarbeitung
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                50+ Rechnungen/Woche, 2-4 Stunden täglich manueller Aufwand
-              </p>
-              <div className="text-xs text-charcoal/50">
-                Typische Ersparnis: 2.000-4.000 €/Monat
-              </div>
-            </div>
-            <div className="p-6 bg-white border border-primary/10 rounded-xs">
-              <h3 className="font-medium text-primary mb-2">
-                CRM-Automatisierung
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Lead-Erfassung, Follow-ups und Aufgabenerstellung automatisiert
-              </p>
-              <div className="text-xs text-charcoal/50">
-                Typische Ersparnis: 1.500-3.000 €/Monat
-              </div>
-            </div>
-            <div className="p-6 bg-white border border-primary/10 rounded-xs">
-              <h3 className="font-medium text-primary mb-2">
-                Berichterstellung
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Wöchentliche Reports aus verschiedenen Datenquellen
-              </p>
-              <div className="text-xs text-charcoal/50">
-                Typische Ersparnis: 800-2.000 €/Monat
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CTASection />
+      <CTASection
+        title="Welcher Ablauf kostet dich am meisten?"
+        lead="Nenn ihn mir. In 15 Minuten sage ich dir, ob sich Automatisieren lohnt, ob der KI-Arbeitsplatz reicht, oder ob du es lieber lässt."
+      />
     </main>
   );
 }
