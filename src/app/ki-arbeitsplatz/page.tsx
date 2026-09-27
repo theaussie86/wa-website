@@ -239,6 +239,47 @@ export default function KiArbeitsplatzPage() {
         </div>
       </section>
 
+      {/* Echter Auszug: eine Korrektur aus Christophs eigener Arbeit */}
+      <section className="bg-white py-[clamp(88px,11vw,160px)]">
+        <div className="mx-auto grid max-w-[1320px] items-start gap-14 px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-[clamp(64px,8vw,128px)] lg:px-10">
+          <div>
+            <h2 className="type-display mb-6 max-w-[12ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
+              So klingt eine Korrektur.
+            </h2>
+            <p className="max-w-[30rem] text-[18px] leading-[1.7] text-charcoal/85">
+              Aus meiner eigenen Arbeit, als ein Newsletter entstand. Der Entwurf lag da, mir hat
+              der Einstieg nicht gepasst. Ich habe es gesagt, nicht getippt, in halben Sätzen.
+            </p>
+          </div>
+
+          <div className="pt-8">
+            <Sheet className="py-[clamp(32px,5vw,56px)] pr-[clamp(24px,5vw,56px)] pl-[clamp(48px,6vw,80px)]">
+              <Tab tone="accent" side="top" className="left-[clamp(48px,6vw,80px)]">
+                Korrektur
+              </Tab>
+              <figure className="m-0">
+                <p className="type-label mb-2 text-[12px] text-accent-800">Ich, gesprochen</p>
+                <blockquote className="m-0 mb-8 border-0 p-0 text-[17px] leading-[1.65] text-charcoal italic">
+                  „Der Newsletter soll ja vom Burger-Prinzip handeln, richtig? Und ich finde, dass das
+                  Hook-Beispiel, das greift noch überhaupt nicht, und das springt auch irgendwie, ist
+                  überhaupt nicht klar. […] Entscheidungen, Ideen, das Denken, die Strategie ist immer
+                  noch beim Menschen.“
+                </blockquote>
+                <p className="type-label mb-2 text-[12px] text-primary">KI</p>
+                <p className="mb-8 text-[17px] leading-[1.65] text-charcoal/90">
+                  „Stimmt, der Einstieg war ein Umweg. Die stärkste Geschichte ist dieser Newsletter
+                  selbst: Er ist nach dem Burger-Prinzip entstanden und zeigt es, während man ihn
+                  liest.“
+                </p>
+                <figcaption className="border-t border-charcoal/10 pt-3 text-[13px] text-charcoal/75">
+                  Aus einer echten Sitzung am 26.09.2026, gekürzt
+                </figcaption>
+              </figure>
+            </Sheet>
+          </div>
+        </div>
+      </section>
+
       {/* Womit wir anfangen */}
       <section id="erste-aufgabe" className="scroll-mt-20 bg-primary py-[clamp(88px,11vw,160px)] text-white">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
