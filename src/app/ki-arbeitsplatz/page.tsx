@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { Plus } from "lucide-react";
 import { SITE_NAME, CAL_LINK } from "@/lib/constants";
 import { Button } from "@/app/_components/button";
@@ -387,6 +388,19 @@ export default function KiArbeitsplatzPage() {
                 </p>
                 <p>Was entsteht, liegt auf deinem Rechner und gehört dir.</p>
               </div>
+              <figure className="mt-8 w-[min(100%,260px)]">
+                <Image
+                  src="/images/screens/obsidian-vault.png"
+                  alt="Ordnerbaum von Christophs eigenem Ablageort in Obsidian, mit Ordnern wie core, strategy, operations und projects."
+                  width={489}
+                  height={929}
+                  sizes="260px"
+                  className="h-auto w-full rounded-[10px] shadow-[0_18px_36px_-20px_rgba(0,23,46,0.6)]"
+                />
+                <figcaption className="type-label mt-3 text-[12px] text-charcoal/75">
+                  Mein eigener Ablageort in Obsidian
+                </figcaption>
+              </figure>
             </div>
             <div>
               <h2 className="type-display mb-5 text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.02]">Was danach kommen kann.</h2>
