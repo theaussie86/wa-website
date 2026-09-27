@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>%%TITLE%%</title>
+  <!--[if mso]>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+  <style>
+    table, td, p, a, span { font-family: Arial, sans-serif !important; }
+    .display { font-family: 'Arial Narrow', Arial, sans-serif !important; }
+  </style>
+  <![endif]-->
+  <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&amp;display=swap" rel="stylesheet">
+  <!--<![endif]-->
+  <style>
+    /* Betriebsordner, auf E-Mail übersetzt. Design: DESIGN.md im Repo-Root.
+       Pappe als Grund, das Blatt als Inhaltsfläche, Blau für Kopf und Etikett,
+       Orange nur als Haftnotiz. Archivo, wo der Client Webfonts lädt,
+       sonst Arial Narrow für Überschriften und Arial für Fließtext. */
+    :root { color-scheme: light dark; supported-color-schemes: light dark; }
+    body { margin: 0; padding: 0; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; }
+    a { color: #003970; }
+    .display { font-stretch: 78%; letter-spacing: -0.02em; }
+    .label { font-stretch: 70%; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    @media (max-width: 620px) {
+      .sheet-pad { padding: 32px 24px !important; }
+      .outer-pad { padding: 24px 12px !important; }
+      .h1 { font-size: 30px !important; }
+      .button a { display: block !important; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .bg-pappe { background-color: #11161B !important; }
+      .bg-sheet { background-color: #1C242C !important; }
+      .c-primary { color: #A9C8EC !important; }
+      .c-text { color: #E3E7EA !important; }
+      .c-muted { color: #A3ACB4 !important; }
+      .bg-button { background-color: #2B63A0 !important; }
+      .bg-note { background-color: #3A2A1A !important; }
+      .c-note { color: #F6D9BC !important; }
+      .rule { border-color: #2E3943 !important; }
+    }
+    [data-ogsc] .c-primary { color: #A9C8EC !important; }
+    [data-ogsc] .c-text { color: #E3E7EA !important; }
+    [data-ogsc] .c-muted { color: #A3ACB4 !important; }
+    [data-ogsb] .bg-pappe { background-color: #11161B !important; }
+    [data-ogsb] .bg-sheet { background-color: #1C242C !important; }
+    [data-ogsb] .bg-button { background-color: #2B63A0 !important; }
+    [data-ogsb] .bg-note { background-color: #3A2A1A !important; }
+    [data-ogsc] .c-note { color: #F6D9BC !important; }
+  </style>
+</head>
+<body class="bg-pappe" style="margin: 0; padding: 0; background-color: #E8EBEE;">
+  <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all;">%%PREHEADER%%&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="bg-pappe" style="background-color: #E8EBEE;">
+    <tr>
+      <td align="center" class="outer-pad" style="padding: 40px 16px;">
+
+        <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px;">
+
+          <tr>
+            <td style="padding: 0 4px 14px 4px;">
+              <span class="label c-primary" style="font-family: Archivo, 'Arial Narrow', Arial, sans-serif; font-size: 13px; font-weight: 600; color: #003970; letter-spacing: 0.06em; text-transform: uppercase;">Weissteiner Automation</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="bg-sheet sheet-pad" style="background-color: #FFFFFF; border-radius: 2px; padding: 44px 48px 40px 48px; box-shadow: 0 18px 36px -24px rgba(0, 23, 46, 0.45);">
+%%CONTENT%%
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding: 22px 4px 0 4px;">
+%%FOOTER%%
+            </td>
+          </tr>
+
+        </table>
+        <!--[if mso]></td></tr></table><![endif]-->
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
