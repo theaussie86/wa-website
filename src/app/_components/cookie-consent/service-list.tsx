@@ -6,30 +6,30 @@ import {
 
 function ServiceCard({ service }: { service: ServiceConfig }) {
   return (
-    <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 space-y-2">
+    <div className="space-y-2 border-b border-primary/20 py-5 first:border-t">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h4 className="font-semibold text-charcoal">{service.name}</h4>
-          <p className="text-sm text-gray-600">
+          <p className="text-[15px] text-charcoal/75">
             Anbieter: {service.provider}
           </p>
         </div>
         {service.dataTransferToUSA && (
-          <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
+          <span className="type-label shrink-0 rounded-[2px] border border-primary/30 px-1.5 py-0.5 text-[11.5px] text-primary">
             USA
           </span>
         )}
       </div>
 
-      <p className="text-charcoal/80">{service.purpose}</p>
+      <p>{service.purpose}</p>
 
       {service.cookies && service.cookies.length > 0 && (
-        <div className="text-sm">
-          <span className="font-medium">Cookies:</span>
+        <div className="text-[15px]">
+          <span className="font-medium text-charcoal">Cookies:</span>
           <ul className="mt-1 space-y-1">
             {service.cookies.map((cookie) => (
-              <li key={cookie.name} className="text-gray-600">
-                <code className="bg-gray-200 px-1 rounded-sm text-xs">{cookie.name}</code>
+              <li key={cookie.name} className="text-charcoal/75">
+                <code className="rounded-[2px] bg-pappe px-1 text-[13px] text-charcoal">{cookie.name}</code>
                 {" – "}{cookie.purpose} ({cookie.duration})
               </li>
             ))}
@@ -38,14 +38,14 @@ function ServiceCard({ service }: { service: ServiceConfig }) {
       )}
 
       {service.privacyPolicyUrl && (
-        <p className="text-sm">
+        <p className="text-[15px]">
           <a
             href={service.privacyPolicyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:text-accent font-medium transition-colors"
+            className="font-medium text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
           >
-            Datenschutzerklärung →
+            Datenschutzerklärung
           </a>
         </p>
       )}
@@ -79,16 +79,16 @@ export function ServiceList({
 
   if (displayServices.length === 0) {
     return (
-      <p className="text-gray-500 italic">{emptyMessage}</p>
+      <p className="text-charcoal/75">{emptyMessage}</p>
     );
   }
 
   return (
     <div className="space-y-4">
       {title && (
-        <h3 className="font-sans font-semibold text-charcoal text-lg">{title}</h3>
+        <h3 className="type-display text-[1.45rem] leading-[1.15] text-primary">{title}</h3>
       )}
-      <div className="space-y-3">
+      <div>
         {displayServices.map((service: ServiceConfig) => (
           <ServiceCard key={service.id} service={service} />
         ))}
@@ -116,7 +116,7 @@ export function CookieOverviewTable() {
 
   if (allCookies.length === 0) {
     return (
-      <p className="text-gray-500 italic">
+      <p className="text-charcoal/75">
         Derzeit werden keine Cookies verwendet, die einer Einwilligung bedürfen.
       </p>
     );
@@ -130,36 +130,28 @@ export function CookieOverviewTable() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-sm border-collapse">
+      <table className="w-full border-collapse text-[15px]">
         <thead>
-          <tr className="border-b border-gray-200">
-            <th className="text-left py-2 pr-4 font-semibold text-charcoal">Cookie</th>
-            <th className="text-left py-2 pr-4 font-semibold text-charcoal">Dienst</th>
-            <th className="text-left py-2 pr-4 font-semibold text-charcoal">Kategorie</th>
-            <th className="text-left py-2 pr-4 font-semibold text-charcoal">Zweck</th>
-            <th className="text-left py-2 font-semibold text-charcoal">Dauer</th>
+          <tr className="border-b border-primary/20">
+            <th className="text-left py-2 pr-4 type-label text-[12px] text-charcoal/75">Cookie</th>
+            <th className="text-left py-2 pr-4 type-label text-[12px] text-charcoal/75">Dienst</th>
+            <th className="text-left py-2 pr-4 type-label text-[12px] text-charcoal/75">Kategorie</th>
+            <th className="text-left py-2 pr-4 type-label text-[12px] text-charcoal/75">Zweck</th>
+            <th className="text-left py-2 type-label text-[12px] text-charcoal/75">Dauer</th>
           </tr>
         </thead>
         <tbody>
           {allCookies.map((cookie, index) => (
-            <tr key={`${cookie.service}-${cookie.name}-${index}`} className="border-b border-gray-100">
-              <td className="py-2 pr-4">
-                <code className="bg-gray-100 px-1 rounded-sm text-xs">{cookie.name}</code>
+            <tr key={`${cookie.service}-${cookie.name}-${index}`} className="border-b border-charcoal/10 align-top">
+              <td className="py-3 pr-4">
+                <code className="rounded-[2px] bg-pappe px-1 text-[13px] text-charcoal">{cookie.name}</code>
               </td>
-              <td className="py-2 pr-4 text-gray-700">{cookie.service}</td>
-              <td className="py-2 pr-4">
-                <span className={`text-xs px-2 py-0.5 rounded ${
-                  cookie.category === "essential"
-                    ? "bg-green-100 text-green-800"
-                    : cookie.category === "analytics"
-                    ? "bg-blue-100 text-blue-800"
-                    : "bg-purple-100 text-purple-800"
-                }`}>
-                  {categoryLabels[cookie.category]}
-                </span>
+              <td className="py-3 pr-4 text-charcoal/85">{cookie.service}</td>
+              <td className="py-3 pr-4">
+                {categoryLabels[cookie.category]}
               </td>
-              <td className="py-2 pr-4 text-gray-700">{cookie.purpose}</td>
-              <td className="py-2 text-gray-700">{cookie.duration}</td>
+              <td className="py-3 pr-4 text-charcoal/85">{cookie.purpose}</td>
+              <td className="py-3 text-charcoal/85">{cookie.duration}</td>
             </tr>
           ))}
         </tbody>

@@ -1,5 +1,7 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/app/_components/button";
+import { Sheet, Tab } from "@/app/_components/sheet";
 
 // Antwort auf jede URL, die keine Route matcht - vollständig serverseitig
 // gerendert. Ein `notFound()` aus einem Seitenrumpf landet zwar formal auch
@@ -7,73 +9,77 @@ import { Button } from "@/app/_components/button";
 // ohne Body; genau deshalb pinnen die dynamischen Routen ihre Parameterliste.
 // Siehe docs/adr/0003-reject-unknown-dynamic-params-at-the-router.md.
 //
-// Die Form spiegelt bewusst den Hero der Startseite: gleicher Bildschnitt,
-// gleicher Verlauf, gleiche Textkante. Wer hier landet, soll die Marke
-// wiedererkennen und nicht das Gefühl haben, aus der Seite gefallen zu sein.
+// Aufbau wie der Hero der Startseite, aber auf Pappe statt Ordnerleinen:
+// Header und Footer sind blau, eine blaue Sektion dazwischen verschwömme mit
+// dem Footer. Das Blatt, das hier liegen sollte, fehlt; rechts liegt
+// stattdessen das Inhaltsverzeichnis des Ordners, damit der nächste Klick
+// naheliegt.
 //
 // 85svh statt einer festen Höhe: Das Layout streckt den Bereich zwischen Header
 // und Footer über flex-1, und eine Seite aus nur einer Sektion bekäme sonst
-// einen leeren Streifen zwischen Bildkante und Footer. Mit 85svh plus Header und
+// einen leeren Streifen zwischen Sektion und Footer. Mit 85svh plus Header und
 // Footer ist die Seite immer höher als der Viewport, es bleibt nichts zu
 // strecken. `h-full` auf dem <main> half nicht - Prozenthöhen lösen gegen den
 // Flex-Container nicht auf.
+
+const register = [
+  { href: "/", label: "Startseite" },
+  { href: "/ki-arbeitsplatz", label: "KI-Arbeitsplatz" },
+  { href: "/ueber-mich", label: "Über mich" },
+  { href: "/blog", label: "Blog" },
+  { href: "/kontakt", label: "Kontakt" },
+];
+
 export default function NotFound() {
   return (
     <main>
-      <section className="relative flex min-h-[85svh] items-center overflow-hidden">
-        <div className="absolute inset-0" aria-hidden="true">
-          <Image
-            src="/gruenten.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover object-[center_38%]"
-          />
-          {/*
-            Zwei Verläufe, weil "die Textseite abdunkeln" je nach Breite etwas
-            anderes heißt. Ab md steht der Text links neben dem Bild, dort
-            reicht der waagerechte Verlauf der Startseite. Darunter füllt der
-            Text die ganze Breite und läge sonst mitten auf Berg und Ortschaft -
-            Charcoal auf wechselndem Foto reißt den Kontrast unter 4,5:1.
-          */}
-          <div
-            className="absolute inset-0 md:hidden"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(250,249,247,0.55) 0%, rgba(250,249,247,0.9) 22%, rgba(250,249,247,0.93) 88%, rgba(250,249,247,0.6) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0 hidden md:block"
-            style={{
-              background:
-                "linear-gradient(97deg, rgba(250,249,247,0.97) 0%, rgba(250,249,247,0.93) 34%, rgba(250,249,247,0.74) 52%, rgba(250,249,247,0.22) 78%, rgba(250,249,247,0.05) 100%)",
-            }}
-          />
-        </div>
-
-        <div className="relative mx-auto w-full max-w-[1180px] px-6 py-[clamp(64px,9vw,108px)]">
-          <div className="max-w-[620px]">
-            <p className="mb-5 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-primary">
-              Fehler 404
-            </p>
-
-            <h1 className="mb-6 text-balance font-display text-[clamp(2.75rem,5.4vw,4.6rem)] font-normal leading-[1.05] tracking-[-0.02em] text-primary">
-              Diese Seite gibt es nicht
+      <section className="flex min-h-[85svh] items-center overflow-hidden bg-pappe">
+        <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 items-center gap-x-16 gap-y-20 px-6 py-[clamp(64px,9vw,120px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:px-10">
+          <div>
+            <h1 className="type-display mb-7 max-w-[12ch] text-[clamp(2.6rem,6vw,5rem)] leading-[0.94] text-primary">
+              Diese Seite gibt es nicht.
             </h1>
-
-            <p className="mb-9 max-w-[520px] text-pretty font-sans text-[clamp(1.15rem,1.6vw,1.4rem)] leading-[1.6] text-charcoal">
+            <p className="mb-10 max-w-[34rem] text-pretty text-[clamp(1.08rem,1.4vw,1.25rem)] leading-[1.6] text-charcoal/85">
               Vertippt, veralteter Link oder der Inhalt ist umgezogen. Von hier
               kommst du in einem Klick zurück.
             </p>
-
-            <div className="flex flex-wrap gap-3.5">
-              <Button href="/">Zur Startseite</Button>
-              <Button href="/blog" variant="outline" className="bg-warm-white/85">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Button href="/">
+                Zur Startseite
+              </Button>
+              <Button href="/blog" variant="text">
                 Alle Artikel
               </Button>
             </div>
           </div>
+
+          <Sheet
+            className="mt-8 py-[clamp(36px,5vw,56px)] pr-[clamp(24px,4vw,48px)] pl-[clamp(48px,6vw,72px)]"
+          >
+            <Tab side="top" tone="accent" className="left-[clamp(48px,6vw,72px)]">
+              Fehler 404
+            </Tab>
+            <p className="type-display mb-6 text-[1.6rem] leading-[1.1] text-primary">
+              Inhalt dieses Ordners
+            </p>
+            <ul className="border-t border-primary/20">
+              {register.map(({ href, label }) => (
+                <li key={href} className="border-b border-primary/20">
+                  <Link
+                    href={href}
+                    className="group flex items-center justify-between gap-4 py-3.5 text-[17px] font-medium text-primary"
+                  >
+                    {label}
+                    <ArrowRight
+                      aria-hidden="true"
+                      strokeWidth={1.5}
+                      className="h-5 w-5 text-primary/50 transition-transform group-hover:translate-x-1 group-hover:text-primary"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Sheet>
         </div>
       </section>
     </main>

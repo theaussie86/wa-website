@@ -33,7 +33,7 @@ function Toggle({
       className={`
         relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors
         ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
-        ${checked ? "bg-primary" : "bg-gray-300 dark:bg-gray-600"}
+        ${checked ? "bg-primary" : "bg-charcoal/25"}
       `}
     >
       <span
@@ -49,7 +49,7 @@ function Toggle({
 function ServiceDetails({ services }: { services: ServiceConfig[] }) {
   if (services.length === 0) {
     return (
-      <p className="mt-2 text-xs text-gray-500 dark:text-gray-500 italic">
+      <p className="mt-2 text-[14px] text-charcoal/75">
         Keine Dienste aktiv
       </p>
     );
@@ -60,14 +60,14 @@ function ServiceDetails({ services }: { services: ServiceConfig[] }) {
       {services.map((service) => (
         <div
           key={service.id}
-          className="rounded-md bg-gray-50 p-3 text-xs dark:bg-gray-800/50"
+          className="rounded-[2px] bg-pappe p-3 text-[14px] leading-[1.5]"
         >
           <div className="flex items-start justify-between gap-2">
             <div>
-              <span className="font-medium text-charcoal dark:text-white">
+              <span className="font-semibold text-charcoal">
                 {service.name}
               </span>
-              <span className="ml-2 text-gray-500 dark:text-gray-400">
+              <span className="ml-2 text-charcoal/75">
                 ({service.provider})
               </span>
             </div>
@@ -76,18 +76,18 @@ function ServiceDetails({ services }: { services: ServiceConfig[] }) {
                 href={service.privacyPolicyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 text-primary hover:text-primary-600 dark:text-primary-400"
+                className="shrink-0 text-primary hover:text-primary-600"
                 aria-label={`Datenschutz von ${service.name}`}
               >
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             )}
           </div>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-charcoal/85">
             {service.purpose}
           </p>
           {service.cookies && service.cookies.length > 0 && (
-            <div className="mt-2 text-gray-500 dark:text-gray-500">
+            <div className="mt-2 text-charcoal/75">
               <span className="font-medium">Cookies: </span>
               {service.cookies.map((c) => c.name).join(", ")}
             </div>
@@ -116,30 +116,30 @@ function CategorySection({
   if (!categoryConfig) return null;
 
   return (
-    <div className="border-b border-gray-100 pb-4 last:border-0 last:pb-0 dark:border-gray-700">
+    <div className="border-b border-primary/15 pb-5 last:border-0 last:pb-0">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <label
               htmlFor={`${category}-toggle`}
-              className="block font-medium text-charcoal dark:text-white"
+              className="block font-semibold text-charcoal"
             >
               {categoryConfig.name}
             </label>
             {disabled && (
-              <span className="rounded-sm bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+              <span className="type-label rounded-[2px] border border-primary/30 px-1.5 py-0.5 text-[11.5px] text-primary">
                 Immer aktiv
               </span>
             )}
           </div>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-[15px] leading-[1.55] text-charcoal/85">
             {categoryConfig.description}
           </p>
           {services.length > 0 && (
             <button
               type="button"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="mt-2 flex items-center gap-1 text-xs text-primary hover:text-primary-600 dark:text-primary-400"
+              className="mt-2 flex items-center gap-1 text-[14px] font-medium text-primary hover:text-primary-600"
             >
               {isExpanded ? (
                 <>
@@ -185,20 +185,20 @@ function SettingsModal() {
 
   return (
     <div
-      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-ink/60 p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeSettings();
       }}
     >
       <div
-        className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl bg-white p-6 shadow-2xl dark:bg-charcoal"
+        className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-[2px] bg-white p-6 text-charcoal shadow-[0_22px_44px_-26px_rgba(0,23,46,0.45)] sm:p-8"
         role="dialog"
         aria-modal="true"
         aria-labelledby="cookie-settings-title"
       >
         <button
           onClick={closeSettings}
-          className="absolute right-4 top-4 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          className="absolute right-4 top-4 p-1 text-charcoal/60 hover:text-charcoal"
           aria-label="Einstellungen schließen"
         >
           <X className="h-5 w-5" />
@@ -206,15 +206,15 @@ function SettingsModal() {
 
         <h2
           id="cookie-settings-title"
-          className="mb-2 font-display text-xl text-charcoal dark:text-white"
+          className="type-display mb-3 text-[2rem] leading-[1.05] text-primary"
         >
           Cookie-Einstellungen
         </h2>
-        <p className="mb-6 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mb-6 text-[15px] leading-[1.55] text-charcoal/85">
           Wählen Sie aus, welche Cookies Sie zulassen möchten.{" "}
           <Link
             href="/datenschutz"
-            className="text-primary underline hover:text-primary-600 dark:text-primary-400"
+            className="font-medium text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
           >
             Mehr erfahren
           </Link>
@@ -242,13 +242,13 @@ function SettingsModal() {
         <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             onClick={handleSave}
-            className="rounded-lg border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary-50 dark:border-primary-400 dark:text-primary-300 dark:hover:bg-primary-900/20"
+            className="rounded-[4px] px-5 py-3 text-[15px] font-semibold transition-colors border border-primary/35 text-primary hover:border-primary hover:bg-primary-50"
           >
             Auswahl speichern
           </button>
           <button
             onClick={acceptAll}
-            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-600"
+            className="rounded-[4px] px-5 py-3 text-[15px] font-semibold transition-colors bg-primary text-white hover:bg-primary-600"
           >
             Alle akzeptieren
           </button>
@@ -287,25 +287,25 @@ export function CookieConsentBanner() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-9998 border-t border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-charcoal sm:p-6"
+      className="fixed inset-x-0 bottom-0 z-9998 border-t border-white/15 bg-primary p-5 text-white shadow-[0_-12px_32px_-18px_rgba(0,23,46,0.6)] sm:p-6"
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-banner-title"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-[1320px] lg:px-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex-1">
             <h2
               id="cookie-banner-title"
-              className="font-display text-lg text-charcoal dark:text-white"
+              className="type-display text-[1.5rem] leading-[1.1] text-white"
             >
               Wir nutzen Cookies
             </h2>
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-[15px] leading-[1.55] text-white/85">
               Diese Website verwendet Cookies für Analyse und Marketing.{" "}
               <Link
                 href="/datenschutz"
-                className="text-primary underline hover:text-primary-600 dark:text-primary-400"
+                className="font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
               >
                 Mehr erfahren
               </Link>
@@ -315,19 +315,19 @@ export function CookieConsentBanner() {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
             <button
               onClick={openSettings}
-              className="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:text-charcoal dark:text-gray-400 dark:hover:text-white"
+              className="px-2 py-3 text-[15px] font-medium text-white underline decoration-white/40 underline-offset-[6px] transition-colors hover:decoration-white"
             >
               Anpassen
             </button>
             <button
               onClick={rejectAll}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-charcoal transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
+              className="rounded-[4px] px-5 py-3 text-[15px] font-semibold transition-colors border border-white/50 text-white hover:border-white hover:bg-white/10"
             >
               Nur Essenzielle
             </button>
             <button
               onClick={acceptAll}
-              className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600"
+              className="rounded-[4px] px-5 py-3 text-[15px] font-semibold transition-colors bg-white text-primary hover:bg-primary-50"
             >
               Alle akzeptieren
             </button>
