@@ -33,12 +33,13 @@ Archivo (variabel, `wght` + `wdth`), eine Familie.
 - **Sheet** (`_components/home/sheet.tsx`): weißes Blatt, 2px Radius, weicher Schatten mit Versatz, zwei Lochungen in Grundfarbe (links hoch, oben quer).
 - **Tab**: Registertabe am Blattrand (rechts senkrecht oder oben). Orange nur für das Aufgeschlagene.
 - **Button**: rechteckiges Etikett, 4px Radius. `primary` auf hell, `light` auf Blau, Alternative immer Textlink.
-- **Ordnerrücken**: `primary-600`-Säule mit weißem Rückenschild und Griffloch, Regalboden darunter.
+- **Regal**: drei schmale Ordner (`primary-600`) mit senkrechtem Rückenschild und Griffloch auf einem Regalboden, daneben die Schritte als Liste.
+- **Tab rechts**: 40 x 128px, 12.5px, reicht für "Nachfassen".
 - Icons: Lucide, Strich 1.5.
 
 ## Bewegung
 
-Ein einziger Moment: im Hero streicht der Stift die Floskel, die Einfügung erscheint, die Haftnotiz klebt. Sonst keine Einblendungen. `prefers-reduced-motion` zeigt den Endzustand.
+Ein einziger Moment im Hero (rund 4 Sekunden): Blatt legt sich hin, Zeilen erscheinen, der Stift streicht die Floskel (wachsende Linie, auch über Zeilenumbrüche), der Satz der Kundin erscheint, die Hashtags werden gestrichen, die Haftnotiz klebt, "Passt so" wird zu "Freigegeben". Sonst keine Einblendungen. `prefers-reduced-motion` zeigt den Endzustand.
 
 ## Verboten
 

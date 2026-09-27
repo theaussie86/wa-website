@@ -1,5 +1,6 @@
-// Die drei Blöcke aus signature-system.md als drei Ordnerrücken im Regal.
-// Bewusst ohne Wochenangaben und ohne Preis: Das Angebot steht auf Stufe 0.
+// Die drei Blöcke aus signature-system.md. Links stehen sie als drei Ordner im
+// Regal, rechts steht, was in jedem passiert. Bewusst ohne Wochenangaben und
+// ohne Preis: Das Angebot steht auf Stufe 0.
 const blocks = [
   {
     phase: "Fundament",
@@ -18,6 +19,37 @@ const blocks = [
   },
 ];
 
+function Shelf() {
+  return (
+    <div aria-hidden="true" className="w-fit">
+      <div className="flex items-end gap-1.5 px-2">
+        {blocks.map((block, i) => (
+          <div
+            key={block.phase}
+            className="flex h-[300px] w-[76px] flex-col items-center rounded-t-[3px] border-x border-t border-white/10 bg-primary-600 pt-4 sm:h-[400px] sm:w-[100px] lg:h-[460px] lg:w-[112px]"
+          >
+            {/* Rückenschild mit Aufschrift von unten nach oben, wie im Regal */}
+            <div className="flex h-[58%] w-[70%] items-center justify-center rounded-[2px] bg-white p-1">
+              <div className="flex h-full w-full items-center justify-center border border-primary/20">
+                <span className="type-display rotate-180 text-[20px] leading-none whitespace-nowrap text-primary [writing-mode:vertical-rl] sm:text-[26px]">
+                  <span className="type-label me-3 inline-block text-[11px] text-charcoal/75 sm:text-[12px]">
+                    Teil {i + 1}
+                  </span>
+                  {block.phase}
+                </span>
+              </div>
+            </div>
+            {/* Griffloch */}
+            <span className="mt-auto mb-[14%] block h-10 w-10 rounded-full border-[5px] border-primary-700 bg-primary-800 shadow-[inset_0_3px_6px_rgba(0,0,0,0.4)] sm:h-12 sm:w-12" />
+          </div>
+        ))}
+      </div>
+      {/* Regalboden */}
+      <div className="h-2 rounded-[1px] bg-primary-800" />
+    </div>
+  );
+}
+
 export function Collaboration() {
   return (
     <section className="bg-primary py-[clamp(104px,12vw,176px)] text-white">
@@ -26,32 +58,30 @@ export function Collaboration() {
           So läuft die Zusammenarbeit.
         </h2>
 
-        {/* Drei Ordner im Regal: Rückenschild oben, Griffloch unten, Regalboden darunter */}
-        <ol className="grid gap-3 border-b-[6px] border-primary-800 md:grid-cols-3">
-          {blocks.map((block, i) => (
-            <li
-              key={block.phase}
-              className="flex min-h-[460px] flex-col rounded-t-[4px] border-x border-t border-white/10 bg-primary-600 px-5 pt-5 lg:px-7 lg:pt-7"
-            >
-              <div className="mb-8 rounded-[2px] bg-white p-1.5">
-                <div className="border border-primary/20 px-4 py-4 text-primary">
-                  <p className="type-label mb-1 text-[11.5px] text-charcoal/75">Teil {i + 1}</p>
-                  <p className="type-display text-[clamp(1.8rem,2.6vw,2.4rem)] leading-none">{block.phase}</p>
-                </div>
-              </div>
-              <h3 className="type-display mb-3 text-[clamp(1.4rem,2vw,1.7rem)] leading-[1.1] text-white">
-                {block.title}
-              </h3>
-              <p className="mb-10 max-w-[24rem] text-[16.5px] leading-[1.65] text-white/80">{block.text}</p>
-              <span
-                aria-hidden="true"
-                className="mt-auto mb-10 block h-14 w-14 self-center rounded-full border-[5px] border-primary-700 bg-primary-800 shadow-[inset_0_3px_6px_rgba(0,0,0,0.35)]"
-              />
-            </li>
-          ))}
-        </ol>
+        <div className="grid items-end gap-14 lg:grid-cols-[auto_1fr] lg:gap-[clamp(64px,8vw,128px)]">
+          <Shelf />
 
-        <p className="mt-[clamp(48px,6vw,80px)] border-t border-white/15 pt-8 text-[17px] text-white/80">
+          <ol className="border-t border-white/20">
+            {blocks.map((block, i) => (
+              <li
+                key={block.phase}
+                className="grid gap-2 border-b border-white/20 py-8 sm:grid-cols-[150px_1fr] sm:gap-8"
+              >
+                <p className="type-label pt-1.5 text-[13px] text-white/70">
+                  Teil {i + 1} · {block.phase}
+                </p>
+                <div>
+                  <h3 className="type-display mb-2 text-[clamp(1.5rem,2.2vw,1.9rem)] leading-[1.08] text-white">
+                    {block.title}
+                  </h3>
+                  <p className="max-w-[34rem] text-[17px] leading-[1.65] text-white/80">{block.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <p className="mt-[clamp(48px,6vw,80px)] text-[17px] text-white/80">
           Alles liegt auf deinem Rechner. Was entsteht, gehört dir.
         </p>
       </div>

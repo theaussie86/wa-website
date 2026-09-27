@@ -64,13 +64,13 @@ export function Tab({
   };
   const shape =
     side === "right"
-      ? "-right-8 w-8 h-24 rounded-r-[5px] [writing-mode:vertical-rl]"
-      : "-top-7 h-7 px-4 rounded-t-[5px]";
+      ? "-right-10 w-10 h-32 rounded-r-[6px] text-[12.5px] [writing-mode:vertical-rl]"
+      : "-top-8 h-8 px-4 rounded-t-[6px] text-[12px]";
 
   return (
     <span
       aria-hidden="true"
-      className={`type-label absolute flex items-center justify-center text-[11px] ${shape} ${tones[tone]} ${className}`}
+      className={`type-label absolute flex items-center justify-center ${shape} ${tones[tone]} ${className}`}
     >
       {children}
     </span>

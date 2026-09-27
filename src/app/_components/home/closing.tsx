@@ -8,7 +8,7 @@ import { Sheet, Tab } from "@/app/_components/home/sheet";
 export function Closing() {
   return (
     <section className="bg-pappe py-[clamp(104px,12vw,176px)]">
-      <div className="mx-auto max-w-[1320px] px-6 pt-7 lg:px-10">
+      <div className="mx-auto max-w-[1320px] px-6 pt-8 lg:px-10">
         <Sheet className="mx-auto max-w-[920px] py-[clamp(40px,6vw,72px)] pr-[clamp(24px,6vw,80px)] pl-[clamp(48px,7vw,96px)]">
           <Tab side="top" tone="accent" className="left-[clamp(48px,7vw,96px)]">
             Kontakt

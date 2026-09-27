@@ -8,7 +8,7 @@ import { Sheet, Tab } from "@/app/_components/home/sheet";
 
 function StepSheet({ tab, tone, children }: { tab: string; tone?: "accent"; children: ReactNode }) {
   return (
-    <div aria-hidden="true" className="pt-7">
+    <div aria-hidden="true" className="pt-8">
       <Sheet className="min-h-[300px] py-8 pr-7 pl-12">
         <Tab side="top" tone={tone ?? "white"} className="right-6">
           {tab}
@@ -32,8 +32,8 @@ const steps = [
           Sprachnotiz · 0:24 · Di, 18:12
         </div>
         <p className="text-[15.5px] leading-[1.6] text-charcoal italic">
-          „Berger, Kanzlei, Empfang. Soll ruhiger wirken, aber nicht kühl. Wände Kalk, Theke
-          bleibt, Licht indirekt. Bis Freitag raus.“
+          „Beitrag zur Kanzlei Berger. Sie wollte es ruhiger, nicht kühler. Theke bleibt,
+          neue Front, Kalk, Licht indirekt. Ohne Werbesprech.“
         </p>
       </StepSheet>
     ),
@@ -43,14 +43,13 @@ const steps = [
     text: "Der Arbeitsplatz kennt deinen Betrieb, deine Preise und wie du schreibst. Wenn du dich hinsetzt, liegt der Entwurf schon da.",
     sheet: (
       <StepSheet tab="Entwurf">
-        <p className="type-display mb-3 text-[19px] leading-tight text-primary">Angebot Empfangsbereich</p>
+        <p className="type-display mb-3 text-[19px] leading-tight text-primary">Warum wir die Theke stehen lassen</p>
         <div className="space-y-2 text-[13.5px] leading-[1.6] text-charcoal/90">
-          <p>Liebe Frau Berger,</p>
-          <p>wir freuen uns über Ihr Interesse an unseren Leistungen. Gerne schlagen wir Ihnen vor:</p>
-          <p>1. Wände in einem warmen Kalkton</p>
+          <p>In der heutigen schnelllebigen Zeit ist der erste Eindruck wichtiger denn je.</p>
+          <p>Also haben wir nicht alles rausgerissen. Die Theke bleibt und bekommt eine neue Front aus Eiche.</p>
         </div>
         <p className="mt-5 border-t border-charcoal/10 pt-3 text-[12px] text-charcoal/75">
-          Aus Diktat, Preisliste 2026 und Anleitung Angebote
+          Aus Diktat, Projektnotizen und Anleitung Beiträge
         </p>
       </StepSheet>
     ),
@@ -61,15 +60,15 @@ const steps = [
     sheet: (
       <StepSheet tab="Korrektur" tone="accent">
         <p className="mb-2 text-[14px] leading-[1.6] text-charcoal/75">
-          <del className="decoration-accent decoration-2">wir freuen uns über Ihr Interesse an unseren Leistungen.</del>
+          <del className="decoration-accent decoration-2">In der heutigen schnelllebigen Zeit ist der erste Eindruck wichtiger denn je.</del>
         </p>
         <p className="mb-6 text-[14.5px] leading-[1.6] font-medium text-accent-600 italic">
-          danke für den Rundgang am Dienstag.
+          „Ruhiger soll es wirken, aber nicht kühl“, hat die Kundin gesagt.
         </p>
         <div className="flex gap-2.5 rounded-[2px] bg-accent-100 px-3.5 py-3 text-ink">
           <Check className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.5} />
           <span className="text-[13.5px] leading-snug">
-            Gemerkt: Kunden immer mit ihrem eigenen Satz abholen.
+            Gemerkt: Mit einem echten Satz vom Kunden einsteigen.
           </span>
         </div>
       </StepSheet>
