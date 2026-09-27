@@ -123,12 +123,14 @@ const ways = [
   },
 ];
 
-// Beispielblatt im Kopf: so sieht eine Anleitung aus, die mit jeder Korrektur wächst.
+// Blatt im Kopf: ein echter Auszug aus Christophs eigener Stilanleitung
+// (Vault core/voice.md, Stand 26.09.2026), keine erfundenen Regeln. Die
+// orange Zeile ist die jüngste Ergänzung aus einer Korrektur.
 function AnleitungSheet() {
   return (
     <figure
       role="img"
-      aria-label="Beispiel einer Anleitung für LinkedIn-Beiträge. Sechs Regeln, die letzte wurde aus einer Korrektur neu ergänzt."
+      aria-label="Auszug aus Christophs eigener Stilanleitung. Sechs Regeln, die letzte wurde am 26. September 2026 aus einer Korrektur ergänzt."
       className="relative mr-10 select-none"
     >
       <Sheet ground="primary" className="pt-9 pr-[7%] pb-8 pl-[15%] sm:pl-[12%]">
@@ -137,22 +139,22 @@ function AnleitungSheet() {
         </Tab>
         <div aria-hidden="true">
           <div className="mb-6 flex justify-between gap-4 text-[11.5px] tracking-[0.02em] text-charcoal/75">
-            <span>Anleitung Beiträge · 14. Fassung</span>
-            <span>Beispiel</span>
+            <span>Meine Stilanleitung · Auszug</span>
+            <span>Echt</span>
           </div>
-          <p className="type-display mb-5 text-[1.45rem] leading-[1.08] text-primary">So schreibe ich Beiträge</p>
+          <p className="type-display mb-5 text-[1.45rem] leading-[1.08] text-primary">So schreibe ich</p>
           <ol className="space-y-2.5 text-[14px] leading-[1.55]">
-            <li>Mit einem echten Satz vom Kunden einsteigen.</li>
-            <li>Material, Licht und Maß benennen, keine Adjektivketten.</li>
-            <li>Ein Gedanke pro Beitrag.</li>
-            <li>Keine Hashtag-Wolken.</li>
-            <li>Kundennamen nur mit Freigabe.</li>
+            <li>Du, nie Sie. Auch bei Geschäftsführern, auch auf LinkedIn.</li>
+            <li>Nie erfundene Szenen. Kein „ein Kunde sagte mir mal“, wenn es das nicht gab.</li>
+            <li>Die Erkenntnis zuerst, nicht die Vorrede.</li>
+            <li>Auch benennen, was nicht funktioniert hat.</li>
+            <li>Keine Gedankenstriche, nur Bindestrich.</li>
             <li className="font-medium text-accent-600">
-              Ohne Werbesprech. Lieber ein Detail von der Baustelle.
+              Höchstens ein Positionierungsbegriff pro Text, nur wo er trägt.
             </li>
           </ol>
           <p className="mt-6 border-t border-charcoal/10 pt-3 text-[12px] text-charcoal/75">
-            Letzte Regel ergänzt aus deiner Korrektur vom Dienstag
+            Letzte Regel ergänzt am 26.09.2026, aus einer Korrektur
           </p>
         </div>
       </Sheet>
