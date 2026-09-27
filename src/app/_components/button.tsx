@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Variant = "primary" | "outline";
+type Variant = "primary" | "outline" | "text";
 
 type Props = {
   href: string;
@@ -11,19 +11,20 @@ type Props = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2.5 rounded-xs font-sans text-[17px] font-semibold transition-[background-color,color,transform] duration-200 hover:-translate-y-0.5";
+  "inline-flex items-center justify-center gap-2 font-sans text-[16.5px] font-medium transition-colors duration-200";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent-600 px-[30px] py-4 text-white hover:bg-accent-700 hover:text-white",
+    "rounded-full bg-primary px-7 py-3.5 text-warm-white hover:bg-primary-600 hover:text-warm-white",
   outline:
-    "border-2 border-primary px-7 py-3.5 text-primary hover:bg-primary hover:text-white",
+    "rounded-full border border-primary/30 px-7 py-3.5 text-primary hover:border-primary hover:bg-primary-50",
+  text: "text-primary underline decoration-primary/30 underline-offset-[5px] hover:decoration-primary",
 };
 
 /**
- * Design-System-Button für den Startseiten-Relaunch.
+ * Design-System-Button (Relaunch 09/2026): Pille in Primary-Blau.
+ * Pro Sektion höchstens ein primary, die Alternative ist "text".
  * Externe Links (http/mailto/tel) rendern als <a>, interne Pfade als next/link.
- * Primary nutzt accent-600 (weiße Schrift WCAG-konform, ~5:1).
  */
 export function Button({ href, children, variant = "primary", className = "" }: Props) {
   const cls = `${base} ${variants[variant]} ${className}`;

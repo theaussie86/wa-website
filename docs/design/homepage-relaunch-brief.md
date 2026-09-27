@@ -1,3 +1,5 @@
+> **Überholt (26.09.2026).** Gilt nicht mehr. Aktuell: `docs/design/relaunch-2026-09-brief.md` und `CONTEXT.md`.
+
 # Auftrag: Homepage-Relaunch Weissteiner Automation
 
 Du implementierst ein abgestimmtes Design- und Messaging-Konzept für die **Startseite** von

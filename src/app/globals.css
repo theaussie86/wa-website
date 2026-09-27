@@ -20,16 +20,18 @@
   }
 }
 
+/* Buttons als Pille (Relaunch 09/2026). Primär ist Blau, Orange bleibt
+   Akzent für Flächen und Details, nicht für Knöpfe. */
 @utility btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-xs hover:bg-accent-600 transition-colors duration-200;
+  @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-warm-white font-medium rounded-full hover:bg-primary-600 transition-colors duration-200;
 }
 
 @utility btn-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-medium rounded-xs hover:bg-primary hover:text-white transition-colors duration-200;
+  @apply inline-flex items-center justify-center px-6 py-3 border border-primary/30 text-primary font-medium rounded-full hover:border-primary hover:bg-primary-50 transition-colors duration-200;
 }
 
 @utility btn-whatsapp {
-  @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-xs hover:bg-[#20BD5A] transition-colors duration-200;
+  @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-full hover:bg-[#20BD5A] transition-colors duration-200;
 }
 
 @utility section {
@@ -50,30 +52,33 @@
     font-feature-settings: "kern" 1, "liga" 1;
   }
 
+  /* Newsreader wirkt in normalem Gewicht am besten. Fett nur für Betonung. */
   h1 {
-    @apply font-serif text-primary font-extrabold tracking-tight;
+    @apply font-serif text-primary font-normal;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 
   h2 {
-    @apply font-serif text-primary font-extrabold tracking-tight;
+    @apply font-serif text-primary font-normal;
     font-size: clamp(1.875rem, 3.5vw, 3.2rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   h3 {
-    @apply font-serif text-primary font-bold;
+    @apply font-serif text-primary font-medium;
     font-size: clamp(1.375rem, 2.5vw, 2rem);
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 
   h4, h5, h6 {
-    @apply font-serif text-primary font-semibold;
-    letter-spacing: -0.01em;
+    @apply font-serif text-primary font-medium;
   }
 
   a {
