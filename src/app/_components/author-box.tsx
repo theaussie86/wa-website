@@ -25,7 +25,7 @@ const AuthorBox = ({ name, picture }: Props) => {
             )}
             <div>
               <p className="text-sm text-charcoal/50 mb-1">Über den Autor</p>
-              <h3 className="font-serif text-xl text-primary mb-2">{name}</h3>
+              <h3 className="font-display text-xl text-primary mb-2">{name}</h3>
               <p className="text-charcoal/70 leading-relaxed">
                 Ich baue Automatisierungen für mittelständische Unternehmen im
                 Allgäu und ganz Bayern - keine PowerPoint-Strategien, sondern

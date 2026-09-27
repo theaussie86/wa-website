@@ -21,7 +21,7 @@ export default function ROICalculatorPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
+            <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
               ROI-Rechner für Prozessautomatisierung
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
@@ -44,7 +44,7 @@ export default function ROICalculatorPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6">
+            <h2 className="font-display text-2xl md:text-3xl text-primary mb-6">
               So funktioniert der Rechner
             </h2>
 
@@ -116,7 +116,7 @@ export default function ROICalculatorPage() {
       {/* Typical Scenarios */}
       <section className="section">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-2xl md:text-3xl text-primary mb-8 text-center">
+          <h2 className="font-display text-2xl md:text-3xl text-primary mb-8 text-center">
             Typische Szenarien
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">

@@ -80,7 +80,7 @@ export function ROICalculator() {
     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
       {/* Eingaben */}
       <div className="space-y-6">
-        <h3 className="font-serif text-xl text-primary mb-4">Deine Ausgangssituation</h3>
+        <h3 className="font-display text-xl text-primary mb-4">Deine Ausgangssituation</h3>
 
         {/* Gesparte Stunden */}
         <div>
@@ -200,13 +200,13 @@ export function ROICalculator() {
 
       {/* Ergebnisse */}
       <div className="bg-primary/5 rounded-xs p-6 lg:p-8 border border-primary/10">
-        <h3 className="font-serif text-xl text-primary mb-6">Deine Ergebnisse</h3>
+        <h3 className="font-display text-xl text-primary mb-6">Deine Ergebnisse</h3>
 
         <div className="space-y-6">
           {/* Monatliche Ersparnis */}
           <div className="pb-4 border-b border-primary/10">
             <div className="text-charcoal/70 text-sm mb-1">Monatliche Ersparnis</div>
-            <div className="font-serif text-3xl md:text-4xl text-primary">
+            <div className="font-display text-3xl md:text-4xl text-primary">
               {formatCurrency(results.totalMonthlySavings)}
             </div>
             <div className="text-xs text-charcoal/50 mt-1">
@@ -217,7 +217,7 @@ export function ROICalculator() {
           {/* Amortisation */}
           <div className="pb-4 border-b border-primary/10">
             <div className="text-charcoal/70 text-sm mb-1">Amortisationszeit</div>
-            <div className="font-serif text-3xl md:text-4xl text-primary">
+            <div className="font-display text-3xl md:text-4xl text-primary">
               {formatMonths(results.paybackMonths)}
             </div>
             <div className="text-xs text-charcoal/50 mt-1">
@@ -228,7 +228,7 @@ export function ROICalculator() {
           {/* ROI */}
           <div>
             <div className="text-charcoal/70 text-sm mb-1">ROI nach 12 Monaten</div>
-            <div className="font-serif text-3xl md:text-4xl text-accent">
+            <div className="font-display text-3xl md:text-4xl text-accent">
               {formatPercent(results.roi)}
             </div>
             <div className="text-xs text-charcoal/50 mt-1">

@@ -84,7 +84,7 @@ export function GuideShell({
         >
           <Menu className="w-6 h-6" />
         </button>
-        <span className="font-serif text-primary text-sm font-medium truncate">
+        <span className="font-display text-primary text-sm font-medium truncate">
           Second Brain Anleitung
         </span>
       </div>
@@ -95,7 +95,7 @@ export function GuideShell({
           <div className="px-4 py-5 border-b border-primary/10">
             <Link
               href="/second-brain-anleitung"
-              className="font-serif text-primary text-lg font-medium hover:text-accent transition-colors"
+              className="font-display text-primary text-lg font-medium hover:text-accent transition-colors"
             >
               Second Brain Anleitung
             </Link>
@@ -114,7 +114,7 @@ export function GuideShell({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="px-4 py-4 border-b border-primary/10 flex items-center justify-between">
-                <span className="font-serif text-primary font-medium">
+                <span className="font-display text-primary font-medium">
                   Second Brain Anleitung
                 </span>
                 <button

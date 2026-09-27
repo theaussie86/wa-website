@@ -8,7 +8,7 @@ export function HeroSection() {
           <p className="text-accent font-medium mb-4 text-sm uppercase tracking-wide">
             Kostenloser KI-Readiness Check
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight">
+          <h1 className="font-display text-4xl md:text-5xl text-white mb-6 leading-tight">
             Wie viele Stunden verliert dein Betrieb pro Woche an Zettelwirtschaft?
           </h1>
           <p className="text-white/80 text-lg mb-10 leading-relaxed">

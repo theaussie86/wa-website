@@ -7,23 +7,17 @@ import {
 import { JsonLd } from "@/app/_components/json-ld";
 import { SITE_NAME } from "@/lib/constants";
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { Archivo } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
 
-const inter = Inter({
+// Eine Familie für alles. Die Breitenachse trägt die Hierarchie:
+// schmal für Headlines und Registertaben, normal für Fließtext.
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-// Variable Schrift mit optischer Größe: große Headlines bekommen automatisch
-// den feineren Display-Schnitt, Fließtext den robusteren Text-Schnitt.
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  axes: ["opsz"],
+  variable: "--font-archivo",
+  axes: ["wdth"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -55,9 +49,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${inter.variable} ${newsreader.variable}`}>
+    <html lang="de" className={archivo.variable}>
       <head>
-        <meta name="theme-color" content="#FAF9F7" />
+        <meta name="theme-color" content="#003970" />
         <JsonLd />
       </head>
       <body className={cn("font-sans min-h-screen flex flex-col")}>

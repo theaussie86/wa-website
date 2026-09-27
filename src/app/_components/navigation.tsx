@@ -18,19 +18,14 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-primary/[0.08] bg-warm-white/90 backdrop-blur-md">
-      <nav className="mx-auto max-w-[1240px] px-6 py-4">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-primary text-white">
+      <nav className="mx-auto max-w-[1320px] px-6 py-4 lg:px-10">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5" aria-label={`${SITE_NAME}, Startseite`}>
-            <Image
-              src="/logo-icon.svg"
-              alt=""
-              width={28}
-              height={28}
-              className="h-7 w-7"
-              priority
-            />
-            <span className="font-serif text-[19px] tracking-[-0.01em] text-primary">
+            <span className="flex h-8 w-8 items-center justify-center rounded-[4px] bg-white">
+              <Image src="/logo-icon.svg" alt="" width={22} height={22} className="h-[22px] w-[22px]" priority />
+            </span>
+            <span className="type-label text-[15px] tracking-[0.08em] text-white">
               {SITE_NAME}
             </span>
           </Link>
@@ -40,7 +35,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-sans text-[15px] text-charcoal/80 transition-colors hover:text-primary"
+                className="font-sans text-[15px] text-white/80 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -49,15 +44,15 @@ export function Navigation() {
               href={CAL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-primary/30 px-4 py-2 font-sans text-[15px] font-medium text-primary transition-colors hover:border-primary hover:bg-primary-50"
+              className="rounded-[4px] bg-white px-4 py-2 font-sans text-[15px] font-semibold text-primary transition-colors hover:bg-primary-50"
             >
-              Direkter Draht
+              15 Minuten reden
             </a>
           </div>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-primary md:hidden"
+            className="p-2 text-white md:hidden"
             aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={isOpen}
           >
@@ -72,7 +67,7 @@ export function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="py-2.5 font-sans text-[17px] text-charcoal transition-colors hover:text-primary"
+                  className="border-b border-white/10 py-3 font-sans text-[17px] text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
@@ -82,9 +77,9 @@ export function Navigation() {
                 href={CAL_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary mt-3"
+                className="mt-5 inline-flex items-center justify-center rounded-[4px] bg-white px-6 py-3.5 font-semibold text-primary"
               >
-                Direkter Draht
+                15 Minuten reden
               </a>
             </div>
           </div>

@@ -42,11 +42,13 @@ const config: Config = {
         // Dunkle Akzentfläche, maximal eine Sektion pro Seite
         "ink": "#00172E",
         "warm-white": "#FAF9F7",
+        // Ordnerpappe: Grund, auf dem die weißen Blätter liegen
+        "pappe": "#E8EBEE",
         "amber": "#F5A14D",
       },
       fontFamily: {
-        serif: ["var(--font-newsreader)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-archivo)", "Arial Narrow", "sans-serif"],
+        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -117,25 +119,25 @@ const config: Config = {
             lineHeight: "1.8",
             // Headings
             h2: {
-              fontFamily: "var(--font-newsreader), Georgia, serif",
+              fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
-              fontWeight: "500",
+              fontWeight: "600",
               marginTop: "2.5em",
               marginBottom: "0.75em",
               lineHeight: "1.1",
               letterSpacing: "-0.03em",
             },
             h3: {
-              fontFamily: "var(--font-newsreader), Georgia, serif",
+              fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
-              fontWeight: "500",
+              fontWeight: "600",
               marginTop: "2em",
               marginBottom: "0.5em",
               lineHeight: "1.2",
               letterSpacing: "-0.02em",
             },
             h4: {
-              fontFamily: "var(--font-newsreader), Georgia, serif",
+              fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
               fontWeight: "600",
               marginTop: "1.5em",

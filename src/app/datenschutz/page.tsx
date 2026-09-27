@@ -24,7 +24,7 @@ export default function DatenschutzPage() {
       <div className="container mx-auto px-5">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-4">Datenschutz</h1>
+            <h1 className="font-display text-4xl md:text-5xl text-primary mb-4">Datenschutz</h1>
             <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
               Informationen über die Erhebung, Verarbeitung und Nutzung Ihrer personenbezogenen Daten.
             </p>
@@ -38,7 +38,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">1. Datenschutz auf einen Blick</h2>
+                <h2 className="font-display text-2xl text-primary m-0">1. Datenschutz auf einen Blick</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <div>
@@ -117,7 +117,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Server className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">2. Hosting und Content Delivery Networks (CDN)</h2>
+                <h2 className="font-display text-2xl text-primary m-0">2. Hosting und Content Delivery Networks (CDN)</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <div>
@@ -177,7 +177,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <FileText className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">3. Allgemeine Hinweise und Pflichtinformationen</h2>
+                <h2 className="font-display text-2xl text-primary m-0">3. Allgemeine Hinweise und Pflichtinformationen</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <div>
@@ -330,7 +330,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Database className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">4. Datenerfassung auf dieser Website</h2>
+                <h2 className="font-display text-2xl text-primary m-0">4. Datenerfassung auf dieser Website</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <div>
@@ -379,7 +379,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5]">
                   <Share2 className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">5. Soziale Medien</h2>
+                <h2 className="font-display text-2xl text-primary m-0">5. Soziale Medien</h2>
               </div>
               <div className="space-y-4 text-charcoal/80 leading-relaxed">
                 <h3 className="font-sans font-semibold text-charcoal text-lg mb-2">LinkedIn Plugin</h3>
@@ -407,7 +407,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                   <BarChart3 className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">6. Analyse-Tools und Werbung</h2>
+                <h2 className="font-display text-2xl text-primary m-0">6. Analyse-Tools und Werbung</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <p>
@@ -448,7 +448,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center text-amber">
                   <Mail className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">7. Newsletter</h2>
+                <h2 className="font-display text-2xl text-primary m-0">7. Newsletter</h2>
               </div>
               <div className="space-y-4 text-charcoal/80 leading-relaxed">
                 <p>
@@ -469,7 +469,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Puzzle className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">8. Plugins und Tools</h2>
+                <h2 className="font-display text-2xl text-primary m-0">8. Plugins und Tools</h2>
               </div>
               <div className="space-y-8 text-charcoal/80 leading-relaxed">
                 <div>
@@ -504,7 +504,7 @@ export default function DatenschutzPage() {
                 <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-600">
                   <CreditCard className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">9. Zahlungsanbieter</h2>
+                <h2 className="font-display text-2xl text-primary m-0">9. Zahlungsanbieter</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <div>

@@ -35,7 +35,7 @@ export default function SecondBrainAnleitungPage() {
             <p className="text-accent font-medium mb-4 text-sm uppercase tracking-wide">
               Kostenlose Schritt-für-Schritt-Anleitung
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight">
               KI kennt dein Business - ab der ersten Sekunde
             </h1>
             <p className="text-charcoal/70 text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto">
@@ -138,7 +138,7 @@ export default function SecondBrainAnleitungPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-6">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-6">
               Kennst du das?
             </h2>
             <p className="text-charcoal/70 text-lg leading-relaxed mb-12 max-w-2xl mx-auto">
@@ -263,7 +263,7 @@ export default function SecondBrainAnleitungPage() {
               </div>
               {/* Explanation */}
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-primary mb-6">
+                <h2 className="font-display text-3xl md:text-4xl text-primary mb-6">
                   Die Lösung: Ein System, das sich selbst pflegt
                 </h2>
                 <p className="text-charcoal/70 text-lg leading-relaxed mb-4">
@@ -293,7 +293,7 @@ export default function SecondBrainAnleitungPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-3 text-center">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-3 text-center">
               Was du bekommst
             </h2>
             <p className="text-charcoal/70 text-lg text-center mb-12">
@@ -358,7 +358,7 @@ export default function SecondBrainAnleitungPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-6">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-6">
               Du organisierst nicht. KI organisiert.
             </h2>
             <p className="text-charcoal/70 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
@@ -412,7 +412,7 @@ export default function SecondBrainAnleitungPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-10 text-center">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-10 text-center">
               Ist das was für dich?
             </h2>
             <div className="grid sm:grid-cols-2 gap-x-10 gap-y-5 max-w-2xl mx-auto">
@@ -438,7 +438,7 @@ export default function SecondBrainAnleitungPage() {
       <section className="section bg-primary text-white" id="warteliste">
         <div className="container mx-auto px-5">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
+            <h2 className="font-display text-3xl md:text-4xl text-white mb-4">
               Anleitung kostenlos sichern
             </h2>
             <p className="text-white/80 text-lg mb-8">

@@ -100,7 +100,7 @@ export default async function BlogPost({ params }: Params) {
               <div className="text-sm text-charcoal/50 mb-4">
                 <DateFormatter dateString={post.date} />
               </div>
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary mb-6">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary mb-6">
                 {post.title}
               </h1>
               {post.excerpt && (
@@ -131,7 +131,7 @@ export default async function BlogPost({ params }: Params) {
         <section className="pb-8">
           <div className="container mx-auto px-5">
             <div
-              className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-serif prose-headings:text-primary prose-a:text-accent prose-a:no-underline prose-a:hover:underline"
+              className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-display prose-headings:text-primary prose-a:text-accent prose-a:no-underline prose-a:hover:underline"
               dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>
@@ -147,7 +147,7 @@ export default async function BlogPost({ params }: Params) {
         <section className="section bg-accent/10">
           <div className="container mx-auto px-5">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="font-serif text-2xl text-primary mb-4">
+              <h2 className="font-display text-2xl text-primary mb-4">
                 Hat dir dieser Artikel geholfen?
               </h2>
               <p className="text-charcoal/70 mb-6">

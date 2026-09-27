@@ -20,7 +20,7 @@ export default function ImpressumPage() {
       <div className="container mx-auto px-5">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-4">Impressum</h1>
+            <h1 className="font-display text-4xl md:text-5xl text-primary mb-4">Impressum</h1>
             <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
               Rechtliche Angaben und Pflichtinformationen gemäß § 5 TMG.
             </p>
@@ -33,7 +33,7 @@ export default function ImpressumPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <Building2 className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">Angaben gemäß § 5 TMG</h2>
+                <h2 className="font-display text-2xl text-primary m-0">Angaben gemäß § 5 TMG</h2>
               </div>
               <div className="text-charcoal/80 space-y-1">
                 <p className="font-medium text-charcoal">Christoph Weissteiner</p>
@@ -48,7 +48,7 @@ export default function ImpressumPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <PhoneCall className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">Kontakt</h2>
+                <h2 className="font-display text-2xl text-primary m-0">Kontakt</h2>
               </div>
               <div className="text-charcoal/80 space-y-3">
                 <p className="flex items-center gap-3">
@@ -68,7 +68,7 @@ export default function ImpressumPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <ReceiptText className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">Umsatzsteuer-ID</h2>
+                <h2 className="font-display text-2xl text-primary m-0">Umsatzsteuer-ID</h2>
               </div>
               <div className="text-charcoal/80">
                 <p className="mb-2">Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</p>
@@ -82,7 +82,7 @@ export default function ImpressumPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                   <UserCircle className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">Redaktionell verantwortlich</h2>
+                <h2 className="font-display text-2xl text-primary m-0">Redaktionell verantwortlich</h2>
               </div>
               <div className="text-charcoal/80 space-y-1">
                 <p className="font-medium text-charcoal">Christoph Weissteiner</p>
@@ -99,7 +99,7 @@ export default function ImpressumPage() {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                   <Scale className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">Streitschlichtung</h2>
+                <h2 className="font-display text-2xl text-primary m-0">Streitschlichtung</h2>
               </div>
               <div className="space-y-6 text-charcoal/80 leading-relaxed">
                 <div>
@@ -127,7 +127,7 @@ export default function ImpressumPage() {
                 <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500">
                   <ShieldAlert className="w-6 h-6" />
                 </div>
-                <h2 className="font-serif text-2xl text-primary m-0">Rechtliche Hinweise</h2>
+                <h2 className="font-display text-2xl text-primary m-0">Rechtliche Hinweise</h2>
               </div>
               <div className="space-y-8 text-charcoal/80 leading-relaxed">
                 <div>

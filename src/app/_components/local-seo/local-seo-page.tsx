@@ -29,7 +29,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl text-primary mb-6">
+            <h2 className="font-display text-3xl text-primary mb-6">
               {data.introduction.title}
             </h2>
             <div className="space-y-4">
@@ -48,7 +48,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
         <div className="container mx-auto px-5">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="font-serif text-3xl text-primary mb-4">
+              <h2 className="font-display text-3xl text-primary mb-4">
                 {data.serviceHighlights.title}
               </h2>
               <p className="text-lg text-charcoal/70 mb-6">
@@ -91,7 +91,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
       {/* Use Cases */}
       <section className="section bg-warm-white">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-3xl text-primary mb-8 text-center">
+          <h2 className="font-display text-3xl text-primary mb-8 text-center">
             {data.useCases.title}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
@@ -112,7 +112,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
         <section className="section">
           <div className="container mx-auto px-5">
             <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
+              <h2 className="font-display text-3xl md:text-4xl text-primary mb-4">
                 Das sagen Kunden aus der Region
               </h2>
               <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
@@ -190,7 +190,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
       <section className="section bg-primary text-white">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl text-white mb-4">
+            <h2 className="font-display text-3xl text-white mb-4">
               Aktiv in der Region {data.region.name}
             </h2>
             <p className="text-lg text-primary-200 mb-6">
@@ -218,7 +218,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
       {/* Related Pages / Internal Links */}
       <section className="section bg-warm-white">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-2xl text-primary mb-8 text-center">
+          <h2 className="font-display text-2xl text-primary mb-8 text-center">
             Weitere Leistungen
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -228,7 +228,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
                 href={page.path}
                 className="p-6 bg-white border border-primary/10 rounded-xs hover:border-accent/50 hover:shadow-md transition-all group"
               >
-                <h3 className="font-serif text-lg text-primary mb-2 group-hover:text-accent transition-colors">
+                <h3 className="font-display text-lg text-primary mb-2 group-hover:text-accent transition-colors">
                   {page.title}
                 </h3>
                 <p className="text-sm text-charcoal/70">{page.description}</p>

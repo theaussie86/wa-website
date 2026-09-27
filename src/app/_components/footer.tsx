@@ -16,25 +16,25 @@ const navLinks = [
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-const linkClass = "text-charcoal/75 transition-colors hover:text-primary";
-const legalClass = "text-[14px] text-charcoal/70 transition-colors hover:text-primary";
+const linkClass = "text-white/80 transition-colors hover:text-white";
+const legalClass = "text-[14px] text-white/70 transition-colors hover:text-white";
 
 export function Footer() {
   return (
-    <footer className="border-t border-primary/10 bg-warm-white font-sans">
-      <div className="mx-auto max-w-[1240px] px-6 pt-20 pb-10">
+    <footer className="bg-primary font-sans text-white">
+      <div className="mx-auto max-w-[1320px] px-6 pt-24 pb-10 lg:px-10">
         <div className="grid gap-14 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <p className="mb-5 max-w-[420px] text-balance font-serif text-[clamp(1.6rem,2.6vw,2.1rem)] leading-[1.15] tracking-[-0.015em] text-primary">
+            <p className="type-display mb-6 max-w-[12ch] text-balance text-[clamp(2.2rem,4vw,3.4rem)] leading-[0.98] text-white">
               Deine Arbeit, so gut wie sie gehört.
             </p>
-            <p className="text-[15px] text-charcoal/70">
+            <p className="text-[15px] text-white/70">
               {SITE_NAME} · {LOCATION}
             </p>
           </div>
 
           <div>
-            <p className="mb-4 text-[13px] font-medium uppercase tracking-[0.12em] text-charcoal/70">
+            <p className="type-label mb-5 text-[13px] text-white/60">
               Seiten
             </p>
             <ul className="space-y-2.5 text-[15.5px]">
@@ -49,7 +49,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 text-[13px] font-medium uppercase tracking-[0.12em] text-charcoal/70">
+            <p className="type-label mb-5 text-[13px] text-white/60">
               Kontakt
             </p>
             <ul className="space-y-2.5 text-[15.5px]">
@@ -72,8 +72,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-primary/10 pt-8 md:flex-row md:items-center">
-          <p className="text-[14px] text-charcoal/70">
+        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-8 md:flex-row md:items-center">
+          <p className="text-[14px] text-white/70">
             © {new Date().getFullYear()} {SITE_NAME}
           </p>
           <div className="flex gap-6">

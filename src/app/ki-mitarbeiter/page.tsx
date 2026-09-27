@@ -98,7 +98,7 @@ export default function KiMitarbeiterPage() {
             <p className="mb-5 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-600">
               Das Programm
             </p>
-            <h1 className="mb-6 text-balance font-serif text-[clamp(2.5rem,5vw,4.3rem)] font-normal leading-[1.08] tracking-[-0.02em] text-primary">
+            <h1 className="mb-6 text-balance font-display text-[clamp(2.5rem,5vw,4.3rem)] font-normal leading-[1.08] tracking-[-0.02em] text-primary">
               Dein erster KI-Mitarbeiter in 6 Wochen.
             </h1>
             <p className="mb-8 max-w-[620px] text-pretty font-sans text-[clamp(1.1rem,1.5vw,1.32rem)] leading-[1.6] text-charcoal">
@@ -117,7 +117,7 @@ export default function KiMitarbeiterPage() {
       <section className="py-[clamp(80px,11vw,152px)]">
         <div className="mx-auto max-w-[1180px] px-6">
           <FadeIn className="mb-[clamp(36px,5vw,56px)] max-w-[680px]">
-            <h2 className="mb-5 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] text-primary">
+            <h2 className="mb-5 text-balance font-display text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] text-primary">
               Sechs Wochen, sechs Schritte.
             </h2>
             <p className="text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
@@ -141,7 +141,7 @@ export default function KiMitarbeiterPage() {
                         {item.week}
                         <span className="mt-1 block text-charcoal/70">{item.block}</span>
                       </span>
-                      <span className="font-serif text-[1.22rem] leading-[1.35] text-primary">
+                      <span className="font-display text-[1.22rem] leading-[1.35] text-primary">
                         {item.lesson}
                       </span>
                       <span className="font-sans text-[16.5px] leading-[1.6] text-charcoal/75">
@@ -172,7 +172,7 @@ export default function KiMitarbeiterPage() {
             <p className="mb-4 font-sans text-[13.5px] font-bold uppercase tracking-[0.14em] text-accent-400">
               Womit er anfängt
             </p>
-            <h2 className="mb-5 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] text-white">
+            <h2 className="mb-5 text-balance font-display text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] text-white">
               Nicht jede Aufgabe taugt als erste.
             </h2>
             <p className="text-pretty font-sans text-[17.5px] leading-[1.7] text-primary-200">
@@ -191,11 +191,11 @@ export default function KiMitarbeiterPage() {
                   delay={index * 0.07}
                   className="grid grid-cols-[46px_1fr] items-start py-[clamp(24px,3vw,34px)]"
                 >
-                  <span className="font-serif text-[1.5rem] leading-none text-accent-400">
+                  <span className="font-display text-[1.5rem] leading-none text-accent-400">
                     {index + 1}
                   </span>
                   <div>
-                    <h3 className="mb-2 font-serif text-[1.25rem] font-normal leading-[1.25] text-white">
+                    <h3 className="mb-2 font-display text-[1.25rem] font-normal leading-[1.25] text-white">
                       {item.title}
                     </h3>
                     <p className="max-w-[420px] font-sans text-[15.5px] leading-[1.65] text-primary-200">
@@ -214,7 +214,7 @@ export default function KiMitarbeiterPage() {
         <div className="mx-auto max-w-[1180px] px-6">
           <FadeIn>
             <div className="max-w-[760px] border-l-2 border-accent bg-warm-white px-8 py-7">
-              <h2 className="mb-4 font-serif text-[clamp(1.5rem,2.4vw,2.05rem)] font-normal leading-[1.2] text-primary">
+              <h2 className="mb-4 font-display text-[clamp(1.5rem,2.4vw,2.05rem)] font-normal leading-[1.2] text-primary">
                 Was das hier ist, und was nicht.
               </h2>
               <p className="mb-4 font-sans text-[16.5px] leading-[1.7] text-charcoal/80">

@@ -58,7 +58,7 @@ export default function NotFound() {
               Fehler 404
             </p>
 
-            <h1 className="mb-6 text-balance font-serif text-[clamp(2.75rem,5.4vw,4.6rem)] font-normal leading-[1.05] tracking-[-0.02em] text-primary">
+            <h1 className="mb-6 text-balance font-display text-[clamp(2.75rem,5.4vw,4.6rem)] font-normal leading-[1.05] tracking-[-0.02em] text-primary">
               Diese Seite gibt es nicht
             </h1>
 

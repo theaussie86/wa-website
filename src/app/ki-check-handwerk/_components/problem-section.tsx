@@ -23,7 +23,7 @@ export function ProblemSection() {
     <section className="section bg-primary/5">
       <div className="container mx-auto px-5">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4 text-center">
+          <h2 className="font-display text-3xl md:text-4xl text-primary mb-4 text-center">
             Kennst du das?
           </h2>
           <p className="text-charcoal/70 text-lg text-center mb-12 max-w-2xl mx-auto">

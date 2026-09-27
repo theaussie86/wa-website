@@ -67,7 +67,7 @@ export default async function ChapterPage({
       <p className="text-accent text-sm font-medium mb-2">
         Kapitel {chapterIndex + 1} von {chapters.length}
       </p>
-      <h1 className="font-serif text-3xl md:text-4xl text-primary mb-8">
+      <h1 className="font-display text-3xl md:text-4xl text-primary mb-8">
         {chapter.title}
       </h1>
       <div className="prose prose-lg max-w-none">

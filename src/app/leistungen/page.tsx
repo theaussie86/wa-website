@@ -79,7 +79,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
+            <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
               Alles, was deinen Betrieb digital schneller macht
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
@@ -103,7 +103,7 @@ export default function ServicesPage() {
               >
                 <div className={index % 2 === 1 ? "md:order-2" : ""}>
                   <div className="hidden" />
-                  <h2 className="font-serif text-3xl text-primary mb-4">
+                  <h2 className="font-display text-3xl text-primary mb-4">
                     {service.title}
                   </h2>
                   <p className="text-lg text-charcoal/70 mb-6">
@@ -152,7 +152,7 @@ export default function ServicesPage() {
       {/* Use Cases */}
       <section className="section">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-3xl text-primary mb-8 text-center">
+          <h2 className="font-display text-3xl text-primary mb-8 text-center">
             Konkrete Anwendungsfälle
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -172,7 +172,7 @@ export default function ServicesPage() {
       <section className="section bg-primary text-white">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl text-white mb-6">
+            <h2 className="font-display text-3xl text-white mb-6">
               Deine Systeme. Deine Kontrolle.
             </h2>
             <p className="text-lg text-primary-200 mb-8">
@@ -208,7 +208,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl text-primary mb-4">
+            <h2 className="font-display text-3xl text-primary mb-4">
               Einfacher als eine Festanstellung. Flexibler als eine Agentur.
             </h2>
             <p className="text-lg text-charcoal/70 mb-8">
@@ -217,15 +217,15 @@ export default function ServicesPage() {
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-6 bg-primary/5 rounded-xs">
-                <div className="font-serif text-2xl text-primary mb-2">3 Monate</div>
+                <div className="font-display text-2xl text-primary mb-2">3 Monate</div>
                 <p className="text-charcoal/70 text-sm">Kennenlernen und erste Ergebnisse</p>
               </div>
               <div className="p-6 bg-accent/10 rounded-xs border-2 border-accent">
-                <div className="font-serif text-2xl text-primary mb-2">6 Monate</div>
+                <div className="font-display text-2xl text-primary mb-2">6 Monate</div>
                 <p className="text-charcoal/70 text-sm">Empfohlen für nachhaltige Ergebnisse</p>
               </div>
               <div className="p-6 bg-primary/5 rounded-xs">
-                <div className="font-serif text-2xl text-primary mb-2">12 Monate</div>
+                <div className="font-display text-2xl text-primary mb-2">12 Monate</div>
                 <p className="text-charcoal/70 text-sm">Maximale Planungssicherheit</p>
               </div>
             </div>
@@ -240,7 +240,7 @@ export default function ServicesPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-serif text-2xl text-primary mb-4">
+            <h2 className="font-display text-2xl text-primary mb-4">
               Nicht für jeden
             </h2>
             <p className="text-charcoal/70">

@@ -17,7 +17,7 @@ export default function BetriebsInterviewPromptPage() {
             <p className="text-accent font-medium mb-4 text-sm uppercase tracking-wide">
               Dein Prompt
             </p>
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary mb-6 leading-tight">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary mb-6 leading-tight">
               Das Betriebs-Interview
             </h1>
             <p className="text-charcoal/70 text-lg leading-relaxed">
@@ -31,7 +31,7 @@ export default function BetriebsInterviewPromptPage() {
       <section className="pb-8">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6">
+            <h2 className="font-display text-2xl md:text-3xl text-primary mb-6">
               So geht es, drei Schritte
             </h2>
             <ol className="space-y-5">
@@ -71,7 +71,7 @@ export default function BetriebsInterviewPromptPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-primary mb-8">
+            <h2 className="font-display text-2xl md:text-3xl text-primary mb-8">
               Was du danach damit machst
             </h2>
 

@@ -12,7 +12,7 @@ export function BenefitsSection() {
     <section className="section">
       <div className="container mx-auto px-5">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4 text-center">
+          <h2 className="font-display text-3xl md:text-4xl text-primary mb-4 text-center">
             Was du bekommst
           </h2>
           <p className="text-charcoal/70 text-lg text-center mb-12">

@@ -24,7 +24,7 @@ export default function HandwerkKiCheckPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="font-serif text-3xl text-primary mb-4">
+            <h2 className="font-display text-3xl text-primary mb-4">
               Meld dich an - ich informiere dich persönlich
             </h2>
             <p className="text-charcoal/70 mb-8">

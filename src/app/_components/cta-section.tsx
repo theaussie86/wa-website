@@ -6,7 +6,7 @@ export function CTASection() {
   return (
     <section className="border-t border-primary/15 bg-white py-[clamp(64px,9vw,108px)]">
       <FadeIn className="mx-auto flex max-w-[760px] flex-col items-center px-6 text-center">
-        <h2 className="mb-4 text-balance font-serif text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
+        <h2 className="mb-4 text-balance font-display text-[clamp(1.9rem,3.2vw,3rem)] font-normal leading-[1.12] tracking-normal text-primary">
           Welche Aufgabe landet bei dir, obwohl du sie längst abgegeben hattest?
         </h2>
         <p className="mb-9 max-w-[580px] text-pretty font-sans text-[17.5px] leading-[1.7] text-charcoal/80">

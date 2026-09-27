@@ -14,10 +14,10 @@ auf den Vault-Stand: **KI-Arbeitsplatz, Qualität statt Menge.**
 | Thema | Entscheidung |
 |---|---|
 | Botschaft | Vault-Stand. Führt mit **KI-Arbeitsplatz**, nicht mit "Deine Redaktion" |
-| Art Direction | Editorial nach Vorbild **granola.ai**: riesige Serif-Headline, ein echtes Artefakt, sonst Ruhe |
+| Art Direction | **Der Betriebsordner** (27.09.2026, ersetzt Granola-Editorial, das zu sehr nach KI-Seite aussah). Details: `DESIGN.md` |
 | Farben | Bleiben: Primary `#003970`, Accent `#D86B00` (Text/Buttons: `#AD5600`), Warm-White `#FAF9F7`, Charcoal `#2D3436`, Ink `#00172E` |
-| Schrift | **Newsreader** (Headlines, optische Größen) + **Inter** (Fließtext, UI). Bree Serif und Raleway fliegen raus |
-| Hero-Artefakt | Nachgebaute Fenster-Szene in HTML/CSS, kein Screenshot. Zeigt einen Angebotsentwurf, der vorbereitet daliegt. Dahinter Collage in Markenfarben (Blau-Fläche, Orange-Streifen, Grünten-Ausschnitt) |
+| Schrift | **Archivo** für alles, Breitenachse: schmal für Headlines und Taben, normal für Text (27.09.2026, ersetzt Newsreader + Inter) |
+| Hero-Artefakt | Gelochtes A4-Blatt mit Angebotsentwurf auf blauem Ordnerdeckel, Registertaben, Korrektur in Orange, Haftnotiz für die Anleitung |
 | Umfang | Phase 1: Design-System (Tokens, Schrift, Buttons, Header, Footer) + Startseite inkl. neuer Copy. Phase 2: Unterseiten. SEO-Landingpages warten auf #66 |
 | Copy | Claude entwirft aus dem Vault, Christoph redigiert |
 

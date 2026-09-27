@@ -75,7 +75,7 @@ export default function BetriebsInterviewPage() {
             <p className="text-accent font-medium mb-4 text-sm uppercase tracking-wide">
               Kostenloser Prompt
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-6 leading-tight">
               Deine KI fragt dich aus. Zehn Minuten reden, und sie kennt deinen
               Betrieb.
             </h1>
@@ -100,7 +100,7 @@ export default function BetriebsInterviewPage() {
       <section className="py-12">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-6">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-6">
               KI liefert dir Mittelmaß. Der Grund ist banal.
             </h2>
             <p className="text-charcoal/70 text-lg leading-relaxed mb-4">
@@ -193,7 +193,7 @@ export default function BetriebsInterviewPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-3 text-center">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-3 text-center">
               So läuft es ab
             </h2>
             <p className="text-charcoal/70 text-lg text-center mb-12">
@@ -245,7 +245,7 @@ export default function BetriebsInterviewPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-3 text-center">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-3 text-center">
               Am Ende hast du ein Dokument
             </h2>
             <p className="text-charcoal/70 text-lg text-center mb-12">
@@ -256,7 +256,7 @@ export default function BetriebsInterviewPage() {
             <div className="bg-white rounded-xs border border-primary/10 overflow-hidden">
               <div className="border-b border-primary/10 px-6 py-4 md:px-8 flex items-center gap-3">
                 <FileText className="w-5 h-5 text-accent shrink-0" />
-                <span className="font-serif text-xl text-primary">
+                <span className="font-display text-xl text-primary">
                   Mein Betrieb
                 </span>
               </div>
@@ -284,7 +284,7 @@ export default function BetriebsInterviewPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-10">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-10">
               Was es dich kostet
             </h2>
             <div className="grid sm:grid-cols-3 gap-8">
@@ -319,7 +319,7 @@ export default function BetriebsInterviewPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-10 text-center">
+            <h2 className="font-display text-3xl md:text-4xl text-primary mb-10 text-center">
               Ist das was für dich?
             </h2>
             <div className="grid sm:grid-cols-2 gap-x-10 gap-y-5 max-w-2xl mx-auto">
@@ -338,7 +338,7 @@ export default function BetriebsInterviewPage() {
       <section className="section bg-primary text-white" id="prompt-holen">
         <div className="container mx-auto px-5">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
+            <h2 className="font-display text-3xl md:text-4xl text-white mb-4">
               Prompt kostenlos holen
             </h2>
             <p className="text-white/80 text-lg mb-8">

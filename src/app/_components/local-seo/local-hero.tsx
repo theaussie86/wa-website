@@ -38,7 +38,7 @@ export function LocalHero({ trustBadges, h1, subheadline }: LocalHeroProps) {
           </div>
 
           {/* H1 */}
-          <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
+          <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
             {h1}
           </h1>
 

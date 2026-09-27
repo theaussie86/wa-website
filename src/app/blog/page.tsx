@@ -19,7 +19,7 @@ export default function BlogPage() {
       <section className="section">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
+            <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
               Blog
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed">
@@ -54,7 +54,7 @@ export default function BlogPage() {
                     <div className="text-sm text-charcoal/50 mb-2">
                       <DateFormatter dateString={post.date} />
                     </div>
-                    <h2 className="font-serif text-xl text-primary mb-3">
+                    <h2 className="font-display text-xl text-primary mb-3">
                       <Link
                         href={`/blog/${post.slug}`}
                         className="hover:text-accent transition-colors"

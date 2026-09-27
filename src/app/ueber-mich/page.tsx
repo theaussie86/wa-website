@@ -84,7 +84,7 @@ export default function AboutPage() {
                 <p className="text-accent text-sm font-medium uppercase tracking-widest mb-4">
                   Machen statt warten
                 </p>
-                <h1 className="font-serif text-4xl md:text-5xl text-primary mb-6">
+                <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
                   Der, der redet, baut auch.
                 </h1>
                 <p className="text-xl text-charcoal/80 leading-relaxed">
@@ -102,7 +102,7 @@ export default function AboutPage() {
       <section className="section bg-primary/5">
         <div className="container mx-auto px-5">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl text-primary mb-6">
+            <h2 className="font-display text-3xl text-primary mb-6">
               Warum ich niemanden warten lasse
             </h2>
             <div className="prose prose-lg text-charcoal/80 space-y-4">
@@ -131,16 +131,16 @@ export default function AboutPage() {
       {/* Process */}
       <section className="section">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-3xl text-primary mb-12 text-center">
+          <h2 className="font-display text-3xl text-primary mb-12 text-center">
             So arbeite ich
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {processSteps.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-accent text-white font-serif text-xl rounded-xs mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-accent text-white font-display text-xl rounded-xs mb-4">
                   {item.step}
                 </div>
-                <h3 className="font-serif text-xl text-primary mb-2">{item.title}</h3>
+                <h3 className="font-display text-xl text-primary mb-2">{item.title}</h3>
                 <p className="text-charcoal/70 text-sm">{item.description}</p>
               </div>
             ))}
@@ -151,13 +151,13 @@ export default function AboutPage() {
       {/* Values */}
       <section className="section bg-primary text-white">
         <div className="container mx-auto px-5">
-          <h2 className="font-serif text-3xl text-white mb-12 text-center">
+          <h2 className="font-display text-3xl text-white mb-12 text-center">
             Woran ich glaube
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => (
               <div key={index} className="p-6 border border-primary-400 rounded-xs">
-                <h3 className="font-serif text-xl text-white mb-2">{value.title}</h3>
+                <h3 className="font-display text-xl text-white mb-2">{value.title}</h3>
                 <p className="text-primary-200">{value.description}</p>
               </div>
             ))}

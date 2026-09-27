@@ -1,120 +1,103 @@
 import type { ReactNode } from "react";
 import { Check, Mic } from "lucide-react";
-import { FadeIn } from "@/app/_components/animations";
+import { Sheet, Tab } from "@/app/_components/home/sheet";
 
-// Drei Zustände desselben Arbeitsplatzes, abwechselnd links und rechts.
-// Die Karten sind Illustration, deshalb aria-hidden; der Text trägt die Aussage.
+// Drei Blätter derselben Aufgabe, nebeneinander auf dem Tisch: Diktat,
+// Entwurf, Korrektur. Die Blätter sind Illustration (aria-hidden), der Text
+// darunter trägt die Aussage.
 
-function Panel({ tone, children }: { tone: string; children: ReactNode }) {
+function StepSheet({ tab, tone, children }: { tab: string; tone?: "accent"; children: ReactNode }) {
   return (
-    <div aria-hidden="true" className={`flex items-center justify-center rounded-[20px] px-[8%] py-[clamp(40px,6vw,72px)] ${tone}`}>
-      <div className="w-full max-w-[420px] rounded-[14px] border border-primary/10 bg-white p-6 shadow-[0_30px_60px_-36px_rgba(0,23,46,0.4)]">
+    <div aria-hidden="true" className="pt-7">
+      <Sheet className="min-h-[300px] py-8 pr-7 pl-12">
+        <Tab side="top" tone={tone ?? "white"} className="right-6">
+          {tab}
+        </Tab>
         {children}
-      </div>
+      </Sheet>
     </div>
   );
 }
-
-const bars = [8, 14, 22, 12, 28, 18, 10, 24, 16, 30, 12, 20, 9, 26, 14, 18, 8, 22, 12];
 
 const steps = [
   {
     title: "Du sprichst rein.",
     text: "Zwischen zwei Terminen, im Auto, am Abend. Drei Sätze reichen, ausformulieren musst du nichts.",
-    visual: (
-      <Panel tone="bg-accent-50">
-        <div className="mb-4 flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-600 text-white">
+    sheet: (
+      <StepSheet tab="Diktat">
+        <div className="mb-5 flex items-center gap-3 text-[12.5px] text-charcoal/75">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
             <Mic className="h-4 w-4" strokeWidth={1.5} />
           </span>
-          <span className="flex h-8 flex-1 items-center gap-[3px]">
-            {bars.map((h, i) => (
-              <span key={i} className="w-[3px] rounded-full bg-accent-600/60" style={{ height: h }} />
-            ))}
-          </span>
+          Sprachnotiz · 0:24 · Di, 18:12
         </div>
-        <p className="font-serif text-[16px] italic leading-relaxed text-charcoal/85">
+        <p className="text-[15.5px] leading-[1.6] text-charcoal italic">
           „Berger, Kanzlei, Empfang. Soll ruhiger wirken, aber nicht kühl. Wände Kalk, Theke
           bleibt, Licht indirekt. Bis Freitag raus.“
         </p>
-      </Panel>
+      </StepSheet>
     ),
   },
   {
     title: "KI bereitet vor.",
     text: "Der Arbeitsplatz kennt deinen Betrieb, deine Preise und wie du schreibst. Wenn du dich hinsetzt, liegt der Entwurf schon da.",
-    visual: (
-      <Panel tone="bg-primary-50">
-        <p className="mb-3 font-serif text-[18px] leading-tight text-primary">Angebot Empfangsbereich</p>
-        <div className="mb-4 flex flex-wrap gap-1.5">
-          {["Diktat 7:40", "Preisliste 2026", "Anleitung Angebote"].map((s) => (
-            <span key={s} className="rounded-full border border-primary/10 bg-primary-50/60 px-2.5 py-1 font-sans text-[11.5px] text-primary/80">
-              {s}
-            </span>
-          ))}
+    sheet: (
+      <StepSheet tab="Entwurf">
+        <p className="type-display mb-3 text-[19px] leading-tight text-primary">Angebot Empfangsbereich</p>
+        <div className="space-y-2 text-[13.5px] leading-[1.6] text-charcoal/90">
+          <p>Liebe Frau Berger,</p>
+          <p>wir freuen uns über Ihr Interesse an unseren Leistungen. Gerne schlagen wir Ihnen vor:</p>
+          <p>1. Wände in einem warmen Kalkton</p>
         </div>
-        <div className="space-y-2.5">
-          <span className="block h-2 w-[92%] rounded-full bg-charcoal/10" />
-          <span className="block h-2 w-[80%] rounded-full bg-charcoal/10" />
-          <span className="block h-2 w-[86%] rounded-full bg-charcoal/10" />
-          <span className="block h-2 w-[54%] rounded-full bg-charcoal/10" />
-        </div>
-        <p className="mt-5 font-sans text-[12.5px] text-charcoal/70">Liegt bereit seit 7:42</p>
-      </Panel>
+        <p className="mt-5 border-t border-charcoal/10 pt-3 text-[12px] text-charcoal/75">
+          Aus Diktat, Preisliste 2026 und Anleitung Angebote
+        </p>
+      </StepSheet>
     ),
   },
   {
     title: "Du entscheidest.",
     text: "Gut oder nicht gut, in zehn Sekunden. Was du korrigierst, merkt sich der Arbeitsplatz. Einmal erklärt, bleibt erklärt.",
-    visual: (
-      <Panel tone="bg-[#EFEBE4]">
-        <p className="mb-2 font-sans text-[14.5px] leading-relaxed text-charcoal/60 line-through decoration-charcoal/40">
-          Wir freuen uns über Ihr Interesse an unseren Leistungen.
+    sheet: (
+      <StepSheet tab="Korrektur" tone="accent">
+        <p className="mb-2 text-[14px] leading-[1.6] text-charcoal/75">
+          <del className="decoration-accent decoration-2">wir freuen uns über Ihr Interesse an unseren Leistungen.</del>
         </p>
-        <p className="mb-5 font-sans text-[14.5px] leading-relaxed text-charcoal">
-          Danke für den Rundgang am Dienstag.
+        <p className="mb-6 text-[14.5px] leading-[1.6] font-medium text-accent-600 italic">
+          danke für den Rundgang am Dienstag.
         </p>
-        <div className="flex items-center gap-2.5 rounded-[10px] bg-primary-50 px-3.5 py-3">
-          <Check className="h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} />
-          <span className="font-sans text-[13px] text-primary">
+        <div className="flex gap-2.5 rounded-[2px] bg-accent-100 px-3.5 py-3 text-ink">
+          <Check className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.5} />
+          <span className="text-[13.5px] leading-snug">
             Gemerkt: Kunden immer mit ihrem eigenen Satz abholen.
           </span>
         </div>
-      </Panel>
+      </StepSheet>
     ),
   },
 ];
 
 export function HowYouWork() {
   return (
-    <section id="so-arbeitest-du" className="scroll-mt-24 py-[clamp(96px,11vw,160px)]">
-      <div className="mx-auto max-w-[1240px] px-6">
-        <FadeIn className="mb-[clamp(56px,7vw,104px)] max-w-[40rem]">
-          <h2 className="mb-6 font-serif text-[clamp(2.3rem,4.6vw,4rem)] leading-[1.04] tracking-[-0.02em]">
+    <section id="so-arbeitest-du" className="scroll-mt-20 bg-pappe pt-[clamp(72px,9vw,128px)] pb-[clamp(104px,12vw,176px)]">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+        <div className="mb-[clamp(48px,6vw,88px)] max-w-[40rem]">
+          <h2 className="type-display mb-6 text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
             Du bleibst der, der urteilt.
           </h2>
-          <p className="font-sans text-[17.5px] leading-[1.7] text-charcoal/80">
+          <p className="text-[18px] leading-[1.7] text-charcoal/85">
             Nicht KI macht deine Arbeit. Du machst sie, nur endlich so, wie sie gehört.
           </p>
-        </FadeIn>
+        </div>
 
-        <ol className="space-y-[clamp(72px,9vw,128px)]">
+        <ol className="grid gap-16 md:grid-cols-3 md:gap-8 lg:gap-12">
           {steps.map((step, i) => (
-            <li key={step.title} className="grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(40px,6vw,96px)]">
-              <FadeIn className={i % 2 === 1 ? "md:order-2" : ""}>
-                <p className="mb-4 font-sans text-[14px] font-medium tabular-nums text-accent-600">
-                  0{i + 1}
-                </p>
-                <h3 className="mb-4 font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-normal leading-[1.1]">
-                  {step.title}
-                </h3>
-                <p className="max-w-[28rem] font-sans text-[17px] leading-[1.7] text-charcoal/80">
-                  {step.text}
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.1} className={i % 2 === 1 ? "md:order-1" : ""}>
-                {step.visual}
-              </FadeIn>
+            <li key={step.title} className={i === 1 ? "md:mt-16" : i === 2 ? "md:mt-32" : ""}>
+              {step.sheet}
+              <h3 className="type-display mt-8 mb-3 text-[clamp(1.6rem,2.4vw,2rem)] leading-[1.05]">
+                {step.title}
+              </h3>
+              <p className="max-w-[26rem] text-[17px] leading-[1.65] text-charcoal/85">{step.text}</p>
             </li>
           ))}
         </ol>

@@ -10,7 +10,7 @@ export function GoogleMapsEmbed({
   return (
     <section className={`section ${className ?? ""}`}>
       <div className="container mx-auto px-5">
-        <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6 text-center">
+        <h2 className="font-display text-2xl md:text-3xl text-primary mb-6 text-center">
           {title}
         </h2>
         <div className="aspect-video rounded-xs overflow-hidden shadow-md max-w-4xl mx-auto">

@@ -15,7 +15,7 @@ export function Bestaetigt({
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
               <Check className="w-8 h-8 text-green-600" />
             </div>
-            <h1 className="font-serif text-2xl md:text-3xl text-primary mb-4">
+            <h1 className="font-display text-2xl md:text-3xl text-primary mb-4">
               Du bist dabei!
             </h1>
             <p className="text-charcoal/70 leading-relaxed mb-6">
