@@ -30,9 +30,12 @@ Archivo (variabel, `wght` + `wdth`), eine Familie.
 
 ## Bauteile
 
-- **Sheet** (`_components/home/sheet.tsx`): weißes Blatt, 2px Radius, weicher Schatten mit Versatz, zwei Lochungen in Grundfarbe (links hoch, oben quer).
+- **Sheet** (`_components/sheet.tsx`): weißes Blatt, 2px Radius, weicher Schatten mit Versatz, zwei Lochungen in Grundfarbe (links hoch, oben quer).
 - **Tab**: Registertabe am Blattrand (rechts senkrecht oder oben). Orange nur für das Aufgeschlagene.
 - **Button**: rechteckiges Etikett, 4px Radius. `primary` auf hell, `light` auf Blau, Alternative immer Textlink.
+- **PageHead** (`_components/page-head.tsx`): Kopf jeder Unterseite, blaues Ordnerleinen wie der Hero, rechts optional Blatt oder Portrait. `size="md"` für lange Titel (Blog).
+- **Kontaktblatt** (`home/closing.tsx`, auf Unterseiten über `CTASection` mit eigener Frage): letztes Register jeder Seite.
+- **Gestrichene Liste**: "Nicht"-Aussagen als `<del>` mit Stiftstrich, daneben die Gegenposition in `type-display` (Über mich, Leistungen).
 - **Regal**: drei schmale Ordner (`primary-600`) mit senkrechtem Rückenschild und Griffloch auf einem Regalboden, daneben die Schritte als Liste.
 - **Tab rechts**: 40 x 128px, 12.5px, reicht für "Nachfassen".
 - Icons: Lucide, Strich 1.5.

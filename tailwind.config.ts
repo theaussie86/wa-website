@@ -122,19 +122,21 @@ const config: Config = {
               fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
               fontWeight: "600",
+              fontStretch: "80%",
               marginTop: "2.5em",
               marginBottom: "0.75em",
               lineHeight: "1.1",
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
             },
             h3: {
               fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
               fontWeight: "600",
+              fontStretch: "84%",
               marginTop: "2em",
               marginBottom: "0.5em",
               lineHeight: "1.2",
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
             },
             h4: {
               fontFamily: "var(--font-archivo), sans-serif",
@@ -152,10 +154,12 @@ const config: Config = {
             // Links
             a: {
               color: "var(--tw-prose-links)",
-              textDecoration: "none",
+              textDecoration: "underline",
+              textDecorationColor: "rgba(173, 86, 0, 0.35)",
+              textUnderlineOffset: "4px",
               fontWeight: "500",
               "&:hover": {
-                textDecoration: "underline",
+                textDecorationColor: "#AD5600",
               },
             },
             // Lists - this is the key fix

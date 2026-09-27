@@ -1,258 +1,188 @@
 import { Metadata } from "next";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, CAL_LINK } from "@/lib/constants";
+import { Button } from "@/app/_components/button";
+import { PageHead } from "@/app/_components/page-head";
+import { Sheet, Tab } from "@/app/_components/sheet";
 import { CTASection } from "@/app/_components/cta-section";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: `Leistungen | ${SITE_NAME}`,
   description:
-    "Schnelle Websites, automatisierte Abläufe und KI, die du selbst bedienst. Digitale Lösungen für deinen Betrieb, in Tagen statt Monaten.",
+    "Im Mittelpunkt steht dein KI-Arbeitsplatz. Wenn eine Aufgabe mehr braucht, baue ich auch Abläufe, Anbindungen, eigene Werkzeuge und Websites mit Anschluss an deine Systeme.",
 };
 
+// Quelle: Vault core/services.md (Lieferkatalog). Preise und Laufzeiten stehen
+// bewusst nicht hier, sie gehören ins Gespräch (offer-system.md).
+const builds = [
+  {
+    title: "Abläufe, die von allein laufen",
+    text: "Daten, die zwischen deinen Programmen hin und her müssen, Berichte, Ablage. Ich nehme den Ablauf auf, baue ihn und dokumentiere ihn so, dass du ihn selbst warten kannst.",
+    example: "Vorrangig mit n8n, angebunden an das, was du ohnehin nutzt.",
+  },
+  {
+    title: "KI in bestehenden Abläufen",
+    text: "Wo Dokumente gelesen, Texte vorbereitet oder Daten herausgezogen werden müssen. Immer an einem konkreten Ablauf, nie als KI-Strategie im Abstrakten.",
+    example: "Zum Beispiel Eingangsrechnungen, interne Assistenten, Textvorlagen.",
+  },
+  {
+    title: "Eigene Werkzeuge",
+    text: "Wenn Standardprogramme nicht reichen, baue ich das Werkzeug selbst und betreibe es auf einem Server, der dir gehört.",
+    example: "TypeScript, Node.js, Datenbank, Docker.",
+  },
+  {
+    title: "Websites mit Anschluss",
+    text: "Seiten und Shops, die an deine Geschäftssysteme angebunden sind. Keine reine Gestaltungsarbeit, sondern Seiten, die mitarbeiten.",
+    example: "Zum Beispiel Shopify mit Anbindung an die Warenwirtschaft.",
+  },
+  {
+    title: "Klären, bevor gebaut wird",
+    text: "Wenn erst klar werden muss, was sich überhaupt lohnt. Als kurzer, abgeschlossener Auftrag mit einem Plan am Ende, nicht als offene Beratung.",
+    example: "Ergebnis: eine Liste, was zuerst kommt und warum.",
+  },
+];
+
+const rules = [
+  {
+    title: "Kleine Schritte.",
+    text: "Lieber eine Sache, die läuft, als fünf, die halb fertig sind.",
+  },
+  {
+    title: "Dokumentation entsteht nebenbei.",
+    text: "Aufgeschrieben wird beim Arbeiten, nicht als Extraprojekt am Ende.",
+  },
+  {
+    title: "Gemessen wird, ob es benutzt wird.",
+    text: "Nicht Stunden und nicht Funktionslisten. Läuft es, bei wie vielen Leuten, wie oft.",
+  },
+  {
+    title: "Gearbeitet wird remote.",
+    text: "Vom ersten Tag an, im ganzen DACH-Raum. Zum Kennenlernen komme ich im Allgäu gern vorbei.",
+  },
+];
+
+const nots = [
+  "Reines Webdesign oder Branding",
+  "Subunternehmer oder White-Label",
+  "Wartung fremder Systeme ohne vorherige Prüfung",
+  "Enterprise-CRM-Einführungen",
+  "Garantien und Geld-zurück-Versprechen",
+];
+
 export default function ServicesPage() {
-  const services = [
-    {
-      title: "Kleinkram läuft von selbst",
-      description:
-        "Die Routine, die dein Team nervt, erledigt sich ab jetzt allein. Ich automatisiere wiederkehrende Abläufe direkt in deiner Infrastruktur.",
-      features: [
-        "Rechnungsverarbeitung und Buchhaltung",
-        "CRM-Updates und Kundendatenmanagement",
-        "E-Mail-Marketing und Follow-ups",
-        "Datenübertragung zwischen Systemen",
-        "Berichterstellung und Datenanalyse",
-      ],
-      image: {
-        src: "/services/service-automation.webp",
-        alt: "Illustration zur Workflow-Automatisierung und Prozessoptimierung",
-        caption: "Symbolbild: Automatisierte Abläufe, die von selbst laufen.",
-      },
-    },
-    {
-      title: "Schnell online",
-      description:
-        "Website, Tool oder App, sichtbar in Tagen statt monatelang im Angebotsprozess. Du entscheidest, ich setze um, du gehst online.",
-      features: [
-        "Skalierbare Fullstack-Anwendungen",
-        "Moderne Benutzeroberflächen (UI/UX)",
-        "Mobile- & Web-Apps",
-        "Sichere Datenbankarchitekturen",
-        "Nahtlose API-Anbindungen",
-      ],
-      image: {
-        src: "/services/service-fullstack.webp",
-        alt: "Illustration zur individuellen Web- und App-Entwicklung",
-        caption: "Symbolbild: Moderne Anwendungen mit elegantem Design und solider Architektur.",
-      },
-    },
-    {
-      title: "KI, die du selbst bedienst",
-      description:
-        "Ich richte dir KI-Werkzeuge ein, verbinde sie mit deinen Daten und zeig dir, wie du sie im Alltag nutzt. Einmal befähigt, nie wieder abhängig.",
-      features: [
-        "Intelligente Dokumentenverarbeitung",
-        "Automatisierte Kategorisierung",
-        "Entscheidungsunterstützung durch KI",
-        "Chatbots und Kundenservice",
-        "Anbindung verschiedenster API-Plattformen",
-      ],
-      image: {
-        src: "/services/service-integration.webp",
-        alt: "Illustration zur Systemintegration und KI-Anbindung",
-        caption: "Symbolbild: KI als zentrale Schnittstelle zwischen deinen Systemen.",
-      },
-    },
-  ];
-
-  const useCases = [
-    "Rechnungen automatisch verarbeiten und buchen",
-    "Kundendaten zwischen CRM und anderen Systemen synchronisieren",
-    "Angebote automatisch erstellen und versenden",
-    "Mitarbeiter-Onboarding digitalisieren",
-    "Lagerbestände automatisch überwachen und nachbestellen",
-    "Berichte automatisch generieren und verteilen",
-  ];
-
   return (
     <main>
-      {/* Hero */}
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl">
-            <h1 className="font-display text-4xl md:text-5xl text-primary mb-6">
-              Alles, was deinen Betrieb digital schneller macht
-            </h1>
-            <p className="text-xl text-charcoal/80 leading-relaxed">
-              Drei Wege, ein Ziel: du wartest nicht mehr, du machst. Einzeln oder
-              kombiniert, schnell umgesetzt und direkt in deiner Infrastruktur.
-            </p>
-          </div>
+      <PageHead
+        title="Was ich einrichte und baue."
+        titleClassName="max-w-[12ch]"
+        lead={
+          <p>
+            Im Mittelpunkt steht dein KI-Arbeitsplatz. Wenn eine Aufgabe mehr braucht als Text,
+            baue ich auch das: Abläufe, Anbindungen, eigene Werkzeuge.
+          </p>
+        }
+      />
+
+      {/* Der Arbeitsplatz zuerst */}
+      <section className="bg-pappe py-[clamp(88px,11vw,160px)]">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+          <Sheet className="mr-10 grid gap-10 py-[clamp(36px,5vw,64px)] pr-[clamp(24px,5vw,72px)] pl-[clamp(48px,7vw,104px)] lg:grid-cols-[1.1fr_1fr] lg:items-end">
+            <Tab tone="accent" className="top-10">
+              Zuerst
+            </Tab>
+            <div>
+              <h2 className="type-display mb-5 text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98]">
+                KI-Arbeitsplatz
+              </h2>
+              <p className="max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
+                Ein Arbeitsplatz auf deinem Rechner, an dem KI deinen Betrieb kennt. Du sprichst
+                rein, KI bereitet vor, du entscheidest. Eine wiederkehrende Aufgabe machst du
+                danach so gut, wie sie gehört.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:justify-end">
+              <Button href="/ki-arbeitsplatz">So entsteht er</Button>
+              <Button href={CAL_LINK} variant="text">
+                15 Minuten reden
+              </Button>
+            </div>
+          </Sheet>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="section bg-primary/5">
-        <div className="container mx-auto px-5">
-          <div className="space-y-16">
-            {services.map((service, index) => (
+      {/* Was ich außerdem baue */}
+      <section className="bg-white py-[clamp(88px,11vw,160px)]">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+          <div className="mb-[clamp(40px,5vw,64px)] grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+            <h2 className="type-display max-w-[14ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
+              Was ich außerdem baue.
+            </h2>
+            <p className="max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
+              Ich bin Softwareentwickler. Wenn der Arbeitsplatz an eine Grenze kommt, weil ein
+              Ablauf in deine Systeme muss, baue ich den Teil, der fehlt.
+            </p>
+          </div>
+
+          <dl className="border-t-2 border-primary">
+            {builds.map((item) => (
               <div
-                key={index}
-                className={`grid md:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
+                key={item.title}
+                className="grid gap-3 border-b border-primary/15 py-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-12"
               >
-                <div className={index % 2 === 1 ? "md:order-2" : ""}>
-                  <div className="hidden" />
-                  <h2 className="font-display text-3xl text-primary mb-4">
-                    {service.title}
-                  </h2>
-                  <p className="text-lg text-charcoal/70 mb-6">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <svg
-                          className="w-5 h-5 text-accent mt-0.5 shrink-0"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        <span className="text-charcoal/80">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div
-                  className={`aspect-square flex items-center justify-center ${
-                    index % 2 === 1 ? "md:order-1" : ""
-                  }`}
-                >
-                  <Image
-                    src={service.image.src}
-                    alt={service.image.alt}
-                    width={600}
-                    height={600}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <dt className="type-display text-[clamp(1.5rem,2.3vw,2rem)] leading-[1.08] text-primary">
+                  {item.title}
+                </dt>
+                <dd className="m-0">
+                  <p className="mb-2 text-[17px] leading-[1.65] text-charcoal/85">{item.text}</p>
+                  <p className="text-[15px] leading-[1.6] text-charcoal/75">{item.example}</p>
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <h2 className="font-display text-3xl text-primary mb-8 text-center">
-            Konkrete Anwendungsfälle
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {useCases.map((useCase, index) => (
-              <div
-                key={index}
-                className="p-4 bg-white border border-primary/10 rounded-xs"
-              >
-                <p className="text-charcoal/80">{useCase}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Ownership */}
-      <section className="section bg-primary text-white">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl text-white mb-6">
-              Deine Systeme. Deine Kontrolle.
+      {/* Wie ich arbeite, was ich nicht mache */}
+      <section className="bg-primary py-[clamp(88px,11vw,160px)] text-white">
+        <div className="mx-auto grid max-w-[1320px] gap-16 px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-[clamp(64px,8vw,128px)] lg:px-10">
+          <div>
+            <h2 className="type-display mb-[clamp(32px,4vw,48px)] text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98] text-white">
+              Wie ich arbeite.
             </h2>
-            <p className="text-lg text-primary-200 mb-8">
-              Alles, was ich baue, gehört dir. Vollständig dokumentiert, in deiner
-              Infrastruktur, jederzeit übertragbar. Du bist nie von mir abhängig,
-              ich verdiene mir dein Vertrauen mit Ergebnissen.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="p-4 border border-primary-400 rounded-xs">
-                <h3 className="font-medium text-white mb-2">Vollständige Dokumentation</h3>
-                <p className="text-primary-200 text-sm">
-                  Jedes System wird so dokumentiert, dass es übernommen werden kann.
-                </p>
-              </div>
-              <div className="p-4 border border-primary-400 rounded-xs">
-                <h3 className="font-medium text-white mb-2">Deine Infrastruktur</h3>
-                <p className="text-primary-200 text-sm">
-                  Systeme laufen bei dir, nicht in meiner Cloud.
-                </p>
-              </div>
-              <div className="p-4 border border-primary-400 rounded-xs">
-                <h3 className="font-medium text-white mb-2">Keine Abhängigkeit</h3>
-                <p className="text-primary-200 text-sm">
-                  Ein anderer Entwickler kann jederzeit übernehmen.
-                </p>
-              </div>
-            </div>
+            <ul className="border-t border-white/20">
+              {rules.map((rule) => (
+                <li key={rule.title} className="border-b border-white/20 py-6">
+                  <h3 className="type-display mb-1.5 text-[clamp(1.35rem,1.9vw,1.6rem)] leading-[1.1] text-white">
+                    {rule.title}
+                  </h3>
+                  <p className="text-[17px] leading-[1.65] text-white/80">{rule.text}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
 
-      {/* Contract Model */}
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl text-primary mb-4">
-              Einfacher als eine Festanstellung. Flexibler als eine Agentur.
+          <div>
+            <h2 className="type-display mb-[clamp(32px,4vw,48px)] text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98] text-white">
+              Was ich nicht mache.
             </h2>
-            <p className="text-lg text-charcoal/70 mb-8">
-              Ob schnelles Projekt oder laufende Begleitung: planbar, ohne versteckte
-              Kosten und ohne Risiko.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-primary/5 rounded-xs">
-                <div className="font-display text-2xl text-primary mb-2">3 Monate</div>
-                <p className="text-charcoal/70 text-sm">Kennenlernen und erste Ergebnisse</p>
-              </div>
-              <div className="p-6 bg-accent/10 rounded-xs border-2 border-accent">
-                <div className="font-display text-2xl text-primary mb-2">6 Monate</div>
-                <p className="text-charcoal/70 text-sm">Empfohlen für nachhaltige Ergebnisse</p>
-              </div>
-              <div className="p-6 bg-primary/5 rounded-xs">
-                <div className="font-display text-2xl text-primary mb-2">12 Monate</div>
-                <p className="text-charcoal/70 text-sm">Maximale Planungssicherheit</p>
-              </div>
-            </div>
-            <p className="mt-8 text-charcoal/70">
-              Verlängern wenn es funktioniert, beenden wenn nicht. Ohne harte Gefühle.
+            <ul className="space-y-3 text-[18px] leading-[1.5] text-white/85">
+              {nots.map((item) => (
+                <li key={item}>
+                  <del className="decoration-accent decoration-2">{item}</del>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-10 max-w-[28rem] text-[17px] leading-[1.65] text-white/80">
+              Was ich baue, gehört dir. Dokumentiert, auf deinen Systemen, von jemand anderem
+              übernehmbar.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Not For Everyone */}
-      <section className="section bg-primary/5">
-        <div className="container mx-auto px-5">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-display text-2xl text-primary mb-4">
-              Nicht für jeden
-            </h2>
-            <p className="text-charcoal/70">
-              Ich arbeite mit Machern, die selbst mit anpacken wollen. Wenn du alles
-              komplett abgeben und dich um nichts kümmern willst, bin ich nicht der
-              Richtige. Am meisten holt raus, wer die Werkzeuge auch selbst in die Hand nimmt.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <CTASection />
+      <CTASection
+        title="Wo hakt es gerade am meisten?"
+        lead="Erzähl es mir in 15 Minuten. Dann sage ich dir, ob der Arbeitsplatz reicht, ob etwas gebaut werden muss, oder ob ich der Falsche dafür bin."
+      />
     </main>
   );
 }

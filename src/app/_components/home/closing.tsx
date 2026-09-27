@@ -1,11 +1,17 @@
 import Image from "next/image";
 import { CAL_LINK, WHATSAPP_LINK } from "@/lib/constants";
 import { Button } from "@/app/_components/button";
-import { Sheet, Tab } from "@/app/_components/home/sheet";
+import { Sheet, Tab } from "@/app/_components/sheet";
 
 // Das letzte Register im Ordner: ein Kontaktblatt mit einer freien Zeile
-// für die erste Aufgabe.
-export function Closing() {
+// für die erste Aufgabe. Unterseiten nutzen es über CTASection mit eigener Frage.
+export function Closing({
+  title = "Welche Arbeit würdest du gern so machen, wie sie gehört?",
+  lead = "Nenn mir eine Aufgabe. In 15 Minuten wissen wir, ob sie sich als erste eignet. Und wenn sie nichts taugt, sage ich dir das.",
+}: {
+  title?: string;
+  lead?: string;
+}) {
   return (
     <section className="bg-pappe py-[clamp(104px,12vw,176px)]">
       <div className="mx-auto max-w-[1320px] px-6 pt-8 lg:px-10">
@@ -22,11 +28,10 @@ export function Closing() {
             className="mb-8 h-14 w-14 rounded-full object-cover object-[50%_25%]"
           />
           <h2 className="type-display mb-6 max-w-[18ch] text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98]">
-            Welche Arbeit würdest du gern so machen, wie sie gehört?
+            {title}
           </h2>
           <p className="mb-8 max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
-            Nenn mir eine Aufgabe. In 15 Minuten wissen wir, ob sie sich als erste eignet. Und
-            wenn sie nichts taugt, sage ich dir das.
+            {lead}
           </p>
 
           {/* Vordruckzeile: bleibt bewusst leer */}

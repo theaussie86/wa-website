@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Check, Mic } from "lucide-react";
-import { Sheet, Tab } from "@/app/_components/home/sheet";
+import { Sheet, Tab } from "@/app/_components/sheet";
 
 // Drei Blätter derselben Aufgabe, nebeneinander auf dem Tisch: Diktat,
 // Entwurf, Korrektur. Die Blätter sind Illustration (aria-hidden), der Text

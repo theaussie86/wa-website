@@ -1,4 +1,4 @@
-import { Sheet } from "@/app/_components/home/sheet";
+import { Sheet } from "@/app/_components/sheet";
 
 // Vorher/Nachher aus signature-system.md ("Womit er anfängt") als Vordruck im
 // Querformat. Die Zeitbudget-Spalte ist mit dem Stift des Inhabers gestrichen.

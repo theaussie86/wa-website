@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Sheet, Tab } from "@/app/_components/home/sheet";
+import { Sheet, Tab } from "@/app/_components/sheet";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 

@@ -9,7 +9,7 @@ import { SITE_NAME, CAL_LINK } from "@/lib/constants";
 // Kein "Home"-Link: dafür ist die Wortmarke da.
 const navLinks = [
   { href: "/ueber-mich", label: "Über mich" },
-  { href: "/ki-mitarbeiter", label: "KI-Mitarbeiter" },
+  { href: "/ki-arbeitsplatz", label: "KI-Arbeitsplatz" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
 ];

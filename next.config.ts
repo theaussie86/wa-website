@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   // .next/standalone (Server plus nur die tatsächlich benötigten Module),
   // .next/static und public - keine Dev-Dependencies. Siehe Dockerfile.
   output: "standalone",
+  // Seit 17.09.2026 heißt das Angebot KI-Arbeitsplatz statt KI-Mitarbeiter.
+  // Die alte Adresse ist verlinkt und indexiert, deshalb dauerhaft umleiten.
+  async redirects() {
+    return [{ source: "/ki-mitarbeiter", destination: "/ki-arbeitsplatz", permanent: true }];
+  },
   images: {
     // Ein Tag. Vorher standen hier 30 Tage, begründet damit, dass jedes
     // Deployment einen leeren Cache ausrollt und eine geänderte Bilddatei

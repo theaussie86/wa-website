@@ -10,7 +10,7 @@ import { CookieSettingsButton } from "@/app/_components/cookie-consent";
 
 const navLinks = [
   { href: "/ueber-mich", label: "Über mich" },
-  { href: "/ki-mitarbeiter", label: "KI-Mitarbeiter" },
+  { href: "/ki-arbeitsplatz", label: "KI-Arbeitsplatz" },
   { href: "/leistungen", label: "Leistungen" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
