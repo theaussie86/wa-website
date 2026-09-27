@@ -4,7 +4,7 @@
 const blocks = [
   {
     phase: "Fundament",
-    title: "Dein Arbeitsplatz steht.",
+    title: "Dein Arbeitsplatz wird eingerichtet.",
     text: "Ich richte ihn auf deinem Rechner ein und frage dich einmal gründlich über deinen Betrieb aus. Danach kennt er dich.",
   },
   {
