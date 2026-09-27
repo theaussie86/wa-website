@@ -18,8 +18,8 @@ export function Problem() {
             was Anspruch hat, wieder bei dir.
           </p>
           <p className="text-[18px] leading-[1.7] text-charcoal/85">
-            Nicht weil zu wenig Leute da waren. Sondern weil nirgends steht, was deine Arbeit
-            gut macht. Jeder von außen fängt bei null an.
+            Gefehlt hat nie Kapazität. Gefehlt hat, dass irgendwo steht, was deine Arbeit gut
+            macht. Ohne das fängt jeder von außen bei null an.
           </p>
         </div>
       </div>

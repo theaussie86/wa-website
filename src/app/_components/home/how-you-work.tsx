@@ -32,7 +32,7 @@ const steps = [
           Sprachnotiz · 0:24 · Di, 18:12
         </div>
         <p className="text-[15.5px] leading-[1.6] text-charcoal italic">
-          „Beitrag zur Kanzlei Berger. Sie wollte es ruhiger, nicht kühler. Theke bleibt,
+          „Beitrag zur Kanzlei Berger. Sie wollte es ruhiger, nicht kühl. Theke bleibt,
           neue Front, Kalk, Licht indirekt. Ohne Werbesprech.“
         </p>
       </StepSheet>
@@ -40,7 +40,7 @@ const steps = [
   },
   {
     title: "KI bereitet vor.",
-    text: "Der Arbeitsplatz kennt deinen Betrieb, deine Preise und wie du schreibst. Wenn du dich hinsetzt, liegt der Entwurf schon da.",
+    text: "Der Arbeitsplatz kennt deinen Betrieb, deine Kunden und wie du schreibst. Wenn du dich hinsetzt, liegt der Entwurf schon da.",
     sheet: (
       <StepSheet tab="Entwurf">
         <p className="type-display mb-3 text-[19px] leading-tight text-primary">Warum wir die Theke stehen lassen</p>
@@ -82,10 +82,10 @@ export function HowYouWork() {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="mb-[clamp(48px,6vw,88px)] max-w-[40rem]">
           <h2 className="type-display mb-6 text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
-            Du bleibst der, der urteilt.
+            Das Urteil bleibt bei dir.
           </h2>
           <p className="text-[18px] leading-[1.7] text-charcoal/85">
-            Nicht KI macht deine Arbeit. Du machst sie, nur endlich so, wie sie gehört.
+            Du machst deine Arbeit selbst, nur endlich so, wie sie gehört. Drei Schritte, jedes Mal gleich.
           </p>
         </div>
 

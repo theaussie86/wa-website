@@ -33,6 +33,10 @@ export function About() {
               gemacht: Tests, Dokumentation, saubere Abläufe, für die früher nie Zeit war. Das
               Können und das Urteil sind bei mir geblieben.
             </p>
+            <p>
+              Meine Beiträge entstehen heute genauso: Ich spreche rein, der Entwurf liegt bereit,
+              ich entscheide.
+            </p>
             <p>Genau so einen Arbeitsplatz richte ich dir ein.</p>
           </div>
           <Button href="/ueber-mich" variant="text">

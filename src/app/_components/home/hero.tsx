@@ -15,8 +15,8 @@ export function Hero() {
           </h1>
 
           <p className="mb-10 max-w-[31rem] text-pretty text-[clamp(1.1rem,1.5vw,1.3rem)] leading-[1.55] text-white/85">
-            Ich richte dir einen KI-Arbeitsplatz ein, der weiß, wie du arbeitest. Du sprichst
-            rein, KI bereitet vor, du entscheidest.
+            Bisher scheitert das an deiner Zeit. Ich richte dir einen KI-Arbeitsplatz ein, der
+            deinen Betrieb kennt. Du sprichst rein, KI bereitet vor, du entscheidest.
           </p>
 
           <div className="mb-10 flex flex-wrap items-center gap-x-8 gap-y-4">

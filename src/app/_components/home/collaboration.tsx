@@ -10,12 +10,12 @@ const blocks = [
   {
     phase: "Entwickeln",
     title: "Eine echte Aufgabe, nach Lehrbuch.",
-    text: "Wir nehmen eine Aufgabe, die jede Woche anfällt und an deiner Handschrift hängt. Aus deinen Korrekturen wird eine Anleitung, die bleibt.",
+    text: "Zum Beispiel dein wöchentlicher Beitrag. Aus deinen Korrekturen wird eine Anleitung, die bleibt.",
   },
   {
     phase: "Im Alltag",
     title: "Es liegt vorbereitet da.",
-    text: "Du sprichst rein, die Vorbereitung läuft im Hintergrund. Und du merkst sofort, wenn etwas nicht stimmt.",
+    text: "Du sprichst rein, der Rest läuft im Hintergrund. Wenn du dich hinsetzt, wartet der Entwurf auf dein Urteil.",
   },
 ];
 
@@ -55,7 +55,7 @@ export function Collaboration() {
     <section className="bg-primary py-[clamp(104px,12vw,176px)] text-white">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <h2 className="type-display mb-[clamp(48px,6vw,88px)] max-w-[14ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96] text-white">
-          So läuft die Zusammenarbeit.
+          Drei Ordner, dann steht dein Arbeitsplatz.
         </h2>
 
         <div className="grid items-end gap-14 lg:grid-cols-[auto_1fr] lg:gap-[clamp(64px,8vw,128px)]">
@@ -80,10 +80,6 @@ export function Collaboration() {
             ))}
           </ol>
         </div>
-
-        <p className="mt-[clamp(48px,6vw,80px)] text-[17px] text-white/80">
-          Alles liegt auf deinem Rechner. Was entsteht, gehört dir.
-        </p>
       </div>
     </section>
   );

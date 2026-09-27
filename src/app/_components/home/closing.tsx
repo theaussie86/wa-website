@@ -25,8 +25,8 @@ export function Closing() {
             Welche Arbeit würdest du gern so machen, wie sie gehört?
           </h2>
           <p className="mb-8 max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
-            Nenn mir eine Aufgabe. In 15 Minuten wissen wir, ob sie sich als erste eignet. Kein
-            Verkaufsgespräch, und wenn sie nichts taugt, sage ich dir das.
+            Nenn mir eine Aufgabe. In 15 Minuten wissen wir, ob sie sich als erste eignet. Und
+            wenn sie nichts taugt, sage ich dir das.
           </p>
 
           {/* Vordruckzeile: bleibt bewusst leer */}

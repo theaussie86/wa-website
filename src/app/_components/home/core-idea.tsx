@@ -3,10 +3,10 @@ import { Sheet } from "@/app/_components/home/sheet";
 // Vorher/Nachher aus signature-system.md ("Womit er anfängt") als Vordruck im
 // Querformat. Die Zeitbudget-Spalte ist mit dem Stift des Inhabers gestrichen.
 const rows = [
+  { task: "Der Beitrag", budget: "vom Dienstleister, nicht dein Stil", method: "regelmäßig, in deiner Sprache" },
   { task: "Das Angebot", budget: "aus der Vorlage", method: "auf den Kunden zugeschnitten" },
   { task: "Die Antwort auf eine Anfrage", budget: "kurz angebunden", method: "persönlich und vollständig" },
   { task: "Nach dem Termin", budget: "Follow-up bei manchem", method: "Follow-up nach jedem" },
-  { task: "Der Beitrag", budget: "vom Dienstleister, nicht dein Stil", method: "regelmäßig, in deiner Sprache" },
 ];
 
 export function CoreIdea() {
@@ -15,11 +15,11 @@ export function CoreIdea() {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="mb-[clamp(48px,6vw,80px)] grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
           <h2 className="type-display max-w-[17ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
-            Bessere Methoden werden bezahlbar.
+            Der gute Weg rechnet sich jetzt.
           </h2>
           <p className="max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
-            Du weißt, wie deine Arbeit eigentlich gehört. Bisher hat es sich zeitlich nur nie
-            gerechnet. Mit KI an deiner Seite rechnet es sich, und das Urteil bleibt bei dir.
+            Du weißt längst, wie deine Arbeit gehört. Durchgestrichen steht, wie sie heute
+            rausgeht. Daneben, wie sie rausgehen könnte, ohne dich den Abend zu kosten.
           </p>
         </div>
 
