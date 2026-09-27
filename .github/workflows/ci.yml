@@ -94,7 +94,7 @@ jobs:
           done
           npm run check:ssr -- http://localhost:3000 \
             / /blog /blog/spart-ki-wirklich-zeit \
-            /ki-check-handwerk /second-brain-anleitung /kontakt /leistungen
+            /betriebs-interview /second-brain-anleitung /kontakt /leistungen
 
           # Tote URLs müssen 404 liefern und trotzdem eine echte Seite zeigen
           # (Issue #28). Zwei Pfade, weil Next beide Fälle unterschiedlich
