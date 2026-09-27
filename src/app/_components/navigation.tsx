@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { SITE_NAME, CAL_LINK } from "@/lib/constants";
 
+// Kein "Home"-Link: dafür ist die Wortmarke da.
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/ueber-mich", label: "Über mich" },
-  { href: "/ki-mitarbeiter", label: "KI-Mitarbeiter" },
+  { href: "/ki-arbeitsplatz", label: "KI-Arbeitsplatz" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
 ];
@@ -17,45 +18,24 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-xs border-b border-primary/10">
-      <nav className="container mx-auto px-5 py-4">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-primary text-white">
+      <nav className="mx-auto max-w-[1320px] px-6 py-4 lg:px-10">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            {/* Desktop/Tablet Logo (Icon + Text) */}
-            <div className="hidden md:flex items-center gap-3">
-              <Image
-                src="/logo-icon.svg"
-                alt=""
-                width={32}
-                height={32}
-                className="h-8 w-8"
-                priority
-              />
-              <span className="font-serif text-xl text-primary font-medium">
-                {SITE_NAME}
-              </span>
-            </div>
-            {/* Mobile Logo (Compact) */}
-            <div className="md:hidden">
-              <Image
-                src="/logo-compact.svg"
-                alt={SITE_NAME}
-                width={40}
-                height={40}
-                className="h-10 w-auto"
-                priority
-              />
-            </div>
+          <Link href="/" className="flex items-center gap-2.5" aria-label={`${SITE_NAME}, Startseite`}>
+            <span className="flex h-8 w-8 items-center justify-center rounded-[4px] bg-white">
+              <Image src="/logo-icon.svg" alt="" width={22} height={22} className="h-[22px] w-[22px]" priority />
+            </span>
+            <span className="type-label text-[15px] tracking-[0.08em] text-white">
+              {SITE_NAME}
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-charcoal hover:text-primary transition-colors"
+                className="font-sans text-[15px] text-white/80 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -64,52 +44,30 @@ export function Navigation() {
               href={CAL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary text-sm"
+              className="rounded-[4px] bg-white px-4 py-2 font-sans text-[15px] font-semibold text-primary transition-colors hover:bg-primary-50"
             >
-              Direkter Draht
+              15 Minuten reden
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-primary"
-            aria-label="Menu"
+            className="p-2 text-white md:hidden"
+            aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={isOpen}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {isOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pt-4 pb-2">
-            <div className="flex flex-col gap-4">
+          <div className="pt-4 pb-2 md:hidden">
+            <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-charcoal hover:text-primary transition-colors py-2"
+                  className="border-b border-white/10 py-3 font-sans text-[17px] text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
@@ -119,9 +77,9 @@ export function Navigation() {
                 href={CAL_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary text-center mt-2"
+                className="mt-5 inline-flex items-center justify-center rounded-[4px] bg-white px-6 py-3.5 font-semibold text-primary"
               >
-                Direkter Draht
+                15 Minuten reden
               </a>
             </div>
           </div>

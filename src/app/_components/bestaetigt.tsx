@@ -1,4 +1,6 @@
 import { Check } from "lucide-react";
+import { Button } from "@/app/_components/button";
+import { Sheet } from "@/app/_components/sheet";
 
 export function Bestaetigt({
   titel,
@@ -8,30 +10,26 @@ export function Bestaetigt({
   beschreibung?: string;
 }) {
   return (
-    <main>
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <div className="max-w-lg mx-auto text-center">
-            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-              <Check className="w-8 h-8 text-green-600" />
-            </div>
-            <h1 className="font-serif text-2xl md:text-3xl text-primary mb-4">
-              Du bist dabei!
-            </h1>
-            <p className="text-charcoal/70 leading-relaxed mb-6">
-              {beschreibung ?? (
-                <>
-                  Deine Anmeldung für <strong>{titel}</strong> ist bestätigt.
-                  Du hörst von uns, sobald es losgeht.
-                </>
-              )}
-            </p>
-            <a href="/" className="text-accent hover:underline text-sm">
-              Zurück zur Startseite
-            </a>
-          </div>
-        </div>
-      </section>
+    <main className="bg-pappe py-[clamp(88px,11vw,160px)]">
+      <div className="mx-auto max-w-[640px] px-6">
+        <Sheet className="py-[clamp(40px,6vw,64px)] pr-[clamp(24px,5vw,56px)] pl-[clamp(48px,7vw,80px)]">
+          <span className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-accent-100">
+            <Check aria-hidden="true" strokeWidth={2} className="h-6 w-6 text-accent-800" />
+          </span>
+          <h1 className="type-display mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1]">Du bist dabei.</h1>
+          <p className="mb-8 text-[17px] leading-[1.7] text-charcoal/85">
+            {beschreibung ?? (
+              <>
+                Deine Anmeldung für <strong className="font-semibold text-primary">{titel}</strong> ist
+                bestätigt. Du hörst von mir, sobald es losgeht.
+              </>
+            )}
+          </p>
+          <Button href="/" variant="text">
+            Zurück zur Startseite
+          </Button>
+        </Sheet>
+      </div>
     </main>
   );
 }

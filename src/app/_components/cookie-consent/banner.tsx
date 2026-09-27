@@ -206,7 +206,7 @@ function SettingsModal() {
 
         <h2
           id="cookie-settings-title"
-          className="mb-2 font-serif text-xl text-charcoal dark:text-white"
+          className="mb-2 font-display text-xl text-charcoal dark:text-white"
         >
           Cookie-Einstellungen
         </h2>
@@ -297,7 +297,7 @@ export function CookieConsentBanner() {
           <div className="flex-1">
             <h2
               id="cookie-banner-title"
-              className="font-serif text-lg text-charcoal dark:text-white"
+              className="font-display text-lg text-charcoal dark:text-white"
             >
               Wir nutzen Cookies
             </h2>

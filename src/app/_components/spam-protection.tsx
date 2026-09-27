@@ -176,7 +176,7 @@ export function SpamProtectionFields() {
  * Wahl zwischen Badge und sichtbarem Hinweis.
  */
 export function RecaptchaNotice({ variant = "default" }: { variant?: "default" | "inverted" }) {
-  const textClass = variant === "inverted" ? "text-white/40" : "text-charcoal/40";
+  const textClass = variant === "inverted" ? "text-white/70" : "text-charcoal/75";
 
   return (
     <p className={`text-xs mt-3 text-center ${textClass}`}>

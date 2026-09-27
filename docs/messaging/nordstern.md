@@ -1,3 +1,5 @@
+> **Überholt (26.09.2026).** Gilt nicht mehr. Aktuell: `docs/design/relaunch-2026-09-brief.md` und `CONTEXT.md`.
+
 # Nordstern: Machen statt warten
 
 *Stand: 2026-07-08. Verbindliche Messaging-Basis für die gesamte Website. Jede Seite hängt hier dran.*

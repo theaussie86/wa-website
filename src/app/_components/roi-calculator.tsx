@@ -8,9 +8,9 @@ const ERROR_COST_MULTIPLIER = 1.5;
 type InvestmentLevel = "small" | "medium" | "large";
 
 const INVESTMENT_OPTIONS: Record<InvestmentLevel, { label: string; value: number }> = {
-  small: { label: "Klein (2.000 - 8.000 €)", value: 5000 },
-  medium: { label: "Mittel (8.000 - 25.000 €)", value: 16500 },
-  large: { label: "Groß (25.000 - 50.000 €)", value: 37500 },
+  small: { label: "Klein, 2.000 bis 8.000 €", value: 5000 },
+  medium: { label: "Mittel, 8.000 bis 25.000 €", value: 16500 },
+  large: { label: "Groß, 25.000 bis 50.000 €", value: 37500 },
 };
 
 function formatCurrency(value: number): string {
@@ -24,19 +24,19 @@ function formatCurrency(value: number): string {
 
 function formatMonths(months: number): string {
   if (months < 1) {
-    return "< 1 Monat";
+    return "unter 1 Monat";
   }
   if (months > 36) {
-    return "> 3 Jahre";
+    return "über 3 Jahre";
   }
-  return `${months.toFixed(1)} Monate`;
+  return `${months.toLocaleString("de-DE", { maximumFractionDigits: 1 })} Monate`;
 }
 
 function formatPercent(value: number): string {
   if (value > 1000) {
-    return "> 1.000%";
+    return "über 1.000 %";
   }
-  return `${Math.round(value)}%`;
+  return `${Math.round(value)} %`;
 }
 
 export function ROICalculator() {
@@ -77,18 +77,18 @@ export function ROICalculator() {
   }, [hoursPerWeek, hourlyRate, employees, errorRate, investmentLevel]);
 
   return (
-    <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+    <div className="grid gap-10 md:grid-cols-2 lg:gap-14">
       {/* Eingaben */}
       <div className="space-y-6">
-        <h3 className="font-serif text-xl text-primary mb-4">Deine Ausgangssituation</h3>
+        <h2 className="type-display mb-2 text-[clamp(1.6rem,2.6vw,2.1rem)] leading-[1.05]">Dein Ablauf heute</h2>
 
         {/* Gesparte Stunden */}
         <div>
           <div className="flex justify-between mb-2">
-            <label htmlFor="hours" className="text-charcoal/70">
-              Gesparte Stunden pro Woche
+            <label htmlFor="hours" className="text-[15.5px] text-charcoal/85">
+              Stunden pro Woche, die er kostet
             </label>
-            <span className="font-medium text-primary">{hoursPerWeek}h</span>
+            <span className="font-semibold tabular-nums text-primary">{hoursPerWeek}h</span>
           </div>
           <input
             id="hours"
@@ -98,9 +98,9 @@ export function ROICalculator() {
             step="1"
             value={hoursPerWeek}
             onChange={(e) => setHoursPerWeek(Number(e.target.value))}
-            className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-accent"
+            className="w-full cursor-pointer accent-accent-600"
           />
-          <div className="flex justify-between text-xs text-charcoal/50 mt-1">
+          <div className="flex justify-between mt-1 text-[12.5px] tabular-nums text-charcoal/75">
             <span>1h</span>
             <span>40h</span>
           </div>
@@ -109,10 +109,10 @@ export function ROICalculator() {
         {/* Stundensatz */}
         <div>
           <div className="flex justify-between mb-2">
-            <label htmlFor="rate" className="text-charcoal/70">
-              Interner Stundensatz (inkl. Nebenkosten)
+            <label htmlFor="rate" className="text-[15.5px] text-charcoal/85">
+              Interner Stundensatz mit Nebenkosten
             </label>
-            <span className="font-medium text-primary">{hourlyRate} €</span>
+            <span className="font-semibold tabular-nums text-primary">{hourlyRate} €</span>
           </div>
           <input
             id="rate"
@@ -122,9 +122,9 @@ export function ROICalculator() {
             step="5"
             value={hourlyRate}
             onChange={(e) => setHourlyRate(Number(e.target.value))}
-            className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-accent"
+            className="w-full cursor-pointer accent-accent-600"
           />
-          <div className="flex justify-between text-xs text-charcoal/50 mt-1">
+          <div className="flex justify-between mt-1 text-[12.5px] tabular-nums text-charcoal/75">
             <span>30 €</span>
             <span>120 €</span>
           </div>
@@ -133,10 +133,10 @@ export function ROICalculator() {
         {/* Anzahl Mitarbeiter */}
         <div>
           <div className="flex justify-between mb-2">
-            <label htmlFor="employees" className="text-charcoal/70">
-              Betroffene Mitarbeiter
+            <label htmlFor="employees" className="text-[15.5px] text-charcoal/85">
+              Beteiligte Leute
             </label>
-            <span className="font-medium text-primary">{employees}</span>
+            <span className="font-semibold tabular-nums text-primary">{employees}</span>
           </div>
           <input
             id="employees"
@@ -146,9 +146,9 @@ export function ROICalculator() {
             step="1"
             value={employees}
             onChange={(e) => setEmployees(Number(e.target.value))}
-            className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-accent"
+            className="w-full cursor-pointer accent-accent-600"
           />
-          <div className="flex justify-between text-xs text-charcoal/50 mt-1">
+          <div className="flex justify-between mt-1 text-[12.5px] tabular-nums text-charcoal/75">
             <span>1</span>
             <span>20</span>
           </div>
@@ -157,10 +157,10 @@ export function ROICalculator() {
         {/* Fehlerquote */}
         <div>
           <div className="flex justify-between mb-2">
-            <label htmlFor="errorRate" className="text-charcoal/70">
-              Aktuelle Fehlerquote im Prozess
+            <label htmlFor="errorRate" className="text-[15.5px] text-charcoal/85">
+              Anteil, der nachgearbeitet werden muss
             </label>
-            <span className="font-medium text-primary">{errorRate}%</span>
+            <span className="font-semibold tabular-nums text-primary">{errorRate}%</span>
           </div>
           <input
             id="errorRate"
@@ -170,9 +170,9 @@ export function ROICalculator() {
             step="1"
             value={errorRate}
             onChange={(e) => setErrorRate(Number(e.target.value))}
-            className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-accent"
+            className="w-full cursor-pointer accent-accent-600"
           />
-          <div className="flex justify-between text-xs text-charcoal/50 mt-1">
+          <div className="flex justify-between mt-1 text-[12.5px] tabular-nums text-charcoal/75">
             <span>0%</span>
             <span>30%</span>
           </div>
@@ -180,14 +180,14 @@ export function ROICalculator() {
 
         {/* Investitionssumme */}
         <div>
-          <label htmlFor="investment" className="text-charcoal/70 block mb-2">
+          <label htmlFor="investment" className="mb-2 block text-[15.5px] text-charcoal/85">
             Geplante Investition
           </label>
           <select
             id="investment"
             value={investmentLevel}
             onChange={(e) => setInvestmentLevel(e.target.value as InvestmentLevel)}
-            className="w-full p-3 border border-primary/20 rounded-xs bg-white text-charcoal focus:outline-hidden focus:ring-2 focus:ring-accent/50"
+            className="w-full rounded-[2px] border border-charcoal/30 bg-white p-3 text-[16px] text-charcoal hover:border-charcoal/50"
           >
             {Object.entries(INVESTMENT_OPTIONS).map(([key, { label }]) => (
               <option key={key} value={key}>
@@ -199,60 +199,55 @@ export function ROICalculator() {
       </div>
 
       {/* Ergebnisse */}
-      <div className="bg-primary/5 rounded-xs p-6 lg:p-8 border border-primary/10">
-        <h3 className="font-serif text-xl text-primary mb-6">Deine Ergebnisse</h3>
+      <div aria-live="polite" className="rounded-[2px] bg-pappe p-6 lg:p-8">
+        <h2 className="type-display mb-6 text-[clamp(1.6rem,2.6vw,2.1rem)] leading-[1.05]">Was dabei rauskommt</h2>
 
         <div className="space-y-6">
           {/* Monatliche Ersparnis */}
-          <div className="pb-4 border-b border-primary/10">
-            <div className="text-charcoal/70 text-sm mb-1">Monatliche Ersparnis</div>
-            <div className="font-serif text-3xl md:text-4xl text-primary">
+          <div className="border-b border-primary/15 pb-5">
+            <div className="type-label mb-1 text-[12px] text-charcoal/75">Was der Ablauf heute kostet, pro Monat</div>
+            <div className="type-display text-[clamp(2rem,3.4vw,2.6rem)] leading-none tabular-nums text-primary">
               {formatCurrency(results.totalMonthlySavings)}
             </div>
-            <div className="text-xs text-charcoal/50 mt-1">
-              {formatCurrency(results.directSavings)} Zeitersparnis + {formatCurrency(results.errorSavings)} Fehlerkosten
+            <div className="mt-1.5 text-[13.5px] text-charcoal/75">
+              {formatCurrency(results.directSavings)} Arbeitszeit plus {formatCurrency(results.errorSavings)} Nacharbeit
             </div>
           </div>
 
           {/* Amortisation */}
-          <div className="pb-4 border-b border-primary/10">
-            <div className="text-charcoal/70 text-sm mb-1">Amortisationszeit</div>
-            <div className="font-serif text-3xl md:text-4xl text-primary">
+          <div className="border-b border-primary/15 pb-5">
+            <div className="type-label mb-1 text-[12px] text-charcoal/75">Investition gedeckt nach</div>
+            <div className="type-display text-[clamp(2rem,3.4vw,2.6rem)] leading-none tabular-nums text-primary">
               {formatMonths(results.paybackMonths)}
             </div>
-            <div className="text-xs text-charcoal/50 mt-1">
+            <div className="mt-1.5 text-[13.5px] text-charcoal/75">
               bei {formatCurrency(results.investment)} Investition
             </div>
           </div>
 
           {/* ROI */}
           <div>
-            <div className="text-charcoal/70 text-sm mb-1">ROI nach 12 Monaten</div>
-            <div className="font-serif text-3xl md:text-4xl text-accent">
+            <div className="type-label mb-1 text-[12px] text-charcoal/75">Rechnerischer ROI nach 12 Monaten</div>
+            <div className="type-display text-[clamp(2rem,3.4vw,2.6rem)] leading-none tabular-nums text-primary">
               {formatPercent(results.roi)}
             </div>
-            <div className="text-xs text-charcoal/50 mt-1">
-              {formatCurrency(results.annualSavings)} Ersparnis pro Jahr
+            <div className="mt-1.5 text-[13.5px] text-charcoal/75">
+              {formatCurrency(results.annualSavings)} Aufwand pro Jahr, der wegfallen könnte
             </div>
           </div>
         </div>
 
         {/* Quick Insight */}
         {results.paybackMonths <= 6 && (
-          <div className="mt-6 p-4 bg-accent/10 rounded-xs border border-accent/20">
-            <div className="text-sm text-charcoal/80">
-              <strong className="text-accent">Schneller ROI:</strong> Bei diesen Werten amortisiert sich
-              die Investition in weniger als 6 Monaten.
-            </div>
-          </div>
+          <p className="mt-6 rounded-[2px] bg-accent-100 p-4 text-[15px] leading-[1.55] text-ink">
+            Bei diesen Werten wäre die Investition in unter sechs Monaten gedeckt. Prüf trotzdem
+            zuerst, ob der Ablauf reif ist und ob ihn danach alle benutzen.
+          </p>
         )}
         {results.paybackMonths > 12 && results.paybackMonths <= 36 && (
-          <div className="mt-6 p-4 bg-primary/10 rounded-xs border border-primary/20">
-            <div className="text-sm text-charcoal/80">
-              <strong className="text-primary">Tipp:</strong> Bei längerer Amortisationszeit lohnt sich
-              oft ein kleineres Pilotprojekt als Einstieg.
-            </div>
-          </div>
+          <p className="mt-6 rounded-[2px] bg-white p-4 text-[15px] leading-[1.55] text-charcoal/85">
+            Dauert es länger als ein Jahr, ist ein kleinerer erster Schritt meist die bessere Wahl.
+          </p>
         )}
       </div>
     </div>

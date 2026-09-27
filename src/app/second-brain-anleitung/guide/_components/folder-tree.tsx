@@ -10,16 +10,16 @@ const SECOND_BRAIN_FOLDERS = [
 
 export function FolderTree() {
   return (
-    <div className="not-prose my-6 rounded-xs border border-primary/20 overflow-hidden">
-      <div className="px-4 py-2.5 bg-primary/10 border-b border-primary/15 font-mono text-sm font-semibold text-primary">
+    <div className="not-prose my-6 overflow-hidden rounded-[2px] border border-primary/20">
+      <div className="px-4 py-2.5 bg-primary font-mono text-white text-sm font-semibold">
         second-brain/
       </div>
-      <div className="bg-primary/3">
+      <div className="bg-white">
         {SECOND_BRAIN_FOLDERS.map((item, i) => (
           <div key={i} className="flex items-center gap-3 px-4 py-2.5 border-b border-primary/10 last:border-0">
-            <Folder className="w-4 h-4 text-primary/50 shrink-0" />
+            <Folder className="h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} />
             <span className="font-mono text-sm font-medium text-charcoal">{item.name}</span>
-            <span className="text-sm text-charcoal/50">— {item.description}</span>
+            <span className="text-sm text-charcoal/75">{item.description}</span>
           </div>
         ))}
       </div>

@@ -14,17 +14,17 @@ export function ChapterCheckbox({ chapterSlug }: { chapterSlug: string }) {
     <button
       onClick={() => toggle(chapterSlug)}
       disabled={isPending}
-      className={`mt-10 flex items-center gap-3 w-full px-5 py-4 rounded-xs border transition-colors ${
+      className={`mt-12 flex w-full items-center gap-3 rounded-[4px] px-5 py-4 transition-colors ${
         optimisticCompleted
-          ? "bg-green-50 border-green-200 text-green-800"
-          : "bg-primary/5 border-primary/10 text-charcoal/70 hover:border-primary/20"
+          ? "bg-accent-100 text-ink"
+          : "bg-primary text-white hover:bg-primary-600"
       }`}
     >
       <span
         className={`w-5 h-5 rounded-sm border-2 flex items-center justify-center shrink-0 transition-colors ${
           optimisticCompleted
-            ? "bg-green-600 border-green-600"
-            : "border-charcoal/30"
+            ? "border-accent-600 bg-accent-600"
+            : "border-white/70"
         }`}
       >
         {optimisticCompleted && (
@@ -39,7 +39,7 @@ export function ChapterCheckbox({ chapterSlug }: { chapterSlug: string }) {
           </svg>
         )}
       </span>
-      <span className="text-sm font-medium">
+      <span className="text-[16px] font-semibold">
         {optimisticCompleted ? "Kapitel abgeschlossen" : "Kapitel abschließen"}
       </span>
     </button>

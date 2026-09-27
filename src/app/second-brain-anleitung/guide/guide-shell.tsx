@@ -22,18 +22,18 @@ function ChapterLink({
     <Link
       href={`/second-brain-anleitung/guide/${chapter.slug}`}
       onClick={onClick}
-      className={`flex items-center gap-3 px-4 py-2.5 rounded-xs text-sm transition-colors ${
+      className={`flex items-center gap-3 rounded-[2px] px-4 py-2.5 text-[15px] transition-colors ${
         isActive
-          ? "bg-primary/10 text-primary font-medium"
-          : "text-charcoal/70 hover:text-primary hover:bg-primary/5"
+          ? "bg-white font-semibold text-primary shadow-[0_6px_16px_-10px_rgba(0,23,46,0.4)]"
+          : "text-charcoal/80 hover:bg-white/60 hover:text-primary"
       }`}
     >
       {isCompleted ? (
-        <CheckCircle2 className="w-4 h-4 shrink-0 text-green-600" />
+        <CheckCircle2 className="h-4 w-4 shrink-0 text-accent-600" strokeWidth={1.75} />
       ) : (
         <Circle
           className={`w-4 h-4 shrink-0 ${
-            isActive ? "text-primary" : "text-charcoal/20"
+            isActive ? "text-primary" : "text-charcoal/40"
           }`}
         />
       )}
@@ -58,7 +58,7 @@ export function GuideShell({
 
   const sidebar = (
     <nav className="py-4 space-y-1">
-      <p className="px-4 pb-2 text-xs font-medium text-charcoal/40 uppercase tracking-wide">
+      <p className="type-label px-4 pb-2 text-[12px] text-charcoal/75">
         Kapitel
       </p>
       {chapters.map((chapter) => (
@@ -76,26 +76,26 @@ export function GuideShell({
   return (
     <div className="min-h-screen flex flex-col">
       {/* Mobile top bar */}
-      <div className="md:hidden sticky top-0 z-40 bg-warm-white border-b border-primary/10 px-4 py-3 flex items-center gap-3">
+      <div className="md:hidden sticky top-0 z-40 flex items-center gap-3 bg-primary px-4 py-3 text-white">
         <button
           onClick={() => setDrawerOpen(true)}
-          className="p-1 text-charcoal/70 hover:text-primary transition-colors"
+          className="p-1 text-white/85 transition-colors hover:text-white"
           aria-label="Kapitel-Menü öffnen"
         >
           <Menu className="w-6 h-6" />
         </button>
-        <span className="font-serif text-primary text-sm font-medium truncate">
+        <span className="type-display truncate text-[17px] text-white">
           Second Brain Anleitung
         </span>
       </div>
 
       <div className="flex flex-1">
         {/* Desktop sidebar */}
-        <aside className="hidden md:block w-72 shrink-0 border-r border-primary/10 bg-warm-white overflow-y-auto sticky top-0 h-screen">
-          <div className="px-4 py-5 border-b border-primary/10">
+        <aside className="hidden md:block sticky top-0 h-screen w-72 shrink-0 overflow-y-auto bg-pappe">
+          <div className="bg-primary px-5 py-5">
             <Link
               href="/second-brain-anleitung"
-              className="font-serif text-primary text-lg font-medium hover:text-accent transition-colors"
+              className="type-display text-[1.35rem] leading-tight text-white underline-offset-4 hover:underline"
             >
               Second Brain Anleitung
             </Link>
@@ -106,20 +106,20 @@ export function GuideShell({
         {/* Mobile drawer overlay */}
         {drawerOpen && (
           <div
-            className="md:hidden fixed inset-0 z-50 bg-charcoal/50"
+            className="md:hidden fixed inset-0 z-50 bg-primary-800/60"
             onClick={() => setDrawerOpen(false)}
           >
             <div
-              className="w-72 h-full bg-warm-white shadow-lg overflow-y-auto"
+              className="h-full w-72 overflow-y-auto bg-pappe shadow-[0_22px_44px_-26px_rgba(0,23,46,0.6)]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-4 py-4 border-b border-primary/10 flex items-center justify-between">
-                <span className="font-serif text-primary font-medium">
+              <div className="flex items-center justify-between bg-primary px-5 py-4">
+                <span className="type-display text-[1.2rem] text-white">
                   Second Brain Anleitung
                 </span>
                 <button
                   onClick={() => setDrawerOpen(false)}
-                  className="p-1 text-charcoal/70 hover:text-primary transition-colors"
+                  className="p-1 text-white/85 transition-colors hover:text-white"
                   aria-label="Menü schließen"
                 >
                   <X className="w-5 h-5" />
@@ -131,8 +131,8 @@ export function GuideShell({
         )}
 
         {/* Content area */}
-        <main className="flex-1 min-w-0">
-          <div className="max-w-3xl mx-auto px-5 py-10 md:py-16">
+        <main className="min-w-0 flex-1 bg-white">
+          <div className="mx-auto max-w-[72ch] px-6 py-10 md:py-16">
             {children}
           </div>
         </main>

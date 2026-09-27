@@ -182,10 +182,10 @@ const servicesSchemas: ServiceSchema[] = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${BASE_URL}/ki-mitarbeiter#programm`,
-    name: "Dein erster KI-Mitarbeiter in 6 Wochen",
+    "@id": `${BASE_URL}/ki-arbeitsplatz#arbeitsplatz`,
+    name: "KI-Arbeitsplatz",
     description:
-      "Begleitetes Programm über 6 Wochen: eine echte, wiederkehrende Aufgabe aus dem Tagesgeschäft läuft danach ohne den Inhaber - in seiner Qualität, samt Anleitung, die beim Arbeiten entsteht.",
+      "Eingerichteter KI-Arbeitsplatz auf dem Rechner des Inhabers: KI bereitet eine wiederkehrende Aufgabe nach seiner Anleitung vor, er entscheidet. Persönlich begleitet, mit einer Anleitung, die beim Arbeiten entsteht.",
     provider: {
       "@type": "ProfessionalService",
       "@id": `${BASE_URL}/#localbusiness`,
@@ -195,7 +195,7 @@ const servicesSchemas: ServiceSchema[] = [
       { "@type": "Country", name: "Österreich" },
       { "@type": "Country", name: "Schweiz" },
     ],
-    serviceType: "AI Agent Onboarding Program",
+    serviceType: "AI Workplace Setup",
   },
   {
     "@context": "https://schema.org",

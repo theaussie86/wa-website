@@ -39,14 +39,16 @@ const config: Config = {
           900: "#2B1500",
         },
         "charcoal": "#2D3436",
+        // Dunkle Akzentfläche, maximal eine Sektion pro Seite
+        "ink": "#00172E",
         "warm-white": "#FAF9F7",
+        // Ordnerpappe: Grund, auf dem die weißen Blätter liegen
+        "pappe": "#E8EBEE",
         "amber": "#F5A14D",
       },
       fontFamily: {
-        serif: ["var(--font-bree-serif)", "Georgia", "serif"],
-        sans: ["var(--font-raleway)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
-        body: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-archivo)", "Arial Narrow", "sans-serif"],
+        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -99,7 +101,7 @@ const config: Config = {
             "--tw-prose-body": "#2D3436",
             "--tw-prose-headings": "#003970",
             "--tw-prose-lead": "#2D3436",
-            "--tw-prose-links": "#D86B00",
+            "--tw-prose-links": "#AD5600",
             "--tw-prose-bold": "#003970",
             "--tw-prose-counters": "#003970",
             "--tw-prose-bullets": "#D86B00",
@@ -117,25 +119,27 @@ const config: Config = {
             lineHeight: "1.8",
             // Headings
             h2: {
-              fontFamily: "var(--font-bree-serif), Georgia, serif",
+              fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
-              fontWeight: "800",
+              fontWeight: "600",
+              fontStretch: "80%",
               marginTop: "2.5em",
               marginBottom: "0.75em",
               lineHeight: "1.1",
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
             },
             h3: {
-              fontFamily: "var(--font-bree-serif), Georgia, serif",
+              fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
-              fontWeight: "700",
+              fontWeight: "600",
+              fontStretch: "84%",
               marginTop: "2em",
               marginBottom: "0.5em",
               lineHeight: "1.2",
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
             },
             h4: {
-              fontFamily: "var(--font-bree-serif), Georgia, serif",
+              fontFamily: "var(--font-archivo), sans-serif",
               color: "var(--tw-prose-headings)",
               fontWeight: "600",
               marginTop: "1.5em",
@@ -150,10 +154,12 @@ const config: Config = {
             // Links
             a: {
               color: "var(--tw-prose-links)",
-              textDecoration: "none",
+              textDecoration: "underline",
+              textDecorationColor: "rgba(173, 86, 0, 0.35)",
+              textUnderlineOffset: "4px",
               fontWeight: "500",
               "&:hover": {
-                textDecoration: "underline",
+                textDecorationColor: "#AD5600",
               },
             },
             // Lists - this is the key fix

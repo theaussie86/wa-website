@@ -50,3 +50,7 @@ docs/superpowers/
 # stand aber bisher bei jedem `git status` als untrackt im Weg.
 .claude/worktrees/
 .sandcastle/worktrees/
+
+# impeccable: Arbeitsdateien der Richtungsentscheidung, nicht versionieren
+.impeccable/direction-round.json
+.impeccable/questions/

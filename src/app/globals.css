@@ -20,16 +20,35 @@
   }
 }
 
+/* Buttons wie Etiketten: rechteckig, 4px Radius (Relaunch 09/2026, Betriebsordner).
+   Orange ist der Stift des Inhabers, nie ein Knopf. */
 @utility btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-xs hover:bg-accent-600 transition-colors duration-200;
+  @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-[4px] hover:bg-primary-600 transition-colors duration-200;
 }
 
 @utility btn-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-medium rounded-xs hover:bg-primary hover:text-white transition-colors duration-200;
+  @apply inline-flex items-center justify-center px-6 py-3 border border-primary/35 text-primary font-semibold rounded-[4px] hover:border-primary hover:bg-primary-50 transition-colors duration-200;
 }
 
 @utility btn-whatsapp {
-  @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-white font-medium rounded-xs hover:bg-[#20BD5A] transition-colors duration-200;
+  @apply inline-flex items-center justify-center px-6 py-3 bg-[#25D366] text-[#0B2E18] font-semibold rounded-[4px] hover:bg-[#20BD5A] transition-colors duration-200;
+}
+
+/* Headline-Stimme: Archivo schmal und kräftig, wie ein Rückenschild. */
+@utility type-display {
+  font-family: var(--font-archivo), "Arial Narrow", sans-serif;
+  font-stretch: 78%;
+  font-weight: 640;
+  letter-spacing: -0.022em;
+}
+
+/* Beschriftung von Taben, Rückenschildern und Tabellenköpfen. */
+@utility type-label {
+  font-family: var(--font-archivo), sans-serif;
+  font-stretch: 70%;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 @utility section {
@@ -46,34 +65,43 @@
   }
 
   body {
-    @apply bg-warm-white text-charcoal antialiased;
+    @apply bg-white text-charcoal antialiased;
     font-feature-settings: "kern" 1, "liga" 1;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-primary;
+    font-stretch: 80%;
+    font-weight: 620;
+    text-wrap: balance;
+  }
+
   h1 {
-    @apply font-serif text-primary font-extrabold tracking-tight;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
+    line-height: 0.98;
+    letter-spacing: -0.022em;
   }
 
   h2 {
-    @apply font-serif text-primary font-extrabold tracking-tight;
     font-size: clamp(1.875rem, 3.5vw, 3.2rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.02;
+    letter-spacing: -0.018em;
   }
 
   h3 {
-    @apply font-serif text-primary font-bold;
     font-size: clamp(1.375rem, 2.5vw, 2rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
   }
 
-  h4, h5, h6 {
-    @apply font-serif text-primary font-semibold;
-    letter-spacing: -0.01em;
+  ::selection {
+    background: #FDE7D1;
+    color: #00172E;
+  }
+
+  :focus-visible {
+    outline: 2px solid #D86B00;
+    outline-offset: 3px;
   }
 
   a {

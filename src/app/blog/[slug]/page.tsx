@@ -3,11 +3,14 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { SITE_NAME, CAL_LINK } from "@/lib/constants";
+import { ArrowLeft } from "lucide-react";
+import { SITE_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import DateFormatter from "@/app/_components/date-formatter";
 import { ArticleJsonLd } from "@/app/_components/json-ld";
 import AuthorBox from "@/app/_components/author-box";
+import { PageHead } from "@/app/_components/page-head";
+import { CTASection } from "@/app/_components/cta-section";
 
 type Params = {
   params: Promise<{
@@ -73,99 +76,59 @@ export default async function BlogPost({ params }: Params) {
         imageUrl={post.coverImage}
       />
       <article>
-        {/* Header */}
-        <section className="section pb-8">
-          <div className="container mx-auto px-5">
-            <div className="max-w-3xl mx-auto">
+        <PageHead
+          size="md"
+          titleClassName="max-w-[24ch]"
+          before={
+            <p className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-white/75">
               <Link
                 href="/blog"
-                className="inline-flex items-center text-accent hover:text-accent-600 mb-8"
+                className="inline-flex items-center gap-1.5 font-medium text-white underline decoration-white/40 underline-offset-[5px] hover:decoration-white"
               >
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-                Zurück zum Blog
+                <ArrowLeft aria-hidden="true" strokeWidth={1.5} className="h-4 w-4" />
+                Alle Artikel
               </Link>
-              <div className="text-sm text-charcoal/50 mb-4">
+              <span className="type-label text-[12.5px]">
                 <DateFormatter dateString={post.date} />
-              </div>
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary mb-6">
-                {post.title}
-              </h1>
-              {post.excerpt && (
-                <p className="text-xl text-charcoal/70">{post.excerpt}</p>
-              )}
-            </div>
-          </div>
-        </section>
+              </span>
+            </p>
+          }
+          title={post.title}
+          lead={post.excerpt ? <p>{post.excerpt}</p> : undefined}
+        />
 
-        {/* Cover Image */}
         {post.coverImage && (
-          <div className="container mx-auto px-5 mb-12">
-            <div className="max-w-4xl mx-auto">
-              <div className="relative aspect-video">
-                <Image
-                  src={post.coverImage}
-                  alt={post.title}
-                  fill
-                  priority
-                  className="rounded-xs object-cover"
-                />
-              </div>
+          <div className="bg-white px-6 pt-[clamp(48px,6vw,80px)] lg:px-10">
+            <div className="relative mx-auto aspect-[1300/630] max-w-[960px] overflow-hidden rounded-[2px] bg-pappe">
+              <Image
+                src={post.coverImage}
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1024px) 960px, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
         )}
 
-        {/* Content */}
-        <section className="pb-8">
-          <div className="container mx-auto px-5">
-            <div
-              className="max-w-3xl mx-auto prose prose-lg prose-primary prose-headings:font-serif prose-headings:text-primary prose-a:text-accent prose-a:no-underline prose-a:hover:underline"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-          </div>
+        <section className="bg-white px-6 pt-[clamp(40px,5vw,64px)] pb-[clamp(72px,9vw,120px)] lg:px-10">
+          <div
+            className="prose prose-lg mx-auto max-w-[68ch] text-[18px]"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </section>
 
-        {/* Author */}
         <AuthorBox
           name={post.author?.name || "Christoph Weissteiner"}
           picture={post.author?.picture}
         />
-
-        {/* CTA */}
-        <section className="section bg-accent/10">
-          <div className="container mx-auto px-5">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="font-serif text-2xl text-primary mb-4">
-                Hat dir dieser Artikel geholfen?
-              </h2>
-              <p className="text-charcoal/70 mb-6">
-                Wenn du darüber nachdenkst, wie Automatisierung deinem Unternehmen
-                helfen könnte, lass uns sprechen.
-              </p>
-              <a
-                href={CAL_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Kennenlernen vereinbaren
-              </a>
-            </div>
-          </div>
-        </section>
       </article>
+
+      <CTASection
+        title="Klingt das nach deinem Betrieb?"
+        lead="Nenn mir die Aufgabe, an die du beim Lesen gedacht hast. In 15 Minuten wissen wir, ob sie sich als erste eignet."
+      />
     </main>
   );
 }

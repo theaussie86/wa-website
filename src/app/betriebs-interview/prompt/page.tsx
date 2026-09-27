@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { FolderOpen, Sparkles } from "lucide-react";
+import { PageHead } from "@/app/_components/page-head";
+import { Sheet, Tab } from "@/app/_components/sheet";
 import { CopyTemplate } from "@/app/_components/copy-template";
 import { INTERVIEW_PROMPT } from "@/content/freebies/betriebs-interview/prompt";
 
@@ -8,132 +9,109 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
+const SCHRITTE = [
+  "Öffne ChatGPT oder Claude und mach einen neuen Chat auf.",
+  "Kopier den Block hier unten komplett rein und schick ihn ab.",
+  "Beantworte die Fragen. Rede, tipp nicht. Am Handy das Mikrofon-Symbol, am Rechner die Diktierfunktion. Halbe Sätze reichen, das ist ein Gespräch und keine Prüfung.",
+];
+
 export default function BetriebsInterviewPromptPage() {
   return (
     <main>
-      <section className="section">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-accent font-medium mb-4 text-sm uppercase tracking-wide">
-              Dein Prompt
-            </p>
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary mb-6 leading-tight">
-              Das Betriebs-Interview
-            </h1>
-            <p className="text-charcoal/70 text-lg leading-relaxed">
-              Zehn Minuten, davon acht geredet. Danach kennt sie deinen Betrieb.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHead
+        title="Das Betriebs-Interview"
+        titleClassName="max-w-[12ch]"
+        lead={<p>Zehn Minuten, davon acht geredet. Danach kennt sie deinen Betrieb.</p>}
+      />
 
-      {/* Anleitung */}
-      <section className="pb-8">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6">
-              So geht es, drei Schritte
-            </h2>
-            <ol className="space-y-5">
-              {[
-                "Öffne ChatGPT oder Claude und mach einen neuen Chat auf.",
-                "Kopier den Block hier unten komplett rein und schick ihn ab.",
-                "Beantworte die Fragen. Rede, tipp nicht. Am Handy das Mikrofon-Symbol, am Rechner die Diktierfunktion. Halbe Sätze reichen, das ist ein Gespräch und keine Prüfung.",
-              ].map((text, i) => (
-                <li key={text} className="flex items-start gap-4">
-                  <span className="w-8 h-8 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 text-sm font-medium">
-                    {i + 1}
-                  </span>
-                  <span className="text-charcoal/80 leading-relaxed pt-1">
-                    {text}
-                  </span>
-                </li>
-              ))}
-            </ol>
-            <p className="text-charcoal/70 leading-relaxed mt-6">
-              Nach etwa zehn Minuten bekommst du ein fertiges Dokument
-              zurück. Was du damit machst, steht unter dem Prompt.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Anleitung und Prompt */}
+      <section className="bg-pappe py-[clamp(72px,9vw,128px)]">
+        <div className="mx-auto max-w-[920px] px-6">
+          <h2 className="type-display mb-8 text-[clamp(2rem,4vw,3.2rem)] leading-[0.98]">So geht es.</h2>
+          <ol className="mb-8 border-t-2 border-primary">
+            {SCHRITTE.map((text, i) => (
+              <li key={text} className="grid grid-cols-[40px_1fr] gap-3 border-b border-primary/15 py-5 text-[17px] leading-[1.65] text-charcoal/85">
+                <span className="type-display text-[1.6rem] leading-none text-primary">{i + 1}</span>
+                {text}
+              </li>
+            ))}
+          </ol>
+          <p className="mb-12 max-w-[40rem] text-[17px] leading-[1.7] text-charcoal/85">
+            Nach etwa zehn Minuten bekommst du ein fertiges Dokument zurück. Was du damit machst,
+            steht unter dem Prompt.
+          </p>
 
-      {/* Der Prompt */}
-      <section className="pb-8">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto">
-            <CopyTemplate content={INTERVIEW_PROMPT} />
+          <div className="pt-8">
+            <Sheet className="py-8 pr-3 pl-9 sm:pr-8 sm:pl-16">
+              <Tab tone="accent" side="top" className="left-9 sm:left-16">
+                Prompt
+              </Tab>
+              <CopyTemplate content={INTERVIEW_PROMPT} />
+            </Sheet>
           </div>
         </div>
       </section>
 
       {/* Danach */}
-      <section className="section bg-primary/5">
-        <div className="container mx-auto px-5">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-primary mb-8">
-              Was du danach damit machst
-            </h2>
+      <section className="bg-white py-[clamp(72px,9vw,128px)]">
+        <div className="mx-auto max-w-[920px] px-6">
+          <h2 className="type-display mb-10 text-[clamp(2rem,4vw,3.2rem)] leading-[0.98]">
+            Was du danach damit machst.
+          </h2>
 
-            <div className="bg-white rounded-xs p-6 md:p-8 border border-primary/5 mb-6">
-              <h3 className="font-medium text-charcoal text-lg mb-2">
+          <div className="border-t-2 border-primary">
+            <div className="border-b border-primary/15 py-8">
+              <h3 className="type-display mb-3 text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[1.1] text-primary">
                 Lies es einmal durch und korrigier, was nicht stimmt.
               </h3>
-              <p className="text-charcoal/70 leading-relaxed">
-                Sie hat dich zum ersten Mal gehört, an ein, zwei Stellen wird
-                sie danebenliegen. Genau dafür ist der Durchgang da.
+              <p className="max-w-[40rem] text-[17px] leading-[1.7] text-charcoal/85">
+                Sie hat dich zum ersten Mal gehört, an ein, zwei Stellen wird sie danebenliegen.
+                Genau dafür ist der Durchgang da.
               </p>
             </div>
 
-            <div className="bg-white rounded-xs p-6 md:p-8 border border-primary/5 mb-6">
-              <div className="flex items-start gap-3 mb-3">
-                <FolderOpen className="w-5 h-5 text-accent shrink-0 mt-1" />
-                <h3 className="font-medium text-charcoal text-lg">
-                  Dann leg es dorthin, wo es bleibt
-                </h3>
-              </div>
-              <ul className="space-y-3 text-charcoal/70 leading-relaxed">
+            <div className="border-b border-primary/15 py-8">
+              <h3 className="type-display mb-3 text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[1.1] text-primary">
+                Dann leg es dorthin, wo es bleibt.
+              </h3>
+              <ul className="max-w-[40rem] space-y-3 text-[17px] leading-[1.7] text-charcoal/85">
                 <li>
-                  <strong className="text-charcoal">ChatGPT:</strong> Links auf
+                  <strong className="font-semibold text-primary">ChatGPT:</strong> Links auf
                   &quot;Projekte&quot;, ein neues Projekt anlegen, den Text unter
-                  &quot;Anweisungen&quot; einfügen. Alles, was du in diesem
-                  Projekt fragst, kennt deinen Betrieb ab jetzt.
+                  &quot;Anweisungen&quot; einfügen. Alles, was du in diesem Projekt fragst, kennt
+                  deinen Betrieb ab jetzt.
                 </li>
                 <li>
-                  <strong className="text-charcoal">Claude:</strong> Genauso,
+                  <strong className="font-semibold text-primary">Claude:</strong> Genauso,
                   &quot;Projekte&quot;, dann &quot;Projektwissen&quot;.
                 </li>
               </ul>
-              <p className="text-charcoal/70 leading-relaxed mt-4">
-                Hast du dir eine Datei geben lassen, kannst du sie an derselben
-                Stelle auch einfach hochladen, statt den Text einzufügen. Dann
-                hast du sie zusätzlich bei dir liegen, unabhängig davon, welches
-                Werkzeug du in einem Jahr benutzt.
+              <p className="mt-4 max-w-[40rem] text-[17px] leading-[1.7] text-charcoal/85">
+                Hast du dir eine Datei geben lassen, kannst du sie an derselben Stelle auch einfach
+                hochladen, statt den Text einzufügen. Dann hast du sie zusätzlich bei dir liegen,
+                unabhängig davon, welches Werkzeug du in einem Jahr benutzt.
               </p>
             </div>
 
-            <div className="bg-white rounded-xs p-6 md:p-8 border border-primary/5">
-              <div className="flex items-start gap-3 mb-3">
-                <Sparkles className="w-5 h-5 text-accent shrink-0 mt-1" />
-                <h3 className="font-medium text-charcoal text-lg">
-                  Und jetzt der Test, der zwei Minuten dauert
-                </h3>
-              </div>
-              <p className="text-charcoal/70 leading-relaxed mb-3">
-                Nimm irgendeine Aufgabe, bei der KI dich bisher enttäuscht hat.
-                Eine Kundenmail, ein Angebotstext, eine Absage. Stell sie einmal
-                im neuen Projekt und einmal in einem leeren Chat.
+            <div className="py-8">
+              <h3 className="type-display mb-3 text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[1.1] text-primary">
+                Und jetzt der Test, der zwei Minuten dauert.
+              </h3>
+              <p className="mb-5 max-w-[40rem] text-[17px] leading-[1.7] text-charcoal/85">
+                Nimm irgendeine Aufgabe, bei der KI dich bisher enttäuscht hat. Eine Kundenmail,
+                ein Angebotstext, eine Absage. Stell sie einmal im neuen Projekt und einmal in
+                einem leeren Chat.
               </p>
-              <p className="text-charcoal font-medium">
+              <p className="inline-block rotate-[-1deg] rounded-[2px] bg-accent-100 px-4 py-3 text-[17px] font-semibold text-ink">
                 Der Unterschied ist der ganze Punkt.
               </p>
             </div>
-
-            <p className="text-charcoal/60 text-sm mt-8">
-              Diese Seite bleibt für dich erreichbar - leg dir den Link ab, wenn
-              du den Prompt später noch einmal brauchst.
-            </p>
           </div>
+
+          <p className="mt-10 text-[15px] text-charcoal/75">
+            Diese Seite bleibt für dich erreichbar. Leg dir den Link ab, wenn du den Prompt später
+            noch einmal brauchst.
+          </p>
         </div>
       </section>
     </main>

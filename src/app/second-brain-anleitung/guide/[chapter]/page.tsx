@@ -30,7 +30,7 @@ export async function generateMetadata({
   const chapter = chapters.find((c) => c.slug === slug);
   if (!chapter) return {};
   return {
-    title: `${chapter.title} — Second Brain Anleitung`,
+    title: `${chapter.title} · Second Brain Anleitung`,
     robots: { index: false },
   };
 }
@@ -63,14 +63,11 @@ export default async function ChapterPage({
 
   return (
     <article>
-      <ProgressBar total={chapters.length} />
-      <p className="text-accent text-sm font-medium mb-2">
-        Kapitel {chapterIndex + 1} von {chapters.length}
-      </p>
-      <h1 className="font-serif text-3xl md:text-4xl text-primary mb-8">
+      <ProgressBar total={chapters.length} current={chapterIndex + 1} />
+      <h1 className="type-display mb-8 text-[clamp(2.2rem,4.4vw,3.4rem)] leading-[1]">
         {chapter.title}
       </h1>
-      <div className="prose prose-lg max-w-none">
+      <div className="prose prose-lg max-w-none text-[18px]">
         {source ? (
           <MDXRemote source={source} components={mdxComponents} />
         ) : (
