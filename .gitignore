@@ -54,3 +54,6 @@ docs/superpowers/
 # impeccable: Arbeitsdateien der Richtungsentscheidung, nicht versionieren
 .impeccable/direction-round.json
 .impeccable/questions/
+
+# gebaute Brevo-Vorlagen, Quelle ist emails/*.html
+/emails/dist/
