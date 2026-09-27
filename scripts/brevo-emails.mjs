@@ -46,7 +46,7 @@ const TEMPLATES = {
     preheader: "Bestätige deine Adresse, dann öffnet sich die Anleitung.",
   },
   newsletter: {
-    templateId: null,
+    templateId: 11,
     name: "Newsletter-Vorlage Betriebsordner",
     footer: "_footer-newsletter.html",
     subject: "Betreff dieser Ausgabe",
