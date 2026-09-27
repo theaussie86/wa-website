@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Check, Mic } from "lucide-react";
+import Image from "next/image";
+import { Check } from "lucide-react";
 import { Sheet, Tab } from "@/app/_components/sheet";
 
 // Drei Blätter derselben Aufgabe, nebeneinander auf dem Tisch: Diktat,
@@ -25,12 +26,16 @@ const steps = [
     text: "Zwischen zwei Terminen, im Auto, am Abend. Drei Sätze reichen, ausformulieren musst du nichts.",
     sheet: (
       <StepSheet tab="Diktat">
-        <div className="mb-5 flex items-center gap-3 text-[12.5px] text-charcoal/75">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
-            <Mic className="h-4 w-4" strokeWidth={1.5} />
-          </span>
-          Sprachnotiz · 0:24 · Di, 18:12
-        </div>
+        {/* Echter Screenshot: Superwhisper beim Diktieren (Christophs Rechner) */}
+        <Image
+          src="/images/screens/superwhisper-diktat.png"
+          alt=""
+          width={855}
+          height={240}
+          sizes="(min-width: 768px) 320px, 90vw"
+          style={{ borderRadius: "4.2% / 15%" }}
+          className="mb-5 h-auto w-full shadow-[0_14px_28px_-16px_rgba(0,23,46,0.55)]"
+        />
         <p className="text-[15.5px] leading-[1.6] text-charcoal italic">
           „Beitrag zur Kanzlei Berger. Sie wollte es ruhiger, nicht kühl. Theke bleibt,
           neue Front, Kalk, Licht indirekt. Ohne Werbesprech.“
