@@ -248,7 +248,7 @@ export default function KiArbeitsplatzPage() {
             </h2>
             <p className="max-w-[30rem] text-[18px] leading-[1.7] text-charcoal/85">
               Aus meiner eigenen Arbeit, als ein Newsletter entstand. Der Entwurf lag da, mir hat
-              der Einstieg nicht gepasst. Ich habe es gesagt, nicht getippt, in halben Sätzen.
+              der Einstieg nicht gepasst. Ich habe es gesagt, nicht getippt.
             </p>
           </div>
 
@@ -258,12 +258,11 @@ export default function KiArbeitsplatzPage() {
                 Korrektur
               </Tab>
               <figure className="m-0">
-                <p className="type-label mb-2 text-[12px] text-accent-800">Ich, gesprochen</p>
+                <p className="type-label mb-2 text-[12px] text-accent-800">Ich, gesprochen, sinngemäß</p>
                 <blockquote className="m-0 mb-8 border-0 p-0 text-[17px] leading-[1.65] text-charcoal italic">
-                  „Der Newsletter soll ja vom Burger-Prinzip handeln, richtig? Und ich finde, dass das
-                  Hook-Beispiel, das greift noch überhaupt nicht, und das springt auch irgendwie, ist
-                  überhaupt nicht klar. […] Entscheidungen, Ideen, das Denken, die Strategie ist immer
-                  noch beim Menschen.“
+                  „Der Newsletter soll vom Burger-Prinzip handeln. Das Hook-Beispiel greift noch
+                  nicht: Es springt, und es wird nicht klar, worum es geht. Entscheidungen, Ideen und
+                  Strategie bleiben beim Menschen.“
                 </blockquote>
                 <p className="type-label mb-2 text-[12px] text-primary">KI</p>
                 <p className="mb-8 text-[17px] leading-[1.65] text-charcoal/90">
@@ -272,7 +271,7 @@ export default function KiArbeitsplatzPage() {
                   liest.“
                 </p>
                 <figcaption className="border-t border-charcoal/10 pt-3 text-[13px] text-charcoal/75">
-                  Aus einer echten Sitzung am 26.09.2026, gekürzt
+                  Aus einer echten Sitzung am 26.09.2026, sinngemäß und gekürzt
                 </figcaption>
               </figure>
             </Sheet>
