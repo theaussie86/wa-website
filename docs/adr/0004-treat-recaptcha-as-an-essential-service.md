@@ -33,8 +33,8 @@ abuse.
 
 Three constraints keep the exception narrow:
 
-- The script only renders inside `SpamProtectionFields`, which lives in the three
-  forms. Pages without a form load nothing.
+- The script only renders inside `SpamProtectionFields`, which lives only in the
+  forms (contact, freebie signups, Nullnummer waitlist). Pages without a form load nothing.
 - `src/app/datenschutz` names the service, the data transferred, the cookie, the
   retention and the legal basis.
 - The floating badge is hidden in `globals.css` and replaced by the `RecaptchaNotice`
@@ -43,14 +43,14 @@ Three constraints keep the exception narrow:
 ## Consequences
 
 The protection works for every visitor, including those who decline non-essential
-cookies. In exchange, the site transmits data to Google before consent on three pages,
+cookies. In exchange, the site transmits data to Google before consent on every page with a form,
 which is a defensible but not risk-free position - the same one taken by the bulk of
 German sites running reCAPTCHA, and comparable to the Google Fonts rulings in that a
 court could weigh it differently.
 
 Google becomes a hard dependency of every lead path. `checkFields` fails closed, so an
 unreachable siteverify endpoint or a slow response past the 5 s timeout rejects real
-submissions on all three forms at once. That is deliberate - a check that lets traffic
+submissions on all forms at once. That is deliberate - a check that lets traffic
 through whenever it breaks is a check a bot can break on purpose - but it means a Google
 outage is a lead outage. The counterweights are operational, not architectural: the
 smoke test asserts that `/kontakt` still ships the script, the build fails when the site

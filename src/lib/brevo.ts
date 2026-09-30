@@ -58,3 +58,89 @@ export async function isBrevoContactConfirmed(email: string): Promise<boolean> {
   console.warn(`Kontakt ${email} war nach allen Versuchen nicht auffindbar`);
   return false;
 }
+
+export type DoubleOptinResult = "already-on-list" | "doi-sent" | "error";
+
+/**
+ * Trägt eine Adresse per Double-Opt-in in eine Brevo-Liste ein.
+ *
+ * Gemeinsamer Kern aller Listen ohne Freebie dahinter (Warteliste
+ * Nullnummer, Newsletter #75): Liste, Vorlage und Weiterleitung kommen vom
+ * Aufrufer, die Texte auch.
+ *
+ * "Schon drauf" heißt: bekannter, nicht gesperrter Kontakt, der bereits in
+ * genau dieser Liste steht. Ein bestätigter Kontakt aus einer anderen Liste
+ * bekommt trotzdem die Mail - seine Einwilligung galt dem anderen Zweck.
+ *
+ * `duplicate_parameter` meldet Brevo, wenn für die Adresse schon eine
+ * Bestätigung offen ist. Für den Nutzer ist das derselbe Stand: Postfach
+ * prüfen.
+ */
+export async function requestDoubleOptin({
+  email,
+  listId,
+  templateId,
+  redirectionUrl,
+  attributes,
+}: {
+  email: string;
+  listId: number;
+  templateId: number;
+  redirectionUrl: string;
+  attributes?: Record<string, string>;
+}): Promise<DoubleOptinResult> {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    console.error("BREVO_API_KEY not configured");
+    return "error";
+  }
+
+  try {
+    const checkRes = await fetch(
+      `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
+      { headers: { "api-key": apiKey, Accept: "application/json" }, cache: "no-store" }
+    );
+
+    if (checkRes.ok) {
+      const contact = await checkRes.json();
+      const listIds: unknown = contact.listIds;
+      if (
+        contact.emailBlacklisted === false &&
+        Array.isArray(listIds) &&
+        listIds.includes(listId)
+      ) {
+        return "already-on-list";
+      }
+    }
+
+    const doiRes = await fetch(
+      "https://api.brevo.com/v3/contacts/doubleOptinConfirmation",
+      {
+        method: "POST",
+        headers: {
+          "api-key": apiKey,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          includeListIds: [listId],
+          templateId,
+          redirectionUrl,
+          ...(attributes ? { attributes } : {}),
+        }),
+      }
+    );
+
+    if (doiRes.ok) return "doi-sent";
+
+    const error = await doiRes.json().catch(() => null);
+    if (error?.code === "duplicate_parameter") return "doi-sent";
+
+    console.error("Brevo DOI error:", doiRes.status, error);
+    return "error";
+  } catch (error) {
+    console.error("Brevo nicht erreichbar:", error);
+    return "error";
+  }
+}
