@@ -9,6 +9,7 @@ sonst Arial Narrow und Arial.
 |---|---|---|
 | `doi-betriebs-interview.html` | 9 | 9 |
 | `doi-second-brain.html` | 6 | 5 |
+| `doi-nullnummer.html` | 12 | 14 |
 | `newsletter.html` | 11 (Gerüst für Ausgaben) | 11, siehe #75 |
 
 `_layout.html` ist der gemeinsame Rahmen, `_footer-*.html` der Fuß. Zuordnung, Betreff und

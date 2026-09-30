@@ -4,9 +4,11 @@ import { Sheet } from "@/app/_components/sheet";
 
 export function Bestaetigt({
   titel,
+  ueberschrift = "Du bist dabei.",
   beschreibung,
 }: {
   titel: string;
+  ueberschrift?: string;
   beschreibung?: string;
 }) {
   return (
@@ -16,7 +18,7 @@ export function Bestaetigt({
           <span className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-accent-100">
             <Check aria-hidden="true" strokeWidth={2} className="h-6 w-6 text-accent-800" />
           </span>
-          <h1 className="type-display mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1]">Du bist dabei.</h1>
+          <h1 className="type-display mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1]">{ueberschrift}</h1>
           <p className="mb-8 text-[17px] leading-[1.7] text-charcoal/85">
             {beschreibung ?? (
               <>

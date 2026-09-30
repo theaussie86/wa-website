@@ -420,6 +420,13 @@ export default function DatenschutzPage() {
           <p>
             Ihre E-Mail-Adresse wird nach der Austragung gelöscht oder ggf. in einer Blacklist (Art. 6 Abs. 1 lit. f DSGVO) gespeichert, um künftige unerwünschte Mailings zu verhindern.
           </p>
+          <h3 className={legalH3}>Warteliste Nullnummer</h3>
+          <p>
+            Für die Warteliste zur Nullnummer erheben wir Ihre E-Mail-Adresse, Ihren Vornamen und, wenn Sie das Feld ausfüllen, Ihre Angabe zu einer wiederkehrenden Aufgabe. Die Eintragung erfolgt per Double-Opt-in: Erst nach dem Klick in der Bestätigungsmail stehen Sie auf der Liste. Wir nutzen die Daten ausschließlich, um Sie vor dem Start einer neuen Runde persönlich anzuschreiben.
+          </p>
+          <p>
+            Die Daten werden beim E-Mail-Dienst Brevo (Sendinblue GmbH, Köpenicker Straße 126, 10179 Berlin) gespeichert. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit per E-Mail an uns widerrufen können. Nach dem Widerruf löschen wir Ihren Eintrag.
+          </p>
         </div>
       </LegalSection>
 
@@ -444,7 +451,7 @@ export default function DatenschutzPage() {
 
           <div>
             <h3 className={legalH3}>Google reCAPTCHA</h3>
-            <p className="mb-2">Wir nutzen Google reCAPTCHA v3 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) auf allen Seiten mit einem Formular: Kontaktseite, Warteliste zum KI-Check und Anmeldung zur Second-Brain-Anleitung. Mit reCAPTCHA wird überprüft, ob eine Eingabe durch einen Menschen oder durch ein automatisiertes Programm erfolgt. Hierzu analysiert reCAPTCHA das Verhalten des Websitebesuchers anhand verschiedener Merkmale.</p>
+            <p className="mb-2">Wir nutzen Google reCAPTCHA v3 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) auf allen Seiten mit einem Formular: Kontaktseite, Warteliste Nullnummer sowie Anmeldung zum Betriebs-Interview und zur Second-Brain-Anleitung. Mit reCAPTCHA wird überprüft, ob eine Eingabe durch einen Menschen oder durch ein automatisiertes Programm erfolgt. Hierzu analysiert reCAPTCHA das Verhalten des Websitebesuchers anhand verschiedener Merkmale.</p>
             <p className="mb-2">Die Analyse beginnt automatisch, sobald Sie eine dieser Seiten aufrufen. Dabei werden unter anderem IP-Adresse, Verweildauer, Mausbewegungen und Tastatureingaben ausgewertet und an Google übertragen, auch in die USA. reCAPTCHA speichert dafür das Cookie <code>_GRECAPTCHA</code> mit einer Laufzeit von sechs Monaten.</p>
             <p className="mb-2">Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse daran, unsere Formulare vor missbräuchlicher automatisierter Nutzung und vor Spam zu schützen. Ohne diese Prüfung wäre der Mailversand über das Kontaktformular für Bots offen.</p>
             <p>Weitere Informationen: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" className={legalLink}>https://policies.google.com/privacy</a> und <a href="https://policies.google.com/terms?hl=de" target="_blank" rel="noopener noreferrer" className={legalLink}>https://policies.google.com/terms</a></p>

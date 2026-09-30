@@ -18,7 +18,9 @@
  *     neue Anmeldung, deshalb nur mit --yes. Ohne templateId wird sie neu
  *     angelegt, die neue ID gehört danach in TEMPLATES.
  *
- * Absender bleibt, wie er in Brevo eingestellt ist: push schickt ihn nicht mit.
+ * Beim Ersetzen bleibt der Absender, wie er in Brevo eingestellt ist: push
+ * schickt ihn nicht mit. Nur neu angelegte Vorlagen bekommen `sender` (oder
+ * SENDER) und `tag` aus TEMPLATES.
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -44,6 +46,17 @@ const TEMPLATES = {
     footer: "_footer-doi.html",
     subject: "Bitte bestätigen: Deine Second-Brain-Anleitung",
     preheader: "Bestätige deine Adresse, dann öffnet sich die Anleitung.",
+  },
+  "doi-nullnummer": {
+    templateId: 12,
+    name: "DOI-Warteliste-Nullnummer",
+    // Eigener Absendername, wie im Issue #81 festgelegt: die Warteliste ist
+    // persönlich, Christoph schreibt jeden Eintrag selbst an.
+    sender: { name: "Christoph Weissteiner", email: "christoph@weissteiner-automation.com" },
+    tag: "optin",
+    footer: "_footer-doi.html",
+    subject: "Bitte bestätigen: Warteliste Nullnummer",
+    preheader: "Bestätige deine Adresse, dann stehst du auf der Warteliste.",
   },
   newsletter: {
     templateId: 11,
@@ -108,7 +121,7 @@ switch (command) {
     let html = await build(name);
     for (const [pattern, value] of TEST_PLACEHOLDERS) html = html.replace(pattern, value);
     const res = await brevo("POST", "/smtp/email", {
-      sender: SENDER,
+      sender: TEMPLATES[name].sender ?? SENDER,
       to: [{ email: arg }],
       subject: `[Test] ${TEMPLATES[name].subject}`,
       htmlContent: html,
@@ -130,7 +143,8 @@ switch (command) {
         templateName: t.name,
         subject: t.subject,
         htmlContent,
-        sender: SENDER,
+        sender: t.sender ?? SENDER,
+        ...(t.tag ? { tag: t.tag } : {}),
         isActive: true,
       });
       console.log(`Vorlage angelegt: ID ${res.id}. In TEMPLATES eintragen.`);
