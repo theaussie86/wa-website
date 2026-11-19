@@ -1,21 +1,38 @@
-// Die drei Blöcke aus signature-system.md. Links stehen sie als drei Ordner im
-// Regal, rechts steht, was in jedem passiert. Bewusst ohne Wochenangaben und
-// ohne Preis: Das Angebot steht auf Stufe 0.
+import Link from "next/link";
+import { CAL_LINK } from "@/lib/constants";
+
+// Zwei Wege ins Angebot (Entscheidung 19.11.2026 im Vault), darunter der
+// Ablauf, der für beide gilt: drei Ordner im Regal. Bewusst ohne Wochenangaben
+// und ohne Preis.
+const ways = [
+  {
+    label: "Weg 1 · Für deinen Betrieb",
+    title: "Software für deine eigenen Abläufe.",
+    text: "Du hast einen Ablauf, der heute über Listen, Papier oder drei Programme läuft. Ich baue dir eine Anwendung genau dafür. Sie läuft auf deiner Infrastruktur und gehört deinem Betrieb.",
+  },
+  {
+    label: "Weg 2 · Als Partner",
+    title: "Deine Idee, für eine ganze Gruppe.",
+    text: "Du kennst eine Gruppe von Leuten, die alle dasselbe Problem haben. Berater in einem Vertrieb, Vereine, Betriebe deiner Branche. Du bringst die Idee und kümmerst dich um den Vertrieb, ich baue die App. Die Gruppe nutzt sie im Abo, die Einnahmen teilen wir. So ist CaDo entstanden, und ich suche gerade weitere Partner.",
+    cta: "Partner werden",
+  },
+];
+
 const blocks = [
   {
-    phase: "Fundament",
-    title: "Dein Arbeitsplatz wird eingerichtet.",
-    text: "Ich richte ihn auf deinem Rechner ein und frage dich einmal gründlich über deinen Betrieb aus. Danach kennt er dich.",
+    phase: "Verstehen",
+    title: "Erst dein Ablauf, dann der Code.",
+    text: "Ich frage dich gründlich aus und schaue mir an, wer jeden Tag damit arbeitet. Gebaut wird erst, wenn klar ist, was gebraucht wird.",
   },
   {
-    phase: "Entwickeln",
-    title: "Eine echte Aufgabe, nach Lehrbuch.",
-    text: "Zum Beispiel dein wöchentlicher Beitrag. Aus deinen Korrekturen wird eine Anleitung, die bleibt.",
+    phase: "Erstes Stück",
+    title: "Ein kleines Stück, das funktioniert.",
+    text: "Du bekommst früh etwas in die Hand, das du wirklich benutzt. Daran merken wir beide, ob die Richtung stimmt.",
   },
   {
-    phase: "Im Alltag",
-    title: "Es liegt vorbereitet da.",
-    text: "Du sprichst rein, der Rest läuft im Hintergrund. Wenn du dich hinsetzt, wartet der Entwurf auf dein Urteil.",
+    phase: "Ausbauen",
+    title: "Nach und nach mehr.",
+    text: "Was im Alltag fehlt, kommt dazu. Was keiner braucht, bleibt weg.",
   },
 ];
 
@@ -52,11 +69,50 @@ function Shelf() {
 
 export function Collaboration() {
   return (
-    <section className="bg-primary py-[clamp(104px,12vw,176px)] text-white">
+    <section id="zusammenarbeit" className="scroll-mt-20 bg-primary py-[clamp(104px,12vw,176px)] text-white">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <h2 className="type-display mb-[clamp(48px,6vw,88px)] max-w-[14ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96] text-white">
-          Drei Ordner, dann steht dein Arbeitsplatz.
+          Zwei Wege, wie wir zusammen bauen.
         </h2>
+
+        <div className="mb-[clamp(88px,10vw,144px)] grid gap-6 md:grid-cols-[1fr_1.2fr] md:items-start">
+          {ways.map((way, i) => (
+            <div
+              key={way.label}
+              className={`rounded-[2px] p-[clamp(28px,4vw,48px)] ${
+                i === 1 ? "bg-white text-charcoal md:mt-12" : "border border-white/25 text-white"
+              }`}
+            >
+              <p className={`type-label mb-4 text-[12.5px] ${i === 1 ? "text-accent-800" : "text-white/70"}`}>
+                {way.label}
+              </p>
+              <h3
+                className={`type-display mb-4 text-[clamp(1.7rem,2.6vw,2.3rem)] leading-[1.04] ${
+                  i === 1 ? "text-primary" : "text-white"
+                }`}
+              >
+                {way.title}
+              </h3>
+              <p className={`text-[17px] leading-[1.65] ${i === 1 ? "text-charcoal/85" : "text-white/80"}`}>
+                {way.text}
+              </p>
+              {way.cta && (
+                <a
+                  href={CAL_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-block text-[15px] font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
+                >
+                  {way.cta}
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <h3 className="type-display mb-[clamp(40px,5vw,72px)] max-w-[18ch] text-[clamp(1.9rem,3.6vw,3rem)] leading-[1] text-white">
+          Der Ablauf ist bei beiden gleich.
+        </h3>
 
         <div className="grid items-end gap-14 lg:grid-cols-[auto_1fr] lg:gap-[clamp(64px,8vw,128px)]">
           <Shelf />
@@ -80,6 +136,14 @@ export function Collaboration() {
             ))}
           </ol>
         </div>
+
+        <p className="mt-14 max-w-[40rem] text-[15.5px] leading-[1.65] text-white/70">
+          Du willst danach selbst mit KI an deinen Daten arbeiten? Dafür gibt es den{" "}
+          <Link href="/ki-arbeitsplatz" className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
+            KI-Arbeitsplatz
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );

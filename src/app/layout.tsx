@@ -23,23 +23,23 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: `Dein KI-Arbeitsplatz: deine Arbeit, so gut wie sie gehört | ${SITE_NAME}`,
+  title: `Software nach Maß für kleine Betriebe | ${SITE_NAME}`,
   description:
-    "Ich richte dir einen KI-Arbeitsplatz ein, der weiß, wie du arbeitest. Du sprichst rein, KI bereitet vor, du entscheidest. Für Inhaber, die ihre Arbeit so machen wollen, wie sie gehört.",
+    "Ich baue Software, die sich nach deinem Betrieb richtet, nicht umgekehrt. Für deine eigenen Abläufe oder als Abo-Lösung für eine ganze Gruppe.",
   metadataBase: new URL("https://weissteiner-automation.com"),
   openGraph: {
     type: "website",
     locale: "de_DE",
     siteName: SITE_NAME,
-    title: `Dein KI-Arbeitsplatz: deine Arbeit, so gut wie sie gehört | ${SITE_NAME}`,
+    title: `Software nach Maß für kleine Betriebe | ${SITE_NAME}`,
     description:
-      "Ich richte dir einen KI-Arbeitsplatz ein, der weiß, wie du arbeitest. Du sprichst rein, KI bereitet vor, du entscheidest. Für Inhaber, die ihre Arbeit so machen wollen, wie sie gehört.",
+      "Ich baue Software, die sich nach deinem Betrieb richtet, nicht umgekehrt. Für deine eigenen Abläufe oder als Abo-Lösung für eine ganze Gruppe.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `Dein KI-Arbeitsplatz: deine Arbeit, so gut wie sie gehört | ${SITE_NAME}`,
+    title: `Software nach Maß für kleine Betriebe | ${SITE_NAME}`,
     description:
-      "Du sprichst rein, KI bereitet vor, du entscheidest. Ein KI-Arbeitsplatz, der weiß, wie du arbeitest.",
+      "Software, die sich nach deinem Betrieb richtet. Klein angefangen, nach und nach ausgebaut.",
   },
 };
 

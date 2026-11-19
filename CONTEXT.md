@@ -8,12 +8,26 @@ Widerspruch gewinnt der Vault.
 
 ## Begriffe
 
+**Software nach Maß**
+Seit 19.11.2026 der Startseitenbegriff. Eine Web-App, die nach dem Ablauf eines Betriebs oder
+einer Gruppe gebaut ist und verteilte Arbeit an einen Platz holt.
+_Vermeiden:_ Excel-Listen als Aufmacher (Symptom), "Ich baue..." als Headline, Produktivität.
+
+**Knoten**
+Das Bild für Arbeit, die sich zäh anfühlt, weil sie über viele Systeme verteilt ist. Software
+löst den Knoten. CTA: "15 Minuten über deinen Knoten reden".
+
+**Partner-Modell**
+Jemand kennt eine Gruppe mit demselben Problem und kümmert sich um den Vertrieb, Christoph baut
+die App, die Gruppe zahlt Abo, die Einnahmen werden geteilt. Vorbild CaDo.
+
+
 **KI-Arbeitsplatz**
 Ein eingerichteter Arbeitsplatz auf dem Rechner des Inhabers, an dem KI schon weiß, wie er
 arbeitet. Er macht die Arbeit selbst, KI bereitet vor, er urteilt.
 _Vermeiden:_ KI-Mitarbeiter (nur für die spätere Ausbaustufe), KI-Betriebssystem (Innenbegriff),
 "KI macht das für dich".
-Die Startseite führt mit diesem Begriff (entschieden 26.09.2026). "Deine Redaktion" /
+Seit 19.11.2026 nur noch Ausbaustufe nach eigener Software, nicht mehr Startseitenbegriff. "Deine Redaktion" /
 "Chefredakteur" (Vault `redaktion-namenssystem.md`) wird auf der Website vorerst nicht verwendet.
 
 **Inhaber**
@@ -22,6 +36,6 @@ Zielkunde. Inhaber oder Manager eines kleinen Betriebs, der schon Hilfe eingekau
 _Vermeiden:_ Creator (Geschäft ist Content, kein Käufer), Handwerk/Mittelstand als Zielgruppe.
 
 **Qualität statt Menge**
-Der Aufhänger. Versprechen ist "so gut, wie es gehört" und "klingt nach dir". Menge ist Beleg,
-nie Versprechen.
+Haltung aus der KI-Arbeitsplatz-Zeit, gilt weiter für Inhalte. Auf der Startseite ist seit
+19.11.2026 der Knoten der Aufhänger.
 _Vermeiden:_ Sichtbarkeit, Reichweite, viral, Personal Brand, Produktivität als Headline.

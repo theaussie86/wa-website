@@ -291,63 +291,60 @@ export const softwareentwicklungDach: LocalSeoPageData = {
   slug: "softwareentwicklung-dach",
 
   meta: {
-    title: "Individuelle Softwareentwicklung DACH | Weissteiner Automation",
+    title: "Software nach Maß für kleine Betriebe im DACH-Raum | Weissteiner Automation",
     description:
-      "Maßgeschneiderte Web- und App-Entwicklung für Deutschland, Österreich, Schweiz. Schnell umgesetzt, direkter Draht, ohne Agentur-Wasserkopf.",
-    ogTitle: "Individuelle Softwareentwicklung für den DACH-Raum",
+      "Web-Apps für Arbeit, die sich heute über zu viele Programme verteilt. Gebaut nach eurem Ablauf, mit Schnittstelle für KI. Remote für Deutschland, Österreich und die Schweiz.",
+    ogTitle: "Software nach Maß für kleine Betriebe im DACH-Raum",
     ogDescription:
-      "Fullstack-Entwicklung aus dem Allgäu für DACH. Web-Apps, APIs, Integrationen, direkt vom Entwickler.",
+      "Eigene Anwendungen statt Umwege um Standardprogramme. Direkt vom Entwickler, remote im DACH-Raum.",
   },
 
   hero: {
-    trustBadges: ["DACH-weit", "Fullstack", "Direkter Draht"],
-    h1: "Individuelle Softwareentwicklung für den DACH-Raum",
+    trustBadges: ["Remote im DACH-Raum", "Direkt vom Entwickler", "Mit Schnittstelle für KI"],
+    h1: "Software nach Maß für kleine Betriebe im DACH-Raum",
     subheadline:
-      "Von meinem Büro im Allgäu aus baue ich maßgeschneiderte Softwarelösungen für Betriebe in Deutschland, Österreich und der Schweiz. Remote, schnell und ohne Umweg über einen Projektmanager.",
+      "Für Arbeit, die sich zäh anfühlt, weil sie über Programme, Listen und Nachrichten verteilt ist. Eine Anwendung, die nach eurem Ablauf gebaut ist, holt sie an einen Platz.",
   },
 
   introduction: {
-    title: "Warum individuelle Software statt Standardlösung?",
+    title: "Warum eigene Software statt Standardprogramm?",
     paragraphs: [
-      "Der deutschsprachige Mittelstand hat besondere Anforderungen: Datenschutz nach DSGVO, Integration mit lokalen Systemen wie DATEV, branchenspezifische Abläufe, die kein Standardtool abbildet. Wenn Excel nicht mehr reicht und SaaS nicht passt, brauchst du individuelle Software.",
-      "Als Fullstack-Entwickler mit Fokus auf den DACH-Raum kenne ich diese Anforderungen. Ich baue Web-Anwendungen und APIs, die sich sauber in deine bestehende Infrastruktur einfügen. Keine überdimensionierten Enterprise-Systeme, sondern schlanke, wartbare Lösungen, die genau das tun, was du brauchst, und schnell live gehen.",
-      "Der Unterschied zur Agentur: Du redest direkt mit dem, der auch entwickelt. Kein Projektmanager dazwischen, keine wechselnden Entwickler, kein Warten auf den nächsten Slot. Und du bleibst Herr über deinen Code, dokumentiert und übergebbar.",
+      "Standardprogramme sind für den Prozess gebaut, nicht für den Menschen, der jeden Tag damit arbeitet. Also baut sich jeder seine Umwege: eine Liste hier, eine Notiz da. Zusammen machen sie aus einer klaren Aufgabe eine, die man vor sich herschiebt.",
+      "Eigene Software war für kleine Betriebe lange zu teuer. Das hat sich geändert, auch weil KI beim Code mitschreibt. Ich fange klein an, mit einem Stück, das ihr wirklich benutzt, und baue nach und nach aus.",
+      "Du redest direkt mit dem, der entwickelt. Was für deinen Betrieb gebaut wird, gehört dir, dokumentiert und übergebbar. Gearbeitet wird remote, in Deutschland, Österreich und der Schweiz.",
     ],
   },
 
   serviceHighlights: {
-    title: "Was ich für Sie entwickle",
-    description:
-      "Moderne Web-Technologien für praktische Business-Anwendungen.",
+    title: "Was ich baue",
+    description: "Web-Anwendungen für die Arbeit, die heute zwischen Programmen hängt.",
     features: [
-      "Interne Tools und Dashboards für Ihr Team",
-      "Kundenportale und Self-Service-Anwendungen",
-      "API-Entwicklung und Systemintegration",
-      "Automatisierte Workflows und Prozess-Apps",
-      "Mobile-optimierte Web-Anwendungen",
+      "Interne Werkzeuge für deinen Ablauf",
+      "Mitglieder- und Kundenbereiche mit eigenem Login",
+      "Abo-Lösungen mit Partnern für eine ganze Gruppe",
+      "Schnittstellen, über die KI direkt mit deinen Daten arbeitet",
+      "Anbindungen an die Programme, die du schon nutzt",
     ],
     image: {
       src: "/services/service_fullstack_sketch_1772400707439.png",
-      alt: "Individuelle Softwareentwicklung für DACH",
+      alt: "Skizze einer Web-Anwendung",
     },
   },
 
   useCases: {
-    title: "Beispiele aus dem DACH-Raum",
+    title: "Wo der Knoten schon gelöst ist",
     items: [
-      "Schweizer Händler: Kundenportal mit Bestellhistorie und Dokumenten-Download",
-      "Österreichischer Produzent: Internes QM-Tool mit Prüfprotokollen",
-      "Deutsches KMU: Mitarbeiter-Dashboard mit Urlaubsplanung und Zeiterfassung",
-      "Steuerberater: Mandantenportal für Dokumentenaustausch",
-      "E-Commerce: Schnittstelle zwischen Webshop und Warenwirtschaft",
-      "Dienstleister: Projekt-Tracking-Tool mit Kundenzugang",
+      "CaDo: der Arbeitstag von Reico-Vertriebspartnern, mit Kunden, Tieren, Bestellungen und Nachfass an einem Ort",
+      "Hahna Brothers: Bestellrunde, Termine und Archiv für eine Bruderschaft statt zehn Excel-Listen",
+      "Pinfinity: Recherche, Pins und Metadaten für Blogs mit Affiliate-Seiten an einem Platz",
+      "Förderverein SV Amendingen: Mitgliedsantrag mit SEPA-Mandat und Spendenbelege ohne Papier",
     ],
   },
 
   region: {
     name: "DACH",
     cities: ["Zürich", "Wien", "München", "Frankfurt", "Berlin", "Hamburg"],
-    testimonialIds: ["florian-heuer", "wimo"],
+    testimonialIds: [],
   },
 
   schema: {
@@ -357,9 +354,9 @@ export const softwareentwicklungDach: LocalSeoPageData = {
       { "@type": "Country", name: "Schweiz" },
     ],
     serviceType: "Custom Software Development",
-    serviceName: "Individuelle Softwareentwicklung DACH",
+    serviceName: "Software nach Maß für kleine Betriebe im DACH-Raum",
     serviceDescription:
-      "Maßgeschneiderte Web- und App-Entwicklung für den DACH-Raum. Fullstack-Entwicklung, API-Integration und langfristige Betreuung für mittelständische Unternehmen.",
+      "Web-Anwendungen nach dem Ablauf kleiner Betriebe, mit Schnittstelle für KI. Remote für Deutschland, Österreich und die Schweiz.",
   },
 
   relatedPages: [

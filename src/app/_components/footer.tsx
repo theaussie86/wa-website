@@ -26,7 +26,7 @@ export function Footer() {
         <div className="grid gap-14 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="type-display mb-6 max-w-[12ch] text-balance text-[clamp(2.2rem,4vw,3.4rem)] leading-[0.98] text-white">
-              Deine Arbeit, so gut wie sie gehört.
+              Software, die sich nach euch richtet.
             </p>
             <p className="text-[15px] text-white/70">
               {SITE_NAME} · {LOCATION}

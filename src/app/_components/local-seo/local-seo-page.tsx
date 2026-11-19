@@ -195,7 +195,7 @@ export function LocalSeoPage({ data }: LocalSeoPageProps) {
             </h2>
             <p className="text-lg text-primary-200 mb-6">
               {data.slug === "softwareentwicklung-dach"
-                ? "Remote-Zusammenarbeit mit Unternehmen in ganz DACH — persönliche Treffen nach Vereinbarung."
+                ? "Remote-Zusammenarbeit im ganzen DACH-Raum, persönliche Treffen nach Vereinbarung."
                 : "Vor-Ort-Termine möglich in der gesamten Region. Remote-Zusammenarbeit selbstverständlich auch."}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
