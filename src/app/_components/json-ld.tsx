@@ -167,6 +167,7 @@ interface ServiceSchema {
   "@id": string;
   name: string;
   description: string;
+  url: string;
   provider: {
     "@type": "ProfessionalService";
     "@id": string;
@@ -178,79 +179,66 @@ interface ServiceSchema {
   serviceType: string;
 }
 
+const DACH: ServiceSchema["areaServed"] = [
+  { "@type": "Country", name: "Deutschland" },
+  { "@type": "Country", name: "Österreich" },
+  { "@type": "Country", name: "Schweiz" },
+];
+
+const PROVIDER: ServiceSchema["provider"] = {
+  "@type": "ProfessionalService",
+  "@id": `${BASE_URL}/#localbusiness`,
+};
+
+function service(
+  id: string,
+  path: string,
+  name: string,
+  serviceType: string,
+  description: string,
+): ServiceSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${BASE_URL}${path}#${id}`,
+    name,
+    description,
+    url: `${BASE_URL}${path}`,
+    provider: PROVIDER,
+    areaServed: DACH,
+    serviceType,
+  };
+}
+
 const servicesSchemas: ServiceSchema[] = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${BASE_URL}/ki-arbeitsplatz#arbeitsplatz`,
-    name: "KI-Arbeitsplatz",
-    description:
-      "Eingerichteter KI-Arbeitsplatz auf dem Rechner des Inhabers: KI bereitet eine wiederkehrende Aufgabe nach seiner Anleitung vor, er entscheidet. Persönlich begleitet, mit einer Anleitung, die beim Arbeiten entsteht.",
-    provider: {
-      "@type": "ProfessionalService",
-      "@id": `${BASE_URL}/#localbusiness`,
-    },
-    areaServed: [
-      { "@type": "Country", name: "Deutschland" },
-      { "@type": "Country", name: "Österreich" },
-      { "@type": "Country", name: "Schweiz" },
-    ],
-    serviceType: "AI Workplace Setup",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${BASE_URL}/leistungen#prozessautomatisierung`,
-    name: "Prozessautomatisierung",
-    description:
-      "Wiederkehrende Aufgaben automatisieren: Rechnungsverarbeitung, CRM-Updates, E-Mail-Marketing, Datenübertragung und Berichterstellung für den Mittelstand.",
-    provider: {
-      "@type": "ProfessionalService",
-      "@id": `${BASE_URL}/#localbusiness`,
-    },
-    areaServed: [
-      { "@type": "Country", name: "Deutschland" },
-      { "@type": "Country", name: "Österreich" },
-      { "@type": "Country", name: "Schweiz" },
-    ],
-    serviceType: "Business Process Automation",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${BASE_URL}/leistungen#webentwicklung`,
-    name: "Individuelle Web- & App-Entwicklung",
-    description:
-      "Maßgeschneiderte Softwarelösungen: Skalierbare Fullstack-Anwendungen, moderne UI/UX, Mobile- & Web-Apps, sichere Datenbankarchitekturen und API-Anbindungen.",
-    provider: {
-      "@type": "ProfessionalService",
-      "@id": `${BASE_URL}/#localbusiness`,
-    },
-    areaServed: [
-      { "@type": "Country", name: "Deutschland" },
-      { "@type": "Country", name: "Österreich" },
-      { "@type": "Country", name: "Schweiz" },
-    ],
-    serviceType: "Custom Software Development",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${BASE_URL}/leistungen#ki-integration`,
-    name: "Systemintegration & KI-Anbindung",
-    description:
-      "Intelligente Verknüpfung bestehender Systeme mit KI: Dokumentenverarbeitung, automatisierte Kategorisierung, Chatbots und API-Integrationen.",
-    provider: {
-      "@type": "ProfessionalService",
-      "@id": `${BASE_URL}/#localbusiness`,
-    },
-    areaServed: [
-      { "@type": "Country", name: "Deutschland" },
-      { "@type": "Country", name: "Österreich" },
-      { "@type": "Country", name: "Schweiz" },
-    ],
-    serviceType: "AI Integration Services",
-  },
+  service(
+    "software-nach-mass",
+    "/softwareentwicklung-dach",
+    "Software nach Maß für kleine Betriebe",
+    "Custom Software Development",
+    "Web-Anwendungen, die nach dem Ablauf eines kleinen Betriebs gebaut sind und Arbeit aus mehreren Programmen und Listen an einen Platz holen. Läuft auf der Infrastruktur des Betriebs und gehört ihm.",
+  ),
+  service(
+    "partner-modell",
+    "/",
+    "Abo-Lösungen mit Partnern",
+    "Custom Software Development",
+    "Gemeinsame Anwendungen für eine ganze Gruppe: Der Partner bringt die Idee und den Vertrieb, Weissteiner Automation baut und betreibt die Anwendung, die Einnahmen aus den Abos werden geteilt.",
+  ),
+  service(
+    "prozessautomatisierung",
+    "/prozessautomatisierung-allgaeu",
+    "Abläufe zwischen Programmen verbinden",
+    "Business Process Automation",
+    "Programme miteinander verbinden, damit Daten nur einmal erfasst werden, zum Beispiel zwischen Shop, Warenwirtschaft, Buchhaltung und CRM.",
+  ),
+  service(
+    "ki-arbeitsplatz",
+    "/ki-arbeitsplatz",
+    "KI-Arbeitsplatz",
+    "AI Workplace Setup",
+    "Ausbaustufe, wenn die Daten an einem Ort liegen: ein eingerichteter KI-Arbeitsplatz, über den KI per Schnittstelle mit den Daten des Betriebs arbeitet. Der Inhaber bedient ihn selbst.",
+  ),
 ];
 
 export function JsonLd() {

@@ -1,12 +1,12 @@
 import { Sheet } from "@/app/_components/sheet";
 
-// Vorher/Nachher aus signature-system.md ("Womit er anfängt") als Vordruck im
-// Querformat. Die Zeitbudget-Spalte ist mit dem Stift des Inhabers gestrichen.
+// Von der Stange gegen nach Maß, als Vordruck im Querformat. Die Spalte
+// "Von der Stange" ist mit dem Stift des Inhabers gestrichen.
 const rows = [
-  { task: "Der Beitrag", budget: "vom Dienstleister, nicht dein Stil", method: "regelmäßig, in deiner Sprache" },
-  { task: "Das Angebot", budget: "aus der Vorlage", method: "auf den Kunden zugeschnitten" },
-  { task: "Die Antwort auf eine Anfrage", budget: "kurz angebunden", method: "persönlich und vollständig" },
-  { task: "Nach dem Termin", budget: "Follow-up bei manchem", method: "Follow-up nach jedem" },
+  { task: "Der Ablauf", budget: "du richtest dich nach dem Programm", method: "das Programm richtet sich nach dir" },
+  { task: "Deine Daten", budget: "verteilt auf Programm, Excel und Zettel", method: "an einem Ort, einmal gepflegt" },
+  { task: "Ein neuer Wunsch", budget: "steht auf der Liste des Herstellers", method: "wird eingebaut, wenn du ihn brauchst" },
+  { task: "KI", budget: "wenn der Hersteller es anbietet", method: "über eine Schnittstelle direkt an deinen Daten" },
 ];
 
 export function CoreIdea() {
@@ -15,11 +15,13 @@ export function CoreIdea() {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="mb-[clamp(48px,6vw,80px)] grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
           <h2 className="type-display max-w-[17ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
-            Der gute Weg rechnet sich jetzt.
+            Maßarbeit rechnet sich jetzt auch für Kleine.
           </h2>
           <p className="max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
-            Du weißt längst, wie deine Arbeit gehört. Durchgestrichen steht, wie sie heute
-            rausgeht. Daneben, wie sie rausgehen könnte, ohne dich den Abend zu kosten.
+            Eigene Software hat sich für einen kleinen Betrieb lange nicht gerechnet. Also hast du
+            genommen, was es gab, und dich danach gerichtet. Heute baue ich deutlich schneller,
+            auch weil KI beim Code mitschreibt. Was gebaut wird und ob es taugt, entscheiden wir
+            beide.
           </p>
         </div>
 
@@ -27,9 +29,9 @@ export function CoreIdea() {
           <table className="w-full border-collapse text-left">
             <thead className="hidden md:table-header-group">
               <tr className="border-b-2 border-primary">
-                <th scope="col" className="type-label w-[26%] pb-3 text-[12.5px] font-semibold text-charcoal/70">Aufgabe</th>
-                <th scope="col" className="type-label w-[28%] pb-3 text-[12.5px] font-semibold text-charcoal/70">Nach Zeitbudget</th>
-                <th scope="col" className="type-label pb-3 text-[12.5px] font-semibold text-primary">Nach Lehrbuch</th>
+                <th scope="col" className="type-label w-[26%] pb-3 text-[12.5px] font-semibold text-charcoal/70">Was</th>
+                <th scope="col" className="type-label w-[28%] pb-3 text-[12.5px] font-semibold text-charcoal/70">Von der Stange</th>
+                <th scope="col" className="type-label pb-3 text-[12.5px] font-semibold text-primary">Nach Maß</th>
               </tr>
             </thead>
             <tbody>

@@ -8,26 +8,32 @@ import { CTASection } from "@/app/_components/cta-section";
 export const metadata: Metadata = {
   title: `Leistungen | ${SITE_NAME}`,
   description:
-    "Im Mittelpunkt steht dein KI-Arbeitsplatz. Wenn eine Aufgabe mehr braucht, baue ich auch Abläufe, Anbindungen, eigene Werkzeuge und Websites mit Anschluss an deine Systeme.",
+    "Software nach Maß für Arbeit, die sich heute über zu viele Programme verteilt. Für deinen Betrieb oder als Abo-Lösung mit Partnern für eine ganze Gruppe.",
 };
 
-// Quelle: Vault core/services.md (Lieferkatalog). Preise und Laufzeiten stehen
-// bewusst nicht hier, sie gehören ins Gespräch (offer-system.md).
+// Seit 19.11.2026: Custom-Software vorne, KI-Arbeitsplatz als Ausbaustufe
+// (Vault memory/decisions.md). Preise und Laufzeiten stehen bewusst nicht
+// hier, sie gehören ins Gespräch.
 const builds = [
   {
-    title: "Abläufe, die von allein laufen",
+    title: "Abo-Lösungen mit Partnern",
+    text: "Du kennst eine Gruppe, die alle mit derselben zähen Arbeit kämpft, und hast eine Idee dafür. Du kümmerst dich um den Vertrieb, ich baue die App, die Einnahmen teilen wir.",
+    example: "Zum Beispiel CaDo für die Vertriebspartner von Reico.",
+  },
+  {
+    title: "Schnittstellen für KI",
+    text: "Jede Anwendung bekommt auf Wunsch eine Schnittstelle, über die KI direkt mit deinen Daten arbeitet. Erst damit lohnt sich eigene Software richtig.",
+    example: "Über MCP, wie bei CaDo und Pinfinity.",
+  },
+  {
+    title: "Abläufe zwischen Programmen",
     text: "Daten, die zwischen deinen Programmen hin und her müssen, Berichte, Ablage. Ich nehme den Ablauf auf, baue ihn und dokumentiere ihn so, dass du ihn selbst warten kannst.",
     example: "Vorrangig mit n8n, angebunden an das, was du ohnehin nutzt.",
   },
   {
-    title: "KI in bestehenden Abläufen",
-    text: "Wo Dokumente gelesen, Texte vorbereitet oder Daten herausgezogen werden müssen. Immer an einem konkreten Ablauf, nie als KI-Strategie im Abstrakten.",
-    example: "Zum Beispiel Eingangsrechnungen, interne Assistenten, Textvorlagen.",
-  },
-  {
-    title: "Eigene Werkzeuge",
-    text: "Wenn Standardprogramme nicht reichen, baue ich das Werkzeug selbst und betreibe es auf einem Server, der dir gehört.",
-    example: "TypeScript, Node.js, Datenbank, Docker.",
+    title: "KI-Arbeitsplatz",
+    text: "Wenn deine Daten an einem Ort liegen, richte ich dir einen Arbeitsplatz ein, an dem KI deinen Betrieb kennt und vorbereitet. Du entscheidest.",
+    example: "Meist der Schritt nach einer eigenen Anwendung.",
   },
   {
     title: "Websites mit Anschluss",
@@ -42,6 +48,10 @@ const builds = [
 ];
 
 const rules = [
+  {
+    title: "Erst der Mensch, dann der Code.",
+    text: "Ich schaue mir an, wer jeden Tag damit arbeitet und wo es sich zäh anfühlt. Gebaut wird danach.",
+  },
   {
     title: "Kleine Schritte.",
     text: "Lieber eine Sache, die läuft, als fünf, die halb fertig sind.",
@@ -72,17 +82,17 @@ export default function ServicesPage() {
   return (
     <main>
       <PageHead
-        title="Was ich einrichte und baue."
-        titleClassName="max-w-[12ch]"
+        title="Software für die Arbeit, die sich zäh anfühlt."
+        titleClassName="max-w-[14ch]"
         lead={
           <p>
-            Im Mittelpunkt steht dein KI-Arbeitsplatz. Wenn eine Aufgabe mehr braucht als Text,
-            baue ich auch das: Abläufe, Anbindungen, eigene Werkzeuge.
+            Im Mittelpunkt steht eine Anwendung, die nach eurem Ablauf gebaut ist. Für deinen
+            Betrieb oder mit dir als Partner für eine ganze Gruppe.
           </p>
         }
       />
 
-      {/* Der Arbeitsplatz zuerst */}
+      {/* Software nach Maß zuerst */}
       <section className="bg-pappe py-[clamp(88px,11vw,160px)]">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <Sheet className="mr-10 grid gap-10 py-[clamp(36px,5vw,64px)] pr-[clamp(24px,5vw,72px)] pl-[clamp(48px,7vw,104px)] lg:grid-cols-[1.1fr_1fr] lg:items-end">
@@ -91,16 +101,16 @@ export default function ServicesPage() {
             </Tab>
             <div>
               <h2 className="type-display mb-5 text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[0.98]">
-                KI-Arbeitsplatz
+                Software nach Maß
               </h2>
               <p className="max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
-                Ein Arbeitsplatz auf deinem Rechner, an dem KI deinen Betrieb kennt. Du sprichst
-                rein, KI bereitet vor, du entscheidest. Eine wiederkehrende Aufgabe machst du
-                danach so gut, wie sie gehört.
+                Eine Web-App für einen Ablauf, der heute über Listen, Nachrichten und mehrere
+                Programme läuft. Erst ein kleines Stück, das ihr wirklich benutzt, dann nach und
+                nach mehr. Sie läuft auf eurer Infrastruktur und gehört euch.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:justify-end">
-              <Button href="/ki-arbeitsplatz">So entsteht er</Button>
+              <Button href="/#projekte">Beispiele ansehen</Button>
               <Button href={CAL_LINK} variant="text">
                 15 Minuten reden
               </Button>
@@ -114,11 +124,11 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="mb-[clamp(40px,5vw,64px)] grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
             <h2 className="type-display max-w-[14ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
-              Was ich außerdem baue.
+              Was dazugehören kann.
             </h2>
             <p className="max-w-[34rem] text-[18px] leading-[1.7] text-charcoal/85">
-              Ich bin Softwareentwickler. Wenn der Arbeitsplatz an eine Grenze kommt, weil ein
-              Ablauf in deine Systeme muss, baue ich den Teil, der fehlt.
+              Nicht jeder Knoten braucht eine ganze Anwendung. Manchmal reicht ein Ablauf zwischen
+              zwei Programmen, manchmal ist der nächste Schritt KI an den eigenen Daten.
             </p>
           </div>
 
@@ -178,8 +188,8 @@ export default function ServicesPage() {
               ))}
             </ul>
             <p className="mt-10 max-w-[28rem] text-[17px] leading-[1.65] text-white/80">
-              Was ich baue, gehört dir. Dokumentiert, auf deinen Systemen, von jemand anderem
-              übernehmbar.
+              Was für deinen Betrieb gebaut wird, gehört dir. Dokumentiert, auf deinen Systemen,
+              von jemand anderem übernehmbar.
             </p>
           </div>
         </div>
@@ -187,7 +197,8 @@ export default function ServicesPage() {
 
       <CTASection
         title="Wo hakt es gerade am meisten?"
-        lead="Erzähl es mir in 15 Minuten. Dann sage ich dir, ob der Arbeitsplatz reicht, ob etwas gebaut werden muss, oder ob ich der Falsche dafür bin."
+        line="Dein Knoten"
+        lead="Erzähl es mir in 15 Minuten. Dann sage ich dir, ob sich eine eigene Lösung lohnt, ob ein kleiner Ablauf reicht, oder ob ich der Falsche dafür bin."
       />
     </main>
   );

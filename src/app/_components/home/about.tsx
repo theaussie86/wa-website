@@ -24,20 +24,24 @@ export function About() {
 
         <div>
           <h2 className="type-display mb-8 text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96]">
-            Ich arbeite selbst so.
+            Erst der Mensch, dann der Code.
           </h2>
           <div className="mb-10 max-w-[32rem] space-y-5 text-[18px] leading-[1.7] text-charcoal/85">
-            <p>Ich bin Christoph Weissteiner, Softwareentwickler aus Memmingen im Allgäu.</p>
             <p>
-              Beim Programmieren hat KI meine Arbeit nicht übernommen. Sie hat sie besser
-              gemacht: Tests, Dokumentation, saubere Abläufe, für die früher nie Zeit war. Das
-              Können und das Urteil sind bei mir geblieben.
+              Ich bin Christoph Weissteiner, Softwareentwickler aus Memmingen im Allgäu. Ich baue die
+              ganze Anwendung, von der Datenbank bis zur Oberfläche.
             </p>
             <p>
-              Meine Beiträge entstehen heute genauso: Ich spreche rein, der Entwurf liegt bereit,
-              ich entscheide.
+              Angefangen hat es in der Auftragskonstruktion, mit denselben Daten an mehreren
+              Stellen. Ein paar Office-Makros haben das Leben dort ein bisschen leichter gemacht.
+              Dass selbst so kleine Sachen
+              funktionieren, hat mich gepackt.
             </p>
-            <p>Genau so einen Arbeitsplatz richte ich dir ein.</p>
+            <p>
+              Meine ersten Automatisierungen hat kaum jemand benutzt, weil ich sie am Menschen
+              vorbei gebaut hatte. Seitdem frage ich zuerst, wer jeden Tag damit arbeitet und wo es
+              sich für ihn zäh anfühlt.
+            </p>
           </div>
           <Button href="/ueber-mich" variant="text">
             Mehr über mich

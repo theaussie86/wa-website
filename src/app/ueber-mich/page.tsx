@@ -8,12 +8,13 @@ import { CTASection } from "@/app/_components/cta-section";
 export const metadata: Metadata = {
   title: `Über mich | ${SITE_NAME}`,
   description:
-    "Christoph Weissteiner, Softwareentwickler aus Memmingen. Ich richte Inhabern einen KI-Arbeitsplatz ein und arbeite selbst genau so.",
+    "Christoph Weissteiner, Softwareentwickler aus Memmingen. Ich baue Software, die sich nach den Menschen richtet, die jeden Tag damit arbeiten.",
 };
 
 // Quelle: Vault core/story.md (Glaubwürdigkeitsanker) und core/me.md.
 // Christoph ist Beweisstück, nicht Avatar.
 const stance = [
+  { against: "Ablauf nach dem Programm", for: "Programm nach dem Ablauf" },
   { against: "Werkzeug um des Werkzeugs willen", for: "Erst die Frage, dann das Werkzeug" },
   { against: "Bauen und verschwinden", for: "Umsetzung, die auch benutzt wird" },
   { against: "KI löst alles", for: "Ehrliche Einschätzung, was es bringt" },
@@ -28,8 +29,8 @@ export default function AboutPage() {
         titleClassName="max-w-[17ch]"
         lead={
           <p>
-            Daraus habe ich gelernt, zuerst zu fragen und dann zu bauen. Heute richte ich Inhabern
-            einen KI-Arbeitsplatz ein, an dem sie ihre Arbeit so machen, wie sie gehört.
+            Daraus habe ich gelernt, zuerst zu fragen und dann zu bauen. Heute baue ich Software für
+            Arbeit, die sich zäh anfühlt, und fange bei den Menschen an, die sie jeden Tag machen.
           </p>
         }
         aside={

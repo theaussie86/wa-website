@@ -6,11 +6,13 @@ import { Sheet, Tab } from "@/app/_components/sheet";
 // Das letzte Register im Ordner: ein Kontaktblatt mit einer freien Zeile
 // für die erste Aufgabe. Unterseiten nutzen es über CTASection mit eigener Frage.
 export function Closing({
-  title = "Welche Arbeit würdest du gern so machen, wie sie gehört?",
-  lead = "Nenn mir eine Aufgabe. In 15 Minuten wissen wir, ob sie sich als erste eignet. Und wenn sie nichts taugt, sage ich dir das.",
+  title = "Welche Arbeit schiebst du gerade vor dir her?",
+  line = "Dein Knoten",
+  lead = "Erzähl mir in 15 Minuten davon. Dann wissen wir beide, ob eine eigene Lösung den Knoten löst. Und wenn nicht, sage ich dir das.",
 }: {
   title?: string;
   lead?: string;
+  line?: string;
 }) {
   return (
     <section className="bg-pappe py-[clamp(104px,12vw,176px)]">
@@ -36,7 +38,7 @@ export function Closing({
 
           {/* Vordruckzeile: bleibt bewusst leer */}
           <div aria-hidden="true" className="mb-10 flex max-w-[34rem] items-end gap-4">
-            <span className="type-label shrink-0 text-[12px] text-charcoal/75">Deine Aufgabe</span>
+            <span className="type-label shrink-0 text-[12px] text-charcoal/75">{line}</span>
             <span className="mb-1 h-px flex-1 bg-charcoal/30" />
           </div>
 
