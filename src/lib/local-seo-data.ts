@@ -90,56 +90,55 @@ export const prozessautomatisierungAllgaeu: LocalSeoPageData = {
   slug: "prozessautomatisierung-allgaeu",
 
   meta: {
-    title: "Prozessautomatisierung im Allgäu | Weissteiner Automation",
+    title: "Prozessautomatisierung im Allgäu für kleine Betriebe | Weissteiner Automation",
     description:
-      "Wiederkehrende Abläufe automatisieren, damit dein Team Zeit gewinnt. Dein direkter Draht für Prozessautomatisierung in Memmingen und im ganzen Allgäu. In Tagen umgesetzt, nicht monatelang.",
+      "Wenn dieselben Daten in drei Programmen stehen und keiner mehr weiß, wo was liegt. Abläufe zwischen Programmen verbinden oder eine eigene Anwendung bauen, aus Memmingen für das Allgäu.",
     ogTitle: "Prozessautomatisierung im Allgäu",
     ogDescription:
-      "Lokaler Experte für Automatisierung im Mittelstand. Von Memmingen aus für das gesamte Allgäu.",
+      "Abläufe zwischen Programmen verbinden, damit die Arbeit nicht mehr liegen bleibt. Aus Memmingen für kleine Betriebe im Allgäu.",
   },
 
   hero: {
-    trustBadges: ["Standort Memmingen", "In Tagen umgesetzt", "Direkter Draht"],
+    trustBadges: ["Aus Memmingen", "Direkt vom Entwickler", "Klein anfangen"],
     h1: "Prozessautomatisierung im Allgäu",
     subheadline:
-      "Als dein direkter Draht aus Memmingen automatisiere ich den Kleinkram, der dein Team täglich aufhält. Schnell umgesetzt, direkt in deiner Infrastruktur, und du bleibst Herr im eigenen Haus.",
+      "Für Arbeit, die liegen bleibt, weil sie zwischen Programmen hängt. Ich verbinde, was getrennt ist, und baue eine eigene Anwendung, wo Verbinden nicht mehr reicht.",
   },
 
   introduction: {
-    title: "Automatisierung für Allgäuer Unternehmen",
+    title: "Wenn die Arbeit zwischen den Programmen hängen bleibt",
     paragraphs: [
-      "Das Allgäu lebt vom Mittelstand: Handwerk in Kempten, Maschinenbau in Memmingen, Dienstleister am Bodensee. Überall dieselbe Sache, Abläufe, die täglich Zeit fressen. Rechnungen abtippen, Daten zwischen Systemen kopieren, Berichte zusammenstellen. Genau da setzt Prozessautomatisierung an.",
-      "Ich bin dein Partner vor Ort und kenne den regionalen Mittelstand. Keine überdimensionierten Enterprise-Lösungen, sondern pragmatische Automatisierung, die zu deinem Betrieb passt und in Tagen läuft statt in Monaten. Mit Sitz in Memmingen bin ich schnell bei dir, wenn du mich brauchst.",
-      "Der Unterschied zur Agentur: kein Wasserkopf, kein Warten auf den nächsten freien Slot. Ich richte dir die Werkzeuge so ein, dass du und dein Team selbst nachjustieren könnt. Befähigt statt abhängig.",
+      "Die meisten kleinen Betriebe haben nicht zu wenig Programme, sondern zu viele, die nichts voneinander wissen. Also trägt jemand die Daten von Hand von einem ins andere. Das schafft keinen Wert, kostet aber jeden Tag Aufmerksamkeit, und was Aufmerksamkeit kostet, wird gern verschoben.",
+      "Oft reicht es, zwei Programme miteinander reden zu lassen. Manchmal ist der Ablauf aber so eigen, dass jede Verbindung nur ein weiterer Umweg wäre. Dann baue ich eine Anwendung, die nach deinem Ablauf funktioniert, und hole die Arbeit an einen Platz.",
+      "Ich sitze in Memmingen und arbeite mit Betrieben im ganzen Allgäu. Du redest direkt mit dem, der baut. Was für deinen Betrieb entsteht, läuft auf deiner Infrastruktur und gehört dir.",
     ],
   },
 
   serviceHighlights: {
-    title: "Was ich für Sie automatisiere",
+    title: "Was ich verbinde und baue",
     description:
-      "Typische Abläufe, die Allgäuer Betriebe Zeit und Nerven kosten, und die ich schnell in den Griff bekomme.",
+      "Erst verstehen, wie bei dir gearbeitet wird. Dann das kleinste Stück bauen, das spürbar entlastet.",
     features: [
-      "Rechnungsverarbeitung und Buchhaltungsvorbereitung",
-      "CRM-Updates und Kundendatenmanagement",
-      "Angebots- und Auftragsbestätigungserstellung",
-      "Datenübertragung zwischen ERP, CRM und Webshop",
-      "Automatische Berichterstellung für Geschäftsführung",
+      "Daten einmal erfassen statt in mehreren Programmen pflegen",
+      "Verbindungen zwischen Shop, Warenwirtschaft, Buchhaltung und CRM",
+      "Auswertungen, die sich selbst zusammenstellen",
+      "Eigene Anwendungen, wo Standardprogramme nicht mehr passen",
+      "Schnittstellen, über die KI später mit deinen Daten arbeiten kann",
     ],
     image: {
       src: "/services/service_automation_sketch_1772400691292.png",
-      alt: "Prozessautomatisierung im Allgäu - Workflow-Skizze",
+      alt: "Skizze eines Ablaufs zwischen mehreren Programmen",
     },
   },
 
   useCases: {
-    title: "Konkrete Anwendungsfälle aus der Region",
+    title: "Typische Knoten, die sich lösen lassen",
     items: [
-      "Handwerksbetrieb: Auftragsbestätigungen automatisch aus CRM generieren",
-      "Maschinenbau: Produktionsdaten automatisch ins ERP übertragen",
-      "Hotellerie: Buchungsbestätigungen und Follow-ups automatisieren",
-      "Einzelhandel: Lagerbestände zwischen Filiale und Webshop synchronisieren",
-      "Dienstleister: Projektzeiten automatisch erfassen und abrechnen",
-      "Produktion: Qualitätsberichte automatisch erstellen und verteilen",
+      "Bestellungen aus dem Shop landen von selbst in der Warenwirtschaft",
+      "Anfragen aus Formular, E-Mail und Telefon sammeln sich an einer Stelle",
+      "Ein Mitgliedsantrag mit SEPA-Mandat kommt digital an, statt auf Papier",
+      "Die Monatsauswertung steht bereit, ohne dass jemand Listen zusammenkopiert",
+      "Ein Vertriebspartner sieht morgens, welcher Kunde heute dran ist",
     ],
   },
 
@@ -162,24 +161,24 @@ export const prozessautomatisierungAllgaeu: LocalSeoPageData = {
     serviceType: "Business Process Automation",
     serviceName: "Prozessautomatisierung im Allgäu",
     serviceDescription:
-      "Lokale Prozessautomatisierung für Unternehmen im Allgäu. Rechnungsverarbeitung, CRM-Integration, Workflow-Automatisierung, direkt vor Ort in Memmingen.",
+      "Abläufe zwischen Programmen verbinden und eigene Anwendungen bauen, für kleine Betriebe im Allgäu. Aus Memmingen, direkt vom Entwickler.",
   },
 
   relatedPages: [
     {
-      path: "/ki-beratung-bayern",
-      title: "KI-Beratung in Bayern",
-      description: "KI-Integration für den bayerischen Mittelstand",
+      path: "/softwareentwicklung-dach",
+      title: "Software nach Maß",
+      description: "Eigene Anwendungen für kleine Betriebe",
     },
     {
-      path: "/softwareentwicklung-dach",
-      title: "Softwareentwicklung DACH",
-      description: "Individuelle Softwarelösungen für den DACH-Raum",
+      path: "/ki-beratung-bayern",
+      title: "KI-Beratung in Bayern",
+      description: "KI, die mit deinen Daten arbeitet",
     },
     {
       path: "/leistungen",
       title: "Alle Leistungen",
-      description: "Übersicht aller Services",
+      description: "Was ich baue und wie",
     },
   ],
 };
@@ -191,56 +190,55 @@ export const kiBeratungBayern: LocalSeoPageData = {
   slug: "ki-beratung-bayern",
 
   meta: {
-    title: "KI-Beratung in Bayern | Weissteiner Automation",
+    title: "KI-Beratung in Bayern für kleine Betriebe | Weissteiner Automation",
     description:
-      "Pragmatische KI für den bayerischen Mittelstand. Ich zeig dir, wie du KI selbst nutzt: Dokumente, E-Mails, Anfragen. Ohne Hype, mit Ergebnissen.",
-    ogTitle: "KI-Beratung für den bayerischen Mittelstand",
+      "KI hilft erst, wenn sie an deine Daten kommt. Ich ordne die Grundlage, baue die Schnittstelle und zeige dir, wie du KI selbst nutzt. Aus Memmingen für Betriebe in Bayern.",
+    ogTitle: "KI-Beratung in Bayern",
     ogDescription:
-      "KI-Integration ohne Buzzwords. Praktische Lösungen für bayerische Unternehmen.",
+      "Erst die Daten an einen Ort, dann kann KI mitarbeiten. Für kleine Betriebe in Bayern.",
   },
 
   hero: {
-    trustBadges: ["Aus Bayern", "Ohne KI-Hype", "Selbst nutzbar"],
+    trustBadges: ["Aus Memmingen", "Erst die Grundlage", "Selbst nutzbar"],
     h1: "KI-Beratung in Bayern",
     subheadline:
-      "KI muss nicht kompliziert sein. Ich zeig dir, wie du KI im Alltag praktisch einsetzt und selbst bedienst, ohne Buzzwords und mit messbaren Ergebnissen.",
+      "KI kann viel, aber sie weiß nichts über deinen Betrieb, solange deine Daten über fünf Programme verstreut sind. Ich sorge dafür, dass sie an einem Ort liegen, und zeige dir, wie du KI damit selbst arbeiten lässt.",
   },
 
   introduction: {
-    title: "KI für den bayerischen Mittelstand: pragmatisch statt futuristisch",
+    title: "Warum KI bei vielen nicht über das Ausprobieren hinauskommt",
     paragraphs: [
-      "Bayern lebt von seinem Mittelstand. Vom Automobilzulieferer in Schwaben bis zum Maschinenbauer in Oberbayern stellt sich dieselbe Frage: Wie nutze ich KI sinnvoll, ohne mich in teuren Experimenten zu verlieren?",
-      "Die Wahrheit: Was heute funktioniert, sind nicht die spektakulären Roboter aus den Medien, sondern praktische Werkzeuge, die deinem Team Arbeit abnehmen. Dokumente auslesen, E-Mails vorsortieren, Anfragen weiterleiten, Berichte zusammenfassen.",
-      "Als dein KI-Berater in Bayern helfe ich dir, die richtigen Anwendungsfälle zu finden. Nicht jedes Problem braucht KI, aber wo sie passt, spart sie enorm Zeit. Ich baue keine Blackbox, sondern richte KI so ein, dass du verstehst und selbst steuerst, was passiert. Einmal befähigt, nie wieder abhängig.",
+      "Viele haben KI schon ausprobiert. Die Antworten klingen gut, passen aber nicht zum eigenen Betrieb, weil die KI deine Kunden, Preise und Abläufe nicht kennt. Also kopiert man Informationen hin und her, und nach ein paar Wochen bleibt es liegen.",
+      "Das Problem ist selten die KI, sondern die Grundlage. Wenn deine Daten an einem Ort liegen und es eine saubere Schnittstelle gibt, kann KI dort direkt mitarbeiten: Anfragen vorsortieren, Entwürfe schreiben, nachsehen, was offen ist.",
+      "Ich fange deshalb bei dieser Grundlage an, nicht beim Werkzeug. Danach richte ich dir einen KI-Arbeitsplatz ein, den du selbst bedienst. Du sollst mich nicht brauchen, um zu arbeiten, sondern anrufen, wenn du weiterdenkst.",
     ],
   },
 
   serviceHighlights: {
-    title: "KI-Anwendungen, die heute funktionieren",
+    title: "Wobei ich dich unterstütze",
     description:
-      "Keine Science-Fiction, sondern erprobte KI-Integrationen für den Mittelstand.",
+      "Kein Chatbot von der Stange, sondern KI, die mit dem arbeitet, was in deinem Betrieb schon da ist.",
     features: [
-      "Intelligente Dokumentenverarbeitung (Rechnungen, Verträge, Lieferscheine)",
-      "Automatische Kategorisierung und Weiterleitung von Anfragen",
-      "KI-gestützte Texterstellung und -zusammenfassung",
-      "Chatbots für Kundenservice und interne Anfragen",
-      "Datenanalyse und Entscheidungsunterstützung",
+      "Herausfinden, wo KI bei dir wirklich Arbeit abnimmt und wo nicht",
+      "Deine Daten an einen Ort bringen, damit KI sie lesen kann",
+      "Schnittstellen bauen, über die KI direkt mit deiner Software arbeitet",
+      "Einen KI-Arbeitsplatz einrichten, den du selbst bedienst",
+      "Dir zeigen, wie du ihn weiter ausbaust",
     ],
     image: {
       src: "/services/service_integration_sketch_1772400720958.png",
-      alt: "KI-Integration für bayerische Unternehmen",
+      alt: "Skizze von KI, die über eine Schnittstelle auf Betriebsdaten zugreift",
     },
   },
 
   useCases: {
-    title: "Wie bayerische Unternehmen KI nutzen",
+    title: "Was KI mit der richtigen Grundlage übernehmen kann",
     items: [
-      "Automobilzulieferer: Lieferscheine automatisch auslesen und verarbeiten",
-      "Versicherung: Schadenmeldungen automatisch kategorisieren und priorisieren",
-      "Großhandel: Kundenanfragen per KI-Chatbot vorqualifizieren",
-      "Produktion: Qualitätsprotokolle automatisch zusammenfassen",
-      "Steuerberater: Belege automatisch erkennen und zuordnen",
-      "Immobilienverwaltung: Mieteranfragen intelligent weiterleiten",
+      "Eingehende Anfragen lesen, einordnen und eine Antwort vorbereiten",
+      "Nachsehen, welche Kunden schon länger nichts bestellt haben",
+      "Aus Notizen und Daten einen Bericht oder ein Angebot entwerfen",
+      "Dokumente auslesen und die Werte an die richtige Stelle schreiben",
+      "Fragen zu deinem Betrieb beantworten, ohne dass du Listen durchsuchst",
     ],
   },
 
@@ -262,24 +260,24 @@ export const kiBeratungBayern: LocalSeoPageData = {
     serviceType: "AI Consulting and Integration",
     serviceName: "KI-Beratung in Bayern",
     serviceDescription:
-      "KI-Beratung und -Integration für den bayerischen Mittelstand. Dokumentenverarbeitung, Chatbots, intelligente Automatisierung, pragmatisch und ergebnisorientiert.",
+      "KI-Beratung für kleine Betriebe in Bayern. Daten an einen Ort bringen, Schnittstellen für KI bauen und einen KI-Arbeitsplatz einrichten, den der Betrieb selbst bedient.",
   },
 
   relatedPages: [
     {
-      path: "/prozessautomatisierung-allgaeu",
-      title: "Prozessautomatisierung Allgäu",
-      description: "Lokale Automatisierung in der Region",
+      path: "/ki-arbeitsplatz",
+      title: "KI-Arbeitsplatz",
+      description: "Die Ausbaustufe, wenn die Daten an einem Ort liegen",
     },
     {
       path: "/softwareentwicklung-dach",
-      title: "Softwareentwicklung DACH",
-      description: "Individuelle Softwarelösungen",
+      title: "Software nach Maß",
+      description: "Eigene Anwendungen für kleine Betriebe",
     },
     {
-      path: "/leistungen",
-      title: "Alle Leistungen",
-      description: "Übersicht aller Services",
+      path: "/prozessautomatisierung-allgaeu",
+      title: "Prozessautomatisierung Allgäu",
+      description: "Abläufe zwischen Programmen verbinden",
     },
   ],
 };
@@ -363,17 +361,17 @@ export const softwareentwicklungDach: LocalSeoPageData = {
     {
       path: "/prozessautomatisierung-allgaeu",
       title: "Prozessautomatisierung Allgäu",
-      description: "Lokale Automatisierung in der Region",
+      description: "Abläufe zwischen Programmen verbinden",
     },
     {
       path: "/ki-beratung-bayern",
       title: "KI-Beratung Bayern",
-      description: "KI-Integration für den Mittelstand",
+      description: "KI, die mit deinen Daten arbeitet",
     },
     {
       path: "/leistungen",
       title: "Alle Leistungen",
-      description: "Übersicht aller Services",
+      description: "Was ich baue und wie",
     },
   ],
 };
